@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: 20259316230374b0b860fa030e1bde3d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2396476592074399059
+    second: TriviaForge Logo_0
+  - first:
+      213: -1949556150650046375
+    second: TriviaForge Logo_1
+  - first:
+      213: 1822017744042671363
+    second: TriviaForge Logo_2
+  - first:
+      213: 3595779762653875464
+    second: TriviaForge Logo_3
+  - first:
+      213: 7865923036025064939
+    second: TriviaForge Logo_4
+  - first:
+      213: 1575769142681025361
+    second: TriviaForge Logo_5
+  - first:
+      213: -8511174020349912819
+    second: TriviaForge Logo_6
+  - first:
+      213: -1059711765881358958
+    second: TriviaForge Logo_7
+  - first:
+      213: -8285270369663560519
+    second: TriviaForge Logo_8
+  - first:
+      213: 7276195920113755383
+    second: TriviaForge Logo_9
+  - first:
+      213: 4148692073435765736
+    second: TriviaForge Logo_10
+  - first:
+      213: 1224682954266053018
+    second: TriviaForge Logo_11
+  - first:
+      213: 1421106912310344325
+    second: TriviaForge Logo_12
+  - first:
+      213: -1526772686694347512
+    second: TriviaForge Logo_13
+  - first:
+      213: 546420296614143645
+    second: TriviaForge Logo_14
+  - first:
+      213: -1684143196049024160
+    second: TriviaForge Logo_15
+  - first:
+      213: 1191175192339701838
+    second: TriviaForge Logo_16
+  - first:
+      213: -4131589899069085833
+    second: TriviaForge Logo_17
+  - first:
+      213: 4432570094456947555
+    second: TriviaForge Logo_18
+  - first:
+      213: 1834673358640304645
+    second: TriviaForge Logo_19
+  - first:
+      213: 7793556743411175316
+    second: TriviaForge Logo_20
+  - first:
+      213: -6992578394082524497
+    second: TriviaForge Logo_21
+  - first:
+      213: -4303604112360840999
+    second: TriviaForge Logo_22
+  - first:
+      213: 2081665462636824964
+    second: TriviaForge Logo_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TriviaForge Logo_0
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 636
+        width: 105
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d122f63cef14120800000000000000
+      internalID: 2396476592074399059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_1
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 527
+        width: 213
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95873da9209c1f4e0800000000000000
+      internalID: -1949556150650046375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_2
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 739
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d3f181c7b194910800000000000000
+      internalID: 1822017744042671363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_3
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 723
+        width: 56
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80dc58394a6c6e130800000000000000
+      internalID: 3595779762653875464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_4
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 646
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bed06d8635f592d60800000000000000
+      internalID: 7865923036025064939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_5
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 622
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15b368dbfa14ed510800000000000000
+      internalID: 1575769142681025361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_6
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 629
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d099287925c32e980800000000000000
+      internalID: -8511174020349912819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_7
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 576
+        width: 20
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 295f65673c52b41f0800000000000000
+      internalID: -1059711765881358958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_8
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 515
+        width: 115
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4522cfe7ec40d80800000000000000
+      internalID: -8285270369663560519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_9
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 515
+        width: 75
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f4e68e63ad3af460800000000000000
+      internalID: 7276195920113755383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_10
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 509
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eb1e97c57d139930800000000000000
+      internalID: 4148692073435765736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 424
+        width: 49
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99018388a2fef010800000000000000
+      internalID: 1224682954266053018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_12
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 468
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a3c181539c8b310800000000000000
+      internalID: 1421106912310344325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 468
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d80d4a450dfcae0800000000000000
+      internalID: -1526772686694347512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_14
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 424
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d96efbd5d56459700800000000000000
+      internalID: 546420296614143645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_15
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 404
+        width: 35
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b5b98afa8b0a8e0800000000000000
+      internalID: -1684143196049024160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_16
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 424
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e406aacb687e78010800000000000000
+      internalID: 1191175192339701838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_17
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 424
+        width: 12
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 777256c70e4a9a6c0800000000000000
+      internalID: -4131589899069085833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 423
+        width: 34
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36340222407a38d30800000000000000
+      internalID: 4432570094456947555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_19
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 424
+        width: 13
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502d0acf2b1167910800000000000000
+      internalID: 1834673358640304645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_20
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 424
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49f8fdbe096482c60800000000000000
+      internalID: 7793556743411175316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_21
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 424
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2c3a4bffe55fe90800000000000000
+      internalID: -6992578394082524497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_22
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 424
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d062dc7cd68644c0800000000000000
+      internalID: -4303604112360840999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TriviaForge Logo_23
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 423
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 489caa985bf83ec10800000000000000
+      internalID: 2081665462636824964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TriviaForge Logo_0: 2396476592074399059
+      TriviaForge Logo_1: -1949556150650046375
+      TriviaForge Logo_10: 4148692073435765736
+      TriviaForge Logo_11: 1224682954266053018
+      TriviaForge Logo_12: 1421106912310344325
+      TriviaForge Logo_13: -1526772686694347512
+      TriviaForge Logo_14: 546420296614143645
+      TriviaForge Logo_15: -1684143196049024160
+      TriviaForge Logo_16: 1191175192339701838
+      TriviaForge Logo_17: -4131589899069085833
+      TriviaForge Logo_18: 4432570094456947555
+      TriviaForge Logo_19: 1834673358640304645
+      TriviaForge Logo_2: 1822017744042671363
+      TriviaForge Logo_20: 7793556743411175316
+      TriviaForge Logo_21: -6992578394082524497
+      TriviaForge Logo_22: -4303604112360840999
+      TriviaForge Logo_23: 2081665462636824964
+      TriviaForge Logo_3: 3595779762653875464
+      TriviaForge Logo_4: 7865923036025064939
+      TriviaForge Logo_5: 1575769142681025361
+      TriviaForge Logo_6: -8511174020349912819
+      TriviaForge Logo_7: -1059711765881358958
+      TriviaForge Logo_8: -8285270369663560519
+      TriviaForge Logo_9: 7276195920113755383
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

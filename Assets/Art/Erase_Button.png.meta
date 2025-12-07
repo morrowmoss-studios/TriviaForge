@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 1718749e9a4a746729d330c1342fd2cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9121840038741390030
+    second: Erase_Button_0
+  - first:
+      213: 7289304928824923082
+    second: Erase_Button_1
+  - first:
+      213: 1368457146841721208
+    second: Erase_Button_2
+  - first:
+      213: 7210866964798395327
+    second: Erase_Button_3
+  - first:
+      213: -6630247482800611146
+    second: Erase_Button_4
+  - first:
+      213: -281455684286459230
+    second: Erase_Button_5
+  - first:
+      213: -7407871137828620090
+    second: Erase_Button_6
+  - first:
+      213: 487805928168154922
+    second: Erase_Button_7
+  - first:
+      213: -4204285388140646406
+    second: Erase_Button_8
+  - first:
+      213: 6667570148679960341
+    second: Erase_Button_9
+  - first:
+      213: -1812792186814033918
+    second: Erase_Button_10
+  - first:
+      213: -8962496296360418055
+    second: Erase_Button_11
+  - first:
+      213: -7572769814647300780
+    second: Erase_Button_12
+  - first:
+      213: 2937977151273265070
+    second: Erase_Button_13
+  - first:
+      213: -1724113061393026334
+    second: Erase_Button_14
+  - first:
+      213: 2094315103019030469
+    second: Erase_Button_15
+  - first:
+      213: -8311580046859723570
+    second: Erase_Button_16
+  - first:
+      213: -4099552860601870940
+    second: Erase_Button_17
+  - first:
+      213: -585938968573914432
+    second: Erase_Button_18
+  - first:
+      213: 8147000565384714056
+    second: Erase_Button_19
+  - first:
+      213: 4745683683804681295
+    second: Erase_Button_20
+  - first:
+      213: 8405044536256278471
+    second: Erase_Button_21
+  - first:
+      213: -4720203087011720157
+    second: Erase_Button_22
+  - first:
+      213: -2180097300220927787
+    second: Erase_Button_23
+  - first:
+      213: 9220267267935053315
+    second: Erase_Button_24
+  - first:
+      213: 3039437484380568858
+    second: Erase_Button_25
+  - first:
+      213: 6373445071292771161
+    second: Erase_Button_26
+  - first:
+      213: 3887465026643972892
+    second: Erase_Button_27
+  - first:
+      213: 186079299488347454
+    second: Erase_Button_28
+  - first:
+      213: 6655204053219751568
+    second: Erase_Button_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Erase_Button_0
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 648
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec2bd178f29479e70800000000000000
+      internalID: 9121840038741390030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_1
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 649
+        width: 26
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac31d1e5630d82560800000000000000
+      internalID: 7289304928824923082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_2
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 648
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87968df468cbdf210800000000000000
+      internalID: 1368457146841721208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_3
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 648
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb35867bc45221460800000000000000
+      internalID: 7210866964798395327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_4
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 648
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b0edbefa01acf3a0800000000000000
+      internalID: -6630247482800611146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_5
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 648
+        width: 25
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2571edb81181cf0800000000000000
+      internalID: -281455684286459230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_6
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 649
+        width: 25
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c83bdfd274f13990800000000000000
+      internalID: -7407871137828620090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_7
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 617
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27eacb38e805c600800000000000000
+      internalID: 487805928168154922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_8
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 617
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: affe289f6b067a5c0800000000000000
+      internalID: -4204285388140646406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_9
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 393
+        width: 735
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517411359b7f78c50800000000000000
+      internalID: 6667570148679960341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_10
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 602
+        width: 26
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20098555c1ba7d6e0800000000000000
+      internalID: -1812792186814033918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_11
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 617
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4eea29a11de9380800000000000000
+      internalID: -8962496296360418055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_12
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 617
+        width: 26
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d9520d9fd18e690800000000000000
+      internalID: -7572769814647300780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_13
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 617
+        width: 31
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea76bdb27aac5c820800000000000000
+      internalID: 2937977151273265070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_14
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 617
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e2be0f2e48b218e0800000000000000
+      internalID: -1724113061393026334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_15
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 617
+        width: 38
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c75f237d70801d10800000000000000
+      internalID: 2094315103019030469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_16
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 617
+        width: 28
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc93b8ebf557ac80800000000000000
+      internalID: -8311580046859723570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_17
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 618
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a593e5c4667b17c0800000000000000
+      internalID: -4099552860601870940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_18
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 617
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c2d71ecc935ed7f0800000000000000
+      internalID: -585938968573914432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_19
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 617
+        width: 37
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84799ac79d5ff0170800000000000000
+      internalID: 8147000565384714056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_20
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 617
+        width: 27
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f449b8daa2e0cd140800000000000000
+      internalID: 4745683683804681295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_21
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 604
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cfa4e05977b4a470800000000000000
+      internalID: 8405044536256278471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_22
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 552
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 324d6f21d487e7eb0800000000000000
+      internalID: -4720203087011720157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_23
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 552
+        width: 13
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d02b8c5e0dbeb1e0800000000000000
+      internalID: -2180097300220927787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_24
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 527
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3062e67aa38f4ff70800000000000000
+      internalID: 9220267267935053315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_25
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 486
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1db285d9404e2a20800000000000000
+      internalID: 3039437484380568858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_26
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 486
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95baedd3686037850800000000000000
+      internalID: 6373445071292771161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_27
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 439
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c135ed558dc03f530800000000000000
+      internalID: 3887465026643972892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_28
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 458
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e357e021326159200800000000000000
+      internalID: 186079299488347454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Erase_Button_29
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 415
+        width: 25
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09637eb53d80c5c50800000000000000
+      internalID: 6655204053219751568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Erase_Button_0: 9121840038741390030
+      Erase_Button_1: 7289304928824923082
+      Erase_Button_10: -1812792186814033918
+      Erase_Button_11: -8962496296360418055
+      Erase_Button_12: -7572769814647300780
+      Erase_Button_13: 2937977151273265070
+      Erase_Button_14: -1724113061393026334
+      Erase_Button_15: 2094315103019030469
+      Erase_Button_16: -8311580046859723570
+      Erase_Button_17: -4099552860601870940
+      Erase_Button_18: -585938968573914432
+      Erase_Button_19: 8147000565384714056
+      Erase_Button_2: 1368457146841721208
+      Erase_Button_20: 4745683683804681295
+      Erase_Button_21: 8405044536256278471
+      Erase_Button_22: -4720203087011720157
+      Erase_Button_23: -2180097300220927787
+      Erase_Button_24: 9220267267935053315
+      Erase_Button_25: 3039437484380568858
+      Erase_Button_26: 6373445071292771161
+      Erase_Button_27: 3887465026643972892
+      Erase_Button_28: 186079299488347454
+      Erase_Button_29: 6655204053219751568
+      Erase_Button_3: 7210866964798395327
+      Erase_Button_4: -6630247482800611146
+      Erase_Button_5: -281455684286459230
+      Erase_Button_6: -7407871137828620090
+      Erase_Button_7: 487805928168154922
+      Erase_Button_8: -4204285388140646406
+      Erase_Button_9: 6667570148679960341
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
