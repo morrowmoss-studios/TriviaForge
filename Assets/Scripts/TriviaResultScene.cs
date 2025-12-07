@@ -5,51 +5,61 @@ using TMPro;
 public class TriviaResultScene : MonoBehaviour
 {
     [Header("UI References")]
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI bodyText;
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private TextMeshProUGUI bodyText;
 
-    void Start()
+    private void Start()
     {
-        // Read from the global backpack
-        bool wasCorrect       = TriviaSessionData.lastWasCorrect;
-        string playerAnswer   = TriviaSessionData.lastPlayerAnswerLabel;
-        string correctAnswer  = TriviaSessionData.lastCorrectAnswerLabel;
+        // Title: Correct / Wrong
+        titleText.text = TriviaSessionData.wasCorrect ? "Correct!" : "Wrong!";
 
-        if (titleText != null)
-        {
-            titleText.text = wasCorrect ? "Correct!" : "Wrong!";
-        }
+        int chosen  = TriviaSessionData.chosenIndex;
+        int correct = TriviaSessionData.correctIndex;
 
-        if (bodyText != null)
+        string chosenLetter  = IndexToLetter(chosen);
+        string correctLetter = IndexToLetter(correct);
+
+        string chosenText  = TriviaSessionData.answers[chosen];
+        string correctText = TriviaSessionData.answers[correct];
+
+        // You can style this however you want later
+        bodyText.text =
+            $"You chose:\n<b>{chosenLetter}. {chosenText}</b>\n\n" +
+            $"Correct answer:\n<b>{correctLetter}. {correctText}</b>";
+    }
+
+    private string IndexToLetter(int index)
+    {
+        switch (index)
         {
-            if (wasCorrect)
-            {
-                bodyText.text =
-                    $"You chose:\n{correctAnswer}\n\n" +
-                    $"You nailed it.";
-            }
-            else
-            {
-                bodyText.text =
-                    $"You chose:\n{playerAnswer}\n\n" +
-                    $"Correct answer:\n{correctAnswer}";
-            }
+            case 0: return "A";
+            case 1: return "B";
+            case 2: return "C";
+            case 3: return "D";
+            default: return "?";
         }
     }
 
+    // called by Next button
     public void OnNextPressed()
     {
-        // move to the next question
         TriviaSessionData.currentQuestionIndex++;
 
-        SceneManager.LoadScene("TriviaMode");  // name of your trivia gameplay scene
+        if (TriviaSessionData.currentQuestionIndex >= TriviaSessionData.totalQuestions)
+        {
+            // out of questions -> send them back to mode select or main menu
+            SceneManager.LoadScene("ModeSelect");   // <- change to your scene name
+        }
+        else
+        {
+            // go back to TriviaMode, which will load the next question
+            SceneManager.LoadScene("TriviaMode");   // <- exact scene name
+        }
     }
 
+    // called by Quit button
     public void OnQuitPressed()
     {
-        // reset or not, up to you
-        TriviaSessionData.currentQuestionIndex = 0;
-
-        SceneManager.LoadScene("GameSetup");   // or MainMenu, whatever your hub scene is
+        SceneManager.LoadScene("ModeSelect");       // or "MainMenu"
     }
 }

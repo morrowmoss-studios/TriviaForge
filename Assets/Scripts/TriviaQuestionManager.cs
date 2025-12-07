@@ -45,6 +45,8 @@ public class TriviaQuestionManager : MonoBehaviour
                 TriviaSessionData.currentQuestionIndex = 0;
             }
 
+            TriviaSessionData.totalQuestions = questions.Count; // ✅ add this line
+
             LoadQuestion(TriviaSessionData.currentQuestionIndex);
         }
         else
@@ -52,6 +54,7 @@ public class TriviaQuestionManager : MonoBehaviour
             Debug.LogWarning("No questions set up on TriviaQuestionManager.");
         }
     }
+
 
 
     void LoadQuestion(int index)
@@ -85,22 +88,33 @@ public class TriviaQuestionManager : MonoBehaviour
 
         Question q = questions[currentQuestionIndex];
 
-        bool isCorrect = (button.answerIndex == q.correctIndex);
-
-        // Build labels like "A. Lavender"
-        string playerLabel  = BuildAnswerLabel(q, button.answerIndex);
-        string correctLabel = BuildAnswerLabel(q, q.correctIndex);
-
-        // Save into the global backpack
-        TriviaSessionData.lastWasCorrect        = isCorrect;
-        TriviaSessionData.lastPlayerAnswerLabel = playerLabel;
-        TriviaSessionData.lastCorrectAnswerLabel = correctLabel;
-
-        // Also remember which question we're on
+        // --- Save stuff for the result scene ---
+        TriviaSessionData.questionText = q.questionText;
+        TriviaSessionData.correctIndex = q.correctIndex;
+        TriviaSessionData.chosenIndex = button.answerIndex;
+        TriviaSessionData.wasCorrect = (button.answerIndex == q.correctIndex);
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex;
 
-        // Jump to result scene
-        SceneManager.LoadScene("TriviaResult");   // we'll create this next
+        // copy answers so the result scene can show them
+        for (int i = 0; i < q.answers.Length; i++)
+        {
+            TriviaSessionData.answers[i] = q.answers[i];
+        }
+        // --- end save ---
+
+        if (button.answerIndex == q.correctIndex)
+        {
+            Debug.Log("Correct!");
+            button.ShowAsCorrect();
+        }
+        else
+        {
+            Debug.Log("Wrong!");
+            button.ShowAsWrong();
+        }
+
+        // 🔁 Jump to the result screen
+        SceneManager.LoadScene("TriviaResult");
     }
 
 
