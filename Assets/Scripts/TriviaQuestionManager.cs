@@ -68,16 +68,26 @@ public class TriviaQuestionManager : MonoBehaviour
 
         Question q = questions[currentQuestionIndex];
 
+        // First reset all outlines
+        foreach (var b in answerButtons)
+            b.ResetOutline();
+
         if (button.answerIndex == q.correctIndex)
         {
             Debug.Log("Correct!");
-            // later: play SFX, go to next question, etc.
+            button.ShowAsCorrect();
+            // TODO: NextQuestion() after delay
         }
         else
         {
             Debug.Log("Wrong!");
-            button.ShowWrong();
-            // later: show correct answer, lose life, etc.
+            button.ShowAsWrong();
+
+            // highlight the real correct one
+            var correctButton = answerButtons[q.correctIndex];
+            if (correctButton != null)
+                correctButton.ShowAsCorrect();
         }
     }
+
 }
