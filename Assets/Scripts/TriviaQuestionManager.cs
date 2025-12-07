@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TriviaQuestionManager : MonoBehaviour
@@ -26,18 +27,32 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private int currentQuestionIndex = 0;
     private bool questionLocked = false;
-
+    
+    private string BuildAnswerLabel(Question q, int index)
+    {
+        string[] letters = { "A.", "B.", "C.", "D." };
+        return $"{letters[index]} {q.answers[index]}";
+    }
+    
     void Start()
     {
         if (questions.Count > 0)
         {
-            LoadQuestion(0);
+            // clamp the index just in case
+            if (TriviaSessionData.currentQuestionIndex < 0 || 
+                TriviaSessionData.currentQuestionIndex >= questions.Count)
+            {
+                TriviaSessionData.currentQuestionIndex = 0;
+            }
+
+            LoadQuestion(TriviaSessionData.currentQuestionIndex);
         }
         else
         {
             Debug.LogWarning("No questions set up on TriviaQuestionManager.");
         }
     }
+
 
     void LoadQuestion(int index)
     {
@@ -55,11 +70,13 @@ public class TriviaQuestionManager : MonoBehaviour
         {
             if (answerButtons[i] != null)
             {
-                string answerText = q.answers[i];
-                answerButtons[i].Init(this, i, letters[i], answerText);
+                // reset outlines and text for each new question
+                answerButtons[i].ResetOutline();
+                answerButtons[i].Init(this, i, letters[i], q.answers[i]);
             }
         }
     }
+
 
     public void OnAnswerClicked(AnswerButtonUI button)
     {
@@ -68,26 +85,24 @@ public class TriviaQuestionManager : MonoBehaviour
 
         Question q = questions[currentQuestionIndex];
 
-        // First reset all outlines
-        foreach (var b in answerButtons)
-            b.ResetOutline();
+        bool isCorrect = (button.answerIndex == q.correctIndex);
 
-        if (button.answerIndex == q.correctIndex)
-        {
-            Debug.Log("Correct!");
-            button.ShowAsCorrect();
-            // TODO: NextQuestion() after delay
-        }
-        else
-        {
-            Debug.Log("Wrong!");
-            button.ShowAsWrong();
+        // Build labels like "A. Lavender"
+        string playerLabel  = BuildAnswerLabel(q, button.answerIndex);
+        string correctLabel = BuildAnswerLabel(q, q.correctIndex);
 
-            // highlight the real correct one
-            var correctButton = answerButtons[q.correctIndex];
-            if (correctButton != null)
-                correctButton.ShowAsCorrect();
-        }
+        // Save into the global backpack
+        TriviaSessionData.lastWasCorrect        = isCorrect;
+        TriviaSessionData.lastPlayerAnswerLabel = playerLabel;
+        TriviaSessionData.lastCorrectAnswerLabel = correctLabel;
+
+        // Also remember which question we're on
+        TriviaSessionData.currentQuestionIndex = currentQuestionIndex;
+
+        // Jump to result scene
+        SceneManager.LoadScene("TriviaResult");   // we'll create this next
     }
+
+
 
 }

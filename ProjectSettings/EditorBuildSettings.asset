@@ -23,6 +23,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TermsOfUse.unity
     guid: a108c4b2ff0014ef18419eef2f75682b
+  - enabled: 1
+    path: Assets/Scenes/ModeSelect.unity
+    guid: 364934bd66f074ac4b59d37b482c187b
+  - enabled: 1
+    path: Assets/Scenes/CrosswordMode.unity
+    guid: 07c39aa5e22d749758ffc8c266f0be8e
+  - enabled: 1
+    path: Assets/Scenes/TriviaMode.unity
+    guid: 5635dcca862d8465399498038a7a030b
+  - enabled: 1
+    path: Assets/Scenes/TriviaResult.unity
+    guid: 4165f61639b134342a68f149f3077ed8
+  - enabled: 1
+    path: Assets/Scenes/WordokuMode.unity
+    guid: 5025c10c6e71349dfa079a437beea7cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
