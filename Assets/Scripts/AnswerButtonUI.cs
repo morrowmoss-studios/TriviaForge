@@ -12,6 +12,9 @@ public class AnswerButtonUI : MonoBehaviour
     [HideInInspector] public int answerIndex;
 
     private TriviaQuestionManager manager;
+    
+    [SerializeField] private Sprite disabledOutlineSprite; // ✅ your greyed-out version
+
 
     public void Init(TriviaQuestionManager mgr, int index, string letter, string answer)
     {
@@ -47,4 +50,22 @@ public class AnswerButtonUI : MonoBehaviour
         if (outlineImage != null && manager != null && manager.wrongOutlineSprite != null)
             outlineImage.sprite = manager.wrongOutlineSprite;
     }
+    
+    public void DisableAnswer()
+    {
+        // Change outline to greyed-out version
+        if (outlineImage != null && disabledOutlineSprite != null)
+            outlineImage.sprite = disabledOutlineSprite;
+
+        // Dim the text
+        if (answerText != null)
+            answerText.alpha = 0.2f;
+
+        if (letterText != null)
+            letterText.alpha = 0.2f;
+
+        // Disable the button
+        GetComponent<Button>().interactable = false;
+    }
+
 }

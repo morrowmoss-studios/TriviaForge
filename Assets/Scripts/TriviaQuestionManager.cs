@@ -27,6 +27,7 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private int currentQuestionIndex = 0;
     private bool questionLocked = false;
+    private bool hintUsed = false;
     
     private string BuildAnswerLabel(Question q, int index)
     {
@@ -113,10 +114,35 @@ public class TriviaQuestionManager : MonoBehaviour
             button.ShowAsWrong();
         }
 
-        // 🔁 Jump to the result screen
+        // Jump to the result screen
         SceneManager.LoadScene("TriviaResult");
     }
 
+    public void OnHintPressed()
+    {
+        if (hintUsed || questionLocked) return;
+
+        Question q = questions[currentQuestionIndex];
+        List<int> wrongIndexes = new List<int>();
+
+        // Find all wrong answers
+        for (int i = 0; i < q.answers.Length; i++)
+        {
+            if (i != q.correctIndex)
+                wrongIndexes.Add(i);
+        }
+
+        // Pick one wrong answer to disable
+        int eliminateIndex = wrongIndexes[Random.Range(0, wrongIndexes.Count)];
+
+        if (answerButtons[eliminateIndex] != null)
+        {
+            answerButtons[eliminateIndex].DisableAnswer();  // This is your method in AnswerButtonUI.cs
+            Debug.Log($"Hint used! Disabled answer at index {eliminateIndex}");
+        }
+
+        hintUsed = true;
+    }
 
 
 }

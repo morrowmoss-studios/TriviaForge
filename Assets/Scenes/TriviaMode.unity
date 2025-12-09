@@ -607,6 +607,7 @@ MonoBehaviour:
   letterText: {fileID: 365673392}
   answerText: {fileID: 365673393}
   answerIndex: 0
+  disabledOutlineSprite: {fileID: -2529297696657472915, guid: c92b75b3a08614a2bbe5a35209cff1eb, type: 3}
 --- !u!1001 &444689671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,6 +827,7 @@ MonoBehaviour:
   letterText: {fileID: 444689673}
   answerText: {fileID: 444689674}
   answerIndex: 0
+  disabledOutlineSprite: {fileID: -2529297696657472915, guid: c92b75b3a08614a2bbe5a35209cff1eb, type: 3}
 --- !u!1 &445035388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1198,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1189653486}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584914902}
+        m_TargetAssemblyTypeName: TriviaQuestionManager, Assembly-CSharp
+        m_MethodName: OnHintPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1189653486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2294,6 +2308,7 @@ MonoBehaviour:
   letterText: {fileID: 2129123919}
   answerText: {fileID: 2129123920}
   answerIndex: 0
+  disabledOutlineSprite: {fileID: -2529297696657472915, guid: c92b75b3a08614a2bbe5a35209cff1eb, type: 3}
 --- !u!1001 &9018552309911963897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2513,6 +2528,7 @@ MonoBehaviour:
   letterText: {fileID: 9018552309911963899}
   answerText: {fileID: 9018552309911963900}
   answerIndex: 0
+  disabledOutlineSprite: {fileID: -2529297696657472915, guid: c92b75b3a08614a2bbe5a35209cff1eb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
