@@ -22,10 +22,18 @@ public class TriviaResultScene : MonoBehaviour
         string chosenText  = TriviaSessionData.answers[chosen];
         string correctText = TriviaSessionData.answers[correct];
 
-        // You can style this however you want later
-        bodyText.text =
-            $"You chose:\n<b>{chosenLetter}. {chosenText}</b>\n\n" +
-            $"Correct answer:\n<b>{correctLetter}. {correctText}</b>";
+        // displaying right or wrong answers
+        if (TriviaSessionData.wasCorrect)
+        {
+            bodyText.text = $"You chose: <b>{chosenLetter}. {chosenText}</b>";
+        }
+        else
+        {
+            bodyText.text =
+                $"You chose: <b>{chosenLetter}. {chosenText}</b>\n" +
+                $"Correct answer: <b>{correctLetter}. {correctText}</b>";
+        }
+
     }
 
     private string IndexToLetter(int index)
