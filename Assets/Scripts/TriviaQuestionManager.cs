@@ -49,15 +49,18 @@ public class TriviaQuestionManager : MonoBehaviour
             TriviaSessionData.totalQuestions = questions.Count; // ✅ add this line
 
             LoadQuestion(TriviaSessionData.currentQuestionIndex);
+            
+            Debug.Log("Game Mode: " + TriviaSessionData.selectedGameMode);
+            Debug.Log("Category: " + TriviaSessionData.selectedCategory);
+            Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
         }
         else
         {
             Debug.LogWarning("No questions set up on TriviaQuestionManager.");
         }
+        
     }
-
-
-
+    
     void LoadQuestion(int index)
     {
         questionLocked = false;

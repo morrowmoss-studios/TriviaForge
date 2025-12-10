@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 72bdc36e65c324ccda157e4691683f7f
+guid: cb03f719b5db24c21bb13ea24f689540
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3707793025450656653
-    second: Reset_Button_0
+      213: 6369119165039167209
+    second: Wordoku_Background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Reset_Button_0
+      name: Wordoku_Background_0
       rect:
         serializedVersion: 2
-        x: 168
-        y: 419
-        width: 688
-        height: 187
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8348a6ac1ab47330800000000000000
-      internalID: 3707793025450656653
+      spriteID: 9e6ca44b228a36850800000000000000
+      internalID: 6369119165039167209
       vertices: []
       indices: 
       edges: []
