@@ -7,11 +7,13 @@ public class UIManager : MonoBehaviour
     [Tooltip("If true, this UIManager will persist across scene loads.")]
     [SerializeField] private bool dontDestroyOnLoad = false;
 
+    // Static field to track the last visited scene
+    public static string previousSceneName;
+
     private void Awake()
     {
         if (dontDestroyOnLoad)
         {
-            // If you ever choose to have only one global UIManager
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -29,6 +31,8 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        // Store the current scene before changing
+        SetPreviousScene();
         SceneManager.LoadScene(sceneName);
     }
 
@@ -37,6 +41,26 @@ public class UIManager : MonoBehaviour
     {
         Scene current = SceneManager.GetActiveScene();
         SceneManager.LoadScene(current.name);
+    }
+
+    // Set the previous scene manually (for special transitions)
+    public static void SetPreviousScene()
+    {
+        previousSceneName = SceneManager.GetActiveScene().name;
+    }
+
+    // Go back to the last scene visited
+    public void LoadPreviousScene()
+    {
+        if (!string.IsNullOrEmpty(previousSceneName))
+        {
+            SceneManager.LoadScene(previousSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("No previous scene stored. Loading MainMenu as fallback.");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     // -------------------------------------------------------------
