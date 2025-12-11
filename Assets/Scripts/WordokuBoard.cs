@@ -48,4 +48,12 @@ public class WordokuBoard : MonoBehaviour
             }
         }
     }
+    
+    private string GetRandomLetter()
+    {
+        string letters = "ABCDEFGHI"; // 9 unique letters for Wordoku
+        int index = Random.Range(0, letters.Length);
+        return letters[index].ToString();
+    }
+
 }
