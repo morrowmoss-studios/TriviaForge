@@ -18,31 +18,34 @@ public class WordokuBoard : MonoBehaviour
         GenerateBoard();
     }
 
-    private void GenerateBoard()
+    public void GenerateBoard()
     {
+        // Clear any old tiles
+        foreach (Transform child in gridParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         for (int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
             {
                 GameObject cellGO = Instantiate(cellPrefab, gridParent);
+                cellGO.transform.localScale = Vector3.one;
+
                 WordokuCell cell = cellGO.GetComponent<WordokuCell>();
-                cell.Setup(row, col); // Optional if you need references to coords
+                cell.Setup(row, col);
+                cell.SetLetter(GetRandomLetter());
 
-                // Assign tile sprite based on checkerboard pattern
                 Image img = cellGO.GetComponent<Image>();
-
                 if (img != null)
                 {
                     img.sprite = (row + col) % 2 == 0 ? darkTileSprite : lightTileSprite;
-                    img.color = Color.white; // Just in case prefab is tinted
-                }
-                else
-                {
-                    Debug.LogWarning($"No Image component found on prefab at {row},{col}");
+                    img.color = Color.white;
                 }
 
                 boardCells[row, col] = cell;
             }
-        } 
+        }
     }
 }
