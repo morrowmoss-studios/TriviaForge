@@ -567,8 +567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c6da31e471498cae4b33961518cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 419369790734816978, guid: 8ad3b0d1cd213431faf601f1908f447a, type: 3}
+  cellPrefab: {fileID: 419369790734816978, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
   gridParent: {fileID: 1882766864}
+  darkTileSprite: {fileID: 882983674659450754, guid: dab69fb2938c84ce5a2cc86e206364f2, type: 3}
+  lightTileSprite: {fileID: 4605926772495124702, guid: d78cd2431b65046448424c723d2613bf, type: 3}
 --- !u!1 &606305868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1215,7 @@ RectTransform:
   - {fileID: 235554410}
   - {fileID: 112912705}
   - {fileID: 955983203}
+  - {fileID: 1882766864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1825,16 +1828,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882766859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9374999, y: 0.9374999, z: 0.9374999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1564483202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1675.2476, y: 532.7874}
+  m_AnchoredPosition: {x: 10, y: 12}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1951639409
@@ -1981,4 +1984,3 @@ SceneRoots:
   - {fileID: 1564483202}
   - {fileID: 831979871}
   - {fileID: 302585441}
-  - {fileID: 1882766864}

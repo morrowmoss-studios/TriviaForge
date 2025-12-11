@@ -569,6 +569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 419369790734816978, guid: 8ad3b0d1cd213431faf601f1908f447a, type: 3}
   gridParent: {fileID: 1882766864}
+  darkTileSprite: {fileID: -4125822017536944901, guid: 747456ba815004786bf13c1b2c5882e4, type: 3}
+  lightTileSprite: {fileID: -4053973760309616810, guid: 851ec7b898ab3476085600f131ac49d8, type: 3}
 --- !u!1 &606305868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1215,7 @@ RectTransform:
   - {fileID: 235554410}
   - {fileID: 112912705}
   - {fileID: 955983203}
+  - {fileID: 1882766864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1825,16 +1828,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882766859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9374999, y: 0.9374999, z: 0.9374999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1564483202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1675.2476, y: 532.7874}
+  m_AnchoredPosition: {x: 10, y: 12}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1951639409
@@ -1981,4 +1984,3 @@ SceneRoots:
   - {fileID: 1564483202}
   - {fileID: 831979871}
   - {fileID: 302585441}
-  - {fileID: 1882766864}
