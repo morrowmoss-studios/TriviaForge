@@ -21,6 +21,7 @@ public class WordokuCell : MonoBehaviour
     {
         currentLetter = letter.ToUpper();
         letterText.text = currentLetter;
+        //letterText.rectTransform.anchoredPosition = Vector2.zero;
     }
 
     public string GetLetter()

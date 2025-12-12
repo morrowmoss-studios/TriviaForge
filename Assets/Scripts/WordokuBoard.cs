@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -12,9 +13,13 @@ public class WordokuBoard : MonoBehaviour
 
     [HideInInspector]
     public WordokuCell[,] boardCells = new WordokuCell[9, 9];
+    
+    [SerializeField] private RectTransform boardWrapper;  // Assign your outer AspectRatioFitter wrapper here
+    [SerializeField] private GridLayoutGroup gridLayout;
 
     private void Start()
     {
+        AdjustCellSize();
         GenerateBoard();
     }
 
@@ -55,5 +60,25 @@ public class WordokuBoard : MonoBehaviour
         int index = Random.Range(0, letters.Length);
         return letters[index].ToString();
     }
+    private void AdjustCellSize()
+    {
+        StartCoroutine(ResizeNextFrame());
+    }
 
+    private IEnumerator ResizeNextFrame()
+    {
+        yield return null; // Wait one frame to ensure layout is settled
+
+        float gridWidth = boardWrapper.rect.width;
+
+        float spacing = gridLayout.spacing.x;
+        float totalSpacing = spacing * 8f; // 9 columns = 8 gaps
+
+        float cellSize = (gridWidth - totalSpacing) / 9f;
+        gridLayout.cellSize = new Vector2(cellSize, cellSize);
+    }
+    private void OnRectTransformDimensionsChange()
+    {
+        AdjustCellSize();
+    }
 }
