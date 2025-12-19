@@ -581,10 +581,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 419369790734816978, guid: 8ad3b0d1cd213431faf601f1908f447a, type: 3}
   gridParent: {fileID: 1882766864}
+  gridLayout: {fileID: 1882766863}
   darkTileSprite: {fileID: -4125822017536944901, guid: 747456ba815004786bf13c1b2c5882e4, type: 3}
   lightTileSprite: {fileID: -4053973760309616810, guid: 851ec7b898ab3476085600f131ac49d8, type: 3}
-  boardWrapper: {fileID: 2134213003}
-  gridLayout: {fileID: 1882766863}
 --- !u!1 &606305868
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,10 +616,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1564483202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1662, y: 1248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606305870
 MonoBehaviour:
@@ -1801,7 +1800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1882766864}
   - component: {fileID: 1882766863}
-  - component: {fileID: 1882766862}
   m_Layer: 0
   m_Name: GridParent
   m_TagString: Untagged
@@ -1809,20 +1807,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1882766862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882766859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!114 &1882766863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,8 +1847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00007534027, y: 0.00001335144}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 7, y: 421}
+  m_SizeDelta: {x: 900, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1951639409
 GameObject:

@@ -1,28 +1,41 @@
+using System.Collections;
 using UnityEngine;
 using System.Linq;
 
 public class WordokuManager : MonoBehaviour
 {
     [Header("References")]
-    public WordokuBoard board; // Link this in the Inspector
-    public string[] wordokuWords = { "DRAGONFLY", "MOONLIGHT", "CAMPFIRES" }; // sample 9-letter words
+    public WordokuBoard board;   // Assigned in Inspector
 
-    private char[,] solution = new char[9, 9];   // final solution
-    private char[,] startingBoard = new char[9, 9]; // what the player sees initially
-    
+    [Header("Word List")]
+    public string[] wordokuWords = { "DRAGONFLY", "MOONLIGHT", "CAMPFIRES" };
+
+    private char[,] solution = new char[9, 9];
+    private char[,] startingBoard = new char[9, 9];
 
     private void Start()
     {
+        // Wait one frame so the board + layout are fully built
+        StartCoroutine(GenerateAfterLayout());
+    }
+
+    private IEnumerator GenerateAfterLayout()
+    {
+        yield return null;
         GeneratePuzzle();
     }
 
     private void GeneratePuzzle()
     {
         string word = GetRandomWord();
-        GenerateSolutionGrid(word);         // fill 'solution'
-        GenerateStartingBoard();            // hide some letters
-        board.GenerateBoard();              // generate UI grid
-        PopulateBoardUI();                  // set cell texts
+
+        GenerateSolutionGrid(word);
+        GenerateStartingBoard();
+
+        // IMPORTANT:
+        // Do NOT generate the board here.
+        // WordokuBoard already did that.
+        PopulateBoardUI();
     }
 
     private string GetRandomWord()
@@ -32,7 +45,6 @@ public class WordokuManager : MonoBehaviour
 
     private void GenerateSolutionGrid(string word)
     {
-        // TODO: For now, fill solution with randomized 9-letter word — later swap in real solving algo
         char[] letters = word.ToCharArray();
         System.Random rng = new System.Random();
 
@@ -57,12 +69,13 @@ public class WordokuManager : MonoBehaviour
             }
         }
 
-        // Hide ~40% of the tiles to create the puzzle
-        for (int i = 0; i < 81 * 0.4f; i++)
+        // Remove ~40% of letters
+        int removals = Mathf.RoundToInt(81 * 0.4f);
+        for (int i = 0; i < removals; i++)
         {
             int row = Random.Range(0, 9);
             int col = Random.Range(0, 9);
-            startingBoard[row, col] = '\0'; // empty cell
+            startingBoard[row, col] = '\0';
         }
     }
 
@@ -73,16 +86,16 @@ public class WordokuManager : MonoBehaviour
             for (int col = 0; col < 9; col++)
             {
                 WordokuCell cell = board.boardCells[row, col];
-                char val = startingBoard[row, col];
+                char value = startingBoard[row, col];
 
-                if (val != '\0')
+                if (value != '\0')
                 {
-                    cell.SetLetter(val.ToString());
-                    cell.SetLocked(true);  // pre-filled
+                    cell.SetLetter(value.ToString());
+                    cell.SetLocked(true);
                 }
                 else
                 {
-                    cell.SetLetter("");    // blank
+                    cell.SetLetter("");
                     cell.SetLocked(false);
                 }
             }
@@ -96,24 +109,6 @@ public class WordokuManager : MonoBehaviour
 
     public void GiveHint()
     {
-        for (int row = 0; row < 9; row++)
-        {
-            for (int col = 0; col < 9; col++)
-            {
-                WordokuCell cell = board.boardCells[row, col];
-
-                if (!cell.isLocked && string.IsNullOrEmpty(cell.GetLetter()))
-                {
-                    cell.SetLetter(solution[row, col].ToString());
-                    return;
-                }
-            }
-        }
-    }
-    
-    public void ShowHint()
-    {
-        // Simple: find first empty and fill it
         for (int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
