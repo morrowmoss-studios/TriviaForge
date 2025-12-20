@@ -56,15 +56,25 @@ public class WordokuManager : MonoBehaviour
         char[] letters = word.ToCharArray();
         System.Random rng = new System.Random();
 
+        // 1️⃣ Shuffle the letters once (this defines the whole puzzle)
+        char[] baseRow = letters.OrderBy(_ => rng.Next()).ToArray();
+
+        // 2️⃣ Generate solution using Sudoku shift pattern
         for (int row = 0; row < 9; row++)
         {
-            var shuffled = letters.OrderBy(_ => rng.Next()).ToArray();
             for (int col = 0; col < 9; col++)
             {
-                solution[row, col] = shuffled[col];
+                int shift =
+                    (row % 3) * 3 +   // shift inside a block
+                    (row / 3);        // shift between blocks
+
+                int index = (col + shift) % 9;
+                solution[row, col] = baseRow[index];
             }
         }
     }
+
+
 
     private void GenerateStartingBoard()
     {
