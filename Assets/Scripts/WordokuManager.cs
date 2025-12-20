@@ -10,6 +10,10 @@ public class WordokuManager : MonoBehaviour
     [Header("Word List")]
     public string[] wordokuWords = { "DRAGONFLY", "MOONLIGHT", "CAMPFIRES" };
 
+    // PUBLIC READ-ONLY STATE (important)
+    public string CurrentWord { get; private set; }
+    public char[] CurrentLetters { get; private set; }
+
     private char[,] solution = new char[9, 9];
     private char[,] startingBoard = new char[9, 9];
 
@@ -27,14 +31,13 @@ public class WordokuManager : MonoBehaviour
 
     private void GeneratePuzzle()
     {
-        string word = GetRandomWord();
+        CurrentWord = GetRandomWord();
+        CurrentLetters = CurrentWord.ToCharArray();
 
-        GenerateSolutionGrid(word);
+        GenerateSolutionGrid(CurrentWord);
         GenerateStartingBoard();
 
-        // IMPORTANT:
-        // Do NOT generate the board here.
-        // WordokuBoard already did that.
+        // Board already exists – just populate
         PopulateBoardUI();
     }
 
