@@ -2,21 +2,17 @@ using UnityEngine;
 
 public class LetterChoiceManager : MonoBehaviour
 {
-    [SerializeField] private WordokuManager wordokuManager;
     [SerializeField] private LetterChoiceButton[] buttons;
 
-    private void Start()
+    // CALLED by WordokuManager when the word is ready
+    public void PopulateFromWord(char[] letters)
     {
-        PopulateButtons();
-    }
-
-    private void PopulateButtons()
-    {
-        char[] letters = wordokuManager.CurrentLetters;
+        Debug.Log("PopulateFromWord called with: " + new string(letters));
 
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].SetLetter(letters[i].ToString());
         }
     }
+
 }

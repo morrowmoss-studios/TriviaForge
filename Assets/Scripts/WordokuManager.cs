@@ -9,6 +9,10 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Word List")]
     public string[] wordokuWords = { "DRAGONFLY", "MOONLIGHT", "CAMPFIRES" };
+    
+    [Header("Letter Choice UI")]
+    [SerializeField] private LetterChoiceManager letterChoiceManager;
+
 
     // PUBLIC READ-ONLY STATE (important)
     public string CurrentWord { get; private set; }
@@ -36,10 +40,11 @@ public class WordokuManager : MonoBehaviour
 
         GenerateSolutionGrid(CurrentWord);
         GenerateStartingBoard();
-
-        // Board already exists – just populate
         PopulateBoardUI();
+        
+        letterChoiceManager.PopulateFromWord(CurrentLetters);
     }
+
 
     private string GetRandomWord()
     {

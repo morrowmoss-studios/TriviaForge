@@ -3320,7 +3320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5d451223d3a47e584ad1e9f2819e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordokuManager: {fileID: 2112210522}
   buttons:
   - {fileID: 1177915726}
   - {fileID: 1077285017}
@@ -4591,6 +4590,7 @@ MonoBehaviour:
   - DRAGONFLY
   - MOONLIGHT
   - CAMPFIRES
+  letterChoiceManager: {fileID: 1485569418}
 --- !u!4 &2112210523
 Transform:
   m_ObjectHideFlags: 0
