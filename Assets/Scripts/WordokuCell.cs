@@ -1,7 +1,10 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class WordokuCell : MonoBehaviour
+public class WordokuCell : MonoBehaviour,
+    IPointerClickHandler,
+    IDropHandler
 {
     [SerializeField] private TMP_Text letterText;
 
@@ -56,6 +59,8 @@ public class WordokuCell : MonoBehaviour
         letterText.ForceMeshUpdate();
     }
 
+    // ---------- EXISTING LOGIC (UNCHANGED) ----------
+
     public void SetLetter(string letter)
     {
         currentLetter = letter;
@@ -78,5 +83,40 @@ public class WordokuCell : MonoBehaviour
         currentLetter = "";
         if (letterText != null)
             letterText.text = "";
+    }
+
+    // ---------- CLICK-TO-PLACE (UNCHANGED BEHAVIOR) ----------
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isLocked) return;
+
+        var selected = LetterSelectionManager.Instance.SelectedLetter;
+        if (selected.HasValue)
+        {
+            PlaceLetter(selected.Value);
+            LetterSelectionManager.Instance.ClearSelection();
+        }
+    }
+
+    // ---------- DRAG-AND-DROP (ADDITIVE) ----------
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (isLocked) return;
+
+        var letterButton = eventData.pointerDrag?.GetComponent<LetterChoiceButton>();
+        if (letterButton == null) return;
+
+        PlaceLetter(letterButton.GetLetter());
+    }
+
+    // ---------- SINGLE SOURCE OF TRUTH ----------
+
+    public void PlaceLetter(char letter)
+    {
+        currentLetter = letter.ToString();
+        letterText.text = letter.ToString();
+        ForceLockText();
     }
 }
