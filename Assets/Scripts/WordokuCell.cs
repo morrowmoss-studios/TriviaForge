@@ -3,18 +3,21 @@ using TMPro;
 
 public class WordokuCell : MonoBehaviour
 {
-    public TMP_Text letterText;
-    public int row, col;
+    [SerializeField] private TMP_Text letterText;
 
-    private bool locked = false;
+    public int row, col;
+    private bool locked;
     private string currentLetter = "";
 
     private void Awake()
     {
+        // Absolute last-resort safety: find TMP only inside THIS cell
         if (letterText == null)
+        {
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
+        }
 
-        ForceTMPReset();
+        ForceLockText();
     }
 
     public void Setup(int r, int c)
@@ -22,24 +25,33 @@ public class WordokuCell : MonoBehaviour
         row = r;
         col = c;
         ClearCell();
-        ForceTMPReset();
+        ForceLockText();
     }
 
-    private void ForceTMPReset()
+    private void ForceLockText()
     {
         if (letterText == null) return;
 
-        // Hard reset TMP layout + geometry
+        RectTransform textRT = letterText.rectTransform;
+        RectTransform cellRT = GetComponent<RectTransform>();
+
+        // Make the text a direct child of THIS cell
+        textRT.SetParent(cellRT, false);
+
+        // Hard-lock layout
+        textRT.anchorMin = Vector2.zero;
+        textRT.anchorMax = Vector2.one;
+        textRT.offsetMin = Vector2.zero;
+        textRT.offsetMax = Vector2.zero;
+        textRT.pivot = new Vector2(0.5f, 0.5f);
+        textRT.localScale = Vector3.one;
+        textRT.localRotation = Quaternion.identity;
+
+        // TMP sanity reset
         letterText.margin = Vector4.zero;
         letterText.alignment = TextAlignmentOptions.Center;
         letterText.enableWordWrapping = false;
-        letterText.overflowMode = TextOverflowModes.Overflow;
-
-        var rt = letterText.rectTransform;
-        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-        rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.anchoredPosition = Vector2.zero;
-        rt.localScale = Vector3.one;
+        letterText.autoSizeTextContainer = false;
 
         letterText.ForceMeshUpdate();
     }
@@ -47,11 +59,8 @@ public class WordokuCell : MonoBehaviour
     public void SetLetter(string letter)
     {
         currentLetter = letter;
-        if (letterText != null)
-        {
-            letterText.text = letter;
-            letterText.ForceMeshUpdate();
-        }
+        letterText.text = letter;
+        ForceLockText();
     }
 
     public string GetLetter() => currentLetter;
@@ -59,8 +68,7 @@ public class WordokuCell : MonoBehaviour
     public void SetLocked(bool isLocked)
     {
         locked = isLocked;
-        if (letterText != null)
-            letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+        letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
     }
 
     public bool isLocked => locked;
@@ -68,6 +76,7 @@ public class WordokuCell : MonoBehaviour
     public void ClearCell()
     {
         currentLetter = "";
-        if (letterText != null) letterText.text = "";
+        if (letterText != null)
+            letterText.text = "";
     }
 }
