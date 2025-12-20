@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,6 @@ public class WordokuBoard : MonoBehaviour
     [Header("Board Settings")]
     public GameObject cellPrefab;
     public RectTransform gridParent;
-    public RectTransform frameInner;   // ← THIS is the key
     public GridLayoutGroup gridLayout;
 
     public Sprite darkTileSprite;
@@ -19,7 +17,7 @@ public class WordokuBoard : MonoBehaviour
     private void Start()
     {
         GenerateBoard();
-        StartCoroutine(ResizeToFrame());
+        ResizeGridToParent();
     }
 
     public void GenerateBoard()
@@ -45,14 +43,15 @@ public class WordokuBoard : MonoBehaviour
         }
     }
 
-    private IEnumerator ResizeToFrame()
+    private void ResizeGridToParent()
     {
-        yield return null; // wait for layout + canvas
+        if (gridParent == null || gridLayout == null)
+            return;
 
-        float width = frameInner.rect.width;
+        float width = gridParent.rect.width;
         float spacing = gridLayout.spacing.x;
 
-        float cellSize = (width - spacing * 8f) / 9f;
+        float cellSize = (width - spacing * 8f) / 9f * 0.90f;
         gridLayout.cellSize = new Vector2(cellSize, cellSize);
     }
 }
