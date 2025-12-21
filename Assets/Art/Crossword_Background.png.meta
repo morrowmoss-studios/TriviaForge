@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crossword_Background_0: 1334299047007498433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

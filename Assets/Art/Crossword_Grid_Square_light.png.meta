@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crossword_Grid_Square_light_0: 4605926772495124702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

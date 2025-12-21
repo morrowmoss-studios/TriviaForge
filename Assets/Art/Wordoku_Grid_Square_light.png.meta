@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wordoku_Grid_Square_light_0: -4053973760309616810
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
