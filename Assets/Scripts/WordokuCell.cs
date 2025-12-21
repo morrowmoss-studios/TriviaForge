@@ -11,6 +11,7 @@ public class WordokuCell : MonoBehaviour,
     public int row, col;
     private bool locked;
     private string currentLetter = "";
+    private WordokuManager manager;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class WordokuCell : MonoBehaviour,
         {
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
         }
-
+        manager = FindObjectOfType<WordokuManager>();
         ForceLockText();
     }
 
@@ -115,8 +116,15 @@ public class WordokuCell : MonoBehaviour,
 
     public void PlaceLetter(char letter)
     {
+        if (manager != null && !manager.IsValidPlacement(row, col, letter))
+        {
+            // invalid placement — do nothing for now
+            return;
+        }
+
         currentLetter = letter.ToString();
         letterText.text = letter.ToString();
         ForceLockText();
     }
+
 }

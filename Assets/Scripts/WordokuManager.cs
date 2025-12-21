@@ -141,4 +141,46 @@ public class WordokuManager : MonoBehaviour
             }
         }
     }
+    public bool IsValidPlacement(int row, int col, char letter)
+    {
+        return !IsInRow(row, letter)
+               && !IsInColumn(col, letter)
+               && !IsInBlock(row, col, letter);
+    }
+
+    private bool IsInRow(int row, char letter)
+    {
+        for (int c = 0; c < 9; c++)
+        {
+            if (board.boardCells[row, c].GetLetter() == letter.ToString())
+                return true;
+        }
+        return false;
+    }
+
+    private bool IsInColumn(int col, char letter)
+    {
+        for (int r = 0; r < 9; r++)
+        {
+            if (board.boardCells[r, col].GetLetter() == letter.ToString())
+                return true;
+        }
+        return false;
+    }
+
+    private bool IsInBlock(int row, int col, char letter)
+    {
+        int startRow = (row / 3) * 3;
+        int startCol = (col / 3) * 3;
+
+        for (int r = startRow; r < startRow + 3; r++)
+        {
+            for (int c = startCol; c < startCol + 3; c++)
+            {
+                if (board.boardCells[r, c].GetLetter() == letter.ToString())
+                    return true;
+            }
+        }
+        return false;
+    }
 }
