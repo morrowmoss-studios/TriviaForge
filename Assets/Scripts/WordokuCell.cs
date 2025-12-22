@@ -1,12 +1,16 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class WordokuCell : MonoBehaviour,
     IPointerClickHandler,
     IDropHandler
 {
     [SerializeField] private TMP_Text letterText;
+    [SerializeField] private Image tileBackground;
+    [SerializeField] private Sprite brownTile;
+    [SerializeField] private Sprite whiteTile;
 
     public int row, col;
     private bool locked;
@@ -15,13 +19,14 @@ public class WordokuCell : MonoBehaviour,
 
     private void Awake()
     {
-        // Absolute last-resort safety: find TMP only inside THIS cell
         if (letterText == null)
         {
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
         }
+
         manager = FindObjectOfType<WordokuManager>();
         ForceLockText();
+        UpdateTileVisual();
     }
 
     public void Setup(int r, int c)
@@ -30,7 +35,28 @@ public class WordokuCell : MonoBehaviour,
         col = c;
         ClearCell();
         ForceLockText();
+        UpdateTileVisual();
     }
+
+    // ---------- VISUAL STATE (NEW, SAFE) ----------
+
+    private void UpdateTileVisual()
+    {
+        if (tileBackground == null) return;
+
+        // FINAL RULE:
+        // Any letter (locked OR player placed) = brown
+        // Empty = white
+        if (!string.IsNullOrEmpty(currentLetter))
+        {
+            tileBackground.sprite = brownTile;
+        }
+        else
+        {
+            tileBackground.sprite = whiteTile;
+        }
+    }
+
 
     private void ForceLockText()
     {
@@ -39,10 +65,7 @@ public class WordokuCell : MonoBehaviour,
         RectTransform textRT = letterText.rectTransform;
         RectTransform cellRT = GetComponent<RectTransform>();
 
-        // Make the text a direct child of THIS cell
         textRT.SetParent(cellRT, false);
-
-        // Hard-lock layout
         textRT.anchorMin = Vector2.zero;
         textRT.anchorMax = Vector2.one;
         textRT.offsetMin = Vector2.zero;
@@ -51,7 +74,6 @@ public class WordokuCell : MonoBehaviour,
         textRT.localScale = Vector3.one;
         textRT.localRotation = Quaternion.identity;
 
-        // TMP sanity reset
         letterText.margin = Vector4.zero;
         letterText.alignment = TextAlignmentOptions.Center;
         letterText.enableWordWrapping = false;
@@ -60,13 +82,14 @@ public class WordokuCell : MonoBehaviour,
         letterText.ForceMeshUpdate();
     }
 
-    // ---------- EXISTING LOGIC (UNCHANGED) ----------
+    // ---------- EXISTING LOGIC (UNCHANGED BEHAVIOR) ----------
 
     public void SetLetter(string letter)
     {
         currentLetter = letter;
         letterText.text = letter;
         ForceLockText();
+        UpdateTileVisual();
     }
 
     public string GetLetter() => currentLetter;
@@ -75,6 +98,7 @@ public class WordokuCell : MonoBehaviour,
     {
         locked = isLocked;
         letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+        UpdateTileVisual();
     }
 
     public bool isLocked => locked;
@@ -84,9 +108,11 @@ public class WordokuCell : MonoBehaviour,
         currentLetter = "";
         if (letterText != null)
             letterText.text = "";
+
+        UpdateTileVisual();
     }
 
-    // ---------- CLICK-TO-PLACE (UNCHANGED BEHAVIOR) ----------
+    // ---------- CLICK-TO-PLACE ----------
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -100,7 +126,7 @@ public class WordokuCell : MonoBehaviour,
         }
     }
 
-    // ---------- DRAG-AND-DROP (ADDITIVE) ----------
+    // ---------- DRAG-AND-DROP ----------
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -118,13 +144,12 @@ public class WordokuCell : MonoBehaviour,
     {
         if (manager != null && !manager.IsValidPlacement(row, col, letter))
         {
-            // invalid placement — do nothing for now
             return;
         }
 
         currentLetter = letter.ToString();
-        letterText.text = letter.ToString();
+        letterText.text = currentLetter;
         ForceLockText();
+        UpdateTileVisual();
     }
-
 }

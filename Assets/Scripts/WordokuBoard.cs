@@ -7,9 +7,7 @@ public class WordokuBoard : MonoBehaviour
     public GameObject cellPrefab;
     public RectTransform gridParent;
     public GridLayoutGroup gridLayout;
-
-    public Sprite darkTileSprite;
-    public Sprite lightTileSprite;
+    
 
     [HideInInspector]
     public WordokuCell[,] boardCells = new WordokuCell[9, 9];
@@ -34,10 +32,7 @@ public class WordokuBoard : MonoBehaviour
 
                 WordokuCell cell = cellGO.GetComponent<WordokuCell>();
                 cell.Setup(row, col);
-
-                Image img = cellGO.GetComponent<Image>();
-                img.sprite = (row + col) % 2 == 0 ? darkTileSprite : lightTileSprite;
-
+                
                 boardCells[row, col] = cell;
             }
         }
