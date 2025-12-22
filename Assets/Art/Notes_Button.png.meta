@@ -142,10 +142,10 @@ TextureImporter:
       name: Notes_Button_0
       rect:
         serializedVersion: 2
-        x: 199
-        y: 241
-        width: 941
-        height: 286
+        x: 406
+        y: 392
+        width: 1108
+        height: 296
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +173,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Notes_Button_0: -2054054278471992549
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
