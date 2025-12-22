@@ -8,23 +8,27 @@ public class WordokuCell : MonoBehaviour,
     IDropHandler
 {
     [SerializeField] private TMP_Text letterText;
-    [SerializeField] private Image tileBackground;
+
+    [Header("Tile Sprites")]
     [SerializeField] private Sprite brownTile;
     [SerializeField] private Sprite whiteTile;
 
     public int row, col;
+
     private bool locked;
     private string currentLetter = "";
+
+    private Image cellImage;
     private WordokuManager manager;
 
     private void Awake()
     {
-        if (letterText == null)
-        {
+        if (!letterText)
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
-        }
 
+        cellImage = GetComponent<Image>(); // ← THIS WAS THE MISSING LINK
         manager = FindObjectOfType<WordokuManager>();
+
         ForceLockText();
         UpdateTileVisual();
     }
@@ -38,43 +42,34 @@ public class WordokuCell : MonoBehaviour,
         UpdateTileVisual();
     }
 
-    // ---------- VISUAL STATE (NEW, SAFE) ----------
+    // ---------------- VISUAL STATE ----------------
 
     private void UpdateTileVisual()
     {
-        if (tileBackground == null) return;
+        if (!cellImage) return;
 
-        // FINAL RULE:
-        // Any letter (locked OR player placed) = brown
-        // Empty = white
-        if (!string.IsNullOrEmpty(currentLetter))
-        {
-            tileBackground.sprite = brownTile;
-        }
-        else
-        {
-            tileBackground.sprite = whiteTile;
-        }
+        // FINAL RULE (as agreed):
+        // Any letter (locked OR player-placed) → brown
+        // Empty → white
+        cellImage.sprite = string.IsNullOrEmpty(currentLetter)
+            ? whiteTile
+            : brownTile;
     }
-
 
     private void ForceLockText()
     {
-        if (letterText == null) return;
+        if (!letterText) return;
 
-        RectTransform textRT = letterText.rectTransform;
+        RectTransform rt = letterText.rectTransform;
         RectTransform cellRT = GetComponent<RectTransform>();
 
-        textRT.SetParent(cellRT, false);
-        textRT.anchorMin = Vector2.zero;
-        textRT.anchorMax = Vector2.one;
-        textRT.offsetMin = Vector2.zero;
-        textRT.offsetMax = Vector2.zero;
-        textRT.pivot = new Vector2(0.5f, 0.5f);
-        textRT.localScale = Vector3.one;
-        textRT.localRotation = Quaternion.identity;
+        rt.SetParent(cellRT, false);
+        rt.anchorMin = Vector2.zero;
+        rt.anchorMax = Vector2.one;
+        rt.offsetMin = Vector2.zero;
+        rt.offsetMax = Vector2.zero;
+        rt.localScale = Vector3.one;
 
-        letterText.margin = Vector4.zero;
         letterText.alignment = TextAlignmentOptions.Center;
         letterText.enableWordWrapping = false;
         letterText.autoSizeTextContainer = false;
@@ -82,7 +77,7 @@ public class WordokuCell : MonoBehaviour,
         letterText.ForceMeshUpdate();
     }
 
-    // ---------- EXISTING LOGIC (UNCHANGED BEHAVIOR) ----------
+    // ---------------- GAME LOGIC ----------------
 
     public void SetLetter(string letter)
     {
@@ -106,17 +101,15 @@ public class WordokuCell : MonoBehaviour,
     public void ClearCell()
     {
         currentLetter = "";
-        if (letterText != null)
-            letterText.text = "";
-
+        if (letterText) letterText.text = "";
         UpdateTileVisual();
     }
 
-    // ---------- CLICK-TO-PLACE ----------
+    // ---------------- INPUT ----------------
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isLocked) return;
+        if (locked) return;
 
         var selected = LetterSelectionManager.Instance.SelectedLetter;
         if (selected.HasValue)
@@ -126,26 +119,20 @@ public class WordokuCell : MonoBehaviour,
         }
     }
 
-    // ---------- DRAG-AND-DROP ----------
-
     public void OnDrop(PointerEventData eventData)
     {
-        if (isLocked) return;
+        if (locked) return;
 
         var letterButton = eventData.pointerDrag?.GetComponent<LetterChoiceButton>();
-        if (letterButton == null) return;
+        if (!letterButton) return;
 
         PlaceLetter(letterButton.GetLetter());
     }
 
-    // ---------- SINGLE SOURCE OF TRUTH ----------
-
     public void PlaceLetter(char letter)
     {
-        if (manager != null && !manager.IsValidPlacement(row, col, letter))
-        {
+        if (manager && !manager.IsValidPlacement(row, col, letter))
             return;
-        }
 
         currentLetter = letter.ToString();
         letterText.text = currentLetter;

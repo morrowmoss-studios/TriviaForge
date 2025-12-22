@@ -7,7 +7,6 @@ public class WordokuBoard : MonoBehaviour
     public GameObject cellPrefab;
     public RectTransform gridParent;
     public GridLayoutGroup gridLayout;
-    
 
     [HideInInspector]
     public WordokuCell[,] boardCells = new WordokuCell[9, 9];
@@ -32,7 +31,7 @@ public class WordokuBoard : MonoBehaviour
 
                 WordokuCell cell = cellGO.GetComponent<WordokuCell>();
                 cell.Setup(row, col);
-                
+
                 boardCells[row, col] = cell;
             }
         }
@@ -40,13 +39,10 @@ public class WordokuBoard : MonoBehaviour
 
     private void ResizeGridToParent()
     {
-        if (gridParent == null || gridLayout == null)
-            return;
-
         float width = gridParent.rect.width;
         float spacing = gridLayout.spacing.x;
-
         float cellSize = (width - spacing * 8f) / 9f * 0.90f;
+
         gridLayout.cellSize = new Vector2(cellSize, cellSize);
     }
 }

@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 3211649826490543014}
+  tileBackground: {fileID: 0}
+  brownTile: {fileID: -4125822017536944901, guid: 747456ba815004786bf13c1b2c5882e4, type: 3}
+  whiteTile: {fileID: -4053973760309616810, guid: 851ec7b898ab3476085600f131ac49d8, type: 3}
   row: 0
   col: 0
 --- !u!1 &4977462794206146665

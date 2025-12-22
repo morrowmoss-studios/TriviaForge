@@ -741,7 +741,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2112210522}
         m_TargetAssemblyTypeName: WordokuManager, Assembly-CSharp
         m_MethodName: ResetBoard
         m_Mode: 1
@@ -938,7 +938,6 @@ GameObject:
   - component: {fileID: 302585441}
   - component: {fileID: 302585440}
   - component: {fileID: 302585442}
-  - component: {fileID: 302585443}
   m_Layer: 0
   m_Name: BoardManager
   m_TagString: Untagged
@@ -986,27 +985,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c6da31e471498cae4b33961518cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 419369790734816978, guid: 8ad3b0d1cd213431faf601f1908f447a, type: 3}
+  cellPrefab: {fileID: 0}
   gridParent: {fileID: 1882766864}
   gridLayout: {fileID: 1882766863}
---- !u!114 &302585443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302585439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e591bb467fec43ac87a38134c3d9675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  letterText: {fileID: 0}
-  tileBackground: {fileID: 0}
-  brownTile: {fileID: -4125822017536944901, guid: 747456ba815004786bf13c1b2c5882e4, type: 3}
-  whiteTile: {fileID: -4053973760309616810, guid: 851ec7b898ab3476085600f131ac49d8, type: 3}
-  row: 0
-  col: 0
 --- !u!1 &417241927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1853,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2112210522}
         m_TargetAssemblyTypeName: WordokuManager, Assembly-CSharp
         m_MethodName: GiveHint
         m_Mode: 1
