@@ -131,12 +131,40 @@ public class WordokuCell : MonoBehaviour,
 
     public void PlaceLetter(char letter)
     {
-        if (manager && !manager.IsValidPlacement(row, col, letter))
+        if (manager == null)
+        {
+            Debug.LogError($"WordokuCell at [{row},{col}] has NO WordokuManager reference!");
+            return;
+        }
+
+        Debug.Log($"Trying {letter} at [{row},{col}]");
+
+        // 1) Optional: strict “must match solution” mode for testing
+        if (manager.enforceSolutionWhileTesting)
+        {
+            char expected = manager.GetSolutionLetter(row, col);
+            if (letter != expected)
+            {
+                Debug.Log($"Rejected {letter} at [{row},{col}] – solution expects {expected}");
+                return;
+            }
+        }
+
+        // 2) Normal Sudoku-rule validation
+        bool valid = manager.IsValidPlacement(row, col, letter);
+        Debug.Log($"Validation result for {letter} at [{row},{col}] = {valid}");
+
+        if (!valid)
             return;
 
+        // 3) Actually place the letter
         currentLetter = letter.ToString();
         letterText.text = currentLetter;
         ForceLockText();
         UpdateTileVisual();
+
+        // 4) 🔔 Tell the manager the board changed (so it can hide finished letters)
+        manager.NotifyBoardChanged();
     }
+
 }

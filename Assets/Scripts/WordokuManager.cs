@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 public class WordokuManager : MonoBehaviour
 {
@@ -8,12 +9,12 @@ public class WordokuManager : MonoBehaviour
     public WordokuBoard board;   // Assigned in Inspector
 
     [Header("Word List")]
-    public string[] wordokuWords = { "DRAGONFLY", "MOONLIGHT", "CAMPFIRES" };
+    public string[] wordokuWords = { "DRAGONFLY", "STARBOUND", "CAMPFIRES", "MISTCLOUD", "WILDFROST" };
     
     [Header("Letter Choice UI")]
     [SerializeField] private LetterChoiceManager letterChoiceManager;
 
-
+    public bool enforceSolutionWhileTesting = true;
     // PUBLIC READ-ONLY STATE (important)
     public string CurrentWord { get; private set; }
     public char[] CurrentLetters { get; private set; }
@@ -43,6 +44,8 @@ public class WordokuManager : MonoBehaviour
         PopulateBoardUI();
         
         letterChoiceManager.PopulateFromWord(CurrentLetters);
+        
+        UpdateLetterCompletion();
     }
 
 
@@ -73,8 +76,6 @@ public class WordokuManager : MonoBehaviour
             }
         }
     }
-
-
 
     private void GenerateStartingBoard()
     {
@@ -123,6 +124,7 @@ public class WordokuManager : MonoBehaviour
     public void ResetBoard()
     {
         PopulateBoardUI();
+        UpdateLetterCompletion();
     }
 
     public void GiveHint()
@@ -136,6 +138,8 @@ public class WordokuManager : MonoBehaviour
                 if (!cell.isLocked && string.IsNullOrEmpty(cell.GetLetter()))
                 {
                     cell.SetLetter(solution[row, col].ToString());
+                    
+                    UpdateLetterCompletion();
                     return;
                 }
             }
@@ -143,10 +147,19 @@ public class WordokuManager : MonoBehaviour
     }
     public bool IsValidPlacement(int row, int col, char letter)
     {
-        return !IsInRow(row, letter)
-               && !IsInColumn(col, letter)
-               && !IsInBlock(row, col, letter);
+        bool inRow   = IsInRow(row, letter);
+        bool inCol   = IsInColumn(col, letter);
+        bool inBlock = IsInBlock(row, col, letter);
+
+        Debug.Log(
+            $"Check {letter} at [{row},{col}]  " +
+            $"RowHas:{inRow} ColHas:{inCol} BlockHas:{inBlock}"
+        );
+
+        return !(inRow || inCol || inBlock);
     }
+
+
 
     private bool IsInRow(int row, char letter)
     {
@@ -183,4 +196,64 @@ public class WordokuManager : MonoBehaviour
         }
         return false;
     }
+    public char GetSolutionLetter(int row, int col)
+    {
+        return solution[row, col];
+    }
+    // Called whenever the board state changes (player move, reset, hint, etc.)
+    public void NotifyBoardChanged()
+    {
+        UpdateLetterCompletion();
+    }
+
+// Recalculate which letters are "finished" and hide their buttons
+    private void UpdateLetterCompletion()
+    {
+        // 1) Total copies of each letter in the *solution* grid
+        var totals = new Dictionary<char, int>();
+        for (int r = 0; r < 9; r++)
+        {
+            for (int c = 0; c < 9; c++)
+            {
+                char ch = solution[r, c];
+                if (ch == '\0') continue;
+
+                if (!totals.ContainsKey(ch))
+                    totals[ch] = 0;
+
+                totals[ch]++;
+            }
+        }
+
+        // 2) How many of each letter are currently on the *board* (locked + player)
+        var used = new Dictionary<char, int>();
+        for (int r = 0; r < 9; r++)
+        {
+            for (int c = 0; c < 9; c++)
+            {
+                string s = board.boardCells[r, c].GetLetter();
+                if (string.IsNullOrEmpty(s)) continue;
+
+                char ch = s[0];
+                if (!used.ContainsKey(ch))
+                    used[ch] = 0;
+
+                used[ch]++;
+            }
+        }
+
+        // 3) For each letter button, hide it when fully used
+        var allButtons = FindObjectsOfType<LetterChoiceButton>(true); // true = include inactive
+        foreach (var btn in allButtons)
+        {
+            char ch = btn.GetLetter();
+
+            totals.TryGetValue(ch, out int total);
+            used.TryGetValue(ch, out int count);
+
+            bool completed = total > 0 && count >= total;
+            btn.SetCompleted(completed);
+        }
+    }
+
 }

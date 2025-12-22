@@ -4630,9 +4630,12 @@ MonoBehaviour:
   board: {fileID: 302585442}
   wordokuWords:
   - DRAGONFLY
-  - MOONLIGHT
+  - STARBOUND
   - CAMPFIRES
+  - MISTCLOUD
+  - WILDFROST
   letterChoiceManager: {fileID: 1485569418}
+  enforceSolutionWhileTesting: 1
 --- !u!4 &2112210523
 Transform:
   m_ObjectHideFlags: 0

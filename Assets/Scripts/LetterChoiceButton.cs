@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(CanvasGroup))]
 public class LetterChoiceButton : MonoBehaviour,
     IPointerClickHandler,
-    IPointerDownHandler,
     IBeginDragHandler,
     IDragHandler,
     IEndDragHandler
@@ -15,53 +17,106 @@ public class LetterChoiceButton : MonoBehaviour,
 
     // Drag helpers
     private RectTransform rectTransform;
-    private Canvas canvas;
-    private Vector2 startAnchoredPos;
+    private CanvasGroup canvasGroup;
+    private Canvas rootCanvas;
+
+    // Visual ghost we drag around
+    private RectTransform dragGhost;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
+        canvasGroup = GetComponent<CanvasGroup>();
+
+        // Find the top-level canvas so the ghost renders correctly
+        var canvas = GetComponentInParent<Canvas>();
+        if (canvas != null)
+        {
+            rootCanvas = canvas.rootCanvas;
+        }
+        else
+        {
+            Debug.LogError("LetterChoiceButton: No parent Canvas found. Drag ghost may be mis-positioned.");
+        }
     }
 
-    // ---------- EXISTING LOGIC (UNCHANGED) ----------
-
+    // Called by LetterChoiceManager when populating the buttons
     public void SetLetter(string value)
     {
-        letter = value[0];
-        letterText.text = value;
-    }
+        if (!string.IsNullOrEmpty(value))
+        {
+            letter = value[0];
+        }
+        else
+        {
+            letter = '\0';
+        }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // Click-to-select still works exactly as before
-        LetterSelectionManager.Instance.SelectLetter(letter);
+        if (letterText != null)
+            letterText.text = value;
     }
 
     public char GetLetter() => letter;
 
-    // ---------- DRAG LOGIC (ADDITIVE) ----------
+    // ---------- CLICK TO SELECT ----------
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        startAnchoredPos = rectTransform.anchoredPosition;
+        // Same behavior as before: click = select this letter
+        LetterSelectionManager.Instance.SelectLetter(letter);
     }
+
+    // ---------- DRAG & DROP (GHOST VERSION) ----------
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Optional: visually bring to front
-        rectTransform.SetAsLastSibling();
+        if (rootCanvas == null || rectTransform == null)
+            return;
+
+        // Let raycasts pass THROUGH the real button while dragging
+        // so WordokuCell.OnDrop can receive the event.
+        if (canvasGroup != null)
+            canvasGroup.blocksRaycasts = false;
+
+        // Clone this button's RectTransform as a ghost under the root canvas
+        dragGhost = Instantiate(rectTransform, rootCanvas.transform);
+        dragGhost.name = rectTransform.name + "_DragGhost";
+        dragGhost.position = eventData.position;
+
+        // Ghost should NOT block raycasts
+        foreach (var img in dragGhost.GetComponentsInChildren<Image>())
+            img.raycastTarget = false;
+
+        foreach (var tmp in dragGhost.GetComponentsInChildren<TMP_Text>())
+            tmp.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // Move with cursor / finger
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if (dragGhost != null)
+        {
+            dragGhost.position = eventData.position;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // Snap back to original position after drop
-        rectTransform.anchoredPosition = startAnchoredPos;
+        // Kill the ghost
+        if (dragGhost != null)
+        {
+            Destroy(dragGhost.gameObject);
+            dragGhost = null;
+        }
+
+        // Restore raycast blocking on the real button
+        if (canvasGroup != null)
+            canvasGroup.blocksRaycasts = true;
+    }
+
+    // ---------- HIDE WHEN COMPLETED ----------
+
+    public void SetCompleted(bool completed)
+    {
+        gameObject.SetActive(!completed);
     }
 }
