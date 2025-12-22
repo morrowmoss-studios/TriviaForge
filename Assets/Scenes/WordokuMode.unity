@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9c6da31e471498cae4b33961518cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 0}
+  cellPrefab: {fileID: 419369790734816978, guid: 8ad3b0d1cd213431faf601f1908f447a, type: 3}
   gridParent: {fileID: 1882766864}
   gridLayout: {fileID: 1882766863}
 --- !u!1 &417241927
