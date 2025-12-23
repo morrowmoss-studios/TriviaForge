@@ -255,7 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 789929132}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &27551678
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -304,7 +306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -168, y: 819}
+  m_AnchoredPosition: {x: -168, y: 817}
   m_SizeDelta: {x: 315.64258, y: 83.553406}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34436483
@@ -353,7 +355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2112210522}
         m_TargetAssemblyTypeName: WordokuManager, Assembly-CSharp
-        m_MethodName: GiveHint
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -383,7 +385,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2054054278471992549, guid: 375150281a750411bb0a033b1d1b6421, type: 3}
+  m_Sprite: {fileID: -6905584303345597628, guid: e9ace775aef39475f840560cc919b2fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -537,7 +539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 512498985}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &55949639
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2548,7 +2552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 101865180}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1004877981
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2697,7 +2703,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 751718273}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1077285018
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2846,7 +2854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 1667144778}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1097182786
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2995,7 +3005,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 1418078928}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1177915727
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3280,7 +3292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 523975989}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1359873679
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3565,7 +3579,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 885331712}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1466114836
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4421,7 +4437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 1194328092}
-  dragGhost: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  normalSprite: {fileID: 0}
+  selectedSprite: {fileID: 0}
 --- !u!225 &1722510401
 CanvasGroup:
   m_ObjectHideFlags: 0

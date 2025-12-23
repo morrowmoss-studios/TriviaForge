@@ -3,30 +3,36 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WordokuCell : MonoBehaviour,
-    IPointerClickHandler,
-    IDropHandler
+public class WordokuCell : MonoBehaviour, IPointerClickHandler
 {
+    [Header("UI")]
     [SerializeField] private TMP_Text letterText;
+    [SerializeField] private Image tileBackground;   // <- will auto-grab the Button's Image
+    [SerializeField] private Sprite brownTile;       // filled
+    [SerializeField] private Sprite whiteTile;       // empty
 
-    [Header("Tile Sprites")]
-    [SerializeField] private Sprite brownTile;
-    [SerializeField] private Sprite whiteTile;
-
-    public int row, col;
+    [Header("Grid Coords")]
+    public int row;
+    public int col;
 
     private bool locked;
     private string currentLetter = "";
-
-    private Image cellImage;
     private WordokuManager manager;
 
     private void Awake()
     {
-        if (!letterText)
+        // Find the TMP if not wired
+        if (letterText == null)
+        {
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
+        }
 
-        cellImage = GetComponent<Image>(); // ← THIS WAS THE MISSING LINK
+        // Use the Button's Image as the tile background if not wired
+        if (tileBackground == null)
+        {
+            tileBackground = GetComponent<Image>();
+        }
+
         manager = FindObjectOfType<WordokuManager>();
 
         ForceLockText();
@@ -42,34 +48,41 @@ public class WordokuCell : MonoBehaviour,
         UpdateTileVisual();
     }
 
-    // ---------------- VISUAL STATE ----------------
+    // ---------- VISUALS ----------
 
     private void UpdateTileVisual()
     {
-        if (!cellImage) return;
+        if (tileBackground == null) return;
 
-        // FINAL RULE (as agreed):
-        // Any letter (locked OR player-placed) → brown
-        // Empty → white
-        cellImage.sprite = string.IsNullOrEmpty(currentLetter)
-            ? whiteTile
-            : brownTile;
+        // Any letter (locked or player-placed) = brown
+        // Empty = white
+        if (!string.IsNullOrEmpty(currentLetter))
+        {
+            tileBackground.sprite = brownTile;
+        }
+        else
+        {
+            tileBackground.sprite = whiteTile;
+        }
     }
 
     private void ForceLockText()
     {
-        if (!letterText) return;
+        if (letterText == null) return;
 
-        RectTransform rt = letterText.rectTransform;
+        RectTransform textRT = letterText.rectTransform;
         RectTransform cellRT = GetComponent<RectTransform>();
 
-        rt.SetParent(cellRT, false);
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.offsetMin = Vector2.zero;
-        rt.offsetMax = Vector2.zero;
-        rt.localScale = Vector3.one;
+        textRT.SetParent(cellRT, false);
+        textRT.anchorMin = Vector2.zero;
+        textRT.anchorMax = Vector2.one;
+        textRT.offsetMin = Vector2.zero;
+        textRT.offsetMax = Vector2.zero;
+        textRT.pivot = new Vector2(0.5f, 0.5f);
+        textRT.localScale = Vector3.one;
+        textRT.localRotation = Quaternion.identity;
 
+        letterText.margin = Vector4.zero;
         letterText.alignment = TextAlignmentOptions.Center;
         letterText.enableWordWrapping = false;
         letterText.autoSizeTextContainer = false;
@@ -77,12 +90,14 @@ public class WordokuCell : MonoBehaviour,
         letterText.ForceMeshUpdate();
     }
 
-    // ---------------- GAME LOGIC ----------------
+    // ---------- API ----------
 
     public void SetLetter(string letter)
     {
         currentLetter = letter;
-        letterText.text = letter;
+        if (letterText != null)
+            letterText.text = letter;
+
         ForceLockText();
         UpdateTileVisual();
     }
@@ -92,7 +107,10 @@ public class WordokuCell : MonoBehaviour,
     public void SetLocked(bool isLocked)
     {
         locked = isLocked;
-        letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+        if (letterText != null)
+            letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+
+        // keep tile brown/white based on letter, not lock state
         UpdateTileVisual();
     }
 
@@ -101,33 +119,25 @@ public class WordokuCell : MonoBehaviour,
     public void ClearCell()
     {
         currentLetter = "";
-        if (letterText) letterText.text = "";
+        if (letterText != null)
+            letterText.text = "";
+
         UpdateTileVisual();
     }
 
-    // ---------------- INPUT ----------------
+    // ---------- CLICK TO PLACE ----------
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (locked) return;
 
         var selected = LetterSelectionManager.Instance.SelectedLetter;
-        if (selected.HasValue)
-        {
-            PlaceLetter(selected.Value);
-            LetterSelectionManager.Instance.ClearSelection();
-        }
+        if (!selected.HasValue) return;
+
+        PlaceLetter(selected.Value);
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        if (locked) return;
-
-        var letterButton = eventData.pointerDrag?.GetComponent<LetterChoiceButton>();
-        if (!letterButton) return;
-
-        PlaceLetter(letterButton.GetLetter());
-    }
+    // ---------- CORE PLACEMENT ----------
 
     public void PlaceLetter(char letter)
     {
@@ -139,7 +149,7 @@ public class WordokuCell : MonoBehaviour,
 
         Debug.Log($"Trying {letter} at [{row},{col}]");
 
-        // 1) Optional: strict “must match solution” mode for testing
+        // optional strict mode
         if (manager.enforceSolutionWhileTesting)
         {
             char expected = manager.GetSolutionLetter(row, col);
@@ -150,21 +160,20 @@ public class WordokuCell : MonoBehaviour,
             }
         }
 
-        // 2) Normal Sudoku-rule validation
         bool valid = manager.IsValidPlacement(row, col, letter);
         Debug.Log($"Validation result for {letter} at [{row},{col}] = {valid}");
 
         if (!valid)
             return;
 
-        // 3) Actually place the letter
         currentLetter = letter.ToString();
-        letterText.text = currentLetter;
+        if (letterText != null)
+            letterText.text = currentLetter;
+
         ForceLockText();
         UpdateTileVisual();
 
-        // 4) 🔔 Tell the manager the board changed (so it can hide finished letters)
-        manager.NotifyBoardChanged();
+        // if you call manager.OnCellFilled(row,col,letter) for button hiding,
+        // this is where it goes
     }
-
 }
