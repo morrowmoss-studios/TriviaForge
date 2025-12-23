@@ -24,6 +24,13 @@ public class LetterSelectionManager : MonoBehaviour
     // Called by LetterChoiceButton when clicked
     public void SelectFromButton(LetterChoiceButton button)
     {
+        // 🔁 If clicking the same button again, toggle OFF
+        if (currentButton == button)
+        {
+            ClearSelection();
+            return;
+        }
+
         // Turn off old highlight
         if (currentButton != null && currentButton != button)
         {

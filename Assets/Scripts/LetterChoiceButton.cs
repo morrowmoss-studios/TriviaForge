@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(RectTransform))]
-[RequireComponent(typeof(Image))]
 public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI letterText;
+
+    // This is the image we will actually resprite
     [SerializeField] private Image backgroundImage;
+
+    [Header("Sprites")]
     [SerializeField] private Sprite normalSprite;    // brown tile
     [SerializeField] private Sprite selectedSprite;  // white tile
 
@@ -18,13 +21,27 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        // Grab background image if not wired
+        // 1) If backgroundImage not wired, try Button.targetGraphic
         if (backgroundImage == null)
-            backgroundImage = GetComponent<Image>();
+        {
+            var btn = GetComponent<Button>();
+            if (btn != null && btn.targetGraphic is Image targetImg)
+            {
+                backgroundImage = targetImg;
+            }
+        }
 
-        // If normal sprite not set, use whatever the Image currently has
+        // 2) If still null, fall back to Image on this object
+        if (backgroundImage == null)
+        {
+            backgroundImage = GetComponent<Image>();
+        }
+
+        // 3) If normalSprite not set, use current sprite
         if (backgroundImage != null && normalSprite == null)
+        {
             normalSprite = backgroundImage.sprite;
+        }
 
         ApplyVisual();
     }
@@ -37,14 +54,14 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
         if (letterText != null)
             letterText.text = value;
 
-        // Reset selection state when reused
+        // Reset selection whenever this button is reused
         isSelected = false;
         ApplyVisual();
     }
 
     public char GetLetter() => letter;
 
-    // CLICK = select this letter
+    // CLICK = select / toggle this letter
     public void OnPointerClick(PointerEventData eventData)
     {
         if (LetterSelectionManager.Instance != null)
@@ -78,7 +95,7 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Called by LetterChoiceManager / WordokuManager when this letter is fully used
+    // Called when this letter is fully used
     public void SetCompleted(bool completed)
     {
         if (!completed) return;
