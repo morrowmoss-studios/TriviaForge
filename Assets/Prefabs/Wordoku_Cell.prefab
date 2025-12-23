@@ -135,9 +135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterText: {fileID: 3211649826490543014}
+  notesText: {fileID: 0}
   tileBackground: {fileID: 0}
   brownTile: {fileID: -4125822017536944901, guid: 747456ba815004786bf13c1b2c5882e4, type: 3}
   whiteTile: {fileID: -4053973760309616810, guid: 851ec7b898ab3476085600f131ac49d8, type: 3}
+  notesFont: {fileID: 0}
+  normalTileColor: {r: 1, g: 1, b: 1, a: 1}
+  wrongGuessColor: {r: 1, g: 0.042452812, b: 0.042452812, a: 1}
   row: 0
   col: 0
 --- !u!1 &4977462794206146665

@@ -17,9 +17,11 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     [Header("Notes Font (optional)")]
     [SerializeField] private TMP_FontAsset notesFont;      // can be left null, we'll auto-load
-
-    // Name of the TMP Font Asset in Resources to use for notes if notesFont is not assigned
     private const string NotesFontResourceName = "Roboto_Notes";
+
+    [Header("Wrong Guess Tint")]
+    [SerializeField] private Color normalTileColor = Color.white;
+    [SerializeField] private Color wrongGuessColor = new Color(1f, 0.85f, 0.85f, 1f);
 
     [Header("Grid Coords")]
     public int row;
@@ -31,8 +33,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     private WordokuManager manager;
 
-    // base main-letter font size so we can scale notes relative to it
     private float baseLetterFontSize = 30f;
+    private bool isWrong = false;
 
     private void Awake()
     {
@@ -41,7 +43,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         // Find the main letter TMP if not wired
         if (letterText == null)
         {
-            // First TMP we find becomes the letter text
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
         }
 
@@ -56,13 +57,21 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             tileBackground = GetComponent<Image>();
         }
 
+        // Capture the original tint as "normal" if not manually set
+        if (tileBackground != null && normalTileColor == Color.white)
+        {
+            normalTileColor = tileBackground.color;
+        }
+
         // Try to auto-load notes font from Resources if not assigned
         if (notesFont == null)
         {
             notesFont = Resources.Load<TMP_FontAsset>(NotesFontResourceName);
             if (notesFont == null)
             {
-                Debug.LogWarning($"WordokuCell: Could not load notes font '{NotesFontResourceName}' from Resources. Notes will use the main font instead.");
+                Debug.LogWarning(
+                    $"WordokuCell: Could not load notes font '{NotesFontResourceName}' from Resources. " +
+                    "Notes will use the main font instead.");
             }
         }
 
@@ -116,8 +125,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesGO.transform.SetParent(cellRT, false);
 
             notesText = notesGO.AddComponent<TextMeshProUGUI>();
-            notesText.font = letterText.font;                   // will be overridden by notesFont later if set
-            notesText.fontSize = letterText.fontSize * 0.55f;   // initial size, will be replaced dynamically
+            notesText.font = letterText.font;                   // overridden by notesFont if set
+            notesText.fontSize = letterText.fontSize * 0.55f;   // initial size, overridden dynamically
             notesText.fontStyle = FontStyles.Bold;
             notesText.color = Color.black;
             notesText.alignment = TextAlignmentOptions.Center;
@@ -150,7 +159,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             letterText.autoSizeTextContainer = false;
         }
 
-        // Notes layout (same rect, smaller text)
+        // Notes layout
         if (notesText != null)
         {
             RectTransform notesRT = notesText.rectTransform;
@@ -175,8 +184,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         if (tileBackground == null) return;
 
-        // Any letter (locked or player-placed) = brown
-        // Empty = white
+        // Sprite = brown if any letter, white if empty
         if (!string.IsNullOrEmpty(currentLetter))
         {
             if (brownTile != null)
@@ -187,6 +195,9 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             if (whiteTile != null)
                 tileBackground.sprite = whiteTile;
         }
+
+        // Tint = normal vs wrong overlay
+        tileBackground.color = isWrong ? wrongGuessColor : normalTileColor;
     }
 
     private void UpdateNotesVisual()
@@ -200,18 +211,13 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // === dynamic font size based on number of notes ===
+        // dynamic font size based on number of notes
         int noteCount = Mathf.Clamp(notes.Count, 1, 9);
-
-        // t = 0 when 1 note, 1 when 9 notes
-        float t = (noteCount - 1) / 8f;
-
-        // scale factor: 1 note ~ 0.8 of main letter, 9 notes ~ 0.5
-        float factor = Mathf.Lerp(0.8f, 0.5f, t);
-
+        float t = (noteCount - 1) / 8f;                // 0..1
+        float factor = Mathf.Lerp(0.8f, 0.5f, t);      // 1 note ~0.8, 9 notes ~0.5
         notesText.fontSize = baseLetterFontSize * factor;
 
-        // === build 3x3 grid ===
+        // build 3x3 grid
         char?[] slots = new char?[9];
 
         if (manager != null && manager.CurrentLetters != null)
@@ -227,7 +233,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            // Fallback: just drop them in order
             int i = 0;
             foreach (char n in notes)
             {
@@ -245,7 +250,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
                 int slot = r * 3 + c;
                 char ch = slots[slot].HasValue ? slots[slot].Value : ' ';
                 sb.Append(ch == '\0' ? ' ' : ch);
-                if (c < 2) sb.Append(' '); // spacing between columns
+                if (c < 2) sb.Append(' ');
             }
             if (r < 2) sb.AppendLine();
         }
@@ -262,8 +267,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         if (letterText != null)
             letterText.text = letter;
 
-        // Once a real letter is placed, clear notes
         notes.Clear();
+        isWrong = false;   // manager uses this for correct starting letters
         UpdateNotesVisual();
 
         LayoutTexts();
@@ -278,7 +283,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         if (letterText != null)
             letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
 
-        // keep tile brown/white based on letter, not lock state
         UpdateTileVisual();
     }
 
@@ -291,6 +295,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             letterText.text = "";
 
         notes.Clear();
+        isWrong = false;
         UpdateNotesVisual();
 
         UpdateTileVisual();
@@ -341,24 +346,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         Debug.Log($"Trying {letter} at [{row},{col}]");
 
-        // Optional: enforce the real solution while testing
-        if (manager.enforceSolutionWhileTesting)
-        {
-            char expected = manager.GetSolutionLetter(row, col);
-            if (letter != expected)
-            {
-                Debug.Log($"Rejected {letter} at [{row},{col}] – solution expects {expected}");
-                return;
-            }
-        }
-
-        bool valid = manager.IsValidPlacement(row, col, letter);
-        Debug.Log($"Validation result for {letter} at [{row},{col}] = {valid}");
-
-        if (!valid)
-            return;
-
-        // Actually place it
+        // 1) Always place the letter (full autonomy to bork it)
         currentLetter = letter.ToString();
         if (letterText != null)
             letterText.text = currentLetter;
@@ -367,10 +355,14 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         notes.Clear();
         UpdateNotesVisual();
 
+        // 2) Compare to solution and mark wrong if needed
+        char expected = manager.GetSolutionLetter(row, col);
+        isWrong = (letter != expected);
+
         LayoutTexts();
         UpdateTileVisual();
 
-        // Tell the manager the board changed so letter buttons can update
+        // 3) Notify manager for letter button updates etc.
         manager.NotifyBoardChanged();
     }
 }
