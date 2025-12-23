@@ -21,7 +21,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     [Header("Wrong Guess Tint")]
     [SerializeField] private Color normalTileColor = Color.white;
-    [SerializeField] private Color wrongGuessColor = new Color(1f, 0.85f, 0.85f, 1f);
+    [SerializeField] private Color wrongGuessColor = new Color(1f, 0f, 0f, 0.8f); // your fire-engine red
 
     [Header("Grid Coords")]
     public int row;
@@ -95,7 +95,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         row = r;
         col = c;
-        ClearCell();
+        ClearCellInternal(false);
         LayoutTexts();
         UpdateTileVisual();
     }
@@ -159,15 +159,19 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             letterText.autoSizeTextContainer = false;
         }
 
-        // Notes layout
+        // Notes layout – give it some padding so letters don't get clipped
         if (notesText != null)
         {
             RectTransform notesRT = notesText.rectTransform;
             notesRT.SetParent(cellRT, false);
             notesRT.anchorMin = Vector2.zero;
             notesRT.anchorMax = Vector2.one;
-            notesRT.offsetMin = Vector2.zero;
-            notesRT.offsetMax = Vector2.zero;
+
+            // <<< padding inside the tile >>>
+            const float pad = 6f;   // tweak if you want more/less inset
+            notesRT.offsetMin = new Vector2(pad, pad);
+            notesRT.offsetMax = new Vector2(-pad, -pad);
+
             notesRT.pivot = new Vector2(0.5f, 0.5f);
             notesRT.localScale = Vector3.one;
             notesRT.localRotation = Quaternion.identity;
@@ -177,6 +181,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesText.autoSizeTextContainer = false;
         }
     }
+
 
     // ---------- VISUALS ----------
 
@@ -204,6 +209,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         if (notesText == null) return;
 
+        // No notes or a main letter present => hide notes
         if (notes.Count == 0 || !string.IsNullOrEmpty(currentLetter))
         {
             notesText.text = "";
@@ -211,45 +217,33 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // dynamic font size based on number of notes
+        // ---- dynamic font size based on number of notes ----
         int noteCount = Mathf.Clamp(notes.Count, 1, 9);
         float t = (noteCount - 1) / 8f;                // 0..1
         float factor = Mathf.Lerp(0.8f, 0.5f, t);      // 1 note ~0.8, 9 notes ~0.5
         notesText.fontSize = baseLetterFontSize * factor;
 
-        // build 3x3 grid
-        char?[] slots = new char?[9];
+        // ---- build a simple 3x3 grid from the notes ----
+        // sort notes so they're stable & predictable
+        var ordered = notes.OrderBy(c => c).ToList();
 
-        if (manager != null && manager.CurrentLetters != null)
+        char[] slots = new char[9];
+        for (int i = 0; i < slots.Length; i++)
+            slots[i] = ' ';
+
+        for (int i = 0; i < ordered.Count && i < 9; i++)
         {
-            foreach (char n in notes)
-            {
-                int idx = System.Array.IndexOf(manager.CurrentLetters, n);
-                if (idx >= 0 && idx < 9)
-                {
-                    slots[idx] = n;
-                }
-            }
-        }
-        else
-        {
-            int i = 0;
-            foreach (char n in notes)
-            {
-                if (i >= 9) break;
-                slots[i++] = n;
-            }
+            slots[i] = ordered[i];
         }
 
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
 
         for (int r = 0; r < 3; r++)
         {
             for (int c = 0; c < 3; c++)
             {
-                int slot = r * 3 + c;
-                char ch = slots[slot].HasValue ? slots[slot].Value : ' ';
-                sb.Append(ch == '\0' ? ' ' : ch);
+                int idx = r * 3 + c;
+                sb.Append(slots[idx]);
                 if (c < 2) sb.Append(' ');
             }
             if (r < 2) sb.AppendLine();
@@ -257,7 +251,9 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         notesText.text = sb.ToString();
         notesText.gameObject.SetActive(true);
+        notesText.ForceMeshUpdate();
     }
+
 
     // ---------- API ----------
 
@@ -268,7 +264,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             letterText.text = letter;
 
         notes.Clear();
-        isWrong = false;   // manager uses this for correct starting letters
+        isWrong = false;   // starting letters from manager are always correct
         UpdateNotesVisual();
 
         LayoutTexts();
@@ -288,7 +284,28 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     public bool isLocked => locked;
 
+    // public-facing clear for erasing
     public void ClearCell()
+    {
+        // wipe the main letter
+        currentLetter = "";
+        if (letterText != null)
+            letterText.text = "";
+
+        // wipe notes + shame
+        notes.Clear();
+        isWrong = false;
+        UpdateNotesVisual();
+        UpdateTileVisual();
+
+        // tell manager so letter buttons / completion can update
+        if (manager != null)
+            manager.NotifyBoardChanged();
+    }
+
+
+    // internal so Setup() can skip NotifyBoardChanged if we want
+    private void ClearCellInternal(bool notify)
     {
         currentLetter = "";
         if (letterText != null)
@@ -297,28 +314,52 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         notes.Clear();
         isWrong = false;
         UpdateNotesVisual();
-
         UpdateTileVisual();
+
+        if (notify && manager != null)
+        {
+            manager.NotifyBoardChanged();
+        }
     }
 
-    // ---------- CLICK TO PLACE OR NOTE ----------
+    // ---------- CLICK TO PLACE OR NOTE / ERASE ----------
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (locked) return;
 
         var selected = LetterSelectionManager.Instance.SelectedLetter;
-        if (!selected.HasValue) return;
 
+        // NOTES MODE: only reacts if a letter is selected
         if (manager != null && manager.NotesMode)
         {
+            if (!selected.HasValue) return;
             ToggleNote(selected.Value);
+            return;
         }
-        else
+
+        // NORMAL MODE:
+
+        // No letter selected = treat click as ERASE
+        if (!selected.HasValue)
         {
-            PlaceLetter(selected.Value);
+            ClearCell();
+            return;
         }
+
+        char sel = selected.Value;
+
+        // If this cell already has THAT letter, treat as quick-undo
+        if (!string.IsNullOrEmpty(currentLetter) && currentLetter[0] == sel)
+        {
+            ClearCell();
+            return;
+        }
+
+        // Otherwise, place the letter (and maybe go full scarlet)
+        PlaceLetter(sel);
     }
+
 
     private void ToggleNote(char letter)
     {
@@ -346,7 +387,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         Debug.Log($"Trying {letter} at [{row},{col}]");
 
-        // 1) Always place the letter (full autonomy to bork it)
+        // 1) Always place the letter (player has full freedom to be wrong)
         currentLetter = letter.ToString();
         if (letterText != null)
             letterText.text = currentLetter;

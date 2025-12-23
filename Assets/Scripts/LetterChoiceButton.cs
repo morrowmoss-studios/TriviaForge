@@ -96,15 +96,34 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
     }
 
     // Called when this letter is fully used
+    // Called by LetterChoiceManager / WordokuManager when this letter
+// is considered fully used or not.
     public void SetCompleted(bool completed)
     {
-        if (!completed) return;
-
-        if (LetterSelectionManager.Instance != null)
+        if (completed)
         {
-            LetterSelectionManager.Instance.ClearIfLetter(letter);
-        }
+            // Hide the button and clear selection if this letter was active
+            if (LetterSelectionManager.Instance != null)
+            {
+                LetterSelectionManager.Instance.ClearIfLetter(letter);
+            }
 
-        gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            // Letter is NOT fully used anymore.
+            // If it was hidden, bring it back.
+            if (!gameObject.activeSelf)
+            {
+                gameObject.SetActive(true);
+
+                // make sure it doesn't come back visually selected
+                isSelected = false;
+                ApplyVisual();
+            }
+            // if it's already active, do nothing (keeps current selection state)
+        }
     }
+
 }
