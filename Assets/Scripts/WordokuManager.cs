@@ -275,7 +275,7 @@ public class WordokuManager : MonoBehaviour
         
     }
     
-    public void AutoSolve()
+    /*public void AutoSolve()
     {
         if (board == null || board.boardCells == null)
         {
@@ -312,6 +312,6 @@ public class WordokuManager : MonoBehaviour
             AutoSolve();
         }
 #endif
-    }
+    }*/
 
 }
