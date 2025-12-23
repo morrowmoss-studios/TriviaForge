@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ModeSelect
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument

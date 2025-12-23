@@ -272,5 +272,46 @@ public class WordokuManager : MonoBehaviour
             bool completed = total > 0 && count >= total;
             btn.SetCompleted(completed);
         }
+        
     }
+    
+    public void AutoSolve()
+    {
+        if (board == null || board.boardCells == null)
+        {
+            Debug.LogError("WordokuManager.AutoSolve: Board not ready.");
+            return;
+        }
+
+        // Fill every cell with the solution letter
+        for (int row = 0; row < 9; row++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                WordokuCell cell = board.boardCells[row, col];
+                char ch = solution[row, col];
+
+                // Make sure we can stomp whatever is there
+                cell.SetLocked(false);
+                cell.SetLetter(ch.ToString());
+                cell.SetLocked(true);   // treat them as "solved" clues
+            }
+        }
+
+        // Update letter buttons on the left so everything is consistent
+        UpdateLetterCompletion();
+    }
+    
+    private void Update()
+    {
+#if UNITY_EDITOR
+        // Backquote (`) key above Tab / left of 1
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            Debug.Log("DEV AUTOSOLVE triggered via ` key");
+            AutoSolve();
+        }
+#endif
+    }
+
 }
