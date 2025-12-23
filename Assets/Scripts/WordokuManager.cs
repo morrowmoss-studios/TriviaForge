@@ -10,12 +10,17 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Word List")]
     public string[] wordokuWords = { "DRAGONFLY", "STARBOUND", "CAMPFIRES", "MISTCLOUD", "WILDFROST" };
-    
+
     [Header("Letter Choice UI")]
     [SerializeField] private LetterChoiceManager letterChoiceManager;
 
+    [Header("Notes Mode")]
+    [SerializeField] private bool notesMode = false;
+    public bool NotesMode => notesMode;   // read-only for cells
+
     public bool enforceSolutionWhileTesting = true;
-    // PUBLIC READ-ONLY STATE (important)
+
+    // PUBLIC READ-ONLY STATE
     public string CurrentWord { get; private set; }
     public char[] CurrentLetters { get; private set; }
 
@@ -42,12 +47,14 @@ public class WordokuManager : MonoBehaviour
         GenerateSolutionGrid(CurrentWord);
         GenerateStartingBoard();
         PopulateBoardUI();
-        
-        letterChoiceManager.PopulateFromWord(CurrentLetters);
-        
+
+        if (letterChoiceManager != null)
+        {
+            letterChoiceManager.PopulateFromWord(CurrentLetters);
+        }
+
         UpdateLetterCompletion();
     }
-
 
     private string GetRandomWord()
     {
@@ -121,12 +128,14 @@ public class WordokuManager : MonoBehaviour
         }
     }
 
+    // Called by the Reset button
     public void ResetBoard()
     {
         PopulateBoardUI();
         UpdateLetterCompletion();
     }
 
+    // Called by the Hint button
     public void GiveHint()
     {
         for (int row = 0; row < 9; row++)
@@ -138,13 +147,22 @@ public class WordokuManager : MonoBehaviour
                 if (!cell.isLocked && string.IsNullOrEmpty(cell.GetLetter()))
                 {
                     cell.SetLetter(solution[row, col].ToString());
-                    
+
                     UpdateLetterCompletion();
                     return;
                 }
             }
         }
     }
+
+    // 🔵 NOTES MODE TOGGLE – hook this to the Notes button OnClick
+    public void ToggleNotesMode()
+    {
+        notesMode = !notesMode;
+        Debug.Log("Notes mode: " + (notesMode ? "ON" : "OFF"));
+        // Later you can update the Notes button visual here if you want
+    }
+
     public bool IsValidPlacement(int row, int col, char letter)
     {
         bool inRow   = IsInRow(row, letter);
@@ -158,8 +176,6 @@ public class WordokuManager : MonoBehaviour
 
         return !(inRow || inCol || inBlock);
     }
-
-
 
     private bool IsInRow(int row, char letter)
     {
@@ -196,17 +212,19 @@ public class WordokuManager : MonoBehaviour
         }
         return false;
     }
+
     public char GetSolutionLetter(int row, int col)
     {
         return solution[row, col];
     }
+
     // Called whenever the board state changes (player move, reset, hint, etc.)
     public void NotifyBoardChanged()
     {
         UpdateLetterCompletion();
     }
 
-// Recalculate which letters are "finished" and hide their buttons
+    // Recalculate which letters are "finished" and hide their buttons
     private void UpdateLetterCompletion()
     {
         // 1) Total copies of each letter in the *solution* grid
@@ -255,5 +273,4 @@ public class WordokuManager : MonoBehaviour
             btn.SetCompleted(completed);
         }
     }
-
 }

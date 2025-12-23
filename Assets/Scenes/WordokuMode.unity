@@ -355,7 +355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2112210522}
         m_TargetAssemblyTypeName: WordokuManager, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: ToggleNotesMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5049,6 +5049,7 @@ MonoBehaviour:
   - MISTCLOUD
   - WILDFROST
   letterChoiceManager: {fileID: 1485569418}
+  notesMode: 0
   enforceSolutionWhileTesting: 1
 --- !u!4 &2112210523
 Transform:
