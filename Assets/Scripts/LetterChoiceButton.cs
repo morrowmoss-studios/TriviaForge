@@ -11,15 +11,20 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI letterText;
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Sprite normalSprite;    // brown tile
-    [SerializeField] private Sprite selectedSprite;  // light tile
+    [SerializeField] private Sprite selectedSprite;  // white tile
 
     private char letter;
     private bool isSelected;
 
     private void Awake()
     {
-        if (!backgroundImage)
+        // Grab background image if not wired
+        if (backgroundImage == null)
             backgroundImage = GetComponent<Image>();
+
+        // If normal sprite not set, use whatever the Image currently has
+        if (backgroundImage != null && normalSprite == null)
+            normalSprite = backgroundImage.sprite;
 
         ApplyVisual();
     }
@@ -31,6 +36,10 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
 
         if (letterText != null)
             letterText.text = value;
+
+        // Reset selection state when reused
+        isSelected = false;
+        ApplyVisual();
     }
 
     public char GetLetter() => letter;
@@ -69,7 +78,7 @@ public class LetterChoiceButton : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Called by LetterChoiceManager when this letter is fully used on the board
+    // Called by LetterChoiceManager / WordokuManager when this letter is fully used
     public void SetCompleted(bool completed)
     {
         if (!completed) return;

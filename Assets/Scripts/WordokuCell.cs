@@ -7,7 +7,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI")]
     [SerializeField] private TMP_Text letterText;
-    [SerializeField] private Image tileBackground;   // <- will auto-grab the Button's Image
+    [SerializeField] private Image tileBackground;   // background image on the cell
     [SerializeField] private Sprite brownTile;       // filled
     [SerializeField] private Sprite whiteTile;       // empty
 
@@ -27,7 +27,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             letterText = GetComponentInChildren<TextMeshProUGUI>(true);
         }
 
-        // Use the Button's Image as the tile background if not wired
+        // Use this GameObject's Image as the tile background if not wired
         if (tileBackground == null)
         {
             tileBackground = GetComponent<Image>();
@@ -58,11 +58,13 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         // Empty = white
         if (!string.IsNullOrEmpty(currentLetter))
         {
-            tileBackground.sprite = brownTile;
+            if (brownTile != null)
+                tileBackground.sprite = brownTile;
         }
         else
         {
-            tileBackground.sprite = whiteTile;
+            if (whiteTile != null)
+                tileBackground.sprite = whiteTile;
         }
     }
 
@@ -149,7 +151,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         Debug.Log($"Trying {letter} at [{row},{col}]");
 
-        // optional strict mode
+        // Optional: enforce the real solution while testing
         if (manager.enforceSolutionWhileTesting)
         {
             char expected = manager.GetSolutionLetter(row, col);
@@ -166,6 +168,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         if (!valid)
             return;
 
+        // Actually place it
         currentLetter = letter.ToString();
         if (letterText != null)
             letterText.text = currentLetter;
@@ -173,7 +176,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         ForceLockText();
         UpdateTileVisual();
 
-        // if you call manager.OnCellFilled(row,col,letter) for button hiding,
-        // this is where it goes
+        // 🔥 Tell the manager the board changed so letter buttons can update
+        manager.NotifyBoardChanged();
     }
 }
