@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 765854fbd7558495a9a9d40b164070f6
+guid: 9194fd4e14e5744879e3f804ad928db6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6701663559431203132
-    second: Wordoku_Divider_0
+      213: 1038605942170124598
+    second: Wordoku_Skinny_Divider_0
   - first:
-      213: -7192134306346610156
-    second: Wordoku_Divider_1
-  - first:
-      213: -128111266811347547
-    second: Wordoku_Divider_2
-  - first:
-      213: 8368122093923436078
-    second: Wordoku_Divider_3
+      213: 3454798572501090764
+    second: Wordoku_Skinny_Divider_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -148,13 +142,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wordoku_Divider_0
+      name: Wordoku_Skinny_Divider_0
       rect:
         serializedVersion: 2
-        x: 75
-        y: 34
-        width: 1273
-        height: 747
+        x: 318
+        y: 0
+        width: 1090
+        height: 751
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +157,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c39a3181087110d50800000000000000
-      internalID: 6701663559431203132
+      spriteID: 63109a40a9ed96e00800000000000000
+      internalID: 1038605942170124598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wordoku_Divider_1
+      name: Wordoku_Skinny_Divider_1
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 558
-        width: 9
-        height: 10
+        x: 1327
+        y: 31
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,52 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4125f4534f7603c90800000000000000
-      internalID: -7192134306346610156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wordoku_Divider_2
-      rect:
-        serializedVersion: 2
-        x: 1042
-        y: 547
-        width: 13
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5adfbf94b7bd83ef0800000000000000
-      internalID: -128111266811347547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wordoku_Divider_3
-      rect:
-        serializedVersion: 2
-        x: 1292
-        y: 32
-        width: 15
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e26876d45ba812470800000000000000
-      internalID: 8368122093923436078
+      spriteID: cc144745ff8e1ff20800000000000000
+      internalID: 3454798572501090764
       vertices: []
       indices: 
       edges: []
@@ -239,7 +189,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -248,11 +198,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Wordoku_Divider_0: 6701663559431203132
-      Wordoku_Divider_1: -7192134306346610156
-      Wordoku_Divider_2: -128111266811347547
-      Wordoku_Divider_3: 8368122093923436078
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
