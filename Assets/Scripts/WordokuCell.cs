@@ -35,6 +35,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     private float baseLetterFontSize = 30f;
     private bool isWrong = false;
+    private bool highlightSelectedLetter = false;
 
     private void Awake()
     {
@@ -189,7 +190,15 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         if (tileBackground == null) return;
 
-        // Sprite = brown if any letter, white if empty
+        // If this cell is being highlighted for the selected letter,
+        // always use the white tile sprite so it pops.
+        if (highlightSelectedLetter && whiteTile != null)
+        {
+            tileBackground.sprite = whiteTile;
+            return;
+        }
+
+        // Normal behavior: filled = brown, empty = white
         if (!string.IsNullOrEmpty(currentLetter))
         {
             if (brownTile != null)
@@ -200,10 +209,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             if (whiteTile != null)
                 tileBackground.sprite = whiteTile;
         }
-
-        // Tint = normal vs wrong overlay
-        tileBackground.color = isWrong ? wrongGuessColor : normalTileColor;
     }
+
 
     private void UpdateNotesVisual()
     {
@@ -405,5 +412,11 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         // 3) Notify manager for letter button updates etc.
         manager.NotifyBoardChanged();
+    }
+
+    public void SetLetterHighlight(bool isHighlighted)
+    {
+        highlightSelectedLetter = isHighlighted;
+        UpdateTileVisual();
     }
 }
