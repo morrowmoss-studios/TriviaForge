@@ -142,6 +142,7 @@ MonoBehaviour:
   notesFont: {fileID: 0}
   normalTileColor: {r: 1, g: 1, b: 1, a: 1}
   wrongGuessColor: {r: 1, g: 0.042452812, b: 0.042452812, a: 1}
+  highlightColor: {r: 0.8866353, g: 0.514151, b: 1, a: 1}
   row: 0
   col: 0
 --- !u!1 &4977462794206146665

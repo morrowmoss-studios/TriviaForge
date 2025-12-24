@@ -22,7 +22,10 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     [Header("Wrong Guess Tint")]
     [SerializeField] private Color normalTileColor = Color.white;
     [SerializeField] private Color wrongGuessColor = new Color(1f, 0f, 0f, 0.8f); // your fire-engine red
-
+    
+    [Header("Highlight")]
+    [SerializeField] private Color highlightColor = new Color(0.9f, 0.7f, 1f, 1f); // soft purple
+    
     [Header("Grid Coords")]
     public int row;
     public int col;
@@ -35,6 +38,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     private float baseLetterFontSize = 30f;
     private bool isWrong = false;
+    
     private bool highlightSelectedLetter = false;
 
     private void Awake()
@@ -190,28 +194,45 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         if (tileBackground == null) return;
 
-        // If this cell is being highlighted for the selected letter,
-        // always use the white tile sprite so it pops.
+        // --- SPRITE: special case for highlight first ---
         if (highlightSelectedLetter && whiteTile != null)
         {
+            // Always use the white tile when this cell matches the selected letter
             tileBackground.sprite = whiteTile;
-            return;
-        }
-
-        // Normal behavior: filled = brown, empty = white
-        if (!string.IsNullOrEmpty(currentLetter))
-        {
-            if (brownTile != null)
-                tileBackground.sprite = brownTile;
         }
         else
         {
-            if (whiteTile != null)
-                tileBackground.sprite = whiteTile;
+            // Normal behavior: filled = brown, empty = white
+            if (!string.IsNullOrEmpty(currentLetter))
+            {
+                if (brownTile != null)
+                    tileBackground.sprite = brownTile;
+            }
+            else
+            {
+                if (whiteTile != null)
+                    tileBackground.sprite = whiteTile;
+            }
+        }
+
+        // --- COLOR: overlays (wrong > highlight > normal) ---
+        if (isWrong)
+        {
+            // Scarlet Letter of Shame wins no matter what
+            tileBackground.color = wrongGuessColor;
+        }
+        else if (highlightSelectedLetter)
+        {
+            // Selected letter cells get the purple tint
+            tileBackground.color = highlightColor;
+        }
+        else
+        {
+            // Default look
+            tileBackground.color = normalTileColor;
         }
     }
-
-
+    
     private void UpdateNotesVisual()
     {
         if (notesText == null) return;

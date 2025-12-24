@@ -145,10 +145,10 @@ TextureImporter:
       name: Wordoku_Skinny_Divider_0
       rect:
         serializedVersion: 2
-        x: 318
+        x: 320
         y: 0
-        width: 1090
-        height: 751
+        width: 1088
+        height: 749
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
