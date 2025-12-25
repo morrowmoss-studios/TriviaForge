@@ -14,6 +14,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image tileBackground;         // background image on the cell
     [SerializeField] private Sprite brownTile;             // filled
     [SerializeField] private Sprite whiteTile;             // empty
+    [SerializeField] private Color lockedLetterColor = Color.black;
+    [SerializeField] private Color playerLetterColor = Color.white;
 
     [Header("Notes Font (optional)")]
     [SerializeField] private TMP_FontAsset notesFont;      // can be left null, we'll auto-load
@@ -305,7 +307,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     {
         locked = isLocked;
         if (letterText != null)
-            letterText.color = locked ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+            letterText.color = locked ? lockedLetterColor : playerLetterColor;
 
         UpdateTileVisual();
     }
