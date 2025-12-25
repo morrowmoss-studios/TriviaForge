@@ -3,6 +3,14 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
+public enum WordokuDifficulty
+{
+    Easy,
+    Medium,
+    Hard,
+    Insanity
+}
+
 public class WordokuManager : MonoBehaviour
 {
     [Header("References")]
@@ -19,6 +27,8 @@ public class WordokuManager : MonoBehaviour
     public bool NotesMode => notesMode;   // read-only for cells
 
     public bool enforceSolutionWhileTesting = true;
+
+    private WordokuDifficulty difficulty = WordokuDifficulty.Medium;
 
     // PUBLIC READ-ONLY STATE
     public string CurrentWord { get; private set; }
@@ -41,6 +51,7 @@ public class WordokuManager : MonoBehaviour
 
     private void GeneratePuzzle()
     {
+        SetDifficultyFromSession();
         CurrentWord = GetRandomWord();
         CurrentLetters = CurrentWord.ToCharArray();
 
@@ -55,7 +66,31 @@ public class WordokuManager : MonoBehaviour
 
         UpdateLetterCompletion();
     }
+    
+    private void SetDifficultyFromSession()
+    {
+        string diffStr = TriviaSessionData.selectedDifficulty;
 
+        switch (diffStr)
+        {
+            case "Easy":
+                difficulty = WordokuDifficulty.Easy;
+                break;
+            case "Hard":
+                difficulty = WordokuDifficulty.Hard;
+                break;
+            case "Insanity":
+                difficulty = WordokuDifficulty.Insanity;
+                break;
+            case "Medium":
+            default:
+                difficulty = WordokuDifficulty.Medium;
+                break;
+        }
+
+        Debug.Log($"Wordoku difficulty set to: {difficulty}");
+    }
+    
     private string GetRandomWord()
     {
         return wordokuWords[Random.Range(0, wordokuWords.Length)].ToUpper();
@@ -95,8 +130,30 @@ public class WordokuManager : MonoBehaviour
             }
         }
 
-        // Remove ~40% of letters
-        int removals = Mathf.RoundToInt(81 * 0.4f);
+        // Decide how many cells to remove based on difficulty
+        float removalFraction;
+
+        switch (difficulty)
+        {
+            case WordokuDifficulty.Easy:
+                removalFraction = 0.35f;  // more givens
+                break;
+            case WordokuDifficulty.Medium:
+                removalFraction = 0.45f;
+                break;
+            case WordokuDifficulty.Hard:
+                removalFraction = 0.60f;
+                break;
+            case WordokuDifficulty.Insanity:
+                removalFraction = 0.70f;  // very sparse
+                break;
+            default:
+                removalFraction = 0.45f;
+                break;
+        }
+
+        int removals = Mathf.RoundToInt(81 * removalFraction);
+
         for (int i = 0; i < removals; i++)
         {
             int row = Random.Range(0, 9);
@@ -104,7 +161,7 @@ public class WordokuManager : MonoBehaviour
             startingBoard[row, col] = '\0';
         }
     }
-
+    
     private void PopulateBoardUI()
     {
         for (int row = 0; row < 9; row++)
