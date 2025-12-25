@@ -10,6 +10,7 @@ public class ModeSelectManager : MonoBehaviour
     public TMP_Dropdown gameModeDropdown;
     public TMP_Dropdown categoryDropdown;
     public TMP_Dropdown subcategoryDropdown;
+    public TMP_Dropdown difficultyDropdown; 
 
     private Dictionary<string, List<string>> categoryMap = new Dictionary<string, List<string>>();
 
@@ -34,7 +35,21 @@ public class ModeSelectManager : MonoBehaviour
         List<string> gameModes = new List<string> { "Trivia", "Crossword", "Wordoku" };
         gameModeDropdown.ClearOptions();
         gameModeDropdown.AddOptions(gameModes);
+        
+        // Set up Difficulty options
+        List<string> difficultyOptions = new List<string>
+        {
+            "Easy",
+            "Medium",
+            "Hard",
+            "Insanity"
+        };
+        difficultyDropdown.ClearOptions();
+        difficultyDropdown.AddOptions(difficultyOptions);
 
+        // Optional: default to Medium
+        difficultyDropdown.value = 1;
+        difficultyDropdown.RefreshShownValue();
     }
 
     void OnCategoryChanged(int index)
@@ -54,12 +69,14 @@ public class ModeSelectManager : MonoBehaviour
         string selectedGameMode = gameModeDropdown.options[gameModeDropdown.value].text;
         string selectedCategory = categoryDropdown.options[categoryDropdown.value].text;
         string selectedSubcategory = subcategoryDropdown.options[subcategoryDropdown.value].text;
+        string selectedDifficulty = difficultyDropdown.options[difficultyDropdown.value].text;
 
         TriviaSessionData.selectedGameMode = selectedGameMode;
         TriviaSessionData.selectedCategory = selectedCategory;
         TriviaSessionData.selectedSubcategory = selectedSubcategory;
+        TriviaSessionData.selectedDifficulty = selectedDifficulty;
 
-        Debug.Log($"Game Mode: {selectedGameMode}, Category: {selectedCategory}, Sub: {selectedSubcategory}");
+        Debug.Log($"Game Mode: {selectedGameMode}, Category: {selectedCategory}, Sub: {selectedSubcategory}, Diff: {selectedDifficulty}");
 
         switch (selectedGameMode)
         {

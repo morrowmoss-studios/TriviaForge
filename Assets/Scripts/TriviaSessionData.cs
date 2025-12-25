@@ -10,6 +10,7 @@ public static class TriviaSessionData
     public static string selectedGameMode;
     public static string selectedCategory;
     public static string selectedSubcategory;
+    public static string selectedDifficulty = "Medium"; //Default level
 
 
     // Question index so we know where we are in the list
