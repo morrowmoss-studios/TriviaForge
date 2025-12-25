@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 34436484}
   - component: {fileID: 34436483}
   m_Layer: 5
-  m_Name: Notes_Button
+  m_Name: Clues_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -168, y: 817}
-  m_SizeDelta: {x: 315.64258, y: 83.553406}
+  m_SizeDelta: {x: 315.64, y: 83.5534}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &34436483
 MonoBehaviour:
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6905584303345597628, guid: e9ace775aef39475f840560cc919b2fd, type: 3}
+  m_Sprite: {fileID: -2331223781685021216, guid: 81d52c12b3644486489999124cbfe322, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
