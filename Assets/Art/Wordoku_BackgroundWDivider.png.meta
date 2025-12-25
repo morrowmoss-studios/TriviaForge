@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wordoku_BackgroundWDivider_0: -8997797699409224865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

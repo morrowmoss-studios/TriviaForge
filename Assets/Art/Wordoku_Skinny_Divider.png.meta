@@ -198,7 +198,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wordoku_Skinny_Divider_0: 1038605942170124598
+      Wordoku_Skinny_Divider_1: 3454798572501090764
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Clues_ScrollWBackground_0: -2173725705037556947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
