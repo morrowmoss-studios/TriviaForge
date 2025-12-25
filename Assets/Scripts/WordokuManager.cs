@@ -121,7 +121,7 @@ public class WordokuManager : MonoBehaviour
 
     private void GenerateStartingBoard()
     {
-        // Copy full solution
+        // 1) Copy full solution
         for (int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
@@ -130,36 +130,64 @@ public class WordokuManager : MonoBehaviour
             }
         }
 
-        // Decide how many cells to remove based on difficulty
-        float removalFraction;
+        // 2) Decide how many cells to REMOVE based on difficulty
+        int emptiesMin, emptiesMax;
 
-        switch (difficulty)
+        string diff = TriviaSessionData.selectedDifficulty;   // or whatever you named it
+
+        switch (diff)
         {
-            case WordokuDifficulty.Easy:
-                removalFraction = 0.35f;  // more givens
+            case "Easy":
+                emptiesMin = 40;   // 41 clues
+                emptiesMax = 45;   // 36 clues
                 break;
-            case WordokuDifficulty.Medium:
-                removalFraction = 0.45f;
+
+            case "Medium":
+                emptiesMin = 48;   // 33 clues
+                emptiesMax = 52;   // 29 clues
                 break;
-            case WordokuDifficulty.Hard:
-                removalFraction = 0.60f;
+
+            case "Hard":
+                emptiesMin = 55;   // 26 clues
+                emptiesMax = 58;   // 23 clues
                 break;
-            case WordokuDifficulty.Insanity:
-                removalFraction = 0.70f;  // very sparse
-                break;
+
+            case "Insanity":
             default:
-                removalFraction = 0.45f;
+                emptiesMin = 60;   // 21 clues
+                emptiesMax = 64;   // 17 clues
                 break;
         }
 
-        int removals = Mathf.RoundToInt(81 * removalFraction);
+        int emptiesTarget = Random.Range(emptiesMin, emptiesMax + 1);
+        emptiesTarget = Mathf.Clamp(emptiesTarget, 0, 81);
 
-        for (int i = 0; i < removals; i++)
+        // 3) Build a list of ALL cell indices
+        var allCells = new List<(int row, int col)>(81);
+        for (int r = 0; r < 9; r++)
         {
-            int row = Random.Range(0, 9);
-            int col = Random.Range(0, 9);
-            startingBoard[row, col] = '\0';
+            for (int c = 0; c < 9; c++)
+            {
+                allCells.Add((r, c));
+            }
         }
+
+        // 4) Shuffle the list once
+        for (int i = 0; i < allCells.Count; i++)
+        {
+            int j = Random.Range(i, allCells.Count);
+            (allCells[i], allCells[j]) = (allCells[j], allCells[i]);
+        }
+
+        // 5) Blank out the FIRST emptiesTarget cells in that shuffled list
+        for (int i = 0; i < emptiesTarget; i++)
+        {
+            var cell = allCells[i];
+            startingBoard[cell.row, cell.col] = '\0';
+        }
+
+        int cluesLeft = 81 - emptiesTarget;
+        Debug.Log($"Wordoku difficulty: {diff}, empties: {emptiesTarget}, clues left: {cluesLeft}");
     }
     
     private void PopulateBoardUI()
