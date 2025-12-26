@@ -307,6 +307,7 @@ public class WordokuManager : MonoBehaviour
     public void NotifyBoardChanged()
     {
         UpdateLetterCompletion();
+        CheckForWin();
     }
 
     // Recalculate which letters are "finished" and hide their buttons
@@ -358,7 +359,33 @@ public class WordokuManager : MonoBehaviour
             btn.SetCompleted(completed);
         }
         
+    }private void CheckForWin()
+    {
+        // If any cell is empty or wrong, not solved yet
+        for (int row = 0; row < 9; row++)
+        {
+            for (int col = 0; col < 9; col++)
+            {
+                WordokuCell cell = board.boardCells[row, col];
+
+                string letter = cell.GetLetter();
+                if (string.IsNullOrEmpty(letter))
+                    return; // still empty -> not done
+
+                char actual   = letter[0];
+                char expected = solution[row, col];
+
+                if (actual != expected)
+                    return; // wrong letter somewhere -> no win yet
+            }
+        }
+
+        // If we get here, every cell is filled AND matches the solution
+        Debug.Log($"Wordoku solved! Word = {CurrentWord}, difficulty = {TriviaSessionData.selectedDifficulty}");
+
+        GameWinController.TriggerWin("Wordoku", CurrentWord);
     }
+
     
     /*public void AutoSolve()
     {
