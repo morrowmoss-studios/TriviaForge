@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -6,6 +7,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
     [Header("Visuals")]
     [SerializeField] private Image tileImage;
+    [SerializeField] private TMP_Text letterText;
     [SerializeField] private Sprite playableSprite;   // light/beige tile
     [SerializeField] private Sprite blockedSprite;    // brown tile
 
@@ -31,6 +33,34 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         SetBlocked(blocked);
         SetHighlighted(false);
     }
+    
+    private void Awake()
+    {
+        // Auto–find the TMP if we forgot to assign it
+        if (letterText == null)
+            letterText = GetComponentInChildren<TMP_Text>(true);
+
+        if (letterText != null)
+        {
+            // Make sure the text is properly inside the tile
+            var rt = letterText.rectTransform;
+            rt.SetParent(transform, false);          // ensure it’s a child of this cell
+            rt.anchorMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.offsetMin = Vector2.zero;
+            rt.offsetMax = Vector2.zero;
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.localScale = Vector3.one;
+            rt.localRotation = Quaternion.identity;
+
+            letterText.alignment = TextAlignmentOptions.Center;
+            letterText.text = "";    // clear the default "A"
+            letterText.gameObject.SetActive(true);
+        }
+
+        // if you already had stuff in Awake, keep it here too
+    }
+
 
     public void SetBlocked(bool blocked)
     {
