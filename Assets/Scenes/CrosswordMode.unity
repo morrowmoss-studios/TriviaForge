@@ -335,7 +335,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 302585440}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -654,67 +654,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258719925}
   m_CullTransparentMesh: 1
---- !u!1 &302585439
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 302585441}
-  - component: {fileID: 302585440}
-  - component: {fileID: 302585442}
-  m_Layer: 0
-  m_Name: BoardManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &302585440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302585439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 792c11173a84940c889dca9f60910386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
---- !u!4 &302585441
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302585439}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1216.9146, y: 783.6867, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &302585442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302585439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9c6da31e471498cae4b33961518cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 419369790734816978, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
-  gridParent: {fileID: 1882766864}
-  gridLayout: {fileID: 1882766863}
 --- !u!1 &606305868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1024,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 302585440}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -1165,9 +1104,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rows: 10
-  cols: 10
-  cellPrefab: {fileID: 964739364145637520, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
+  columns: 10
   gridParent: {fileID: 1519651044}
+  cellPrefab: {fileID: 964739364145637520, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
 --- !u!4 &1402239310
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,27 +1140,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 1650
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1253,11 +1192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -524.931
+      value: 361
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 253.10587
+      value: -134
       objectReference: {fileID: 0}
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1270,6 +1209,14 @@ PrefabInstance:
     - target: {fileID: 2183931717751876991, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108377485286017656, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
+      propertyPath: m_CellSize.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108377485286017656, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
+      propertyPath: m_CellSize.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4108377485286017656, guid: 75dbb9021f67445bb8c7b01837e777fc, type: 3}
       propertyPath: m_ConstraintCount
@@ -1519,8 +1466,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1519651044}
   - {fileID: 606305869}
+  - {fileID: 1519651044}
   - {fileID: 2134213003}
   - {fileID: 810599159}
   - {fileID: 34436482}
@@ -1618,7 +1565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 302585440}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -2077,17 +2024,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874570953}
   m_CullTransparentMesh: 1
---- !u!114 &1882766863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4108377485286017656, guid: 7f1203ae488a8487c86bd5e0231ccba1, type: 3}
-  m_PrefabInstance: {fileID: 7167435304601172412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1882766864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2183931717751876991, guid: 7f1203ae488a8487c86bd5e0231ccba1, type: 3}
@@ -2536,5 +2472,4 @@ SceneRoots:
   - {fileID: 1602679813}
   - {fileID: 1564483202}
   - {fileID: 831979871}
-  - {fileID: 302585441}
   - {fileID: 1402239310}
