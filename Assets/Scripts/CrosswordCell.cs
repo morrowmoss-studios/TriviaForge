@@ -1,74 +1,66 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.EventSystems;
 
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
     [Header("Visuals")]
-    [SerializeField] private Image backgroundImage;
-    [SerializeField] private Sprite playableSprite; // light tile
-    [SerializeField] private Sprite blockedSprite;  // dark tile
+    [SerializeField] private Image tileImage;
+    [SerializeField] private Sprite playableSprite;   // light/beige tile
+    [SerializeField] private Sprite blockedSprite;    // brown tile
 
     [Header("Highlight")]
-    [SerializeField] private Color normalColor   = Color.white;
-    [SerializeField] private Color highlightColor = new Color(0f, 1f, 1f, 0.8f); // teal glow
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color highlightColor = Color.cyan; // tweak in Inspector
 
-    [Header("Letter")]
-    [SerializeField] private TMP_Text letterText;
-
+    [Header("Grid Coords (read-only at runtime)")]
     public int row;
     public int col;
 
-    public bool IsBlocked { get; private set; }
+    private bool isBlocked;
     private bool isHighlighted;
 
-    private CrosswordBoardManager board;   // set in Awake
+    private CrosswordBoardManager manager;
 
-    private void Awake()
+    // Called right after Instantiate by the board manager
+    public void Init(CrosswordBoardManager mgr, int r, int c, bool blocked)
     {
-        if (backgroundImage == null)
-            backgroundImage = GetComponent<Image>();
-
-        board = FindObjectOfType<CrosswordBoardManager>();
-        UpdateVisual();
+        manager = mgr;
+        row = r;
+        col = c;
+        SetBlocked(blocked);
+        SetHighlighted(false);
     }
 
     public void SetBlocked(bool blocked)
     {
-        IsBlocked = blocked;
-        if (letterText != null && blocked)
-            letterText.text = ""; // no letter in black/wood cell
+        isBlocked = blocked;
 
-        UpdateVisual();
+        if (tileImage == null) return;
+
+        tileImage.sprite = blocked ? blockedSprite : playableSprite;
+        tileImage.color = normalColor;
     }
 
-    public void SetLetter(char c)
-    {
-        if (letterText != null)
-            letterText.text = c == '\0' ? "" : c.ToString();
-    }
+    public bool IsBlocked => isBlocked;
 
     public void SetHighlighted(bool highlighted)
     {
         isHighlighted = highlighted;
-        UpdateVisual();
-    }
 
-    private void UpdateVisual()
-    {
-        if (backgroundImage == null) return;
+        if (tileImage == null) return;
 
-        // sprite: light if playable, dark if blocked
-        backgroundImage.sprite = IsBlocked ? blockedSprite : playableSprite;
-
-        // tint: teal when part of selected word
-        backgroundImage.color = isHighlighted ? highlightColor : normalColor;
+        // keep the same sprite, just tint for highlight
+        tileImage.color = highlighted ? highlightColor : normalColor;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (board != null)
-            board.OnCellClicked(this);
+        if (isBlocked) return;
+
+        if (manager != null)
+        {
+            manager.OnCellClicked(this);
+        }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7949636598765187712}
   - component: {fileID: 4919911684758153422}
   - component: {fileID: 3505359209917263559}
+  - component: {fileID: 964739364145637520}
   m_Layer: 5
   m_Name: Crossword_Cell
   m_TagString: Untagged
@@ -121,6 +122,26 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &964739364145637520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419369790734816978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dc4b8ebe9984cfd96b3d19834e2890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundImage: {fileID: 0}
+  playableSprite: {fileID: 4605926772495124702, guid: d78cd2431b65046448424c723d2613bf, type: 3}
+  blockedSprite: {fileID: 882983674659450754, guid: dab69fb2938c84ce5a2cc86e206364f2, type: 3}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  highlightColor: {r: 0, g: 1, b: 0.74100137, a: 0.8}
+  letterText: {fileID: 3211649826490543014}
+  row: 0
+  col: 0
 --- !u!1 &7580910685112635434
 GameObject:
   m_ObjectHideFlags: 0
