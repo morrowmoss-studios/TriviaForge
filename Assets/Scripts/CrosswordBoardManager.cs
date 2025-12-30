@@ -1,142 +1,139 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CrosswordBoardManager : MonoBehaviour
 {
-    [Header("Board Setup")]
-    [SerializeField] private int rows = 10;
-    [SerializeField] private int columns = 10;
-    [SerializeField] private Transform gridParent;          // Cross_GridParent
+    [Header("Prefabs & Parents")]
     [SerializeField] private CrosswordCell cellPrefab;
+    [SerializeField] private Transform gridParent;   // Cross_GridParent
+
+    [Header("Layout (# = blocked, . = playable)")]
+    [TextArea(1, 20)]
+    public string[] layoutRows = new string[]
+    {
+        "....##....",
+        "...##.....",
+        "..........",
+        "..####....",
+        "..........",
+        "....####..",
+        "..........",
+        ".....##...",
+        "....##....",
+        ".........."
+    };
 
     private CrosswordCell[,] cells;
-
-    // track current highlighted word so we can clear it
-    private CrosswordCell[] currentWordCells = new CrosswordCell[0];
+    private int rows;
+    private int cols;
 
     private void Start()
     {
         BuildBoard();
-        ApplyTestPattern();
     }
 
     private void BuildBoard()
     {
-        // safety
-        if (gridParent == null || cellPrefab == null)
+        if (cellPrefab == null || gridParent == null)
         {
-            Debug.LogError("CrosswordBoardManager: missing gridParent or cellPrefab.");
+            Debug.LogError("CrosswordBoardManager: Missing cellPrefab or gridParent.");
             return;
         }
 
-        cells = new CrosswordCell[rows, columns];
+        if (layoutRows == null || layoutRows.Length == 0)
+        {
+            Debug.LogError("CrosswordBoardManager: layoutRows is empty.");
+            return;
+        }
+
+        // derive size from layout so you don't have to keep numbers in sync
+        rows = layoutRows.Length;
+        cols = layoutRows[0].Length;
+
+        // nuke any old children under the grid (just in case)
+        for (int i = gridParent.childCount - 1; i >= 0; i--)
+        {
+            Destroy(gridParent.GetChild(i).gameObject);
+        }
+
+        cells = new CrosswordCell[rows, cols];
 
         for (int r = 0; r < rows; r++)
         {
-            for (int c = 0; c < columns; c++)
+            string rowString = layoutRows[r];
+
+            // safety if one line is shorter
+            if (rowString.Length < cols)
             {
-                CrosswordCell cell = Instantiate(cellPrefab, gridParent);
-                bool blocked = false; // default; we’ll override with pattern later
-                cell.Init(this, r, c, blocked);
-                cells[r, c] = cell;
+                rowString = rowString.PadRight(cols, '.');
+            }
+
+            for (int c = 0; c < cols; c++)
+            {
+                var cellInstance = Instantiate(cellPrefab, gridParent);
+                cellInstance.name = $"Cell_{r}_{c}";
+
+                bool blocked = rowString[c] == '#';
+
+                // init with our existing API
+                cellInstance.Init(this, r, c, blocked);
+
+                cells[r, c] = cellInstance;
             }
         }
     }
 
-    /// <summary>
-    /// TEMP: hard-coded blocked pattern so you can see the behavior.
-    /// Replace this later when you hook in real crossword data.
-    /// </summary>
-    private void ApplyTestPattern()
-    {
-        if (cells == null) return;
-
-        // simple cross shape of blocked cells
-        int midRow = rows / 2;
-        int midCol = columns / 2;
-
-        for (int r = 0; r < rows; r++)
-        {
-            cells[r, midCol].SetBlocked(true);
-        }
-
-        for (int c = 0; c < columns; c++)
-        {
-            cells[midRow, c].SetBlocked(true);
-        }
-
-        // you can comment this out later, it’s just visual
-        Debug.Log("Crossword test pattern applied.");
-    }
-
+    // Called by CrosswordCell.OnPointerClick(this)
     public void OnCellClicked(CrosswordCell cell)
     {
         if (cell == null || cell.IsBlocked) return;
 
-        // For now we default to HORIZONTAL words like the Guardian.
-        HighlightWordFrom(cell, horizontal: true);
+        int row = cell.row;
+        int col = cell.col;
+
+        ClearHighlights();
+        HighlightAcrossWord(row, col);
+        // later: we can also add HighlightDownWord(row, col) and let you toggle
     }
 
-    private void ClearCurrentHighlight()
+    private void ClearHighlights()
     {
-        foreach (var c in currentWordCells)
-        {
-            if (c != null)
-                c.SetHighlighted(false);
-        }
+        if (cells == null) return;
 
-        currentWordCells = new CrosswordCell[0];
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] != null)
+                    cells[r, c].SetHighlighted(false);
+            }
+        }
     }
 
-    private void HighlightWordFrom(CrosswordCell startCell, bool horizontal)
+    private void HighlightAcrossWord(int row, int col)
     {
-        ClearCurrentHighlight();
+        if (cells == null) return;
 
-        int r = startCell.row;
-        int c = startCell.col;
+        if (row < 0 || row >= rows || col < 0 || col >= cols) return;
+        if (cells[row, col].IsBlocked) return;
 
-        // walk left/up
-        int rStep = horizontal ? 0 : -1;
-        int cStep = horizontal ? -1 : 0;
-
-        int startR = r;
-        int startC = c;
-
-        while (IsInBounds(startR + rStep, startC + cStep) &&
-               !cells[startR + rStep, startC + cStep].IsBlocked)
+        // walk left
+        int startCol = col;
+        while (startCol - 1 >= 0 && !cells[row, startCol - 1].IsBlocked)
         {
-            startR += rStep;
-            startC += cStep;
+            startCol--;
         }
 
-        // walk right/down from that start
-        rStep = horizontal ? 0 : 1;
-        cStep = horizontal ? 1 : 0;
-
-        System.Collections.Generic.List<CrosswordCell> wordCells =
-            new System.Collections.Generic.List<CrosswordCell>();
-
-        int curR = startR;
-        int curC = startC;
-
-        while (IsInBounds(curR, curC) && !cells[curR, curC].IsBlocked)
+        // walk right
+        int endCol = col;
+        while (endCol + 1 < cols && !cells[row, endCol + 1].IsBlocked)
         {
-            wordCells.Add(cells[curR, curC]);
-            curR += rStep;
-            curC += cStep;
+            endCol++;
         }
 
-        // apply highlight
-        foreach (var cell in wordCells)
+        // highlight all cells from startCol..endCol
+        for (int c = startCol; c <= endCol; c++)
         {
-            cell.SetHighlighted(true);
+            cells[row, c].SetHighlighted(true);
         }
-
-        currentWordCells = wordCells.ToArray();
-    }
-
-    private bool IsInBounds(int r, int c)
-    {
-        return r >= 0 && r < rows && c >= 0 && c < columns;
     }
 }

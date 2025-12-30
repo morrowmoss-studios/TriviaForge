@@ -33,18 +33,21 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         SetBlocked(blocked);
         SetHighlighted(false);
     }
-    
+
     private void Awake()
     {
-        // Auto–find the TMP if we forgot to assign it
+        // 🔹 Auto-grab the Image on this object if not assigned
+        if (tileImage == null)
+            tileImage = GetComponent<Image>();
+
+        // 🔹 Auto-grab the TMP text child if not assigned
         if (letterText == null)
             letterText = GetComponentInChildren<TMP_Text>(true);
 
         if (letterText != null)
         {
-            // Make sure the text is properly inside the tile
             var rt = letterText.rectTransform;
-            rt.SetParent(transform, false);          // ensure it’s a child of this cell
+            rt.SetParent(transform, false);
             rt.anchorMin = Vector2.zero;
             rt.anchorMax = Vector2.one;
             rt.offsetMin = Vector2.zero;
@@ -54,13 +57,10 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
             rt.localRotation = Quaternion.identity;
 
             letterText.alignment = TextAlignmentOptions.Center;
-            letterText.text = "";    // clear the default "A"
+            letterText.text = "";    // clear any default text
             letterText.gameObject.SetActive(true);
         }
-
-        // if you already had stuff in Awake, keep it here too
     }
-
 
     public void SetBlocked(bool blocked)
     {
@@ -68,6 +68,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
         if (tileImage == null) return;
 
+        // blocked = brown, playable = light
         tileImage.sprite = blocked ? blockedSprite : playableSprite;
         tileImage.color = normalColor;
     }
@@ -80,7 +81,6 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
         if (tileImage == null) return;
 
-        // keep the same sprite, just tint for highlight
         tileImage.color = highlighted ? highlightColor : normalColor;
     }
 
