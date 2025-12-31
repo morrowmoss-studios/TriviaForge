@@ -97,7 +97,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -139,7 +139,7 @@ MonoBehaviour:
   playableSprite: {fileID: 4605926772495124702, guid: d78cd2431b65046448424c723d2613bf, type: 3}
   blockedSprite: {fileID: 882983674659450754, guid: dab69fb2938c84ce5a2cc86e206364f2, type: 3}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightColor: {r: 0, g: 1, b: 0.74100137, a: 0.8}
+  highlightColor: {r: 0, g: 0.9400835, b: 1, a: 0.84313726}
   row: 0
   col: 0
 --- !u!1 &7580910685112635434

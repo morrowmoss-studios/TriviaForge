@@ -1103,10 +1103,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d97b71219e64aa5be868a6bdc1d35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 10
-  gridParent: {fileID: 1519651044}
   cellPrefab: {fileID: 964739364145637520, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
+  gridParent: {fileID: 1519651044}
+  layoutRows:
+  - ....##....
+  - ...##.....
+  - ..........
+  - ..####....
+  - ..........
+  - ....####..
+  - ..........
+  - .....##...
+  - ....##....
+  - ..........
+  words:
+  - id: 1A
+    isAcross: 1
+    startRow: 0
+    startCol: 0
+    answer: MOSS
+    clue: Forest floor fluff
+  - id: 2A
+    isAcross: 1
+    startRow: 2
+    startCol: 0
+    answer: DRAGONFLY
+    clue: Pondside acrobat
+  - id: 1D
+    isAcross: 0
+    startRow: 0
+    startCol: 0
+    answer: MIND
+    clue: Inner puzzle box
 --- !u!4 &1402239310
 Transform:
   m_ObjectHideFlags: 0

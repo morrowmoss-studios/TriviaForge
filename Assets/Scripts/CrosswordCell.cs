@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
     [Header("Visuals")]
-    [SerializeField] private Image tileImage;
+    [SerializeField] private Image tileImage;      // we'll auto-grab this
     [SerializeField] private TMP_Text letterText;
     [SerializeField] private Sprite playableSprite;   // light/beige tile
     [SerializeField] private Sprite blockedSprite;    // brown tile
@@ -36,11 +36,11 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
-        // 🔹 Auto-grab the Image on this object if not assigned
+        // 👉 NEW: auto-grab the Image on this object if none assigned
         if (tileImage == null)
             tileImage = GetComponent<Image>();
 
-        // 🔹 Auto-grab the TMP text child if not assigned
+        // Auto–find the TMP if we forgot to assign it
         if (letterText == null)
             letterText = GetComponentInChildren<TMP_Text>(true);
 
@@ -57,7 +57,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
             rt.localRotation = Quaternion.identity;
 
             letterText.alignment = TextAlignmentOptions.Center;
-            letterText.text = "";    // clear any default text
+            letterText.text = "";
             letterText.gameObject.SetActive(true);
         }
     }
@@ -68,7 +68,6 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
         if (tileImage == null) return;
 
-        // blocked = brown, playable = light
         tileImage.sprite = blocked ? blockedSprite : playableSprite;
         tileImage.color = normalColor;
     }

@@ -1,4 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class CrosswordWord
+{
+    public string id;          // e.g. "1A", "2D"
+    public bool isAcross;      // true = across, false = down
+    public int startRow;
+    public int startCol;
+    public string answer;      // "DRAGONFLY"
+    [TextArea]
+    public string clue;        // "Winged insect often seen near ponds."
+}
 
 public class CrosswordBoardManager : MonoBehaviour
 {
@@ -25,6 +38,13 @@ public class CrosswordBoardManager : MonoBehaviour
     private CrosswordCell[,] cells;
     private int rows;
     private int cols;
+
+    [Header("Words & Clues")]
+    public List<CrosswordWord> words = new List<CrosswordWord>();
+
+    // quick lookup: which word(s) live on each cell
+    private CrosswordWord[,] acrossAt;
+    private CrosswordWord[,] downAt;
 
     private void Start()
     {
@@ -80,6 +100,45 @@ public class CrosswordBoardManager : MonoBehaviour
                 cells[r, c] = cellInstance;
             }
         }
+
+        IndexWords();
+    }
+
+    private void IndexWords()
+    {
+        acrossAt = new CrosswordWord[rows, cols];
+        downAt   = new CrosswordWord[rows, cols];
+
+        foreach (var w in words)
+        {
+            if (string.IsNullOrEmpty(w.answer)) continue;
+
+            int r = w.startRow;
+            int c = w.startCol;
+
+            for (int i = 0; i < w.answer.Length; i++)
+            {
+                int rr = r + (w.isAcross ? 0 : i);
+                int cc = c + (w.isAcross ? i : 0);
+
+                if (rr < 0 || rr >= rows || cc < 0 || cc >= cols)
+                {
+                    Debug.LogWarning($"Word {w.id} runs off the board.");
+                    break;
+                }
+
+                if (cells[rr, cc].IsBlocked)
+                {
+                    Debug.LogWarning($"Word {w.id} hits a blocked cell at {rr},{cc}.");
+                    break;
+                }
+
+                if (w.isAcross) acrossAt[rr, cc] = w;
+                else            downAt[rr, cc]   = w;
+
+                // later we’ll also store the solution letter here
+            }
+        }
     }
 
     // Called by CrosswordCell.OnPointerClick(this)
@@ -87,12 +146,25 @@ public class CrosswordBoardManager : MonoBehaviour
     {
         if (cell == null || cell.IsBlocked) return;
 
-        int row = cell.row;
-        int col = cell.col;
+        int r = cell.row;
+        int c = cell.col;
 
         ClearHighlights();
-        HighlightAcrossWord(row, col);
-        // later: we can also add HighlightDownWord(row, col) and let you toggle
+
+        // prefer across if there is one, otherwise down
+        CrosswordWord word = acrossAt[r, c] ?? downAt[r, c];
+        if (word == null)
+        {
+            Debug.Log($"Cell {r},{c} is playable but not assigned to any word.");
+            return;
+        }
+
+        Debug.Log($"Clicked word {word.id}: {word.answer}");
+
+        if (word.isAcross)
+            HighlightAcrossWord(r, c);
+        else
+            HighlightDownWord(r, c);
     }
 
     private void ClearHighlights()
@@ -134,6 +206,34 @@ public class CrosswordBoardManager : MonoBehaviour
         for (int c = startCol; c <= endCol; c++)
         {
             cells[row, c].SetHighlighted(true);
+        }
+    }
+
+    private void HighlightDownWord(int row, int col)
+    {
+        if (cells == null) return;
+
+        if (row < 0 || row >= rows || col < 0 || col >= cols) return;
+        if (cells[row, col].IsBlocked) return;
+
+        // walk up
+        int startRow = row;
+        while (startRow - 1 >= 0 && !cells[startRow - 1, col].IsBlocked)
+        {
+            startRow--;
+        }
+
+        // walk down
+        int endRow = row;
+        while (endRow + 1 < rows && !cells[endRow + 1, col].IsBlocked)
+        {
+            endRow++;
+        }
+
+        // highlight all cells from startRow..endRow
+        for (int r = startRow; r <= endRow; r++)
+        {
+            cells[r, col].SetHighlighted(true);
         }
     }
 }
