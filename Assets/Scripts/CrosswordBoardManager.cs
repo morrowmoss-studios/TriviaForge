@@ -26,7 +26,7 @@ public class CrosswordBoardManager : MonoBehaviour
         "....##....",
         "...##.....",
         "..........",
-        "..####....",
+        "..........",
         "..........",
         "....####..",
         "..........",
@@ -46,9 +46,20 @@ public class CrosswordBoardManager : MonoBehaviour
     private CrosswordWord[,] acrossAt;
     private CrosswordWord[,] downAt;
 
+    // solution letter for each cell (empty = '\0')
+    private char[,] solutionLetters;
+
+    [Header("Debug / Testing")]
+    [SerializeField] private bool autoFillSolutionOnStart = true;
+
     private void Start()
     {
         BuildBoard();
+
+        if (autoFillSolutionOnStart)
+        {
+            DebugFillSolution();
+        }
     }
 
     private void BuildBoard()
@@ -68,6 +79,7 @@ public class CrosswordBoardManager : MonoBehaviour
         // derive size from layout so you don't have to keep numbers in sync
         rows = layoutRows.Length;
         cols = layoutRows[0].Length;
+        solutionLetters = new char[cols, rows];
 
         // nuke any old children under the grid (just in case)
         for (int i = gridParent.childCount - 1; i >= 0; i--)
@@ -76,6 +88,7 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         cells = new CrosswordCell[rows, cols];
+        solutionLetters = new char[rows, cols];
 
         for (int r = 0; r < rows; r++)
         {
@@ -94,7 +107,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
                 bool blocked = rowString[c] == '#';
 
-                // init with our existing API
                 cellInstance.Init(this, r, c, blocked);
 
                 cells[r, c] = cellInstance;
@@ -102,6 +114,11 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         IndexWords();
+
+        if (autoFillSolutionOnStart)
+        {
+            ApplySolutionToCellsForTesting();
+        }
     }
 
     private void IndexWords()
@@ -113,17 +130,19 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             if (string.IsNullOrEmpty(w.answer)) continue;
 
+            string upperAnswer = w.answer.ToUpperInvariant();
+
             int r = w.startRow;
             int c = w.startCol;
 
-            for (int i = 0; i < w.answer.Length; i++)
+            for (int i = 0; i < upperAnswer.Length; i++)
             {
                 int rr = r + (w.isAcross ? 0 : i);
                 int cc = c + (w.isAcross ? i : 0);
 
                 if (rr < 0 || rr >= rows || cc < 0 || cc >= cols)
                 {
-                    Debug.LogWarning($"Word {w.id} runs off the board.");
+                    Debug.LogWarning($"Word {w.id} runs off the board at {rr},{cc}.");
                     break;
                 }
 
@@ -133,10 +152,38 @@ public class CrosswordBoardManager : MonoBehaviour
                     break;
                 }
 
+                char letter = upperAnswer[i];
+
+                // store which word is here (across or down)
                 if (w.isAcross) acrossAt[rr, cc] = w;
                 else            downAt[rr, cc]   = w;
 
-                // later we’ll also store the solution letter here
+                // store the solution letter for this cell
+                solutionLetters[rr, cc] = char.ToUpper(w.answer[i]);
+            }
+        }
+    }
+
+    private void ApplySolutionToCellsForTesting()
+    {
+        if (cells == null || solutionLetters == null) return;
+
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+
+                char sol = solutionLetters[r, c];
+
+                if (sol != '\0')
+                {
+                    cells[r, c].SetLetter(sol);
+                }
+                else
+                {
+                    cells[r, c].SetLetter('\0');  // keep playable but empty
+                }
             }
         }
     }
@@ -188,21 +235,18 @@ public class CrosswordBoardManager : MonoBehaviour
         if (row < 0 || row >= rows || col < 0 || col >= cols) return;
         if (cells[row, col].IsBlocked) return;
 
-        // walk left
         int startCol = col;
         while (startCol - 1 >= 0 && !cells[row, startCol - 1].IsBlocked)
         {
             startCol--;
         }
 
-        // walk right
         int endCol = col;
         while (endCol + 1 < cols && !cells[row, endCol + 1].IsBlocked)
         {
             endCol++;
         }
 
-        // highlight all cells from startCol..endCol
         for (int c = startCol; c <= endCol; c++)
         {
             cells[row, c].SetHighlighted(true);
@@ -216,24 +260,41 @@ public class CrosswordBoardManager : MonoBehaviour
         if (row < 0 || row >= rows || col < 0 || col >= cols) return;
         if (cells[row, col].IsBlocked) return;
 
-        // walk up
         int startRow = row;
         while (startRow - 1 >= 0 && !cells[startRow - 1, col].IsBlocked)
         {
             startRow--;
         }
 
-        // walk down
         int endRow = row;
         while (endRow + 1 < rows && !cells[endRow + 1, col].IsBlocked)
         {
             endRow++;
         }
 
-        // highlight all cells from startRow..endRow
         for (int r = startRow; r <= endRow; r++)
         {
             cells[r, col].SetHighlighted(true);
+        }
+    }
+    
+    private void DebugFillSolution()
+    {
+        if (solutionLetters == null || cells == null) return;
+
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] == null) continue;
+                if (cells[r, c].IsBlocked) continue;
+
+                char ch = solutionLetters[r, c];
+                if (ch != '\0')
+                {
+                    cells[r, c].SetLetter(ch);
+                }
+            }
         }
     }
 }

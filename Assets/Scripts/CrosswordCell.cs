@@ -6,14 +6,14 @@ using UnityEngine.EventSystems;
 public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 {
     [Header("Visuals")]
-    [SerializeField] private Image tileImage;      // we'll auto-grab this
+    [SerializeField] private Image tileImage;      // auto-grabbed in Awake if null
     [SerializeField] private TMP_Text letterText;
     [SerializeField] private Sprite playableSprite;   // light/beige tile
-    [SerializeField] private Sprite blockedSprite;    // brown tile
+    [SerializeField] private Sprite blockedSprite;    // dark/wood tile
 
     [Header("Highlight")]
     [SerializeField] private Color normalColor = Color.white;
-    [SerializeField] private Color highlightColor = Color.cyan; // tweak in Inspector
+    [SerializeField] private Color highlightColor = Color.cyan; // set this in prefab
 
     [Header("Grid Coords (read-only at runtime)")]
     public int row;
@@ -24,6 +24,9 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     private CrosswordBoardManager manager;
 
+    // store whatever letter is currently shown in this cell
+    private char currentLetter = '\0';
+
     // Called right after Instantiate by the board manager
     public void Init(CrosswordBoardManager mgr, int r, int c, bool blocked)
     {
@@ -32,15 +35,16 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         col = c;
         SetBlocked(blocked);
         SetHighlighted(false);
+        SetLetter('\0');   // start empty
     }
 
     private void Awake()
     {
-        // 👉 NEW: auto-grab the Image on this object if none assigned
+        // auto–grab the Image if not wired
         if (tileImage == null)
             tileImage = GetComponent<Image>();
 
-        // Auto–find the TMP if we forgot to assign it
+        // auto–find the TMP if we forgot to assign it
         if (letterText == null)
             letterText = GetComponentInChildren<TMP_Text>(true);
 
@@ -57,10 +61,28 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
             rt.localRotation = Quaternion.identity;
 
             letterText.alignment = TextAlignmentOptions.Center;
+            // we’ll manage text ourselves via SetLetter
             letterText.text = "";
             letterText.gameObject.SetActive(true);
         }
     }
+
+    // ---------- LETTER API ----------
+
+    public void SetLetter(char ch)
+    {
+        if (letterText == null) return;
+
+        letterText.text = ch.ToString().ToUpper();
+    }
+
+
+    public char GetLetter()
+    {
+        return currentLetter;
+    }
+
+    // ---------- BLOCK / HIGHLIGHT ----------
 
     public void SetBlocked(bool blocked)
     {
@@ -82,6 +104,8 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
         tileImage.color = highlighted ? highlightColor : normalColor;
     }
+
+    // ---------- CLICK ----------
 
     public void OnPointerClick(PointerEventData eventData)
     {

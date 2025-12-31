@@ -1109,7 +1109,7 @@ MonoBehaviour:
   - ....##....
   - ...##.....
   - ..........
-  - ..####....
+  - ..........
   - ..........
   - ....####..
   - ..........
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     clue: Forest floor fluff
   - id: 2A
     isAcross: 1
-    startRow: 2
+    startRow: 3
     startCol: 0
     answer: DRAGONFLY
     clue: Pondside acrobat
@@ -1135,6 +1135,7 @@ MonoBehaviour:
     startCol: 0
     answer: MIND
     clue: Inner puzzle box
+  autoFillSolutionOnStart: 1
 --- !u!4 &1402239310
 Transform:
   m_ObjectHideFlags: 0
