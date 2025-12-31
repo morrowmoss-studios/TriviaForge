@@ -61,7 +61,13 @@ public class CrosswordBoardManager : MonoBehaviour
             DebugFillSolution();
         }
     }
-
+    
+    private void Awake()
+    {
+        // Make our words list available to other scenes (like the clues screen)
+        CrosswordSession.currentWords = words;
+    }
+    
     private void BuildBoard()
     {
         if (cellPrefab == null || gridParent == null)
@@ -297,4 +303,11 @@ public class CrosswordBoardManager : MonoBehaviour
             }
         }
     }
+    public void RequestHint()
+    {
+        // For now just stub it out so the button works.
+        // Later we’ll actually pick a word and reveal a letter.
+        Debug.Log("CrosswordBoardManager: Hint requested (not implemented yet).");
+    }
+
 }
