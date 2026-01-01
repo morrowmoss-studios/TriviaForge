@@ -34,9 +34,10 @@ public class CrosswordModeUI : MonoBehaviour
     }
 
     // SETTINGS
-    public void OnSettingsButton()
+    public void OnSettingsPressed()
     {
-        SceneManager.LoadScene(settingsSceneName);
+        UIManager.SetPreviousScene();          // save current scene name
+        SceneManager.LoadScene("Settings");    // go to settings
     }
 
     // QUIT -> load the Quit_PopUp scene

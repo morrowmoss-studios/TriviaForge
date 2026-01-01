@@ -76,6 +76,12 @@ public class UIManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+    
+    public void OpenSettingsScene()
+    {
+        SetPreviousScene();
+        SceneManager.LoadScene("Settings");
+    }
 
     // For external links (itch page, email, website, etc.)
     public void OpenURL(string url)
