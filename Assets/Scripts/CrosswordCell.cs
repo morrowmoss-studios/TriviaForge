@@ -19,6 +19,13 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     public int row;
     public int col;
 
+    [Header("Clue Data (optional)")]
+    public string acrossLabel;        // e.g. "1A"
+    [TextArea] public string acrossClue;
+
+    public string downLabel;          // e.g. "2D"
+    [TextArea] public string downClue;
+
     private bool isBlocked;
     private bool isHighlighted;
 
@@ -71,11 +78,15 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     public void SetLetter(char ch)
     {
+        currentLetter = ch; // <- you were not updating this before
+
         if (letterText == null) return;
 
-        letterText.text = ch.ToString().ToUpper();
+        if (ch == '\0' || ch == ' ')
+            letterText.text = "";
+        else
+            letterText.text = ch.ToString().ToUpper();
     }
-
 
     public char GetLetter()
     {
@@ -111,6 +122,34 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     {
         if (isBlocked) return;
 
+        // 1) Show clue(s) in the mini text box
+        if (CrosswordClueDisplay.Instance != null)
+        {
+            bool hasAcross = !string.IsNullOrEmpty(acrossLabel) && !string.IsNullOrEmpty(acrossClue);
+            bool hasDown   = !string.IsNullOrEmpty(downLabel)   && !string.IsNullOrEmpty(downClue);
+
+            if (hasAcross && hasDown)
+            {
+                CrosswordClueDisplay.Instance.ShowMultiClue(
+                    acrossLabel, acrossClue,
+                    downLabel,   downClue
+                );
+            }
+            else if (hasAcross)
+            {
+                CrosswordClueDisplay.Instance.ShowClue(acrossLabel, acrossClue);
+            }
+            else if (hasDown)
+            {
+                CrosswordClueDisplay.Instance.ShowClue(downLabel, downClue);
+            }
+            else
+            {
+                CrosswordClueDisplay.Instance.ClearClue();
+            }
+        }
+
+        // 2) Let the board manager do its usual selection / highlight logic
         if (manager != null)
         {
             manager.OnCellClicked(this);
