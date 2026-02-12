@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 981bb4995b3704ab8a6da4e22222b15e
+guid: 92f42facd9b9d47cab3022a930cf2257
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 164132044110586882
-    second: Win_Background_0
+      213: -1559089894604850908
+    second: wooden_board 1_0
+  - first:
+      213: -6433027214100481087
+    second: wooden_board 1_1
+  - first:
+      213: 6891495155471311948
+    second: wooden_board 1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Win_Background_0
+      name: wooden_board 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        y: 775
+        width: 8
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +160,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2046879793d174200800000000000000
-      internalID: 164132044110586882
+      spriteID: 4293d2350000d5ae0800000000000000
+      internalID: -1559089894604850908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wooden_board 1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 779
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cbbe1915db49b6a0800000000000000
+      internalID: -6433027214100481087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wooden_board 1_2
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 165
+        width: 704
+        height: 455
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c446139c45283af50800000000000000
+      internalID: 6891495155471311948
       vertices: []
       indices: 
       edges: []
@@ -174,7 +224,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Win_Background_0: 164132044110586882
+      wooden_board 1_0: -1559089894604850908
+      wooden_board 1_1: -6433027214100481087
+      wooden_board 1_2: 6891495155471311948
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
