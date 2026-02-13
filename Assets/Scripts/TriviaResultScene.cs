@@ -33,7 +33,6 @@ public class TriviaResultScene : MonoBehaviour
                 $"You chose: <b>{chosenLetter}. {chosenText}</b>\n" +
                 $"Correct answer: <b>{correctLetter}. {correctText}</b>";
         }
-
     }
 
     private string IndexToLetter(int index)
@@ -51,23 +50,25 @@ public class TriviaResultScene : MonoBehaviour
     // called by Next button
     public void OnNextPressed()
     {
+        // move to the next question index
         TriviaSessionData.currentQuestionIndex++;
 
         if (TriviaSessionData.currentQuestionIndex >= TriviaSessionData.totalQuestions)
         {
-            // out of questions -> send them back to mode select or main menu
-            SceneManager.LoadScene("ModeSelect");   // <- change to your scene name
+            // ✅ Out of questions -> go to Game Over popup instead of ModeSelect
+            SceneManager.LoadScene("GameOver_PopUp");
         }
         else
         {
-            // go back to TriviaMode, which will load the next question
-            SceneManager.LoadScene("TriviaMode");   // <- exact scene name
+            // still have questions -> go back to TriviaMode for the next one
+            SceneManager.LoadScene("TriviaMode");
         }
     }
 
     // called by Quit button
     public void OnQuitPressed()
     {
-        SceneManager.LoadScene("ModeSelect");       // or "MainMenu"
+        // still fine to send them back to ModeSelect / MainMenu on manual quit
+        SceneManager.LoadScene("ModeSelect");       // or "MainMenu" if you prefer
     }
 }

@@ -142,18 +142,18 @@ PrefabInstance:
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1535840642}
+      objectReference: {fileID: 1535840643}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnQuitPressed
+      value: OnBackToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WinSceneManager, Assembly-CSharp
+      value: ScorePopupUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 5168579343675544679, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3424129449458564958, guid: 9abf488d9f6714f1dada1943f173a01f, type: 3}
+      objectReference: {fileID: -2612257301339723111, guid: 21c328c11d6ec4e0f8b4b4e74cbe95f0, type: 3}
     - target: {fileID: 5747101501294552698, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 35.4605
+      value: 35.46
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30.5734
+      value: 30.573
       objectReference: {fileID: 0}
     - target: {fileID: 8279863432137986298, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_Name
@@ -302,6 +302,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4375522627595982962, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+    - {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       insertIndex: 0
@@ -512,7 +513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 291, y: 30.573}
+  m_AnchoredPosition: {x: 210.5, y: 27.9}
   m_SizeDelta: {x: 115.0959, y: 35.46}
   m_Pivot: {x: 0.5, y: 1.9876168}
 --- !u!114 &1298569001
@@ -559,9 +560,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1535840642}
-        m_TargetAssemblyTypeName: WinSceneManager, Assembly-CSharp
-        m_MethodName: OnNextPressed
+      - m_Target: {fileID: 1535840643}
+        m_TargetAssemblyTypeName: ScorePopupUI, Assembly-CSharp
+        m_MethodName: OnGoToLeaderboard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -893,6 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1535840641}
   - component: {fileID: 1535840642}
+  - component: {fileID: 1535840643}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -927,6 +929,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a20c0ee66a3844b789e7f6e9f082683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1535840643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535840639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be9b862794b9426b8cc189afbbea746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScorePopupUI
+  scoreValueText: {fileID: 1585816090}
+  mainMenuSceneName: ModeSelect
+  leaderboardSceneName: Leaderboard_PopUp
+  scoreSceneName: Scores_PopUp
 --- !u!1 &1585816088
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 12345
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c155148a7d2a49569d20f146e78e6c3, type: 2}
   m_sharedMaterial: {fileID: -4855036861293813384, guid: 0c155148a7d2a49569d20f146e78e6c3, type: 2}
