@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class TriviaQuestionManager : MonoBehaviour
 {
@@ -25,31 +24,47 @@ public class TriviaQuestionManager : MonoBehaviour
     [Header("Questions")]
     public List<Question> questions = new List<Question>();
 
+    [Header("Scoring")]
+    public TriviaScoreUI scoreUI;              // drag ScoreNumbers (with TriviaScoreUI) here
+
     private int currentQuestionIndex = 0;
     private bool questionLocked = false;
     private bool hintUsed = false;
-    
+
+    // Optional helper (not strictly needed, but here if you want to use it)
     private string BuildAnswerLabel(Question q, int index)
     {
         string[] letters = { "A.", "B.", "C.", "D." };
         return $"{letters[index]} {q.answers[index]}";
     }
+
+    private void Awake()
+    {
+        if (scoreUI == null)
+        {
+            scoreUI = FindObjectOfType<TriviaScoreUI>();
+            if (scoreUI == null)
+            {
+                Debug.LogWarning("[TriviaQuestionManager] Could not find TriviaScoreUI in scene.");
+            }
+        }
+    }
     
-    void Start()
+    private void Start()
     {
         if (questions.Count > 0)
         {
             // clamp the index just in case
-            if (TriviaSessionData.currentQuestionIndex < 0 || 
+            if (TriviaSessionData.currentQuestionIndex < 0 ||
                 TriviaSessionData.currentQuestionIndex >= questions.Count)
             {
                 TriviaSessionData.currentQuestionIndex = 0;
             }
 
-            TriviaSessionData.totalQuestions = questions.Count; // ✅ add this line
+            TriviaSessionData.totalQuestions = questions.Count;
 
             LoadQuestion(TriviaSessionData.currentQuestionIndex);
-            
+
             Debug.Log("Game Mode: " + TriviaSessionData.selectedGameMode);
             Debug.Log("Category: " + TriviaSessionData.selectedCategory);
             Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
@@ -58,12 +73,12 @@ public class TriviaQuestionManager : MonoBehaviour
         {
             Debug.LogWarning("No questions set up on TriviaQuestionManager.");
         }
-        
     }
-    
-    void LoadQuestion(int index)
+
+    private void LoadQuestion(int index)
     {
         questionLocked = false;
+        hintUsed = false; // 🔹 reset hint flag for this question
         currentQuestionIndex = index;
 
         Question q = questions[index];
@@ -83,7 +98,6 @@ public class TriviaQuestionManager : MonoBehaviour
             }
         }
     }
-
 
     public void OnAnswerClicked(AnswerButtonUI button)
     {
@@ -106,7 +120,22 @@ public class TriviaQuestionManager : MonoBehaviour
         }
         // --- end save ---
 
-        if (button.answerIndex == q.correctIndex)
+        // ---------- NEW SCORING ----------
+        bool isCorrect = (button.answerIndex == q.correctIndex);
+
+        if (ScoreManager.Instance != null)
+        {
+            // correct no hint -> +5, correct with hint -> +3, wrong -> 0
+            ScoreManager.Instance.RegisterAnswer(isCorrect, hintUsed);
+        }
+
+        if (scoreUI != null)
+        {
+            scoreUI.UpdateScoreText();
+        }
+        // ---------- end scoring ----------
+
+        if (isCorrect)
         {
             Debug.Log("Correct!");
             button.ShowAsCorrect();
@@ -140,12 +169,10 @@ public class TriviaQuestionManager : MonoBehaviour
 
         if (answerButtons[eliminateIndex] != null)
         {
-            answerButtons[eliminateIndex].DisableAnswer();  // This is your method in AnswerButtonUI.cs
+            answerButtons[eliminateIndex].DisableAnswer();
             Debug.Log($"Hint used! Disabled answer at index {eliminateIndex}");
         }
 
         hintUsed = true;
     }
-
-
 }
