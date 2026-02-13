@@ -209,16 +209,54 @@ public class CrosswordBoardManager : MonoBehaviour
         if (word == null)
         {
             Debug.Log($"Cell {r},{c} is playable but not assigned to any word.");
+
+            // no word = clear clue box
+            if (CrosswordClueDisplay.Instance != null)
+                CrosswordClueDisplay.Instance.ClearClue();
+
             return;
         }
 
         Debug.Log($"Clicked word {word.id}: {word.answer}");
 
+        // ---- NEW: update the mini clue display ----
+        if (CrosswordClueDisplay.Instance != null)
+        {
+            CrosswordWord acrossWord = acrossAt[r, c];
+            CrosswordWord downWord   = downAt[r, c];
+
+            bool hasAcross = acrossWord != null;
+            bool hasDown   = downWord   != null;
+
+            if (hasAcross && hasDown)
+            {
+                // intersection cell: show both
+                CrosswordClueDisplay.Instance.ShowMultiClue(
+                    acrossWord.id, acrossWord.clue,
+                    downWord.id,   downWord.clue
+                );
+            }
+            else if (hasAcross)
+            {
+                CrosswordClueDisplay.Instance.ShowClue(acrossWord.id, acrossWord.clue);
+            }
+            else if (hasDown)
+            {
+                CrosswordClueDisplay.Instance.ShowClue(downWord.id, downWord.clue);
+            }
+            else
+            {
+                CrosswordClueDisplay.Instance.ClearClue();
+            }
+        }
+
+        // ---- existing highlight logic ----
         if (word.isAcross)
             HighlightAcrossWord(r, c);
         else
             HighlightDownWord(r, c);
     }
+
 
     private void ClearHighlights()
     {
