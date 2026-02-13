@@ -1,0 +1,68 @@
+{
+  "categories": [
+    {
+      "id": "science",
+      "name": "Science",
+      "subcategories": [
+        {
+          "id": "physics_quantum",
+          "name": "Physics & Quantum Physics",
+          "trivia": [
+            {
+              "id": "sci_phy_001",
+              "questionText": "What force pulls objects toward the Earth?",
+              "answers": [
+                "Magnetism",
+                "Gravity",
+                "Friction",
+                "Electricity"
+              ],
+              "correctIndex": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sci_phy_002",
+              "questionText": "What do we call the tiny building blocks of matter?",
+              "answers": [
+                "Atoms",
+                "Waves",
+                "Clouds",
+                "Orbits"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            }
+          ],
+          "wordoku": [],
+          "crosswords": []
+        }
+      ]
+    },
+    {
+      "id": "pop_culture",
+      "name": "Pop Culture",
+      "subcategories": [
+        {
+          "id": "movies",
+          "name": "Movies",
+          "trivia": [
+            {
+              "id": "pop_mov_001",
+              "questionText": "What do we call a movie that makes people laugh?",
+              "answers": [
+                "Horror",
+                "Comedy",
+                "Documentary",
+                "Mystery"
+              ],
+              "correctIndex": 1,
+              "difficulty": "easy"
+            }
+          ],
+          "wordoku": [],
+          "crosswords": []
+        }
+      ]
+    }
+  ]
+}
