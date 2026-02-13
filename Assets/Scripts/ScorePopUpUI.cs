@@ -8,15 +8,17 @@ public class ScorePopupUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreValueText;  // Number_Text in Scores_PopUp
 
     [Header("Scene Names")]
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] private string mainMenuSceneName   = "MainMenu";
     [SerializeField] private string leaderboardSceneName = "Leaderboard_PopUp";
-    [SerializeField] private string scoreSceneName = "Scores_PopUp";  // for generic use
+    [SerializeField] private string scoreSceneName       = "Scores_PopUp";
+    [SerializeField] private string triviaSceneName      = "TriviaMode";
+    [SerializeField] private string modeSelectSceneName  = "ModeSelect";
 
     private int finalScore;
 
     private void Start()
     {
-        // Only try to show the score if we actually have a text field
+        // Only do score display if we actually have a text box assigned
         if (scoreValueText != null)
         {
             if (ScoreManager.Instance != null)
@@ -33,13 +35,13 @@ public class ScorePopupUI : MonoBehaviour
         }
         else
         {
-            // In scenes like GameOver_PopUp where we just reuse this script for navigation,
-            // it's totally fine that there's no text.
+            // Totally fine in GameOver_PopUp or Leaderboard where we just use this as a nav helper
             Debug.Log("[ScorePopupUI] No scoreValueText assigned in this scene. Skipping score display.");
         }
     }
 
-    // Used in Scores_PopUp for going back to menu
+    // --- Scores_PopUp: buttons ---
+
     public void OnBackToMenu()
     {
         if (!string.IsNullOrEmpty(mainMenuSceneName))
@@ -48,7 +50,6 @@ public class ScorePopupUI : MonoBehaviour
         }
     }
 
-    // Used in Scores_PopUp for going to leaderboard
     public void OnGoToLeaderboard()
     {
         if (!string.IsNullOrEmpty(leaderboardSceneName))
@@ -57,7 +58,8 @@ public class ScorePopupUI : MonoBehaviour
         }
     }
 
-    // 🔹 NEW: generic "go to score scene" method we can use from GameOver_PopUp
+    // --- GameOver_PopUp: Next -> Scores_PopUp ---
+
     public void OnGoToScoreScene()
     {
         if (!string.IsNullOrEmpty(scoreSceneName))
@@ -67,6 +69,37 @@ public class ScorePopupUI : MonoBehaviour
         else
         {
             Debug.LogWarning("[ScorePopupUI] scoreSceneName is empty.");
+        }
+    }
+
+    // --- Leaderboard: Continue / Mode Select ---
+
+    // Continue -> back into TriviaMode for a new run
+    public void OnGoToTriviaMode()
+    {
+        // start a fresh run
+        TriviaSessionData.currentQuestionIndex = 0;
+
+        if (!string.IsNullOrEmpty(triviaSceneName))
+        {
+            SceneManager.LoadScene(triviaSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("[ScorePopupUI] triviaSceneName is empty.");
+        }
+    }
+
+    // Mode Select -> back to ModeSelect scene
+    public void OnGoToModeSelect()
+    {
+        if (!string.IsNullOrEmpty(modeSelectSceneName))
+        {
+            SceneManager.LoadScene(modeSelectSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("[ScorePopupUI] modeSelectSceneName is empty.");
         }
     }
 }

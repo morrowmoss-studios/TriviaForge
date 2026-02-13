@@ -343,18 +343,18 @@ PrefabInstance:
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1535840642}
+      objectReference: {fileID: 1535840643}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnQuitPressed
+      value: OnGoToModeSelect
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WinSceneManager, Assembly-CSharp
+      value: ScorePopupUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -986,7 +986,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535840643}
         m_TargetAssemblyTypeName: ScorePopupUI, Assembly-CSharp
-        m_MethodName: OnBackToMenu
+        m_MethodName: OnGoToTriviaMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1307,6 +1307,8 @@ MonoBehaviour:
   mainMenuSceneName: ModeSelect
   leaderboardSceneName: Leaderboard_PopUp
   scoreSceneName: Scores_PopUp
+  triviaSceneName: TriviaMode
+  modeSelectSceneName: ModeSelect
 --- !u!1 &1541626462
 GameObject:
   m_ObjectHideFlags: 0
