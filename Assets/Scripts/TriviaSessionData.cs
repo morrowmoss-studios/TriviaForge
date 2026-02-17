@@ -10,6 +10,8 @@ public static class TriviaSessionData
     public static string selectedGameMode;
     public static string selectedCategory;
     public static string selectedSubcategory;
+    public static string selectedCategoryId;      // e.g. "science"
+    public static string selectedSubcategoryId;   // e.g. "physics_quantum"
     public static string selectedDifficulty = "Medium"; //Default level
 
 

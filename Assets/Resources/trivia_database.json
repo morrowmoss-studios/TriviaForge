@@ -1,68 +1,436 @@
 {
-  "categories": [
-    {
-      "id": "science",
-      "name": "Science",
-      "subcategories": [
+    "categories": [
         {
-          "id": "physics_quantum",
-          "name": "Physics & Quantum Physics",
-          "trivia": [
-            {
-              "id": "sci_phy_001",
-              "questionText": "What force pulls objects toward the Earth?",
-              "answers": [
-                "Magnetism",
-                "Gravity",
-                "Friction",
-                "Electricity"
-              ],
-              "correctIndex": 1,
-              "difficulty": "easy"
-            },
-            {
-              "id": "sci_phy_002",
-              "questionText": "What do we call the tiny building blocks of matter?",
-              "answers": [
-                "Atoms",
-                "Waves",
-                "Clouds",
-                "Orbits"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            }
-          ],
-          "wordoku": [],
-          "crosswords": []
-        }
-      ]
-    },
-    {
-      "id": "pop_culture",
-      "name": "Pop Culture",
-      "subcategories": [
+            "id": "science",
+            "name": "Science",
+            "subcategories": [
+                {
+                    "id": "biology",
+                    "name": "Biology",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "earth_science",
+                    "name": "Earth Science",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "geology",
+                    "name": "Geology",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "physics",
+                    "name": "Physics",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "weather",
+                    "name": "Weather",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "space",
+                    "name": "Space",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
         {
-          "id": "movies",
-          "name": "Movies",
-          "trivia": [
-            {
-              "id": "pop_mov_001",
-              "questionText": "What do we call a movie that makes people laugh?",
-              "answers": [
-                "Horror",
-                "Comedy",
-                "Documentary",
-                "Mystery"
-              ],
-              "correctIndex": 1,
-              "difficulty": "easy"
-            }
-          ],
-          "wordoku": [],
-          "crosswords": []
+            "id": "pop_culture",
+            "name": "Pop Culture",
+            "subcategories": [
+                {
+                    "id": "movies",
+                    "name": "Movies",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "music",
+                    "name": "Music",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "television",
+                    "name": "Television",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "celebrities",
+                    "name": "Celebrities",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "memes",
+                    "name": "Memes",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "fashion",
+                    "name": "Fashion",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "technology",
+            "name": "Technology",
+            "subcategories": [
+                {
+                    "id": "gadgets",
+                    "name": "Gadgets",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "computers",
+                    "name": "Computers",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "internet",
+                    "name": "Internet",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "robots",
+                    "name": "Robots",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "tech_history",
+                    "name": "Tech History",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "apps",
+                    "name": "Apps",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "geography",
+            "name": "Geography",
+            "subcategories": [
+                {
+                    "id": "countries_capitals",
+                    "name": "Countries & Captials",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "cities",
+                    "name": "Cities",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "landmarks",
+                    "name": "Landmarks",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "parks_unesco",
+                    "name": "National Parks & UNESCO Sites",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "islands",
+                    "name": "Islands",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "continents",
+                    "name": "Continents",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "literature",
+            "name": "Literature",
+            "subcategories": [
+                {
+                    "id": "poems",
+                    "name": "Poems",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "stories",
+                    "name": "Stories",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "classics",
+                    "name": "Classics",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "plays",
+                    "name": "Plays",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "fiction",
+                    "name": "Fiction",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "non_fiction",
+                    "name": "Non-Fiction",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "games",
+            "name": "Games",
+            "subcategories": [
+                {
+                    "id": "cards",
+                    "name": "Cards",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "video_games",
+                    "name": "Video Games",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "board_games",
+                    "name": "Board Games",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "party_games",
+                    "name": "Party Games",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "casino",
+                    "name": "Casino",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "outdoor_games",
+                    "name": "Outdoor Games",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "history",
+            "name": "History",
+            "subcategories": [
+                {
+                    "id": "ancient_times",
+                    "name": "Ancient Times",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "middle_ages",
+                    "name": "Middle Ages",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "renaissance",
+                    "name": "Renaissance",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "industrial_age",
+                    "name": "Industrial Age",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "history_1900",
+                    "name": "1900s",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "history_2000",
+                    "name": "2000s",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "sports",
+            "name": "Sports",
+            "subcategories": [
+                {
+                    "id": "olympics",
+                    "name": "Olympics",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "team_sports",
+                    "name": "Team Sports",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "racquet_net",
+                    "name": "Racquet & Net",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "racing_motor",
+                    "name": "Racing & Motor Sports",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "water",
+                    "name": "Water Sports",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "combat",
+                    "name": "Combat Sports",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
+        },
+        {
+            "id": "folklore",
+            "name": "Folklore",
+            "subcategories": [
+                {
+                    "id": "myths_mythology",
+                    "name": "Myths & Mythology",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "legendary_creatures",
+                    "name": "Legendary Creatures",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "fairy_fables",
+                    "name": "Fairy Tales & Fables",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "ghosts_haunted_places",
+                    "name": "Ghosts & Haunted Places",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "urban_legends",
+                    "name": "Urban Legends",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                },
+                {
+                    "id": "witches_witchcraft",
+                    "name": "Witches & Witchcraft",
+                    "trivia": [],
+                    "wordoku": [],
+                    "crosswords": []
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

@@ -560,6 +560,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -865,6 +866,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1226,6 +1228,142 @@ MonoBehaviour:
   categoryDropdown: {fileID: 1719368563}
   subcategoryDropdown: {fileID: 467410722}
   difficultyDropdown: {fileID: 146020930}
+  categories:
+  - displayName: Science
+    id: science
+    subcategories:
+    - displayName: Biology
+      id: biology
+    - displayName: Earth Science
+      id: earth_science
+    - displayName: Geology
+      id: geology
+    - displayName: Physics
+      id: physics
+    - displayName: Weather
+      id: weather
+    - displayName: Space
+      id: space
+  - displayName: Pop Culture
+    id: pop_culture
+    subcategories:
+    - displayName: Movies
+      id: movies
+    - displayName: Music
+      id: music
+    - displayName: Television
+      id: television
+    - displayName: Celebrities
+      id: celebrities
+    - displayName: Memes
+      id: memes
+    - displayName: Fashion
+      id: fashion
+  - displayName: Technology
+    id: technology
+    subcategories:
+    - displayName: Gadgets
+      id: gadgets
+    - displayName: Computers
+      id: computers
+    - displayName: Internet
+      id: internet
+    - displayName: Robots
+      id: robots
+    - displayName: Tech History
+      id: tech_history
+    - displayName: Apps
+      id: apps
+  - displayName: Geography
+    id: geography
+    subcategories:
+    - displayName: Countries & Captials
+      id: countries_capitals
+    - displayName: Cities
+      id: cities
+    - displayName: Landmarks
+      id: landmarks
+    - displayName: National Parks & UNESCO Sites
+      id: parks_unesco
+    - displayName: Islands
+      id: islands
+    - displayName: Continents
+      id: continents
+  - displayName: Literature
+    id: literature
+    subcategories:
+    - displayName: Poems
+      id: poems
+    - displayName: Stories
+      id: stories
+    - displayName: Classics
+      id: classics
+    - displayName: Plays
+      id: plays
+    - displayName: Fiction
+      id: fiction
+    - displayName: Non-Fiction
+      id: non_fiction
+  - displayName: Games
+    id: games
+    subcategories:
+    - displayName: Cards
+      id: cards
+    - displayName: Video Games
+      id: video_games
+    - displayName: Board Games
+      id: board_games
+    - displayName: Party Games
+      id: party_games
+    - displayName: Casino
+      id: casino
+    - displayName: Outdoor Games
+      id: outdoor_games
+  - displayName: History
+    id: history
+    subcategories:
+    - displayName: Ancient Times
+      id: ancient_times
+    - displayName: Middle Ages
+      id: middle_ages
+    - displayName: Renaissance
+      id: renaissance
+    - displayName: Industrial Age
+      id: industrial_age
+    - displayName: 1900s
+      id: history_1900
+    - displayName: 2000s
+      id: history_2000
+  - displayName: Sports
+    id: sports
+    subcategories:
+    - displayName: Olympics
+      id: olympics
+    - displayName: Team Sports
+      id: team_sports
+    - displayName: Racquet & Net
+      id: racquet_net
+    - displayName: Racing & Motor Sports
+      id: racing_motor
+    - displayName: Water Sports
+      id: water
+    - displayName: Combat Sports
+      id: combat
+  - displayName: Folklore
+    id: folklore
+    subcategories:
+    - displayName: Myths & Mythology
+      id: myths_mythology
+    - displayName: Legendary Creatures
+      id: legendary_creatures
+    - displayName: Fairy Tales & Fables
+      id: fairy_fables
+    - displayName: Ghosts & Haunted Places
+      id: ghosts_haunted_places
+    - displayName: Urban Legends
+      id: urban_legends
+    - displayName: Witches & Witchcraft
+      id: witches_witchcraft
 --- !u!4 &164362612
 Transform:
   m_ObjectHideFlags: 0
@@ -1701,6 +1839,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2468,6 +2607,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2800,6 +2940,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3708,6 +3849,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4294,6 +4436,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4517,6 +4660,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5340,6 +5484,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5599,6 +5744,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

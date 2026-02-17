@@ -51,29 +51,64 @@ public class TriviaQuestionManager : MonoBehaviour
     }
     
     private void Start()
+{
+    // 1) Try to load questions from the JSON database
+    string categoryId    = TriviaSessionData.selectedCategory;      // e.g. "science"
+    string subcategoryId = TriviaSessionData.selectedSubcategory;   // e.g. "physics_quantum"
+
+    Debug.Log($"[TriviaQuestionManager] Loading trivia for {categoryId}/{subcategoryId}");
+
+    // Clear any inspector leftovers so we're only using DB data
+    questions.Clear();
+
+    // Ask the database for trivia entries
+    var entries = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
+
+    if (entries != null && entries.Count > 0)
     {
-        if (questions.Count > 0)
+        foreach (var e in entries)
         {
-            // clamp the index just in case
-            if (TriviaSessionData.currentQuestionIndex < 0 ||
-                TriviaSessionData.currentQuestionIndex >= questions.Count)
+            // Safety: make sure we have exactly 4 answers
+            if (e.answers == null || e.answers.Length != 4)
             {
-                TriviaSessionData.currentQuestionIndex = 0;
+                Debug.LogWarning($"[TriviaQuestionManager] Trivia entry '{e.id}' does not have exactly 4 answers. Skipping.");
+                continue;
             }
 
-            TriviaSessionData.totalQuestions = questions.Count;
+            var q = new Question
+            {
+                questionText = e.questionText,
+                answers      = e.answers,
+                correctIndex = e.correctIndex
+            };
 
-            LoadQuestion(TriviaSessionData.currentQuestionIndex);
-
-            Debug.Log("Game Mode: " + TriviaSessionData.selectedGameMode);
-            Debug.Log("Category: " + TriviaSessionData.selectedCategory);
-            Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
-        }
-        else
-        {
-            Debug.LogWarning("No questions set up on TriviaQuestionManager.");
+            questions.Add(q);
         }
     }
+
+    // 2) Now do the old "if questions.Count > 0" logic
+    if (questions.Count > 0)
+    {
+        // clamp the index just in case
+        if (TriviaSessionData.currentQuestionIndex < 0 ||
+            TriviaSessionData.currentQuestionIndex >= questions.Count)
+        {
+            TriviaSessionData.currentQuestionIndex = 0;
+        }
+
+        TriviaSessionData.totalQuestions = questions.Count;
+
+        LoadQuestion(TriviaSessionData.currentQuestionIndex);
+
+        Debug.Log("Game Mode: " + TriviaSessionData.selectedGameMode);
+        Debug.Log("Category: " + TriviaSessionData.selectedCategory);
+        Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
+    }
+    else
+    {
+        Debug.LogWarning("[TriviaQuestionManager] No questions available after loading from database.");
+    }
+}
 
     private void LoadQuestion(int index)
     {
