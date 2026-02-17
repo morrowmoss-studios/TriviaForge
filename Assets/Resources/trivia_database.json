@@ -583,6 +583,630 @@
                             ],
                             "correctIndex": 0,
                             "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_medium_017",
+                            "questionText": "Which organelle contains enzymes that help digest materials inside the cell?",
+                            "answers": [
+                                "Lysosome",
+                                "Nucleus",
+                                "Mitochondria",
+                                "Chloroplast"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_018",
+                            "questionText": "What is the term for an organism's role in its ecosystem?",
+                            "answers": [
+                                "Niche",
+                                "Habitat",
+                                "Population",
+                                "Community"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_easy_015",
+                            "questionText": "Which organ helps detoxify chemicals in the human body?",
+                            "answers": [
+                                "Liver",
+                                "Heart",
+                                "Lungs",
+                                "Pancreas"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_016",
+                            "questionText": "What do we call animals that eat only meat?",
+                            "answers": [
+                                "Carnivores",
+                                "Herbivores",
+                                "Omnivores",
+                                "Decomposers"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_017",
+                            "questionText": "Which part of the eye controls how much light enters?",
+                            "answers": [
+                                "Iris",
+                                "Retina",
+                                "Cornea",
+                                "Optic nerve"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_018",
+                            "questionText": "What is the largest organ in the human body?",
+                            "answers": [
+                                "Skin",
+                                "Liver",
+                                "Heart",
+                                "Lungs"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_019",
+                            "questionText": "Which vitamin is produced when skin is exposed to sunlight?",
+                            "answers": [
+                                "Vitamin D",
+                                "Vitamin C",
+                                "Vitamin A",
+                                "Vitamin B12"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_medium_019",
+                            "questionText": "Which organelle is studded with ribosomes and helps produce proteins?",
+                            "answers": [
+                                "Rough endoplasmic reticulum",
+                                "Smooth endoplasmic reticulum",
+                                "Golgi apparatus",
+                                "Peroxisome"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_020",
+                            "questionText": "What is the term for programmed cell death?",
+                            "answers": [
+                                "Apoptosis",
+                                "Necrosis",
+                                "Mutation",
+                                "Mitosis"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_021",
+                            "questionText": "Which blood type is known as the universal donor?",
+                            "answers": [
+                                "O negative",
+                                "AB positive",
+                                "A positive",
+                                "B negative"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_022",
+                            "questionText": "Which organ in the human body produces insulin?",
+                            "answers": [
+                                "Pancreas",
+                                "Liver",
+                                "Kidney",
+                                "Spleen"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_023",
+                            "questionText": "What type of symmetry do humans have?",
+                            "answers": [
+                                "Bilateral symmetry",
+                                "Radial symmetry",
+                                "Asymmetry",
+                                "Spiral symmetry"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_024",
+                            "questionText": "What is the name of the connective tissue that attaches muscle to bone?",
+                            "answers": [
+                                "Tendon",
+                                "Ligament",
+                                "Cartilage",
+                                "Fascia"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_025",
+                            "questionText": "Which process allows molecules to move from high concentration to low concentration without energy?",
+                            "answers": [
+                                "Passive transport",
+                                "Active transport",
+                                "Endocytosis",
+                                "Exocytosis"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_hard_019",
+                            "questionText": "Which part of the neuron receives incoming signals?",
+                            "answers": [
+                                "Dendrites",
+                                "Axon",
+                                "Myelin sheath",
+                                "Synapse"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_020",
+                            "questionText": "What is the name of the structure that connects two neurons?",
+                            "answers": [
+                                "Synapse",
+                                "Axon hillock",
+                                "Dendrite",
+                                "Node of Ranvier"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_021",
+                            "questionText": "Which stage of cellular respiration produces the most ATP?",
+                            "answers": [
+                                "Electron transport chain",
+                                "Glycolysis",
+                                "Krebs cycle",
+                                "Fermentation"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_022",
+                            "questionText": "Which macromolecule contains the elements carbon, hydrogen, oxygen, and nitrogen?",
+                            "answers": [
+                                "Proteins",
+                                "Carbohydrates",
+                                "Lipids",
+                                "Minerals"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_023",
+                            "questionText": "What is the term for a gene that is expressed in the presence of another allele?",
+                            "answers": [
+                                "Dominant",
+                                "Recessive",
+                                "Incomplete dominant",
+                                "Codominant"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_024",
+                            "questionText": "Which part of the brain regulates body temperature?",
+                            "answers": [
+                                "Hypothalamus",
+                                "Cerebellum",
+                                "Frontal lobe",
+                                "Brainstem"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_025",
+                            "questionText": "Which molecule is directly used by cells to perform work?",
+                            "answers": [
+                                "ATP",
+                                "DNA",
+                                "RNA",
+                                "Glucose"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_026",
+                            "questionText": "What is the name of the fluid-filled sac that stores waste and water in plant cells?",
+                            "answers": [
+                                "Central vacuole",
+                                "Lysosome",
+                                "Peroxisome",
+                                "Nucleolus"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_027",
+                            "questionText": "Which ecological level includes all living and nonliving components in an area?",
+                            "answers": [
+                                "Ecosystem",
+                                "Population",
+                                "Community",
+                                "Species"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_028",
+                            "questionText": "Which structure in bacteria allows movement?",
+                            "answers": [
+                                "Flagellum",
+                                "Pili",
+                                "Capsule",
+                                "Plasmid"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_easy_020",
+                            "questionText": "What is the green pigment in plants that helps capture sunlight?",
+                            "answers": [
+                                "Chlorophyll",
+                                "Keratin",
+                                "Melanin",
+                                "Hemoglobin"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_medium_026",
+                            "questionText": "What is the term for the movement of particles from an area of higher concentration to lower concentration?",
+                            "answers": [
+                                "Diffusion",
+                                "Osmosis",
+                                "Active transport",
+                                "Endocytosis"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_hard_029",
+                            "questionText": "Which molecule is the main product of photosynthesis?",
+                            "answers": [
+                                "Glucose",
+                                "Oxygen",
+                                "Carbon dioxide",
+                                "ATP"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_insanity_001",
+                            "questionText": "Which enzyme synthesizes RNA from a DNA template during transcription?",
+                            "answers": [
+                                "RNA polymerase",
+                                "DNA polymerase",
+                                "Helicase",
+                                "Ligase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_002",
+                            "questionText": "What is the name of the process by which RNA is edited after transcription in eukaryotic cells?",
+                            "answers": [
+                                "RNA splicing",
+                                "Translation",
+                                "Replication",
+                                "Transduction"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_003",
+                            "questionText": "Which structure in the mitochondrion is responsible for housing the electron transport chain?",
+                            "answers": [
+                                "Inner mitochondrial membrane",
+                                "Outer membrane",
+                                "Matrix",
+                                "Intermembrane space"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_004",
+                            "questionText": "What is the term for the random fluctuation of allele frequencies in a population?",
+                            "answers": [
+                                "Genetic drift",
+                                "Gene flow",
+                                "Natural selection",
+                                "Mutation rate"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_005",
+                            "questionText": "Which protein complex adds nucleotides to the 3' end of a growing DNA strand?",
+                            "answers": [
+                                "DNA polymerase III",
+                                "RNA polymerase",
+                                "Helicase",
+                                "Topoisomerase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_006",
+                            "questionText": "What is the term for the physical expression of a gene?",
+                            "answers": [
+                                "Phenotype",
+                                "Genotype",
+                                "Allele",
+                                "Karyotype"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_007",
+                            "questionText": "Which cellular structure organizes microtubules during cell division in animal cells?",
+                            "answers": [
+                                "Centrosome",
+                                "Ribosome",
+                                "Lysosome",
+                                "Peroxisome"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_008",
+                            "questionText": "Which molecule acts as the final electron acceptor in aerobic respiration?",
+                            "answers": [
+                                "Oxygen",
+                                "Carbon dioxide",
+                                "ATP",
+                                "NADH"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_009",
+                            "questionText": "Which hormone stimulates ovulation in humans?",
+                            "answers": [
+                                "Luteinizing hormone",
+                                "Estrogen",
+                                "Progesterone",
+                                "Prolactin"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_010",
+                            "questionText": "What is the term for the movement of vesicles to the cell membrane to release contents?",
+                            "answers": [
+                                "Exocytosis",
+                                "Endocytosis",
+                                "Phagocytosis",
+                                "Pinocytosis"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_011",
+                            "questionText": "Which enzyme relieves supercoiling tension ahead of the replication fork?",
+                            "answers": [
+                                "Topoisomerase",
+                                "Helicase",
+                                "Ligase",
+                                "Primase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_012",
+                            "questionText": "What is the term for a segment of DNA that codes for a functional product?",
+                            "answers": [
+                                "Gene",
+                                "Chromatid",
+                                "Operon",
+                                "Promoter"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_013",
+                            "questionText": "Which organelle is primarily responsible for lipid synthesis?",
+                            "answers": [
+                                "Smooth endoplasmic reticulum",
+                                "Golgi apparatus",
+                                "Rough ER",
+                                "Mitochondrion"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_014",
+                            "questionText": "Which process introduces foreign DNA into bacteria via viruses?",
+                            "answers": [
+                                "Transduction",
+                                "Transformation",
+                                "Conjugation",
+                                "Replication"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_015",
+                            "questionText": "What is the term for the complete set of chromosomes in an organism?",
+                            "answers": [
+                                "Karyotype",
+                                "Genome",
+                                "Phenotype",
+                                "Allele set"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_016",
+                            "questionText": "Which cellular process generates ATP using a proton gradient?",
+                            "answers": [
+                                "Oxidative phosphorylation",
+                                "Glycolysis",
+                                "Fermentation",
+                                "Transcription"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_017",
+                            "questionText": "Which structure protects bacterial DNA from environmental stress?",
+                            "answers": [
+                                "Capsule",
+                                "Flagellum",
+                                "Plasmid",
+                                "Ribosome"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_018",
+                            "questionText": "Which immune cells produce antibodies?",
+                            "answers": [
+                                "B lymphocytes",
+                                "T lymphocytes",
+                                "Macrophages",
+                                "Neutrophils"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_019",
+                            "questionText": "Which metabolic pathway breaks down glucose into pyruvate?",
+                            "answers": [
+                                "Glycolysis",
+                                "Krebs cycle",
+                                "Calvin cycle",
+                                "Beta oxidation"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_020",
+                            "questionText": "Which cell junction allows direct communication between adjacent animal cells?",
+                            "answers": [
+                                "Gap junction",
+                                "Tight junction",
+                                "Desmosome",
+                                "Plasmodesmata"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_021",
+                            "questionText": "Which phase of meiosis separates homologous chromosomes?",
+                            "answers": [
+                                "Anaphase I",
+                                "Anaphase II",
+                                "Metaphase II",
+                                "Prophase II"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_022",
+                            "questionText": "Which molecule carries electrons to the electron transport chain in cellular respiration?",
+                            "answers": [
+                                "NADH",
+                                "ATP",
+                                "Glucose",
+                                "Carbon dioxide"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_023",
+                            "questionText": "What is the term for a mutation that does not change the amino acid sequence?",
+                            "answers": [
+                                "Silent mutation",
+                                "Missense mutation",
+                                "Nonsense mutation",
+                                "Frameshift mutation"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_024",
+                            "questionText": "Which part of a chromosome is responsible for attachment to spindle fibers?",
+                            "answers": [
+                                "Centromere",
+                                "Telomere",
+                                "Chromatid",
+                                "Promoter region"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_insanity_025",
+                            "questionText": "Which organelle contains its own circular DNA in eukaryotic cells?",
+                            "answers": [
+                                "Mitochondrion",
+                                "Nucleus",
+                                "Golgi apparatus",
+                                "Lysosome"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "insanity"
                         }
                     ],
                     "wordoku": [],

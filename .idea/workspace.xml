@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ModeSelect.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ModeSelect.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ModeSelectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ModeSelectManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriviaSessionData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TriviaSessionData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,21 +15,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "morrowmoss-studios"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;morrowmoss-studios&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/morrowmoss-studios/TriviaForge.git",
-    "accountId": "605871ea-d35b-4842-9468-1f79fd845803"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/morrowmoss-studios/TriviaForge.git&quot;,
+    &quot;accountId&quot;: &quot;605871ea-d35b-4842-9468-1f79fd845803&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="39nuJOE63vCle93TtKxRFBC3wse" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,10 +42,12 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
+    "javascript.preferred.runtime.type.id": "node",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -67,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771344088700</updated>
       <workItem from="1771344090816" duration="617000" />
+      <workItem from="1771355121142" duration="95000" />
     </task>
     <servers />
   </component>
