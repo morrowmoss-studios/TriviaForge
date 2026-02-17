@@ -63,15 +63,11 @@ public class TriviaQuestionManager : MonoBehaviour
         {
             foreach (var entry in dbTrivia)
             {
-                Question q = new Question
-                {
-                    questionText = entry.questionText,
-                    answers      = (string[])entry.answers.Clone(),
-                    correctIndex = entry.correctIndex
-                };
+                Question q = BuildQuestionFromEntry(entry);  // 🔹 shuffles + sets correctIndex
                 questions.Add(q);
             }
         }
+
         else
         {
             Debug.LogWarning($"[TriviaQuestionManager] No trivia found for {categoryId}/{subcategoryId}.");
@@ -201,4 +197,48 @@ public class TriviaQuestionManager : MonoBehaviour
 
         hintUsed = true;
     }
+    
+    // Builds a Question from a TriviaEntry and shuffles the answers.
+    private Question BuildQuestionFromEntry(TriviaEntry entry)
+    {
+        Question q = new Question
+        {
+            questionText = entry.questionText,
+            answers      = (string[])entry.answers.Clone(),
+            correctIndex = entry.correctIndex
+        };
+
+        // Shuffle answers and update correctIndex to match
+        ShuffleAnswers(q.answers, ref q.correctIndex);
+        return q;
+    }
+
+// Fisher–Yates shuffle that also tracks where the correct index moves.
+    private void ShuffleAnswers(string[] answers, ref int correctIndex)
+    {
+        if (answers == null || answers.Length <= 1) return;
+
+        for (int i = 0; i < answers.Length; i++)
+        {
+            int j = Random.Range(i, answers.Length); // UnityEngine.Random
+
+            if (i == j) continue;
+
+            // swap answers[i] and answers[j]
+            string tmp = answers[i];
+            answers[i] = answers[j];
+            answers[j] = tmp;
+
+            // update correctIndex if we touched it
+            if (i == correctIndex)
+            {
+                correctIndex = j;
+            }
+            else if (j == correctIndex)
+            {
+                correctIndex = i;
+            }
+        }
+    }
+
 }

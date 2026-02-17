@@ -307,6 +307,282 @@
                             ],
                             "correctIndex": 0,
                             "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_easy_010",
+                            "questionText": "What structure surrounds and protects plant cells but is not found in animal cells?",
+                            "answers": [
+                                "Cell wall",
+                                "Cell membrane",
+                                "Cytoplasm",
+                                "Nucleus"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_011",
+                            "questionText": "Which organ pumps blood throughout the human body?",
+                            "answers": [
+                                "Heart",
+                                "Lungs",
+                                "Liver",
+                                "Kidney"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_012",
+                            "questionText": "What gas do humans breathe in that is essential for survival?",
+                            "answers": [
+                                "Oxygen",
+                                "Carbon dioxide",
+                                "Nitrogen",
+                                "Hydrogen"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_013",
+                            "questionText": "What do we call organisms made of only one cell?",
+                            "answers": [
+                                "Unicellular",
+                                "Multicellular",
+                                "Complex",
+                                "Specialized"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_014",
+                            "questionText": "Which part of the plant absorbs water from the soil?",
+                            "answers": [
+                                "Roots",
+                                "Leaves",
+                                "Stem",
+                                "Flower"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_medium_009",
+                            "questionText": "Which organelle is responsible for breaking down fatty acids and detoxifying chemicals?",
+                            "answers": [
+                                "Peroxisome",
+                                "Ribosome",
+                                "Golgi apparatus",
+                                "Chloroplast"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_010",
+                            "questionText": "What is the name of the process by which cells divide to form two identical cells?",
+                            "answers": [
+                                "Mitosis",
+                                "Meiosis",
+                                "Binary fission",
+                                "Budding"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_011",
+                            "questionText": "Which macromolecule is made up of amino acids?",
+                            "answers": [
+                                "Proteins",
+                                "Carbohydrates",
+                                "Lipids",
+                                "Nucleic acids"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_012",
+                            "questionText": "What is the name for the movement of water across a semipermeable membrane?",
+                            "answers": [
+                                "Osmosis",
+                                "Diffusion",
+                                "Active transport",
+                                "Endocytosis"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_013",
+                            "questionText": "Which system in the human body controls hormones?",
+                            "answers": [
+                                "Endocrine system",
+                                "Nervous system",
+                                "Digestive system",
+                                "Skeletal system"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_014",
+                            "questionText": "What type of reproduction involves only one parent?",
+                            "answers": [
+                                "Asexual reproduction",
+                                "Sexual reproduction",
+                                "Cross-fertilization",
+                                "Pollination"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_015",
+                            "questionText": "Which molecule stores long-term energy in organisms?",
+                            "answers": [
+                                "Lipids",
+                                "Proteins",
+                                "DNA",
+                                "Enzymes"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_016",
+                            "questionText": "What is the name of the pigment that gives skin its color?",
+                            "answers": [
+                                "Melanin",
+                                "Keratin",
+                                "Collagen",
+                                "Hemoglobin"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_hard_009",
+                            "questionText": "Which RNA molecule carries amino acids to the ribosome?",
+                            "answers": [
+                                "tRNA",
+                                "mRNA",
+                                "rRNA",
+                                "snRNA"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_010",
+                            "questionText": "What is the term for traits that are masked when a dominant allele is present?",
+                            "answers": [
+                                "Recessive",
+                                "Dominant",
+                                "Codominant",
+                                "Polygenic"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_011",
+                            "questionText": "Which phase of meiosis involves crossing over?",
+                            "answers": [
+                                "Prophase I",
+                                "Metaphase I",
+                                "Anaphase II",
+                                "Telophase II"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_012",
+                            "questionText": "What is the name for a group of organisms that can interbreed and produce fertile offspring?",
+                            "answers": [
+                                "Species",
+                                "Genus",
+                                "Kingdom",
+                                "Phylum"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_013",
+                            "questionText": "Which process converts nitrogen gas into a usable form for plants?",
+                            "answers": [
+                                "Nitrogen fixation",
+                                "Photosynthesis",
+                                "Respiration",
+                                "Transpiration"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_014",
+                            "questionText": "Which part of the brain is responsible for balance and coordination?",
+                            "answers": [
+                                "Cerebellum",
+                                "Medulla",
+                                "Hypothalamus",
+                                "Amygdala"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_015",
+                            "questionText": "What type of biomolecule are enzymes?",
+                            "answers": [
+                                "Proteins",
+                                "Lipids",
+                                "Carbohydrates",
+                                "Steroids"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_016",
+                            "questionText": "Which structure in the nephron is responsible for filtering blood?",
+                            "answers": [
+                                "Glomerulus",
+                                "Alveolus",
+                                "Neuron",
+                                "Capillary bed"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_017",
+                            "questionText": "Which ecological term describes organisms that break down dead matter?",
+                            "answers": [
+                                "Decomposers",
+                                "Producers",
+                                "Consumers",
+                                "Predators"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_018",
+                            "questionText": "Which molecule forms the structural component of plant cell walls?",
+                            "answers": [
+                                "Cellulose",
+                                "Chitin",
+                                "Glycogen",
+                                "Collagen"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
                         }
                     ],
                     "wordoku": [],
