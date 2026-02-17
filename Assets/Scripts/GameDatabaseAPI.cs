@@ -1,84 +1,100 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Static API for reading game content (trivia, wordoku, crosswords)
+/// from trivia_database.json in a Resources folder.
+/// </summary>
 public static class GameDatabaseAPI
 {
-    private static GameDatabase _db;
-    private static bool _isLoaded;
+    private const string ResourcePath = "trivia_database"; // looks for Assets/Resources/trivia_database.json
 
-    public static void LoadFromJson(TextAsset jsonAsset)
+    private static GameDatabase _db;
+    private static bool _loaded;
+
+    /// <summary>
+    /// Ensure the database is loaded from Resources. Safe to call multiple times.
+    /// </summary>
+    private static void EnsureLoaded()
     {
+        if (_loaded) return;
+
+        TextAsset jsonAsset = Resources.Load<TextAsset>(ResourcePath);
         if (jsonAsset == null)
         {
-            Debug.LogError("GameDatabaseAPI: jsonAsset is null, cannot load DB.");
+            Debug.LogError($"GameDatabaseAPI: Could not find '{ResourcePath}.json' in a Resources folder.");
             return;
         }
 
-        _db = JsonUtility.FromJson<GameDatabase>(jsonAsset.text);
-        if (_db == null)
+        try
         {
-            Debug.LogError("GameDatabaseAPI: Failed to parse JSON.");
+            _db = JsonUtility.FromJson<GameDatabase>(jsonAsset.text);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"GameDatabaseAPI: Failed to parse database JSON. Exception: {ex.Message}");
+            _db = null;
+        }
+
+        if (_db == null || _db.categories == null)
+        {
+            Debug.LogError("GameDatabaseAPI: Database JSON parsed, but data is null or has no categories.");
             return;
         }
 
-        _isLoaded = true;
-        Debug.Log("GameDatabaseAPI: Database loaded with " +
-                  (_db.categories != null ? _db.categories.Count : 0) + " categories.");
+        _loaded = true;
+        Debug.Log($"GameDatabaseAPI: Loaded database with {_db.categories.Count} categories.");
     }
 
-    private static SubcategoryData FindSubcat(string categoryId, string subcatId)
+    /// <summary>
+    /// Get all trivia entries for a given category/subcategory id pair.
+    /// Returns an empty list if something goes wrong.
+    /// </summary>
+    public static List<TriviaEntry> GetTrivia(string categoryId, string subcategoryId)
     {
-        if (!_isLoaded || _db == null)
+        EnsureLoaded();
+
+        if (!_loaded || _db == null)
         {
             Debug.LogError("GameDatabaseAPI: Database not loaded.");
-            return null;
+            return new List<TriviaEntry>();
         }
 
-        if (_db.categories == null)
-        {
-            Debug.LogError("GameDatabaseAPI: No categories in DB.");
-            return null;
-        }
-
-        var cat = _db.categories.FirstOrDefault(c => c.id == categoryId);
+        CategoryData cat = _db.categories.Find(c => c.id == categoryId);
         if (cat == null)
         {
             Debug.LogError($"GameDatabaseAPI: No category with id '{categoryId}'.");
-            return null;
+            return new List<TriviaEntry>();
         }
 
         if (cat.subcategories == null)
         {
-            Debug.LogError($"GameDatabaseAPI: Category '{categoryId}' has no subcategories.");
-            return null;
+            Debug.LogError($"GameDatabaseAPI: Category '{categoryId}' has no subcategories list.");
+            return new List<TriviaEntry>();
         }
 
-        var sub = cat.subcategories.FirstOrDefault(s => s.id == subcatId);
+        SubcategoryData sub = cat.subcategories.Find(s => s.id == subcategoryId);
         if (sub == null)
         {
-            Debug.LogError($"GameDatabaseAPI: No subcategory '{subcatId}' in category '{categoryId}'.");
-            return null;
+            Debug.LogError($"GameDatabaseAPI: No subcategory with id '{subcategoryId}' under category '{categoryId}'.");
+            return new List<TriviaEntry>();
         }
 
-        return sub;
+        if (sub.trivia == null)
+        {
+            Debug.LogWarning($"GameDatabaseAPI: Subcategory '{subcategoryId}' has no trivia list yet.");
+            return new List<TriviaEntry>();
+        }
+
+        return sub.trivia;
     }
 
-    public static List<TriviaEntry> GetTrivia(string categoryId, string subcatId)
+    /// <summary>
+    /// Optional: get raw database if you ever need to inspect it.
+    /// </summary>
+    public static GameDatabase GetRawDatabase()
     {
-        var sub = FindSubcat(categoryId, subcatId);
-        return sub?.trivia ?? new List<TriviaEntry>();
-    }
-
-    public static List<WordokuEntry> GetWordoku(string categoryId, string subcatId)
-    {
-        var sub = FindSubcat(categoryId, subcatId);
-        return sub?.wordoku ?? new List<WordokuEntry>();
-    }
-
-    public static List<CrosswordPuzzleEntry> GetCrosswords(string categoryId, string subcatId)
-    {
-        var sub = FindSubcat(categoryId, subcatId);
-        return sub?.crosswords ?? new List<CrosswordPuzzleEntry>();
+        EnsureLoaded();
+        return _db;
     }
 }

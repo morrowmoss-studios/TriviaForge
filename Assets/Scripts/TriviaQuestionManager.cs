@@ -21,22 +21,15 @@ public class TriviaQuestionManager : MonoBehaviour
     public Sprite rightOutlineSprite;          // teal (Answer_Bubble_Right)
     public Sprite wrongOutlineSprite;          // orange (Answer_Bubble_Wrong)
 
-    [Header("Questions")]
+    [Header("Questions (runtime-filled from DB)")]
     public List<Question> questions = new List<Question>();
 
     [Header("Scoring")]
-    public TriviaScoreUI scoreUI;              // drag ScoreNumbers (with TriviaScoreUI) here
+    public TriviaScoreUI scoreUI;
 
     private int currentQuestionIndex = 0;
     private bool questionLocked = false;
     private bool hintUsed = false;
-
-    // Optional helper (not strictly needed, but here if you want to use it)
-    private string BuildAnswerLabel(Question q, int index)
-    {
-        string[] letters = { "A.", "B.", "C.", "D." };
-        return $"{letters[index]} {q.answers[index]}";
-    }
 
     private void Awake()
     {
@@ -49,47 +42,48 @@ public class TriviaQuestionManager : MonoBehaviour
             }
         }
     }
-    
+
     private void Start()
-{
-    // 1) Try to load questions from the JSON database
-    string categoryId    = TriviaSessionData.selectedCategory;      // e.g. "science"
-    string subcategoryId = TriviaSessionData.selectedSubcategory;   // e.g. "physics_quantum"
-
-    Debug.Log($"[TriviaQuestionManager] Loading trivia for {categoryId}/{subcategoryId}");
-
-    // Clear any inspector leftovers so we're only using DB data
-    questions.Clear();
-
-    // Ask the database for trivia entries
-    var entries = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
-
-    if (entries != null && entries.Count > 0)
     {
-        foreach (var e in entries)
+        // ✅ USE IDS, NOT PRETTY NAMES
+        string categoryId    = TriviaSessionData.selectedCategoryId;    // e.g. "science"
+        string subcategoryId = TriviaSessionData.selectedSubcategoryId; // e.g. "biology"
+
+        Debug.Log($"[TriviaQuestionManager] Loading trivia for " +
+                  $"{TriviaSessionData.selectedCategory} ({categoryId}) / " +
+                  $"{TriviaSessionData.selectedSubcategory} ({subcategoryId})");
+
+        // Ask the DB for entries
+        List<TriviaEntry> dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
+
+        // Convert DB entries into our local Question list
+        questions.Clear();
+
+        if (dbTrivia != null && dbTrivia.Count > 0)
         {
-            // Safety: make sure we have exactly 4 answers
-            if (e.answers == null || e.answers.Length != 4)
+            foreach (var entry in dbTrivia)
             {
-                Debug.LogWarning($"[TriviaQuestionManager] Trivia entry '{e.id}' does not have exactly 4 answers. Skipping.");
-                continue;
+                Question q = new Question
+                {
+                    questionText = entry.questionText,
+                    answers      = (string[])entry.answers.Clone(),
+                    correctIndex = entry.correctIndex
+                };
+                questions.Add(q);
             }
-
-            var q = new Question
-            {
-                questionText = e.questionText,
-                answers      = e.answers,
-                correctIndex = e.correctIndex
-            };
-
-            questions.Add(q);
         }
-    }
+        else
+        {
+            Debug.LogWarning($"[TriviaQuestionManager] No trivia found for {categoryId}/{subcategoryId}.");
+        }
 
-    // 2) Now do the old "if questions.Count > 0" logic
-    if (questions.Count > 0)
-    {
-        // clamp the index just in case
+        if (questions.Count == 0)
+        {
+            Debug.LogError("[TriviaQuestionManager] No questions available after DB load.");
+            return;
+        }
+
+        // Clamp index, set total, and load first question
         if (TriviaSessionData.currentQuestionIndex < 0 ||
             TriviaSessionData.currentQuestionIndex >= questions.Count)
         {
@@ -104,12 +98,9 @@ public class TriviaQuestionManager : MonoBehaviour
         Debug.Log("Category: " + TriviaSessionData.selectedCategory);
         Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
     }
-    else
-    {
-        Debug.LogWarning("[TriviaQuestionManager] No questions available after loading from database.");
-    }
-}
 
+    // ... keep the rest of your script (LoadQuestion, OnAnswerClicked, OnHintPressed, etc.) as-is ...
+    
     private void LoadQuestion(int index)
     {
         questionLocked = false;

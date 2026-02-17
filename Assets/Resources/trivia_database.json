@@ -7,7 +7,308 @@
                 {
                     "id": "biology",
                     "name": "Biology",
-                    "trivia": [],
+                    "trivia": [
+                        {
+                            "id": "science_biology_easy_001",
+                            "questionText": "What is the basic unit of life?",
+                            "answers": [
+                                "Cell",
+                                "Atom",
+                                "Molecule",
+                                "Organ"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_002",
+                            "questionText": "Which organelle is known as the powerhouse of the cell?",
+                            "answers": [
+                                "Mitochondria",
+                                "Ribosome",
+                                "Golgi apparatus",
+                                "Nucleus"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_003",
+                            "questionText": "Which process allows plants to make their own food?",
+                            "answers": [
+                                "Photosynthesis",
+                                "Respiration",
+                                "Fermentation",
+                                "Transpiration"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_004",
+                            "questionText": "DNA stands for what?",
+                            "answers": [
+                                "Deoxyribonucleic Acid",
+                                "Dinucleic Acid",
+                                "Deoxyribogenetic Acid",
+                                "Double Nitrogen Acid"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_005",
+                            "questionText": "Which organelle contains chlorophyll?",
+                            "answers": [
+                                "Chloroplast",
+                                "Mitochondria",
+                                "Ribosome",
+                                "Vacuole"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_006",
+                            "questionText": "What is the fluid inside a cell called?",
+                            "answers": [
+                                "Cytoplasm",
+                                "Nucleus",
+                                "Cell wall",
+                                "Mitochondria"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_007",
+                            "questionText": "Which body system is responsible for breathing?",
+                            "answers": [
+                                "Respiratory system",
+                                "Digestive system",
+                                "Circulatory system",
+                                "Nervous system"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_008",
+                            "questionText": "Which blood cells help fight infections?",
+                            "answers": [
+                                "White blood cells",
+                                "Red blood cells",
+                                "Platelets",
+                                "Plasma"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_easy_009",
+                            "questionText": "What do we call animals that eat only plants?",
+                            "answers": [
+                                "Herbivores",
+                                "Carnivores",
+                                "Omnivores",
+                                "Decomposers"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_medium_001",
+                            "questionText": "Which organelle modifies and packages proteins?",
+                            "answers": [
+                                "Golgi apparatus",
+                                "Lysosome",
+                                "Chloroplast",
+                                "Nucleus"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_002",
+                            "questionText": "What type of cell lacks a nucleus?",
+                            "answers": [
+                                "Prokaryotic cell",
+                                "Eukaryotic cell",
+                                "Plant cell",
+                                "Animal cell"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_003",
+                            "questionText": "What is the main function of ribosomes?",
+                            "answers": [
+                                "Protein synthesis",
+                                "Energy production",
+                                "DNA replication",
+                                "Waste removal"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_004",
+                            "questionText": "What is homeostasis?",
+                            "answers": [
+                                "Maintenance of stable internal conditions",
+                                "Cell division",
+                                "Energy production",
+                                "Genetic mutation"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_005",
+                            "questionText": "Which molecule is the primary energy currency of the cell?",
+                            "answers": [
+                                "ATP",
+                                "Glucose",
+                                "ADP",
+                                "NADH"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_006",
+                            "questionText": "What is the function of lysosomes?",
+                            "answers": [
+                                "Breakdown of waste materials",
+                                "Protein synthesis",
+                                "Photosynthesis",
+                                "Energy storage"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_007",
+                            "questionText": "Which structure regulates what enters and exits the cell?",
+                            "answers": [
+                                "Cell membrane",
+                                "Cytoplasm",
+                                "Ribosome",
+                                "Nucleolus"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_medium_008",
+                            "questionText": "Which process turns a DNA message into a protein?",
+                            "answers": [
+                                "Translation",
+                                "Transcription",
+                                "Replication",
+                                "Fermentation"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_hard_001",
+                            "questionText": "Which phase of mitosis involves chromosome alignment at the cell's equator?",
+                            "answers": [
+                                "Metaphase",
+                                "Prophase",
+                                "Anaphase",
+                                "Telophase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_002",
+                            "questionText": "Which enzyme unwinds DNA during replication?",
+                            "answers": [
+                                "Helicase",
+                                "Ligase",
+                                "DNA polymerase",
+                                "Primase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_003",
+                            "questionText": "Which nitrogenous base pairs with adenine in DNA?",
+                            "answers": [
+                                "Thymine",
+                                "Uracil",
+                                "Cytosine",
+                                "Guanine"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_004",
+                            "questionText": "What molecule is produced during transcription?",
+                            "answers": [
+                                "mRNA",
+                                "Protein",
+                                "DNA",
+                                "Amino acids"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_005",
+                            "questionText": "Which process results in four genetically unique daughter cells?",
+                            "answers": [
+                                "Meiosis",
+                                "Mitosis",
+                                "Binary fission",
+                                "Budding"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_006",
+                            "questionText": "Which part of the cell cycle is devoted to growth and DNA replication?",
+                            "answers": [
+                                "Interphase",
+                                "Cytokinesis",
+                                "M phase",
+                                "G0 phase"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_007",
+                            "questionText": "What type of bond holds complementary DNA bases together?",
+                            "answers": [
+                                "Hydrogen bonds",
+                                "Peptide bonds",
+                                "Ionic bonds",
+                                "Glycosidic bonds"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_hard_008",
+                            "questionText": "In eukaryotic cells, where does most ATP production occur?",
+                            "answers": [
+                                "Mitochondria",
+                                "Ribosomes",
+                                "Golgi apparatus",
+                                "Endoplasmic reticulum"
+                            ],
+                            "correctIndex": 0,
+                            "difficulty": "hard"
+                        }
+                    ],
                     "wordoku": [],
                     "crosswords": []
                 },
