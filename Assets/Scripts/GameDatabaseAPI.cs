@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public static class GameDatabaseAPI
 {
-    private const string ResourcePath = "trivia_database"; // looks for Assets/Resources/trivia_database.json
+    private const string ResourcePath = "trivia_database"; // Assets/Resources/trivia_database.json
 
     private static GameDatabase _db;
     private static bool _loaded;
@@ -60,6 +60,12 @@ public static class GameDatabaseAPI
             return new List<TriviaEntry>();
         }
 
+        if (_db.categories == null)
+        {
+            Debug.LogError("GameDatabaseAPI: categories list is null.");
+            return new List<TriviaEntry>();
+        }
+
         CategoryData cat = _db.categories.Find(c => c.id == categoryId);
         if (cat == null)
         {
@@ -87,6 +93,34 @@ public static class GameDatabaseAPI
         }
 
         return sub.trivia;
+    }
+
+    /// <summary>
+    /// Get ALL trivia entries from all categories and subcategories.
+    /// Used for mixed-all-category mode.
+    /// </summary>
+    public static List<TriviaEntry> GetAllTrivia()
+    {
+        EnsureLoaded();
+
+        var result = new List<TriviaEntry>();
+
+        if (!_loaded || _db == null || _db.categories == null)
+            return result;
+
+        foreach (var cat in _db.categories)
+        {
+            if (cat.subcategories == null) continue;
+
+            foreach (var sub in cat.subcategories)
+            {
+                if (sub.trivia == null) continue;
+
+                result.AddRange(sub.trivia);
+            }
+        }
+
+        return result;
     }
 
     /// <summary>

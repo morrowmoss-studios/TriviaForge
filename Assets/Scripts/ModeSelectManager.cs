@@ -5,221 +5,178 @@ using TMPro;
 
 public class ModeSelectManager : MonoBehaviour
 {
-    // --------- CONFIG TYPES (editable in Inspector) ---------
+    [Header("Dropdowns")]
+    [SerializeField] private TMP_Dropdown gameModeDropdown;
+    [SerializeField] private TMP_Dropdown categoryDropdown;
+    [SerializeField] private TMP_Dropdown subcategoryDropdown;
+    [SerializeField] private TMP_Dropdown difficultyDropdown;
 
     [System.Serializable]
     public class SubcategoryConfig
     {
-        [Tooltip("What the player sees, e.g. 'Physics'")]
-        public string displayName;
-
-        [Tooltip("ID used in JSON, e.g. 'physics_quantum'")]
-        public string id;
+        public string displayName;   // e.g. "Biology"
+        public string id;            // e.g. "biology"
     }
 
     [System.Serializable]
     public class CategoryConfig
     {
-        [Tooltip("What the player sees, e.g. 'Science'")]
-        public string displayName;
-
-        [Tooltip("ID used in JSON, e.g. 'science'")]
-        public string id;
-
-        [Tooltip("Subcategories that belong to this category")]
-        public List<SubcategoryConfig> subcategories = new List<SubcategoryConfig>();
+        public string displayName;                 // e.g. "Science"
+        public string id;                          // e.g. "science" or "mixed_all"
+        public List<SubcategoryConfig> subcategories =
+            new List<SubcategoryConfig>();        // 👈 keep this name
     }
 
-    // --------- UI REFERENCES ---------
-
-    [Header("Dropdowns")]
-    public TMP_Dropdown gameModeDropdown;
-    public TMP_Dropdown categoryDropdown;
-    public TMP_Dropdown subcategoryDropdown;
-    public TMP_Dropdown difficultyDropdown;
-
     [Header("Categories & Subcategories")]
-    [Tooltip("Define all your categories + subcategories + IDs here")]
-    public List<CategoryConfig> categories = new List<CategoryConfig>();
+    public List<CategoryConfig> categories = new List<CategoryConfig>();   // 👈 keep this name & public
 
-    // quick lookup by display name
-    private Dictionary<string, CategoryConfig> categoryByDisplayName =
-        new Dictionary<string, CategoryConfig>();
-
-    // --------- UNITY LIFECYCLE ---------
+    private CategoryConfig _currentCategory;
 
     private void Start()
     {
-        BuildCategoryLookup();
-        SetupCategoryDropdown();
         SetupGameModeDropdown();
         SetupDifficultyDropdown();
+        SetupCategoryDropdown();
     }
 
-    // --------- INITIALIZATION ---------
-
-    private void BuildCategoryLookup()
+    private void SetupGameModeDropdown()
     {
-        categoryByDisplayName.Clear();
+        var gameModes = new List<string> { "Trivia", "Crossword", "Wordoku" };
+        gameModeDropdown.ClearOptions();
+        gameModeDropdown.AddOptions(gameModes);
+        gameModeDropdown.value = 0;
+        gameModeDropdown.RefreshShownValue();
+    }
 
-        foreach (var cat in categories)
+    private void SetupDifficultyDropdown()
+    {
+        var difficultyOptions = new List<string>
         {
-            if (cat == null || string.IsNullOrEmpty(cat.displayName))
-                continue;
+            "Easy",
+            "Medium",
+            "Hard",
+            "Insanity",
+            "Mixed"          // special difficulty = all difficulties together
+        };
 
-            if (!categoryByDisplayName.ContainsKey(cat.displayName))
-            {
-                categoryByDisplayName.Add(cat.displayName, cat);
-            }
-            else
-            {
-                Debug.LogWarning($"[ModeSelectManager] Duplicate category displayName '{cat.displayName}'");
-            }
-        }
+        difficultyDropdown.ClearOptions();
+        difficultyDropdown.AddOptions(difficultyOptions);
+        difficultyDropdown.value = 0;
+        difficultyDropdown.RefreshShownValue();
     }
 
     private void SetupCategoryDropdown()
     {
         categoryDropdown.ClearOptions();
 
-        List<string> labels = new List<string>();
+        List<string> names = new List<string>();
         foreach (var cat in categories)
         {
-            if (cat != null && !string.IsNullOrEmpty(cat.displayName))
-            {
-                labels.Add(cat.displayName);
-            }
+            if (cat != null)
+                names.Add(cat.displayName);
         }
 
-        if (labels.Count == 0)
-        {
-            labels.Add("NO CATEGORIES");
-            Debug.LogError("[ModeSelectManager] No categories configured in the inspector.");
-        }
-
-        categoryDropdown.AddOptions(labels);
+        categoryDropdown.AddOptions(names);
         categoryDropdown.onValueChanged.AddListener(OnCategoryChanged);
 
-        // initialize subcategory dropdown with first category
-        OnCategoryChanged(categoryDropdown.value);
-    }
-
-    private void SetupGameModeDropdown()
-    {
-        List<string> gameModes = new List<string> { "Trivia", "Crossword", "Wordoku" };
-        gameModeDropdown.ClearOptions();
-        gameModeDropdown.AddOptions(gameModes);
-    }
-
-    private void SetupDifficultyDropdown()
-    {
-        List<string> difficultyOptions = new List<string>
+        if (categories.Count > 0)
         {
-            "Easy",
-            "Medium",
-            "Hard",
-            "Insanity"
-        };
-
-        difficultyDropdown.ClearOptions();
-        difficultyDropdown.AddOptions(difficultyOptions);
-
-        // default to Medium
-        difficultyDropdown.value = 1;
-        difficultyDropdown.RefreshShownValue();
+            OnCategoryChanged(0);
+        }
     }
-
-    // --------- CATEGORY / SUBCATEGORY HANDLING ---------
 
     private void OnCategoryChanged(int index)
     {
-        if (categoryDropdown.options.Count == 0)
-            return;
+        if (index < 0 || index >= categories.Count) return;
 
-        string selectedCategoryLabel = categoryDropdown.options[index].text;
+        _currentCategory = categories[index];
+        if (_currentCategory == null) return;
 
-        if (!categoryByDisplayName.TryGetValue(selectedCategoryLabel, out var catConfig) ||
-            catConfig == null)
+        bool isMixedAll = string.Equals(
+            _currentCategory.id,
+            "mixed_all",
+            System.StringComparison.OrdinalIgnoreCase);
+
+        // Mixed-all: disable subcategory dropdown
+        if (isMixedAll)
         {
-            Debug.LogWarning($"[ModeSelectManager] No CategoryConfig found for '{selectedCategoryLabel}'.");
             subcategoryDropdown.ClearOptions();
-            subcategoryDropdown.AddOptions(new List<string> { "N/A" });
-            subcategoryDropdown.value = 0;
-            subcategoryDropdown.RefreshShownValue();
+            subcategoryDropdown.interactable = false;
             return;
         }
 
-        // fill subcategory dropdown
+        subcategoryDropdown.interactable = true;
         subcategoryDropdown.ClearOptions();
 
-        List<string> subLabels = new List<string>();
-        foreach (var sub in catConfig.subcategories)
+        List<string> subNames = new List<string>();
+        if (_currentCategory.subcategories != null)
         {
-            if (sub != null && !string.IsNullOrEmpty(sub.displayName))
+            foreach (var sub in _currentCategory.subcategories)
             {
-                subLabels.Add(sub.displayName);
+                if (sub != null)
+                    subNames.Add(sub.displayName);
             }
         }
 
-        if (subLabels.Count == 0)
+        if (subNames.Count == 0)
         {
-            subLabels.Add("N/A");
-            Debug.LogWarning($"[ModeSelectManager] Category '{selectedCategoryLabel}' has no subcategories configured.");
+            subNames.Add("None");
         }
 
-        subcategoryDropdown.AddOptions(subLabels);
+        subcategoryDropdown.AddOptions(subNames);
         subcategoryDropdown.value = 0;
         subcategoryDropdown.RefreshShownValue();
     }
 
-    // --------- BUTTON HANDLERS ---------
-
     public void OnStartPressed()
     {
-        // Pretty labels for UI
-        string selectedGameMode  = gameModeDropdown.options[gameModeDropdown.value].text;
-        string selectedCategory  = categoryDropdown.options[categoryDropdown.value].text;
-        string selectedSubcat    = subcategoryDropdown.options[subcategoryDropdown.value].text;
+        string selectedGameMode   = gameModeDropdown.options[gameModeDropdown.value].text;
         string selectedDifficulty = difficultyDropdown.options[difficultyDropdown.value].text;
 
-        // Save pretty values
-        TriviaSessionData.selectedGameMode    = selectedGameMode;
-        TriviaSessionData.selectedCategory    = selectedCategory;
-        TriviaSessionData.selectedSubcategory = selectedSubcat;
-        TriviaSessionData.selectedDifficulty  = selectedDifficulty;
+        string categoryDisplay = _currentCategory != null ? _currentCategory.displayName : "Unknown";
+        string categoryId      = _currentCategory != null ? _currentCategory.id          : "";
 
-        // Look up IDs for JSON
-        string categoryId    = selectedCategory;   // fallback
-        string subcategoryId = selectedSubcat;     // fallback
+        string subDisplay;
+        string subId;
 
-        if (categoryByDisplayName.TryGetValue(selectedCategory, out var catConfig) && catConfig != null)
+        bool isMixedAll = string.Equals(
+            categoryId,
+            "mixed_all",
+            System.StringComparison.OrdinalIgnoreCase);
+
+        if (!isMixedAll &&
+            _currentCategory != null &&
+            _currentCategory.subcategories != null &&
+            _currentCategory.subcategories.Count > 0 &&
+            subcategoryDropdown.interactable)
         {
-            if (!string.IsNullOrEmpty(catConfig.id))
-                categoryId = catConfig.id;
+            int subIndex = Mathf.Clamp(
+                subcategoryDropdown.value,
+                0,
+                _currentCategory.subcategories.Count - 1);
 
-            // find subcategory config
-            foreach (var sub in catConfig.subcategories)
-            {
-                if (sub != null && sub.displayName == selectedSubcat)
-                {
-                    if (!string.IsNullOrEmpty(sub.id))
-                        subcategoryId = sub.id;
-                    break;
-                }
-            }
+            var sub = _currentCategory.subcategories[subIndex];
+            subDisplay = sub.displayName;
+            subId      = sub.id;
         }
         else
         {
-            Debug.LogWarning($"[ModeSelectManager] No category config for label '{selectedCategory}', using label as id.");
+            // Mixed-all (or no subs) => we conceptually use "All"
+            subDisplay = "All";
+            subId      = "";
         }
 
-        // Save IDs for database access
+        // Store in session data for TriviaQuestionManager, etc.
+        TriviaSessionData.selectedGameMode      = selectedGameMode;
+        TriviaSessionData.selectedCategory      = categoryDisplay;
         TriviaSessionData.selectedCategoryId    = categoryId;
-        TriviaSessionData.selectedSubcategoryId = subcategoryId;
+        TriviaSessionData.selectedSubcategory   = subDisplay;
+        TriviaSessionData.selectedSubcategoryId = subId;
+        TriviaSessionData.selectedDifficulty    = selectedDifficulty;
 
-        Debug.Log($"Game Mode: {selectedGameMode}, " +
-                  $"Category: {selectedCategory} ({categoryId}), " +
-                  $"Sub: {selectedSubcat} ({subcategoryId}), " +
+        Debug.Log($"[ModeSelect] Game Mode: {selectedGameMode}, " +
+                  $"Category: {categoryDisplay} ({categoryId}), " +
+                  $"Sub: {subDisplay} ({subId}), " +
                   $"Diff: {selectedDifficulty}");
 
         switch (selectedGameMode)
@@ -234,7 +191,7 @@ public class ModeSelectManager : MonoBehaviour
                 SceneManager.LoadScene("WordokuMode");
                 break;
             default:
-                Debug.LogWarning("[ModeSelectManager] Invalid game mode selected!");
+                Debug.LogWarning("[ModeSelect] Invalid game mode selected!");
                 break;
         }
     }

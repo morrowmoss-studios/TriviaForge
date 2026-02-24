@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -10,22 +11,21 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         [TextArea] public string questionText;
         public string[] answers = new string[4];   // A, B, C, D
-        public int correctIndex;                   // 0 = A, 1 = B, etc.
+        public int correctIndex;                   // 0–3
     }
 
     [Header("UI References")]
-    public TextMeshProUGUI questionLabel;      // text at the top of the frame
-    public AnswerButtonUI[] answerButtons;     // size 4, A–D in order
+    [SerializeField] private TextMeshProUGUI questionLabel;      // text at the top of the frame
+    [SerializeField] private AnswerButtonUI[] answerButtons;     // size 4, A–D in order
 
     [Header("Outline Sprites")]
-    public Sprite rightOutlineSprite;          // teal (Answer_Bubble_Right)
-    public Sprite wrongOutlineSprite;          // orange (Answer_Bubble_Wrong)
-
-    [Header("Questions (runtime-filled from DB)")]
-    public List<Question> questions = new List<Question>();
+    [SerializeField] public Sprite rightOutlineSprite;          // teal (Answer_Bubble_Right)
+    [SerializeField] public Sprite wrongOutlineSprite;          // orange (Answer_Bubble_Wrong)
 
     [Header("Scoring")]
-    public TriviaScoreUI scoreUI;
+    [SerializeField] private TriviaScoreUI scoreUI;              // drag ScoreNumbers (with TriviaScoreUI) here
+
+    private List<Question> questions = new List<Question>();
 
     private int currentQuestionIndex = 0;
     private bool questionLocked = false;
@@ -45,48 +45,57 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private void Start()
     {
-        // ✅ USE IDS, NOT PRETTY NAMES
-        string categoryId    = TriviaSessionData.selectedCategoryId;    // e.g. "science"
+        string categoryId    = TriviaSessionData.selectedCategoryId;    // e.g. "science" or "mixed_all"
         string subcategoryId = TriviaSessionData.selectedSubcategoryId; // e.g. "biology"
+        string difficulty    = TriviaSessionData.selectedDifficulty;    // "Easy", "Medium", "Mixed", etc.
 
         Debug.Log($"[TriviaQuestionManager] Loading trivia for " +
                   $"{TriviaSessionData.selectedCategory} ({categoryId}) / " +
-                  $"{TriviaSessionData.selectedSubcategory} ({subcategoryId})");
+                  $"{TriviaSessionData.selectedSubcategory} ({subcategoryId}) " +
+                  $"at difficulty {difficulty}");
 
-        // Ask the DB for entries
-        List<TriviaEntry> dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
+        List<TriviaEntry> dbTrivia;
 
-        // Convert DB entries into our local Question list
+        // Mixed category: pull from EVERYWHERE
+        if (string.Equals(categoryId, "mixed_all", System.StringComparison.OrdinalIgnoreCase))
+        {
+            dbTrivia = GameDatabaseAPI.GetAllTrivia();
+        }
+        else
+        {
+            dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
+        }
+
+        // Difficulty filter (except "Mixed")
+        if (!string.Equals(difficulty, "Mixed", System.StringComparison.OrdinalIgnoreCase))
+        {
+            dbTrivia = dbTrivia
+                .Where(e => string.Equals(e.difficulty, difficulty, System.StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
         questions.Clear();
 
         if (dbTrivia != null && dbTrivia.Count > 0)
         {
             foreach (var entry in dbTrivia)
             {
-                Question q = BuildQuestionFromEntry(entry);  // 🔹 shuffles + sets correctIndex
+                Question q = BuildQuestionFromEntry(entry); // shuffles answers
                 questions.Add(q);
             }
         }
 
-        else
-        {
-            Debug.LogWarning($"[TriviaQuestionManager] No trivia found for {categoryId}/{subcategoryId}.");
-        }
-
         if (questions.Count == 0)
         {
-            Debug.LogError("[TriviaQuestionManager] No questions available after DB load.");
+            Debug.LogError("[TriviaQuestionManager] No questions available after DB load + difficulty filter.");
             return;
         }
 
-        // Clamp index, set total, and load first question
-        if (TriviaSessionData.currentQuestionIndex < 0 ||
-            TriviaSessionData.currentQuestionIndex >= questions.Count)
-        {
-            TriviaSessionData.currentQuestionIndex = 0;
-        }
+        // Randomize the order of questions
+        ShuffleQuestions(questions);
 
-        TriviaSessionData.totalQuestions = questions.Count;
+        TriviaSessionData.currentQuestionIndex = 0;
+        TriviaSessionData.totalQuestions      = questions.Count;
 
         LoadQuestion(TriviaSessionData.currentQuestionIndex);
 
@@ -95,13 +104,72 @@ public class TriviaQuestionManager : MonoBehaviour
         Debug.Log("Subcategory: " + TriviaSessionData.selectedSubcategory);
     }
 
-    // ... keep the rest of your script (LoadQuestion, OnAnswerClicked, OnHintPressed, etc.) as-is ...
-    
+    // ---------- QUESTION BUILDING & SHUFFLING ----------
+
+    private Question BuildQuestionFromEntry(TriviaEntry entry)
+    {
+        Question q = new Question
+        {
+            questionText = entry.questionText,
+            answers      = (string[])entry.answers.Clone(),
+            correctIndex = entry.correctIndex
+        };
+
+        ShuffleAnswers(q.answers, ref q.correctIndex);
+        return q;
+    }
+
+    private void ShuffleAnswers(string[] answers, ref int correctIndex)
+    {
+        if (answers == null || answers.Length <= 1) return;
+
+        for (int i = 0; i < answers.Length; i++)
+        {
+            int j = Random.Range(i, answers.Length);
+            if (i == j) continue;
+
+            string tmp = answers[i];
+            answers[i] = answers[j];
+            answers[j] = tmp;
+
+            if (i == correctIndex)
+            {
+                correctIndex = j;
+            }
+            else if (j == correctIndex)
+            {
+                correctIndex = i;
+            }
+        }
+    }
+
+    private void ShuffleQuestions(List<Question> list)
+    {
+        if (list == null || list.Count <= 1) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            int j = Random.Range(i, list.Count);
+            if (i == j) continue;
+
+            Question temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+
+    // ---------- LOAD QUESTION INTO UI ----------
+
     private void LoadQuestion(int index)
     {
         questionLocked = false;
-        hintUsed = false; // 🔹 reset hint flag for this question
-        currentQuestionIndex = index;
+        hintUsed = false;
+
+        if (index < 0 || index >= questions.Count)
+        {
+            Debug.LogError($"[TriviaQuestionManager] LoadQuestion index out of range: {index}");
+            return;
+        }
 
         Question q = questions[index];
 
@@ -114,35 +182,44 @@ public class TriviaQuestionManager : MonoBehaviour
         {
             if (answerButtons[i] != null)
             {
-                // reset outlines and text for each new question
                 answerButtons[i].ResetOutline();
-                answerButtons[i].Init(this, i, letters[i], q.answers[i]);
+                string answerText = i < q.answers.Length ? q.answers[i] : "";
+                answerButtons[i].Init(this, i, letters[i], answerText);
             }
         }
+
+        // Optional debug:
+        // Debug.Log($"Q: {q.questionText}\nCorrect: {q.answers[q.correctIndex]} (index {q.correctIndex})");
     }
+
+    // ---------- ANSWER CLICK ----------
 
     public void OnAnswerClicked(AnswerButtonUI button)
     {
         if (questionLocked) return;
         questionLocked = true;
 
+        if (button == null)
+        {
+            Debug.LogError("[TriviaQuestionManager] OnAnswerClicked got null button.");
+            return;
+        }
+
         Question q = questions[currentQuestionIndex];
 
-        // --- Save stuff for the result scene ---
+        // Save stuff for the result scene
         TriviaSessionData.questionText = q.questionText;
         TriviaSessionData.correctIndex = q.correctIndex;
-        TriviaSessionData.chosenIndex = button.answerIndex;
-        TriviaSessionData.wasCorrect = (button.answerIndex == q.correctIndex);
+        TriviaSessionData.chosenIndex  = button.answerIndex;
+        TriviaSessionData.wasCorrect   = (button.answerIndex == q.correctIndex);
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex;
 
-        // copy answers so the result scene can show them
-        for (int i = 0; i < q.answers.Length; i++)
+        for (int i = 0; i < q.answers.Length && i < TriviaSessionData.answers.Length; i++)
         {
             TriviaSessionData.answers[i] = q.answers[i];
         }
-        // --- end save ---
 
-        // ---------- NEW SCORING ----------
+        // Scoring
         bool isCorrect = (button.answerIndex == q.correctIndex);
 
         if (ScoreManager.Instance != null)
@@ -155,22 +232,22 @@ public class TriviaQuestionManager : MonoBehaviour
         {
             scoreUI.UpdateScoreText();
         }
-        // ---------- end scoring ----------
 
+        // Visual feedback
         if (isCorrect)
         {
-            Debug.Log("Correct!");
             button.ShowAsCorrect();
         }
         else
         {
-            Debug.Log("Wrong!");
             button.ShowAsWrong();
         }
 
         // Jump to the result screen
         SceneManager.LoadScene("TriviaResult");
     }
+
+    // ---------- HINT BUTTON ----------
 
     public void OnHintPressed()
     {
@@ -186,59 +263,22 @@ public class TriviaQuestionManager : MonoBehaviour
                 wrongIndexes.Add(i);
         }
 
+        if (wrongIndexes.Count == 0)
+        {
+            Debug.LogWarning("[TriviaQuestionManager] No wrong answers to eliminate.");
+            return;
+        }
+
         // Pick one wrong answer to disable
         int eliminateIndex = wrongIndexes[Random.Range(0, wrongIndexes.Count)];
 
-        if (answerButtons[eliminateIndex] != null)
+        if (eliminateIndex >= 0 && eliminateIndex < answerButtons.Length &&
+            answerButtons[eliminateIndex] != null)
         {
             answerButtons[eliminateIndex].DisableAnswer();
-            Debug.Log($"Hint used! Disabled answer at index {eliminateIndex}");
+            Debug.Log($"[TriviaQuestionManager] Hint used! Disabled answer at index {eliminateIndex}");
         }
 
         hintUsed = true;
     }
-    
-    // Builds a Question from a TriviaEntry and shuffles the answers.
-    private Question BuildQuestionFromEntry(TriviaEntry entry)
-    {
-        Question q = new Question
-        {
-            questionText = entry.questionText,
-            answers      = (string[])entry.answers.Clone(),
-            correctIndex = entry.correctIndex
-        };
-
-        // Shuffle answers and update correctIndex to match
-        ShuffleAnswers(q.answers, ref q.correctIndex);
-        return q;
-    }
-
-// Fisher–Yates shuffle that also tracks where the correct index moves.
-    private void ShuffleAnswers(string[] answers, ref int correctIndex)
-    {
-        if (answers == null || answers.Length <= 1) return;
-
-        for (int i = 0; i < answers.Length; i++)
-        {
-            int j = Random.Range(i, answers.Length); // UnityEngine.Random
-
-            if (i == j) continue;
-
-            // swap answers[i] and answers[j]
-            string tmp = answers[i];
-            answers[i] = answers[j];
-            answers[j] = tmp;
-
-            // update correctIndex if we touched it
-            if (i == correctIndex)
-            {
-                correctIndex = j;
-            }
-            else if (j == correctIndex)
-            {
-                correctIndex = i;
-            }
-        }
-    }
-
 }
