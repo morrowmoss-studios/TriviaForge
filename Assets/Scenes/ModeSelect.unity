@@ -1364,6 +1364,9 @@ MonoBehaviour:
       id: urban_legends
     - displayName: Witches & Witchcraft
       id: witches_witchcraft
+  - displayName: All Categories
+    id: mixed_all
+    subcategories: []
 --- !u!4 &164362612
 Transform:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ public class ModeSelectManager : MonoBehaviour
 
     private CategoryConfig _currentCategory;
 
+    private const string MixedAllCategoryId = "mixed_all";
+
     private void Start()
     {
         SetupGameModeDropdown();
@@ -77,10 +79,15 @@ public class ModeSelectManager : MonoBehaviour
         }
 
         categoryDropdown.AddOptions(names);
+
+        // Prevent stacking listeners if SetupCategoryDropdown gets called again for any reason
+        categoryDropdown.onValueChanged.RemoveListener(OnCategoryChanged);
         categoryDropdown.onValueChanged.AddListener(OnCategoryChanged);
 
         if (categories.Count > 0)
         {
+            categoryDropdown.value = 0;
+            categoryDropdown.RefreshShownValue();
             OnCategoryChanged(0);
         }
     }
@@ -94,26 +101,30 @@ public class ModeSelectManager : MonoBehaviour
 
         bool isMixedAll = string.Equals(
             _currentCategory.id,
-            "mixed_all",
+            MixedAllCategoryId,
             System.StringComparison.OrdinalIgnoreCase);
 
-        // Mixed-all: disable subcategory dropdown
+        subcategoryDropdown.ClearOptions();
+
+        // Mixed-all: disable subcategory dropdown AND show "All"
         if (isMixedAll)
         {
-            subcategoryDropdown.ClearOptions();
+            subcategoryDropdown.AddOptions(new List<string> { "All" });
+            subcategoryDropdown.value = 0;
             subcategoryDropdown.interactable = false;
+            subcategoryDropdown.RefreshShownValue();
             return;
         }
 
+        // Normal category: enable and populate subs
         subcategoryDropdown.interactable = true;
-        subcategoryDropdown.ClearOptions();
 
         List<string> subNames = new List<string>();
         if (_currentCategory.subcategories != null)
         {
             foreach (var sub in _currentCategory.subcategories)
             {
-                if (sub != null)
+                if (sub != null && !string.IsNullOrEmpty(sub.displayName))
                     subNames.Add(sub.displayName);
             }
         }
@@ -136,13 +147,13 @@ public class ModeSelectManager : MonoBehaviour
         string categoryDisplay = _currentCategory != null ? _currentCategory.displayName : "Unknown";
         string categoryId      = _currentCategory != null ? _currentCategory.id          : "";
 
-        string subDisplay;
-        string subId;
-
         bool isMixedAll = string.Equals(
             categoryId,
-            "mixed_all",
+            MixedAllCategoryId,
             System.StringComparison.OrdinalIgnoreCase);
+
+        string subDisplay;
+        string subId;
 
         if (!isMixedAll &&
             _currentCategory != null &&
@@ -156,8 +167,8 @@ public class ModeSelectManager : MonoBehaviour
                 _currentCategory.subcategories.Count - 1);
 
             var sub = _currentCategory.subcategories[subIndex];
-            subDisplay = sub.displayName;
-            subId      = sub.id;
+            subDisplay = sub != null ? sub.displayName : "None";
+            subId      = sub != null ? sub.id         : "";
         }
         else
         {
