@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/TriviaAIImportWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/TriviaAIImportWindow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +29,9 @@
     &quot;accountId&quot;: &quot;605871ea-d35b-4842-9468-1f79fd845803&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -69,6 +73,15 @@
       <workItem from="1771344090816" duration="617000" />
       <workItem from="1771355121142" duration="95000" />
       <workItem from="1771373024825" duration="6000" />
+      <workItem from="1771432468479" duration="911000" />
+      <workItem from="1771435949121" duration="964000" />
+      <workItem from="1771437963992" duration="4362000" />
+      <workItem from="1771513296979" duration="880000" />
+      <workItem from="1771517689299" duration="196000" />
+      <workItem from="1771517952521" duration="4000" />
+      <workItem from="1771522616476" duration="29000" />
+      <workItem from="1771596246891" duration="14000" />
+      <workItem from="1771596682717" duration="7275000" />
     </task>
     <servers />
   </component>
