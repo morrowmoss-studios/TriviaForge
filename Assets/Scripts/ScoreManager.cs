@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     private int currentScore;
 
+    public int CurrentScore => currentScore;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -20,11 +22,14 @@ public class ScoreManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        Debug.Log("[ScoreManager] Awake OK. Singleton set + DontDestroyOnLoad.");
     }
 
     public void ResetScore()
     {
         currentScore = 0;
+        Debug.Log("[ScoreManager] ResetScore -> 0");
     }
 
     /// <summary>
@@ -33,12 +38,16 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void RegisterAnswer(bool isCorrect, bool usedHint)
     {
-        if (!isCorrect) return; // wrong = 0
+        if (!isCorrect)
+        {
+            Debug.Log("[ScoreManager] RegisterAnswer: wrong answer (+0). Total=" + currentScore);
+            return;
+        }
 
-        if (usedHint)
-            currentScore += pointsForCorrectWithHint;
-        else
-            currentScore += pointsForCorrectNoHint;
+        int add = usedHint ? pointsForCorrectWithHint : pointsForCorrectNoHint;
+        currentScore += add;
+
+        Debug.Log($"[ScoreManager] RegisterAnswer: correct={isCorrect} hint={usedHint} +{add} Total={currentScore}");
     }
 
     public int GetCurrentScore() => currentScore;

@@ -66,6 +66,10 @@ public class TriviaQuestionManager : MonoBehaviour
             dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
         }
 
+        // Safety: avoid null list
+        if (dbTrivia == null)
+            dbTrivia = new List<TriviaEntry>();
+
         // Difficulty filter (except "Mixed")
         if (!string.Equals(difficulty, "Mixed", System.StringComparison.OrdinalIgnoreCase))
         {
@@ -74,9 +78,14 @@ public class TriviaQuestionManager : MonoBehaviour
                 .ToList();
         }
 
+        // Randomize DB results so repeated plays don't start with the same questions
+        ShuffleTriviaEntries(dbTrivia);
+
+        Debug.Log($"[TriviaQuestionManager] Using {dbTrivia.Count} questions after shuffle.");
+
         questions.Clear();
 
-        if (dbTrivia != null && dbTrivia.Count > 0)
+        if (dbTrivia.Count > 0)
         {
             foreach (var entry in dbTrivia)
             {
@@ -91,7 +100,7 @@ public class TriviaQuestionManager : MonoBehaviour
             return;
         }
 
-        // Randomize the order of questions
+        // Randomize the order of questions (optional; dbTrivia is already shuffled, but this is harmless)
         ShuffleQuestions(questions);
 
         TriviaSessionData.currentQuestionIndex = 0;
@@ -158,6 +167,21 @@ public class TriviaQuestionManager : MonoBehaviour
         }
     }
 
+    private void ShuffleTriviaEntries(List<TriviaEntry> list)
+    {
+        if (list == null || list.Count <= 1) return;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            int j = Random.Range(i, list.Count);
+            if (i == j) continue;
+
+            TriviaEntry temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+
     // ---------- LOAD QUESTION INTO UI ----------
 
     private void LoadQuestion(int index)
@@ -170,6 +194,8 @@ public class TriviaQuestionManager : MonoBehaviour
             Debug.LogError($"[TriviaQuestionManager] LoadQuestion index out of range: {index}");
             return;
         }
+
+        currentQuestionIndex = index;
 
         Question q = questions[index];
 
