@@ -1209,8 +1209,54 @@
                             "difficulty": "insanity"
                         }
                     ],
-                    "wordoku": [],
-                    "crosswords": []
+                    "wordoku": [
+                        {
+                            "id": "science_biology_easy_001",
+                            "word": "CYTOPLASM",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_medium_001",
+                            "word": "BACTERIUM",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_hard_001",
+                            "word": "CHROMATIN",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_insanity_001",
+                            "word": "VESICULAR",
+                            "difficulty": "insanity"
+                        }
+                    ],
+                    "crosswords": [
+                        {
+                            "id": "science_biology_xw_easy_001",
+                            "answer": "CELL",
+                            "clue": "Basic unit of life",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_001",
+                            "answer": "ENZYME",
+                            "clue": "Protein that speeds up chemical reactions",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_001",
+                            "answer": "RIBOSOME",
+                            "clue": "Cell structure that builds proteins",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_001",
+                            "answer": "MITOCHONDRIA",
+                            "clue": "Organelle that produces ATP; often called the cell's powerhouse",
+                            "difficulty": "insanity"
+                        }
+                    ]
                 },
                 {
                     "id": "earth_science",

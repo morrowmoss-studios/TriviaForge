@@ -22,8 +22,12 @@ public class SubcategoryData
     public string name;
 
     public List<TriviaEntry> trivia;
+
+    // ✅ Wordoku is just 9-letter words + difficulty
     public List<WordokuEntry> wordoku;
-    public List<CrosswordPuzzleEntry> crosswords;
+
+    // ✅ Crossword is a clue bank (answer + clue + difficulty)
+    public List<CrosswordEntry> crosswords;
 }
 
 [Serializable]
@@ -40,28 +44,15 @@ public class TriviaEntry
 public class WordokuEntry
 {
     public string id;
-    public string word; // 9 letters
-    public string clue;
-    public string hint;
+    public string word;       // 9 letters
+    public string difficulty; // "easy" | "medium" | "hard" | "insanity"
 }
 
 [Serializable]
-public class CrosswordPuzzleEntry
+public class CrosswordEntry
 {
     public string id;
-    public int rows;
-    public int cols;
-    public string[] layoutRows;
-    public List<CrosswordWordEntry> words;
-}
-
-[Serializable]
-public class CrosswordWordEntry
-{
-    public string id;
-    public bool isAcross;
-    public int startRow;
-    public int startCol;
-    public string answer;
-    public string clue;
+    public string answer;     // e.g., "ION"
+    public string clue;       // e.g., "Atom with a net electric charge"
+    public string difficulty; // "easy" | "medium" | "hard" | "insanity"
 }

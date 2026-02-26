@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDatabaseAPI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDatabaseAPI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ModeSelectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ModeSelectManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Editor/DatabaseSkeletonGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Editor/DatabaseSkeletonGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordAIImportWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordAIImportWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDatabase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WordokuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WordokuManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +85,7 @@
       <workItem from="1771522616476" duration="29000" />
       <workItem from="1771596246891" duration="14000" />
       <workItem from="1771596682717" duration="11727000" />
+      <workItem from="1772126970541" duration="1037000" />
     </task>
     <servers />
   </component>

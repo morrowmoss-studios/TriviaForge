@@ -46,7 +46,7 @@ public static class DatabaseSkeletonGenerator
                     name = subConfig.displayName,
                     trivia = new List<TriviaEntry>(),
                     wordoku = new List<WordokuEntry>(),
-                    crosswords = new List<CrosswordPuzzleEntry>()
+                    crosswords = new List<CrosswordEntry>()
                 };
 
                 cat.subcategories.Add(sub);

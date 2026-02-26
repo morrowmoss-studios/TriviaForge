@@ -11,14 +11,14 @@ public class CrosswordAIImportWindow : EditorWindow
     private string categoryId = "science";
     private string subcategoryId = "physics_quantum";
 
-    // These MUST match the actual field names on your CrosswordPuzzleEntry class.
+    // These MUST match the actual field names on your CrosswordEntry class.
     // We don't guess anymore — we set via reflection.
     private string answerFieldName = "answer";
     private string clueFieldName = "clue";
     private string difficultyFieldName = "difficulty"; // optional
 
-    // Paste AI JSON array of CrosswordPuzzleEntry-shaped objects.
-    // Keys must match your CrosswordPuzzleEntry fields.
+    // Paste AI JSON array of CrosswordEntry-shaped objects.
+    // Keys must match your Crossword Entry fields.
     private string aiJson =
         "[\n" +
         "  {\n" +
@@ -46,20 +46,20 @@ public class CrosswordAIImportWindow : EditorWindow
         subcategoryId = EditorGUILayout.TextField("Subcategory ID", subcategoryId);
 
         EditorGUILayout.Space();
-        GUILayout.Label("CrosswordPuzzleEntry Field Names (must match your class)", EditorStyles.boldLabel);
+        GUILayout.Label("CrosswordEntry Field Names (must match your class)", EditorStyles.boldLabel);
         answerFieldName = EditorGUILayout.TextField("Answer Field", answerFieldName);
         clueFieldName = EditorGUILayout.TextField("Clue Field", clueFieldName);
         difficultyFieldName = EditorGUILayout.TextField("Difficulty Field (optional)", difficultyFieldName);
 
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Print CrosswordPuzzleEntry Fields (Console)", GUILayout.Height(24)))
+        if (GUILayout.Button("Print CrosswordEntry Fields (Console)", GUILayout.Height(24)))
         {
-            PrintEntryFields(typeof(CrosswordPuzzleEntry));
+            PrintEntryFields(typeof(CrosswordEntry));
         }
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("AI JSON (array of CrosswordPuzzleEntry):");
+        EditorGUILayout.LabelField("AI JSON (array of CrosswordEntry):");
         scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.Height(250));
         aiJson = EditorGUILayout.TextArea(aiJson, GUILayout.ExpandHeight(true));
         EditorGUILayout.EndScrollView();
@@ -137,20 +137,20 @@ public class CrosswordAIImportWindow : EditorWindow
         if (sub == null) { Debug.LogError($"[CrosswordAIImportWindow] No subcategory '{subcategoryId}' under '{categoryId}'."); return; }
 
         if (sub.crosswords == null)
-            sub.crosswords = new List<CrosswordPuzzleEntry>();
+            sub.crosswords = new List<CrosswordEntry>();
 
         // Cache reflection lookups once (faster + cleaner)
-        var entryType = typeof(CrosswordPuzzleEntry);
+        var entryType = typeof(CrosswordEntry);
         var answerMember = FindStringMember(entryType, answerFieldName);
         var clueMember = FindStringMember(entryType, clueFieldName);
         var diffMember = string.IsNullOrWhiteSpace(difficultyFieldName) ? null : FindStringMember(entryType, difficultyFieldName);
 
         if (answerMember == null || clueMember == null)
         {
-            Debug.LogError("[CrosswordAIImportWindow] Your field names don't match CrosswordPuzzleEntry.\n" +
+            Debug.LogError("[CrosswordAIImportWindow] Your field names don't match CrosswordEntry.\n" +
                            $"AnswerField='{answerFieldName}' found? {(answerMember != null)}\n" +
                            $"ClueField='{clueFieldName}' found? {(clueMember != null)}\n" +
-                           "Click 'Print CrosswordPuzzleEntry Fields' to see the real names.");
+                           "Click 'Print CrosswordEntry Fields' to see the real names.");
             return;
         }
 
@@ -190,9 +190,15 @@ public class CrosswordAIImportWindow : EditorWindow
             {
                 string d = GetString(e, diffMember);
                 if (!string.IsNullOrWhiteSpace(d))
-                    SetString(e, diffMember, d.Trim().ToLowerInvariant());
-            }
+                {
+                    d = d.Trim().ToLowerInvariant();
 
+                    if (d != "easy" && d != "medium" && d != "hard" && d != "insanity")
+                        d = "medium";
+
+                    SetString(e, diffMember, d);
+                }
+            }
             sub.crosswords.Add(e);
             added++;
         }
@@ -223,7 +229,7 @@ public class CrosswordAIImportWindow : EditorWindow
     [Serializable]
     private class CrosswordEntryList
     {
-        public List<CrosswordPuzzleEntry> entries;
+        public List<CrosswordEntry> entries;
     }
 
     private static MemberInfo FindStringMember(Type t, string name)
