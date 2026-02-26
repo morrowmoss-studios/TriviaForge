@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CreateAccount_PopUp.unity
     guid: 002f6e16fc76445c1b1a7b6bdd16c273
   - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 24b3299ac3e564e52a1882ce8a134736
+  - enabled: 1
     path: Assets/Scenes/Login_PopUp.unity
     guid: 57c6c7bc94e57489f9e4f6955601a713
   - enabled: 1
