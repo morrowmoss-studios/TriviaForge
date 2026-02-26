@@ -119,9 +119,9 @@ public static class PlayerDatabaseAPI
 
         // Optional: keep only top N scores
         _db.globalHighScores.Sort((a, b) => b.score.CompareTo(a.score));
-        if (_db.globalHighScores.Count > 1000) // or smaller if you want
+        if (_db.globalHighScores.Count > 9999) // or smaller if you want
         {
-            _db.globalHighScores.RemoveRange(1000, _db.globalHighScores.Count - 1000);
+            _db.globalHighScores.RemoveRange(9999, _db.globalHighScores.Count - 1000);
         }
 
         Save();
