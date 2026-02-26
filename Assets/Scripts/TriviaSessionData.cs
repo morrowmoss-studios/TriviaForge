@@ -13,6 +13,9 @@ public static class TriviaSessionData
     public static string selectedCategoryId;      // e.g. "science"
     public static string selectedSubcategoryId;   // e.g. "physics_quantum"
     public static string selectedDifficulty = "Medium"; //Default level
+    public static int strikes = 0;
+    public const int maxStrikes = 3;
+    public static bool roundOver = false;
 
 
     // Question index so we know where we are in the list

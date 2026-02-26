@@ -46,10 +46,17 @@ public class TriviaResultScene : MonoBehaviour
             default: return "?";
         }
     }
-
+    
     // called by Next button
     public void OnNextPressed()
     {
+        // ✅ 3 strikes -> end the round immediately (after showing this result screen)
+        if (TriviaSessionData.roundOver || TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
+        {
+            SceneManager.LoadScene("GameOver_PopUp");
+            return;
+        }
+
         // move to the next question index
         TriviaSessionData.currentQuestionIndex++;
 

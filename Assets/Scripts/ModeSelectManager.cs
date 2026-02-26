@@ -184,6 +184,14 @@ public class ModeSelectManager : MonoBehaviour
         TriviaSessionData.selectedSubcategory   = subDisplay;
         TriviaSessionData.selectedSubcategoryId = subId;
         TriviaSessionData.selectedDifficulty    = selectedDifficulty;
+        
+        if (selectedGameMode == "Trivia")
+        {
+            TriviaSessionData.strikes = 0;
+
+            if (ScoreManager.Instance != null)
+                ScoreManager.Instance.ResetScore();
+        }
 
         Debug.Log($"[ModeSelect] Game Mode: {selectedGameMode}, " +
                   $"Category: {categoryDisplay} ({categoryId}), " +

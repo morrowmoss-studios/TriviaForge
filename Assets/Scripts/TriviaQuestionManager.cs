@@ -24,6 +24,7 @@ public class TriviaQuestionManager : MonoBehaviour
 
     [Header("Scoring")]
     [SerializeField] private TriviaScoreUI scoreUI;              // drag ScoreNumbers (with TriviaScoreUI) here
+    [SerializeField] private TriviaStrikesUI strikesUI;          // red Xs that appear when the user gets wrong answer
 
     private List<Question> questions = new List<Question>();
 
@@ -107,6 +108,8 @@ public class TriviaQuestionManager : MonoBehaviour
         TriviaSessionData.totalQuestions      = questions.Count;
 
         LoadQuestion(TriviaSessionData.currentQuestionIndex);
+        
+        if (strikesUI != null) strikesUI.Refresh();
 
         Debug.Log("Game Mode: " + TriviaSessionData.selectedGameMode);
         Debug.Log("Category: " + TriviaSessionData.selectedCategory);
@@ -247,6 +250,26 @@ public class TriviaQuestionManager : MonoBehaviour
 
         // Scoring
         bool isCorrect = (button.answerIndex == q.correctIndex);
+        
+        // Default: round continues unless we hit 3 strikes on this answer
+        TriviaSessionData.roundOver = false;
+
+        // STRIKES: wrong answer adds 1
+        if (!isCorrect)
+        {
+            TriviaSessionData.strikes++;
+
+            if (strikesUI != null)
+                strikesUI.Refresh();
+
+            Debug.Log($"[Trivia] Strike {TriviaSessionData.strikes}/{TriviaSessionData.maxStrikes}");
+
+            if (TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
+            {
+                // We still show TriviaResult first, but mark the run as over
+                TriviaSessionData.roundOver = true;
+            }
+        }
 
         if (ScoreManager.Instance != null)
         {
