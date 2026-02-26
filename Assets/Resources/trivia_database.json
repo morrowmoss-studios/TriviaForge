@@ -1229,6 +1229,131 @@
                             "id": "science_biology_insanity_001",
                             "word": "VESICULAR",
                             "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_001",
+                            "word": "BACTERIUM",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_002",
+                            "word": "CYTOPLASM",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_003",
+                            "word": "EUKARYONS",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_004",
+                            "word": "BIOSAFETY",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_005",
+                            "word": "FLUORIDES",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_easy_006",
+                            "word": "GLUCOSIDE",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_007",
+                            "word": "LYMPHATIC",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_008",
+                            "word": "CHROMATID",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_009",
+                            "word": "MICROTUBE",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_010",
+                            "word": "NEUROGLIA",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_011",
+                            "word": "GENOTYPIC",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_012",
+                            "word": "ENDOLITHS",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_medium_013",
+                            "word": "HISTOGRAM",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_014",
+                            "word": "MUTAGENIC",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_015",
+                            "word": "VIRULENCY",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_016",
+                            "word": "SPORANGIC",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_017",
+                            "word": "CHLORINED",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_018",
+                            "word": "PHYLOGRAM",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_019",
+                            "word": "MORPHAGEN",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_hard_020",
+                            "word": "BRAINSTEM",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_wd_insanity_021",
+                            "word": "DIGESTORY",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_wd_insanity_022",
+                            "word": "LACTIFORM",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_wd_insanity_023",
+                            "word": "RHODAMINE",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_wd_insanity_024",
+                            "word": "ZYGOMATIC",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_wd_insanity_025",
+                            "word": "CARBONYLS",
+                            "difficulty": "insanity"
                         }
                     ],
                     "crosswords": [
