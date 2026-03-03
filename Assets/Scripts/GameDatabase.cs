@@ -44,8 +44,7 @@ public class TriviaEntry
 public class WordokuEntry
 {
     public string id;
-    public string word;       // 9 letters
-    public string difficulty; // "easy" | "medium" | "hard" | "insanity"
+    public string word; // 9 letters
 }
 
 [Serializable]

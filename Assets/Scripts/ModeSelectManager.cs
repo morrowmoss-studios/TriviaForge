@@ -39,6 +39,13 @@ public class ModeSelectManager : MonoBehaviour
         SetupGameModeDropdown();
         SetupDifficultyDropdown();
         SetupCategoryDropdown();
+
+        // Listen for mode changes (so Wordoku can disable subcategory like Mixed All)
+        gameModeDropdown.onValueChanged.RemoveListener(OnGameModeChanged);
+        gameModeDropdown.onValueChanged.AddListener(OnGameModeChanged);
+
+        // Ensure UI matches current selection on boot
+        RefreshSubcategoryState();
     }
 
     private void SetupGameModeDropdown()
@@ -58,7 +65,7 @@ public class ModeSelectManager : MonoBehaviour
             "Medium",
             "Hard",
             "Insanity",
-            "Mixed"          // special difficulty = all difficulties together
+            "Mixed" // special difficulty = all difficulties together
         };
 
         difficultyDropdown.ClearOptions();
@@ -80,7 +87,7 @@ public class ModeSelectManager : MonoBehaviour
 
         categoryDropdown.AddOptions(names);
 
-        // Prevent stacking listeners if SetupCategoryDropdown gets called again for any reason
+        // Prevent stacking listeners
         categoryDropdown.onValueChanged.RemoveListener(OnCategoryChanged);
         categoryDropdown.onValueChanged.AddListener(OnCategoryChanged);
 
@@ -88,8 +95,19 @@ public class ModeSelectManager : MonoBehaviour
         {
             categoryDropdown.value = 0;
             categoryDropdown.RefreshShownValue();
-            OnCategoryChanged(0);
+
+            _currentCategory = categories[0];
+            RefreshSubcategoryState();
         }
+    }
+
+    // -----------------------------
+    // NEW: single source of truth
+    // -----------------------------
+
+    private void OnGameModeChanged(int index)
+    {
+        RefreshSubcategoryState();
     }
 
     private void OnCategoryChanged(int index)
@@ -99,6 +117,20 @@ public class ModeSelectManager : MonoBehaviour
         _currentCategory = categories[index];
         if (_currentCategory == null) return;
 
+        RefreshSubcategoryState();
+    }
+
+    private void RefreshSubcategoryState()
+    {
+        if (_currentCategory == null) return;
+
+        string selectedGameMode = gameModeDropdown.options[gameModeDropdown.value].text;
+
+        bool isWordoku = string.Equals(
+            selectedGameMode,
+            "Wordoku",
+            System.StringComparison.OrdinalIgnoreCase);
+
         bool isMixedAll = string.Equals(
             _currentCategory.id,
             MixedAllCategoryId,
@@ -106,8 +138,8 @@ public class ModeSelectManager : MonoBehaviour
 
         subcategoryDropdown.ClearOptions();
 
-        // Mixed-all: disable subcategory dropdown AND show "All"
-        if (isMixedAll)
+        // Wordoku OR MixedAll => disable subcategory and show "All"
+        if (isWordoku || isMixedAll)
         {
             subcategoryDropdown.AddOptions(new List<string> { "All" });
             subcategoryDropdown.value = 0;
@@ -116,7 +148,7 @@ public class ModeSelectManager : MonoBehaviour
             return;
         }
 
-        // Normal category: enable and populate subs
+        // Normal category => enable and populate subs
         subcategoryDropdown.interactable = true;
 
         List<string> subNames = new List<string>();
@@ -130,36 +162,49 @@ public class ModeSelectManager : MonoBehaviour
         }
 
         if (subNames.Count == 0)
-        {
             subNames.Add("None");
-        }
 
         subcategoryDropdown.AddOptions(subNames);
         subcategoryDropdown.value = 0;
         subcategoryDropdown.RefreshShownValue();
     }
 
+    // -----------------------------
+    // START BUTTON
+    // -----------------------------
+
     public void OnStartPressed()
     {
-        string selectedGameMode   = gameModeDropdown.options[gameModeDropdown.value].text;
+        string selectedGameMode = gameModeDropdown.options[gameModeDropdown.value].text;
         string selectedDifficulty = difficultyDropdown.options[difficultyDropdown.value].text;
 
         string categoryDisplay = _currentCategory != null ? _currentCategory.displayName : "Unknown";
-        string categoryId      = _currentCategory != null ? _currentCategory.id          : "";
+        string categoryId = _currentCategory != null ? _currentCategory.id : "";
 
         bool isMixedAll = string.Equals(
             categoryId,
             MixedAllCategoryId,
             System.StringComparison.OrdinalIgnoreCase);
 
+        bool isWordoku = string.Equals(
+            selectedGameMode,
+            "Wordoku",
+            System.StringComparison.OrdinalIgnoreCase);
+
         string subDisplay;
         string subId;
 
-        if (!isMixedAll &&
-            _currentCategory != null &&
-            _currentCategory.subcategories != null &&
-            _currentCategory.subcategories.Count > 0 &&
-            subcategoryDropdown.interactable)
+        // Wordoku always uses "All" (subcategory ignored in Wordoku)
+        if (isWordoku)
+        {
+            subDisplay = "All";
+            subId = "";
+        }
+        else if (!isMixedAll &&
+                 _currentCategory != null &&
+                 _currentCategory.subcategories != null &&
+                 _currentCategory.subcategories.Count > 0 &&
+                 subcategoryDropdown.interactable)
         {
             int subIndex = Mathf.Clamp(
                 subcategoryDropdown.value,
@@ -168,23 +213,23 @@ public class ModeSelectManager : MonoBehaviour
 
             var sub = _currentCategory.subcategories[subIndex];
             subDisplay = sub != null ? sub.displayName : "None";
-            subId      = sub != null ? sub.id         : "";
+            subId = sub != null ? sub.id : "";
         }
         else
         {
-            // Mixed-all (or no subs) => we conceptually use "All"
+            // Mixed-all (or no subs) => conceptually use "All"
             subDisplay = "All";
-            subId      = "";
+            subId = "";
         }
 
-        // Store in session data for TriviaQuestionManager, etc.
-        TriviaSessionData.selectedGameMode      = selectedGameMode;
-        TriviaSessionData.selectedCategory      = categoryDisplay;
-        TriviaSessionData.selectedCategoryId    = categoryId;
-        TriviaSessionData.selectedSubcategory   = subDisplay;
+        // Store in session data
+        TriviaSessionData.selectedGameMode = selectedGameMode;
+        TriviaSessionData.selectedCategory = categoryDisplay;
+        TriviaSessionData.selectedCategoryId = categoryId;
+        TriviaSessionData.selectedSubcategory = subDisplay;
         TriviaSessionData.selectedSubcategoryId = subId;
-        TriviaSessionData.selectedDifficulty    = selectedDifficulty;
-        
+        TriviaSessionData.selectedDifficulty = selectedDifficulty;
+
         if (selectedGameMode == "Trivia")
         {
             TriviaSessionData.strikes = 0;

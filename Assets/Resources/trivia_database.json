@@ -1211,149 +1211,404 @@
                     ],
                     "wordoku": [
                         {
-                            "id": "science_biology_easy_001",
-                            "word": "CYTOPLASM",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_001",
+                            "word": "BACTERIUM"
                         },
                         {
-                            "id": "science_biology_medium_001",
-                            "word": "BACTERIUM",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_002",
+                            "word": "CYTOPLASM"
                         },
                         {
-                            "id": "science_biology_hard_001",
-                            "word": "CHROMATIN",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_003",
+                            "word": "NEUROGLIA"
                         },
                         {
-                            "id": "science_biology_insanity_001",
-                            "word": "VESICULAR",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_004",
+                            "word": "GENOTYPIC"
                         },
                         {
-                            "id": "science_biology_wd_easy_001",
-                            "word": "BACTERIUM",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_005",
+                            "word": "LYMPHATIC"
                         },
                         {
-                            "id": "science_biology_wd_easy_002",
-                            "word": "CYTOPLASM",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_006",
+                            "word": "CHROMATID"
                         },
                         {
-                            "id": "science_biology_wd_easy_003",
-                            "word": "EUKARYONS",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_007",
+                            "word": "METABOLIC"
                         },
                         {
-                            "id": "science_biology_wd_easy_004",
-                            "word": "BIOSAFETY",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_008",
+                            "word": "ADIPOCYTE"
                         },
                         {
-                            "id": "science_biology_wd_easy_005",
-                            "word": "FLUORIDES",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_009",
+                            "word": "CYTOKINES"
                         },
                         {
-                            "id": "science_biology_wd_easy_006",
-                            "word": "GLUCOSIDE",
-                            "difficulty": "easy"
+                            "id": "science_biology_wd_mixed_010",
+                            "word": "RIBOZYMES"
                         },
                         {
-                            "id": "science_biology_wd_medium_007",
-                            "word": "LYMPHATIC",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_011",
+                            "word": "ENZYMATIC"
                         },
                         {
-                            "id": "science_biology_wd_medium_008",
-                            "word": "CHROMATID",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_012",
+                            "word": "NUCLEATOR"
                         },
                         {
-                            "id": "science_biology_wd_medium_009",
-                            "word": "MICROTUBE",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_013",
+                            "word": "AMPLITUDE"
                         },
                         {
-                            "id": "science_biology_wd_medium_010",
-                            "word": "NEUROGLIA",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_014",
+                            "word": "QUANTIZED"
                         },
                         {
-                            "id": "science_biology_wd_medium_011",
-                            "word": "GENOTYPIC",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_015",
+                            "word": "CHELATION"
                         },
                         {
-                            "id": "science_biology_wd_medium_012",
-                            "word": "ENDOLITHS",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_016",
+                            "word": "CHELATORS"
                         },
                         {
-                            "id": "science_biology_wd_medium_013",
-                            "word": "HISTOGRAM",
-                            "difficulty": "medium"
+                            "id": "science_biology_wd_mixed_017",
+                            "word": "SPORANGIC"
                         },
                         {
-                            "id": "science_biology_wd_hard_014",
-                            "word": "MUTAGENIC",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_018",
+                            "word": "BACTEROID"
                         },
                         {
-                            "id": "science_biology_wd_hard_015",
-                            "word": "VIRULENCY",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_019",
+                            "word": "PROTAMINE"
                         },
                         {
-                            "id": "science_biology_wd_hard_016",
-                            "word": "SPORANGIC",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_020",
+                            "word": "MICROTUBE"
                         },
                         {
-                            "id": "science_biology_wd_hard_017",
-                            "word": "CHLORINED",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_021",
+                            "word": "PATHOGENS"
                         },
                         {
-                            "id": "science_biology_wd_hard_018",
-                            "word": "PHYLOGRAM",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_022",
+                            "word": "VIROPLASM"
                         },
                         {
-                            "id": "science_biology_wd_hard_019",
-                            "word": "MORPHAGEN",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_023",
+                            "word": "RADIOLYZE"
                         },
                         {
-                            "id": "science_biology_wd_hard_020",
-                            "word": "BRAINSTEM",
-                            "difficulty": "hard"
+                            "id": "science_biology_wd_mixed_024",
+                            "word": "NEUROMAST"
                         },
                         {
-                            "id": "science_biology_wd_insanity_021",
-                            "word": "DIGESTORY",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_025",
+                            "word": "POLYGENIC"
                         },
                         {
-                            "id": "science_biology_wd_insanity_022",
-                            "word": "LACTIFORM",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_026",
+                            "word": "CHONDRITE"
                         },
                         {
-                            "id": "science_biology_wd_insanity_023",
-                            "word": "RHODAMINE",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_027",
+                            "word": "MARLSTONE"
                         },
                         {
-                            "id": "science_biology_wd_insanity_024",
-                            "word": "ZYGOMATIC",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_028",
+                            "word": "EUTROPHIC"
                         },
                         {
-                            "id": "science_biology_wd_insanity_025",
-                            "word": "CARBONYLS",
-                            "difficulty": "insanity"
+                            "id": "science_biology_wd_mixed_029",
+                            "word": "FLUORIDES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_030",
+                            "word": "HYDROLASE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_031",
+                            "word": "CHEMISTRY"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_032",
+                            "word": "BIOSAFETY"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_033",
+                            "word": "LIGAMENTS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_034",
+                            "word": "TRIANGLES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_035",
+                            "word": "HYDROGENS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_036",
+                            "word": "GLUTAMINE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_037",
+                            "word": "BRAINSTEM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_038",
+                            "word": "PLACODERM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_039",
+                            "word": "CARBONYLS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_040",
+                            "word": "MUTAGENIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_041",
+                            "word": "ENDOPLASM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_042",
+                            "word": "ECTOPLASM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_043",
+                            "word": "PROLACTIN"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_044",
+                            "word": "REGOLITHS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_045",
+                            "word": "GUMBOTILS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_046",
+                            "word": "QUAGMIRES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_047",
+                            "word": "MEGAVOLTS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_048",
+                            "word": "WAVEFRONT"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_049",
+                            "word": "SUBTROPIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_050",
+                            "word": "STARFIELD"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_051",
+                            "word": "AEROLITHS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_052",
+                            "word": "FLASHTUBE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_053",
+                            "word": "THERMIONS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_054",
+                            "word": "AEQUORINS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_055",
+                            "word": "LAMPYRIDS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_056",
+                            "word": "PYRENOIDS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_057",
+                            "word": "PLANETOID"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_058",
+                            "word": "ZYGOMATIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_059",
+                            "word": "XENOGRAFT"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_060",
+                            "word": "ENDOLYMPH"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_061",
+                            "word": "MICROBEAD"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_062",
+                            "word": "FORMULATE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_063",
+                            "word": "EQUATIONS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_064",
+                            "word": "QUANTILES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_065",
+                            "word": "TRAPEZOID"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_066",
+                            "word": "VECTORING"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_067",
+                            "word": "GRAVITONS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_068",
+                            "word": "HISTOGRAM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_069",
+                            "word": "MICROLENS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_070",
+                            "word": "SPERMATID"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_071",
+                            "word": "NEPHROTIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_072",
+                            "word": "FRAGMENTS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_073",
+                            "word": "FLUORINES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_074",
+                            "word": "EARTHLING"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_075",
+                            "word": "RAINBOWED"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_076",
+                            "word": "SUBATOMIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_077",
+                            "word": "PARTICLES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_078",
+                            "word": "ALGORITHM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_079",
+                            "word": "POLARIZED"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_080",
+                            "word": "NUMERICAL"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_081",
+                            "word": "MONAZITES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_082",
+                            "word": "MUSCARINE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_083",
+                            "word": "PUROMYCIN"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_084",
+                            "word": "LYSOGENIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_085",
+                            "word": "CENTIGRAM"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_086",
+                            "word": "CHRONAXIE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_087",
+                            "word": "HYDRAZINE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_088",
+                            "word": "CHLORATES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_089",
+                            "word": "CHLORIDES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_090",
+                            "word": "FRACTIONS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_091",
+                            "word": "VECTORIAL"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_092",
+                            "word": "NEUROTICS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_093",
+                            "word": "LABYRINTH"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_094",
+                            "word": "MODERNIST"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_095",
+                            "word": "FUMAROLES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_096",
+                            "word": "REPLACING"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_097",
+                            "word": "SNOWFLAKE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_098",
+                            "word": "SNOWDRIFT"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_099",
+                            "word": "DRAGONFLY"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_100",
+                            "word": "MOUSETRAP"
                         }
                     ],
                     "crosswords": [
@@ -8634,7 +8889,308 @@
                             "difficulty": "insanity"
                         }
                     ],
-                    "wordoku": [],
+                    "wordoku": [
+                        {
+                            "id": "pop_culture_movies_wd_mixed_001",
+                            "word": "ALMSGIVER"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_002",
+                            "word": "AUTHORING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_003",
+                            "word": "ANGELFISH"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_004",
+                            "word": "ANXIOUSLY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_005",
+                            "word": "ANCHOVIES"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_006",
+                            "word": "ABOLISHED"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_007",
+                            "word": "AWESTRUCK"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_008",
+                            "word": "ABLUTIONS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_009",
+                            "word": "ALCHEMIST"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_010",
+                            "word": "ABSOLVING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_011",
+                            "word": "BLOCKHEAD"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_012",
+                            "word": "BOHEMIANS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_013",
+                            "word": "DYSTOPIAN"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_014",
+                            "word": "DISCOVERY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_015",
+                            "word": "COSTUMIER"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_016",
+                            "word": "COPYRIGHT"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_017",
+                            "word": "CAMPFIRES"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_018",
+                            "word": "CAPTIONED"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_019",
+                            "word": "GREYHOUND"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_020",
+                            "word": "GOURMANDS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_021",
+                            "word": "MAVERICKS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_022",
+                            "word": "SUPERNOVA"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_023",
+                            "word": "SWORDPLAY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_024",
+                            "word": "TENACIOUS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_025",
+                            "word": "UNIVERSAL"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_026",
+                            "word": "ACTORSHIP"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_027",
+                            "word": "STORYLINE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_028",
+                            "word": "NEWSGROUP"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_029",
+                            "word": "PLAYHOUSE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_030",
+                            "word": "FANDOMISH"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_031",
+                            "word": "NEWSRADIO"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_032",
+                            "word": "BIOGRAPHY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_033",
+                            "word": "WRESTLING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_034",
+                            "word": "STREAMING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_035",
+                            "word": "PODCASTER"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_036",
+                            "word": "SOUNDBITE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_037",
+                            "word": "COSPLAYER"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_038",
+                            "word": "ROMANTICS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_039",
+                            "word": "OVERNIGHT"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_040",
+                            "word": "IDOLATERS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_041",
+                            "word": "DRUMBEATS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_042",
+                            "word": "KEYBOARDS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_043",
+                            "word": "MOVIELAND"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_044",
+                            "word": "STAGEWORK"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_045",
+                            "word": "SOUNDCITY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_046",
+                            "word": "COMEDYFAN"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_047",
+                            "word": "ANIMECLUB"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_048",
+                            "word": "ANIMEDUBS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_049",
+                            "word": "IDOLCRUSH"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_050",
+                            "word": "RAVECLUBS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_051",
+                            "word": "BACKSTORY"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_052",
+                            "word": "ROCKBANDS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_053",
+                            "word": "MASCOTING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_054",
+                            "word": "FANGIRLED"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_055",
+                            "word": "FANBOYGIR"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_056",
+                            "word": "SITCOMNER"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_057",
+                            "word": "SHOWMANCE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_058",
+                            "word": "COSTUMING"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_059",
+                            "word": "IDOLFANSG"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_060",
+                            "word": "MIXTAPERS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_061",
+                            "word": "BINGEWARS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_062",
+                            "word": "TRILOGYFX"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_063",
+                            "word": "POSTCREDX"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_064",
+                            "word": "SOUNDCLIP"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_065",
+                            "word": "STREAMVOD"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_066",
+                            "word": "PLAYTHRUS"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_067",
+                            "word": "CONBADGES"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_068",
+                            "word": "VIPLOUNGE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_069",
+                            "word": "REMIXCULT"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_070",
+                            "word": "IDOLSTAGE"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_071",
+                            "word": "FESTIVALX"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_072",
+                            "word": "MARVELKID"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_073",
+                            "word": "STREAMHUB"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_074",
+                            "word": "FANEDITRX"
+                        },
+                        {
+                            "id": "pop_culture_movies_wd_mixed_075",
+                            "word": "OSCARNITE"
+                        }
+                    ],
                     "crosswords": []
                 },
                 {
@@ -15888,7 +16444,232 @@
                             "difficulty": "insanity"
                         }
                     ],
-                    "wordoku": [],
+                    "wordoku": [
+                        {
+                            "id": "technology_gadgets_wd_mixed_001",
+                            "word": "UPLOADERS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_002",
+                            "word": "TOUCHPADS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_003",
+                            "word": "CYBERPUNK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_004",
+                            "word": "PLAYSTORE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_005",
+                            "word": "EMULATORS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_006",
+                            "word": "SYNTHWAVE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_007",
+                            "word": "UPLOADIFY"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_008",
+                            "word": "STREAMBOX"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_009",
+                            "word": "HYPERLINK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_010",
+                            "word": "BACKLIGHT"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_011",
+                            "word": "TERMINALS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_012",
+                            "word": "CHIPTUNES"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_013",
+                            "word": "KEYBOARDS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_014",
+                            "word": "ULTRAWIDE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_015",
+                            "word": "HTMLPAGES"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_016",
+                            "word": "BLUESTACK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_017",
+                            "word": "JOYSTREAM"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_018",
+                            "word": "PRINTHEAD"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_019",
+                            "word": "POWERBANK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_020",
+                            "word": "CLOUDWARE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_021",
+                            "word": "DRONESHIP"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_022",
+                            "word": "TERAFLOPS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_023",
+                            "word": "QUICKSAVE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_024",
+                            "word": "HARDTOKEN"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_025",
+                            "word": "PHREAKING"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_026",
+                            "word": "PAGERDUTY"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_027",
+                            "word": "LEDMATRIX"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_028",
+                            "word": "DRIVEBAYS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_029",
+                            "word": "INTERCOMS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_030",
+                            "word": "HEADMOUNT"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_031",
+                            "word": "EMAILHOST"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_032",
+                            "word": "ADBLOCKER"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_033",
+                            "word": "CYBERLAWS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_034",
+                            "word": "CYBERNAUT"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_035",
+                            "word": "FLOWCHART"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_036",
+                            "word": "TOUCHPENS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_037",
+                            "word": "FINGERPAD"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_038",
+                            "word": "VIDEOGRAM"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_039",
+                            "word": "GAMEBUILD"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_040",
+                            "word": "CYBERDOGS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_041",
+                            "word": "MOUSETRAK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_042",
+                            "word": "APKBUILDS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_043",
+                            "word": "MECHATRON"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_044",
+                            "word": "SONARTECH"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_045",
+                            "word": "COMPUTING"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_046",
+                            "word": "COMPUTERS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_047",
+                            "word": "INTERCOMS"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_048",
+                            "word": "UPLOADING"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_049",
+                            "word": "ALGORITHM"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_050",
+                            "word": "BENCHMARK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_051",
+                            "word": "COMPLIANT"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_052",
+                            "word": "SHOCKWAVE"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_053",
+                            "word": "STREAMING"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_054",
+                            "word": "SMARTLOCK"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_055",
+                            "word": "SIMULATOR"
+                        },
+                        {
+                            "id": "technology_gadgets_wd_mixed_056",
+                            "word": "THUMBNAIL"
+                        }
+                    ],
                     "crosswords": []
                 },
                 {
@@ -24350,7 +25131,108 @@
                             "difficulty": "medium"
                         }
                     ],
-                    "wordoku": [],
+                    "wordoku": [
+                        {
+                            "id": "geography_cities_wd_mixed_001",
+                            "word": "BUCHAREST"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_002",
+                            "word": "BALTIMORE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_003",
+                            "word": "EDINBURGH"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_004",
+                            "word": "MOGADISHU"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_005",
+                            "word": "SINGAPORE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_006",
+                            "word": "KINGSTOWN"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_007",
+                            "word": "BRUNSWICK"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_008",
+                            "word": "GALVESTON"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_009",
+                            "word": "GLADSTONE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_010",
+                            "word": "DUBROVNIK"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_011",
+                            "word": "GLENORCHY"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_012",
+                            "word": "BACKSHORE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_013",
+                            "word": "UPLANDERS"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_014",
+                            "word": "SNOWFIELD"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_015",
+                            "word": "RIDGETOPS"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_016",
+                            "word": "ERUPTIONS"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_017",
+                            "word": "QUICKSAND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_018",
+                            "word": "LANDFORMS"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_019",
+                            "word": "FORESTING"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_020",
+                            "word": "BOULEVARD"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_021",
+                            "word": "PROVINCES"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_022",
+                            "word": "COUNTRIES"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_023",
+                            "word": "EXCURSION"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_024",
+                            "word": "TRAVELING"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_025",
+                            "word": "COASTLINE"
+                        }
+                    ],
                     "crosswords": []
                 },
                 {
@@ -30396,7 +31278,124 @@
                             "difficulty": "insanity"
                         }
                     ],
-                    "wordoku": [],
+                    "wordoku": [
+                        {
+                            "id": "literature_poems_wd_mixed_001",
+                            "word": "STORYLINE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_002",
+                            "word": "PUBLISHER"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_003",
+                            "word": "METAPHORS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_004",
+                            "word": "WORDSMITH"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_005",
+                            "word": "BIOGRAPHY"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_006",
+                            "word": "ROMANTICS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_007",
+                            "word": "PLAYHOUSE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_008",
+                            "word": "VERBALIST"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_009",
+                            "word": "PAGETURNS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_010",
+                            "word": "COPYRIGHT"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_011",
+                            "word": "PAGEBOUND"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_012",
+                            "word": "PARODYING"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_013",
+                            "word": "PREFACING"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_014",
+                            "word": "ARGUMENTS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_015",
+                            "word": "OUTLINERS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_016",
+                            "word": "DIALOGUES"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_017",
+                            "word": "HANDWRITE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_018",
+                            "word": "WORDPLAYS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_019",
+                            "word": "VOCABLIST"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_020",
+                            "word": "SYNTAGMIC"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_021",
+                            "word": "MODERNIST"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_022",
+                            "word": "WORDMAGIC"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_023",
+                            "word": "PUNMAKERS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_024",
+                            "word": "FIGURANTS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_025",
+                            "word": "METRICALS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_026",
+                            "word": "PENCRAFTS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_027",
+                            "word": "QUOTABLES"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_028",
+                            "word": "BACKSTORY"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_029",
+                            "word": "DYSTOPIAN"
+                        }
+                    ],
                     "crosswords": []
                 },
                 {
@@ -38858,7 +39857,68 @@
                             "difficulty": "insanity"
                         }
                     ],
-                    "wordoku": [],
+                    "wordoku": [
+                        {
+                            "id": "games_video_games_wd_mixed_001",
+                            "word": "GAMEPOINT"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_002",
+                            "word": "OUTPLAYED"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_003",
+                            "word": "MINECRAFT"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_004",
+                            "word": "OVERWATCH"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_005",
+                            "word": "STARBOUND"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_006",
+                            "word": "SWORDPLAY"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_007",
+                            "word": "POKERHAND"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_008",
+                            "word": "TRICKPLAY"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_009",
+                            "word": "BETRAYING"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_010",
+                            "word": "OUTRACING"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_011",
+                            "word": "DRINKGAME"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_012",
+                            "word": "GOLFCARDS"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_013",
+                            "word": "LUCKBASED"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_014",
+                            "word": "MEGABONUS"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_015",
+                            "word": "CASINORPG"
+                        }
+                    ],
                     "crosswords": []
                 },
                 {

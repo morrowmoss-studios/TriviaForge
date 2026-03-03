@@ -15,8 +15,7 @@ public class WordokuAIImportWindow : EditorWindow
         "[\n" +
         "  {\n" +
         "    \"id\": \"example_wordoku_001\",\n" +
-        "    \"word\": \"ASTRONOMY\",\n" +
-        "    \"difficulty\": \"easy\"\n" +
+        "    \"word\": \"ASTRONOMY\"\n" +
         "  }\n" +
         "]";
 

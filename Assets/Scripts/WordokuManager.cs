@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
-using System.Reflection;
 
 public enum WordokuDifficulty
 {
@@ -104,68 +103,69 @@ public class WordokuManager : MonoBehaviour
     }
 
     // -------------------------------
-    // DATABASE WORD PICKING
+    // DATABASE WORD PICKING (Category-only)
+    // - Ignores subcategory completely
+    // - Ignores word difficulty completely
+    // - Difficulty only affects masking (GenerateStartingBoard)
     // -------------------------------
 
     private string GetRandomWord()
     {
-        // Session selections
         string catId = TriviaSessionData.selectedCategoryId;
-        string subId = TriviaSessionData.selectedSubcategoryId;
-        string diffKey = DifficultyEnumToKey(difficulty); // easy/medium/hard/insanity
 
         GameDatabase db = LoadDatabase();
         if (db == null)
-            return FallbackWord($"DB load failed (Resources/{resourcesDbName}.json).");
+            return FallbackWord("DB load failed.");
 
         CategoryData cat = db.categories?.Find(c => c.id == catId);
         if (cat == null)
-            return FallbackWord($"Category '{catId}' not found in DB.");
+            return FallbackWord($"Category '{catId}' not found.");
 
-        SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
-        if (sub == null)
-            return FallbackWord($"Subcategory '{subId}' not found under '{catId}'.");
-
-        if (sub.wordoku == null || sub.wordoku.Count == 0)
-            return FallbackWord($"No wordoku entries in '{catId}/{subId}'.");
+        if (cat.subcategories == null || cat.subcategories.Count == 0)
+            return FallbackWord($"Category '{catId}' has no subcategories.");
 
         var candidates = new List<string>();
 
-        foreach (var entry in sub.wordoku)
+        foreach (var sub in cat.subcategories)
         {
-            if (entry == null) continue;
+            if (sub == null || sub.wordoku == null) continue;
 
-            string entryDiff = NormalizeDifficultyKey(GetStringMember(entry, "difficulty"));
-            if (string.IsNullOrWhiteSpace(entryDiff))
-                entryDiff = "medium";
+            foreach (var entry in sub.wordoku)
+            {
+                if (entry == null || string.IsNullOrWhiteSpace(entry.word))
+                    continue;
 
-            if (entryDiff != diffKey)
-                continue;
+                string word = entry.word.Trim().ToUpperInvariant();
 
-            // Try common word field names (we don’t assume which one you used)
-            string word =
-                GetStringMember(entry, "word") ??
-                GetStringMember(entry, "wordText") ??
-                GetStringMember(entry, "text");
+                // Must be exactly 9 letters
+                if (word.Length != 9)
+                    continue;
 
-            if (string.IsNullOrWhiteSpace(word))
-                continue;
+                // Strongly recommended: 9 unique letters
+                if (!HasAllUniqueLetters(word))
+                    continue;
 
-            word = word.Trim().ToUpperInvariant();
-
-            // Must be exactly 9 letters
-            if (word.Length != 9)
-                continue;
-
-            candidates.Add(word);
+                candidates.Add(word);
+            }
         }
 
         if (candidates.Count == 0)
-            return FallbackWord($"No {diffKey} 9-letter words found in '{catId}/{subId}'.");
+            return FallbackWord($"No valid 9-letter unique-letter words found in category '{catId}'.");
 
         string pick = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-        Debug.Log($"[WordokuManager] Picked DB word '{pick}' from '{catId}/{subId}' diff='{diffKey}' (candidates={candidates.Count}).");
+        Debug.Log($"[WordokuManager] Picked '{pick}' from category '{catId}' (pool={candidates.Count}).");
         return pick;
+    }
+
+    private bool HasAllUniqueLetters(string word)
+    {
+        var set = new HashSet<char>();
+        foreach (char ch in word)
+        {
+            if (ch < 'A' || ch > 'Z') return false;
+            if (!set.Add(ch)) return false;
+        }
+        return set.Count == 9;
     }
 
     private GameDatabase LoadDatabase()
@@ -203,42 +203,6 @@ public class WordokuManager : MonoBehaviour
         string pick = wordokuWords[UnityEngine.Random.Range(0, wordokuWords.Length)].ToUpperInvariant();
         Debug.LogWarning($"[WordokuManager] Falling back to default word '{pick}'. Reason: {reason}");
         return pick;
-    }
-
-    private static string NormalizeDifficultyKey(string diff)
-    {
-        return string.IsNullOrWhiteSpace(diff) ? "" : diff.Trim().ToLowerInvariant();
-    }
-
-    private static string DifficultyEnumToKey(WordokuDifficulty d)
-    {
-        switch (d)
-        {
-            case WordokuDifficulty.Easy: return "easy";
-            case WordokuDifficulty.Medium: return "medium";
-            case WordokuDifficulty.Hard: return "hard";
-            case WordokuDifficulty.Insanity: return "insanity";
-            default: return "medium";
-        }
-    }
-
-    private static string GetStringMember(object obj, string memberName)
-    {
-        if (obj == null || string.IsNullOrWhiteSpace(memberName)) return null;
-
-        Type t = obj.GetType();
-
-        // public field
-        FieldInfo f = t.GetField(memberName, BindingFlags.Instance | BindingFlags.Public);
-        if (f != null && f.FieldType == typeof(string))
-            return (string)f.GetValue(obj);
-
-        // public property
-        PropertyInfo p = t.GetProperty(memberName, BindingFlags.Instance | BindingFlags.Public);
-        if (p != null && p.PropertyType == typeof(string) && p.CanRead)
-            return (string)p.GetValue(obj);
-
-        return null;
     }
 
     // -------------------------------
@@ -382,8 +346,8 @@ public class WordokuManager : MonoBehaviour
 
     public bool IsValidPlacement(int row, int col, char letter)
     {
-        bool inRow   = IsInRow(row, letter);
-        bool inCol   = IsInColumn(col, letter);
+        bool inRow = IsInRow(row, letter);
+        bool inCol = IsInColumn(col, letter);
         bool inBlock = IsInBlock(row, col, letter);
 
         return !(inRow || inCol || inBlock);
