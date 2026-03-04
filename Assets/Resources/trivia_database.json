@@ -1609,13 +1609,93 @@
                         {
                             "id": "science_biology_wd_mixed_100",
                             "word": "MOUSETRAP"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_101",
+                            "word": "EMBRYONIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_102",
+                            "word": "SYMPATRIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_103",
+                            "word": "CHROMATIN"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_104",
+                            "word": "SPERMATIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_105",
+                            "word": "SPORULATE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_106",
+                            "word": "EUPLASTIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_107",
+                            "word": "GLYCOSIDE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_108",
+                            "word": "TRICHOMES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_109",
+                            "word": "SCLEROTIA"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_110",
+                            "word": "ZYMOGENIC"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_111",
+                            "word": "THYLAKOID"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_112",
+                            "word": "NUCLEOIDS"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_113",
+                            "word": "PREDATION"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_114",
+                            "word": "HERBALIST"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_115",
+                            "word": "PHAGOCYTE"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_116",
+                            "word": "DICTYSOME"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_117",
+                            "word": "LIPOCYTES"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_118",
+                            "word": "BINOCULAR"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_119",
+                            "word": "SPORELING"
+                        },
+                        {
+                            "id": "science_biology_wd_mixed_120",
+                            "word": "CHONDRIFY"
                         }
                     ],
                     "crosswords": [
                         {
                             "id": "science_biology_xw_easy_001",
-                            "answer": "CELL",
-                            "clue": "Basic unit of life",
+                            "answer": "NUCLEUS",
+                            "clue": "Membrane bound organelle that contains a cell's DNA",
                             "difficulty": "easy"
                         },
                         {
@@ -1626,14 +1706,14 @@
                         },
                         {
                             "id": "science_biology_xw_hard_001",
-                            "answer": "RIBOSOME",
-                            "clue": "Cell structure that builds proteins",
+                            "answer": "PEROXISOME",
+                            "clue": "Organelle that breaks down fatty acids and neutralizes hydrogen peroxide",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_biology_xw_insanity_001",
-                            "answer": "MITOCHONDRIA",
-                            "clue": "Organelle that produces ATP; often called the cell's powerhouse",
+                            "answer": "CENTRIOLE",
+                            "clue": "Cylindrical organelle involved in cell division",
                             "difficulty": "insanity"
                         },
                         {
@@ -1680,8 +1760,8 @@
                         },
                         {
                             "id": "science_biology_xw_medium_003",
-                            "answer": "ENZYME",
-                            "clue": "Protein that speeds up chemical reactions",
+                            "answer": "CATALYST",
+                            "clue": "Substance that speeds up a chemical reaction without being consumed",
                             "difficulty": "medium"
                         },
                         {
@@ -1716,8 +1796,8 @@
                         },
                         {
                             "id": "science_biology_xw_hard_002",
-                            "answer": "HOMEOSTASIS",
-                            "clue": "Maintenance of stable internal conditions",
+                            "answer": "SETPOINT",
+                            "clue": "Target value that a biological regulatory system works to maintain",
                             "difficulty": "hard"
                         },
                         {
@@ -1812,8 +1892,8 @@
                         },
                         {
                             "id": "science_biology_xw_medium_008",
-                            "answer": "CHLOROPHYLL",
-                            "clue": "Green pigment that captures light energy in plants",
+                            "answer": "PIGMENT",
+                            "clue": "Colored compound in plants that absorbs light energy",
                             "difficulty": "medium"
                         },
                         {
@@ -1884,8 +1964,8 @@
                         },
                         {
                             "id": "science_biology_xw_insanity_009",
-                            "answer": "ENDOCYTOSIS",
-                            "clue": "Process by which a cell engulfs material into a vesicle",
+                            "answer": "VESICLE",
+                            "clue": "Small membrane bound sac used to transport material within cells",
                             "difficulty": "insanity"
                         },
                         {
@@ -1896,8 +1976,8 @@
                         },
                         {
                             "id": "science_biology_xw_insanity_011",
-                            "answer": "LIPOPROTEIN",
-                            "clue": "Molecule composed of lipids and proteins",
+                            "answer": "GLYCOLIPID",
+                            "clue": "Molecule combining a lipid with a carbohydrate component",
                             "difficulty": "insanity"
                         },
                         {
@@ -2010,8 +2090,8 @@
                         },
                         {
                             "id": "science_biology_xw_insanity_015",
-                            "answer": "MICROTUBULE",
-                            "clue": "Cytoskeletal filament involved in cell structure and transport",
+                            "answer": "TUBULIN",
+                            "clue": "Protein subunit that polymerizes to form cytoskeletal filaments",
                             "difficulty": "insanity"
                         },
                         {
@@ -2136,8 +2216,8 @@
                         },
                         {
                             "id": "science_biology_xw_insanity_021",
-                            "answer": "RIBONUCLEIC",
-                            "clue": "Relating to RNA",
+                            "answer": "RIBOSE",
+                            "clue": "Five carbon sugar that forms the structural backbone of RNA",
                             "difficulty": "insanity"
                         },
                         {
@@ -3945,8 +4025,8 @@
                         },
                         {
                             "id": "science_earth_science_xw_medium_023",
-                            "answer": "MONSOON",
-                            "clue": "Seasonal wind system bringing heavy rain",
+                            "answer": "SIROCCO",
+                            "clue": "Hot dry wind that originates from North Africa",
                             "difficulty": "medium"
                         },
                         {
@@ -5238,8 +5318,8 @@
                     "crosswords": [
                         {
                             "id": "science_geology_xw_easy_001",
-                            "answer": "ROCK",
-                            "clue": "Naturally occurring solid aggregate of minerals",
+                            "answer": "PEBBLE",
+                            "clue": "Small rounded stone worn smooth by water",
                             "difficulty": "easy"
                         },
                         {
@@ -5256,8 +5336,8 @@
                         },
                         {
                             "id": "science_geology_xw_easy_004",
-                            "answer": "FOSSIL",
-                            "clue": "Preserved remains of ancient life in rock",
+                            "answer": "TRILOBITE",
+                            "clue": "Extinct marine arthropod commonly preserved in ancient rock",
                             "difficulty": "easy"
                         },
                         {
@@ -5268,32 +5348,32 @@
                         },
                         {
                             "id": "science_geology_xw_medium_001",
-                            "answer": "BASALT",
-                            "clue": "Dark volcanic rock formed from lava",
+                            "answer": "PUMICE",
+                            "clue": "Lightweight porous volcanic rock that can float on water",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_002",
-                            "answer": "GRANITE",
-                            "clue": "Coarse grained intrusive igneous rock",
+                            "answer": "OBSIDIAN",
+                            "clue": "Dark glassy volcanic rock formed from rapidly cooled lava",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_003",
-                            "answer": "SHALE",
-                            "clue": "Fine grained sedimentary rock formed from clay",
+                            "answer": "MUDSTONE",
+                            "clue": "Fine grained sedimentary rock formed from compacted mud",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_004",
-                            "answer": "FAULT",
-                            "clue": "Fracture in rock along which movement occurs",
+                            "answer": "FRACTURE",
+                            "clue": "Crack or break in rock caused by tectonic stress",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_005",
-                            "answer": "MAGMA",
-                            "clue": "Molten rock beneath Earth's surface",
+                            "answer": "VENT",
+                            "clue": "Opening in Earth's surface through which magma erupts",
                             "difficulty": "medium"
                         },
                         {
@@ -5304,56 +5384,56 @@
                         },
                         {
                             "id": "science_geology_xw_hard_001",
-                            "answer": "TECTONIC",
-                            "clue": "Relating to structure and movement of Earth's crust",
+                            "answer": "ISOSTATIC",
+                            "clue": "Relating to gravitational equilibrium of Earth's crust and mantle",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_geology_xw_hard_002",
-                            "answer": "SEDIMENT",
-                            "clue": "Particles deposited by wind, water, or ice",
+                            "answer": "ALLUVIUM",
+                            "clue": "Material deposited by flowing water along riverbanks and floodplains",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_geology_xw_hard_003",
-                            "answer": "DIORITE",
-                            "clue": "Coarse grained intrusive igneous rock",
+                            "answer": "ANDESITE",
+                            "clue": "Volcanic rock of intermediate silica composition",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_geology_xw_hard_004",
-                            "answer": "GNEISS",
-                            "clue": "Banded metamorphic rock",
+                            "answer": "PHYLLITE",
+                            "clue": "Metamorphic rock ranking in grade between slate and schist",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_geology_xw_hard_005",
-                            "answer": "LIMESTONE",
-                            "clue": "Sedimentary rock composed mainly of calcium carbonate",
+                            "answer": "DOLOSTONE",
+                            "clue": "Sedimentary rock composed primarily of dolomite mineral",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_geology_xw_insanity_001",
-                            "answer": "ANTICLINE",
-                            "clue": "Arch shaped fold in layered rock",
+                            "answer": "MELANGE",
+                            "clue": "Chaotic mix of rock types found along subduction zones",
                             "difficulty": "insanity"
                         },
                         {
                             "id": "science_geology_xw_insanity_002",
-                            "answer": "SYNCLINE",
-                            "clue": "Trough shaped fold in layered rock",
+                            "answer": "MONOCLINE",
+                            "clue": "One directional fold in otherwise horizontal rock layers",
                             "difficulty": "insanity"
                         },
                         {
                             "id": "science_geology_xw_insanity_003",
-                            "answer": "ISOSTASY",
-                            "clue": "Balance between Earth's crust and mantle",
+                            "answer": "RHEOLOGY",
+                            "clue": "Study of flow and deformation in Earth materials",
                             "difficulty": "insanity"
                         },
                         {
                             "id": "science_geology_xw_insanity_004",
-                            "answer": "REGOLITH",
-                            "clue": "Layer of loose material covering solid rock",
+                            "answer": "SAPROLITE",
+                            "clue": "Deeply weathered rock that retains its original structure",
                             "difficulty": "insanity"
                         },
                         {
@@ -5364,62 +5444,62 @@
                         },
                         {
                             "id": "science_geology_xw_easy_006",
-                            "answer": "SAND",
-                            "clue": "Loose granular material formed from rock fragments",
+                            "answer": "GRAVEL",
+                            "clue": "Loose mixture of small rock fragments and pebbles",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_007",
-                            "answer": "CLAY",
-                            "clue": "Fine grained natural soil material",
+                            "answer": "LOAM",
+                            "clue": "Rich fertile soil composed of sand, silt, and clay",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_008",
-                            "answer": "LAVA",
-                            "clue": "Molten rock that erupts onto the surface",
+                            "answer": "CINDER",
+                            "clue": "Rough glassy rock fragment ejected during a volcanic eruption",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_009",
-                            "answer": "CORE",
-                            "clue": "Central part of the Earth",
+                            "answer": "GEODE",
+                            "clue": "Hollow rock cavity lined with mineral crystals",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_010",
-                            "answer": "MANTLE",
-                            "clue": "Layer between the crust and the core",
+                            "answer": "PERIDOT",
+                            "clue": "Green gemstone variety of the mineral olivine",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_medium_007",
-                            "answer": "OUTCROP",
-                            "clue": "Exposure of bedrock at Earth's surface",
+                            "answer": "EXPOSURE",
+                            "clue": "Visible area where bedrock is uncovered at the surface",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_008",
-                            "answer": "MINERAL",
-                            "clue": "Naturally occurring inorganic solid with a crystal structure",
+                            "answer": "CRYSTAL",
+                            "clue": "Solid in which atoms are arranged in a repeating ordered pattern",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_009",
-                            "answer": "BEDROCK",
-                            "clue": "Solid rock beneath soil and sediment",
+                            "answer": "SUBSOIL",
+                            "clue": "Layer of soil lying between topsoil and solid rock",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_010",
-                            "answer": "FOLIATION",
-                            "clue": "Layered structure in metamorphic rock",
+                            "answer": "CLEAVAGE",
+                            "clue": "Tendency of a mineral to split neatly along flat planes",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_011",
-                            "answer": "VOLCANO",
-                            "clue": "Mountain that erupts magma and ash",
+                            "answer": "MAGMATIC",
+                            "clue": "Relating to processes that involve molten rock",
                             "difficulty": "medium"
                         },
                         {
@@ -5430,8 +5510,8 @@
                         },
                         {
                             "id": "science_geology_xw_hard_007",
-                            "answer": "PYROCLAST",
-                            "clue": "Fragment of volcanic rock ejected during eruption",
+                            "answer": "LAPILLI",
+                            "clue": "Pea to walnut sized fragments ejected during a volcanic eruption",
                             "difficulty": "hard"
                         },
                         {
@@ -5448,8 +5528,8 @@
                         },
                         {
                             "id": "science_geology_xw_hard_010",
-                            "answer": "DRUMLIN",
-                            "clue": "Elongated hill formed by glacial action",
+                            "answer": "ESKER",
+                            "clue": "Long winding ridge of gravel left by a glacial meltwater stream",
                             "difficulty": "hard"
                         },
                         {
@@ -5478,20 +5558,20 @@
                         },
                         {
                             "id": "science_geology_xw_insanity_010",
-                            "answer": "SUBDUCT",
-                            "clue": "To sink beneath another tectonic plate",
+                            "answer": "OBDUCT",
+                            "clue": "To thrust one tectonic plate over the top of another",
                             "difficulty": "insanity"
                         },
                         {
                             "id": "science_geology_xw_easy_011",
-                            "answer": "ORE",
-                            "clue": "Rock containing valuable minerals",
+                            "answer": "LODE",
+                            "clue": "Rich vein of metallic minerals within rock",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_012",
-                            "answer": "GEM",
-                            "clue": "Precious or semiprecious stone",
+                            "answer": "RUBY",
+                            "clue": "Precious red gemstone prized in jewelry",
                             "difficulty": "easy"
                         },
                         {
@@ -5508,14 +5588,14 @@
                         },
                         {
                             "id": "science_geology_xw_easy_015",
-                            "answer": "SILT",
-                            "clue": "Fine grained sediment smaller than sand",
+                            "answer": "MARL",
+                            "clue": "Soft crumbly deposit of clay mixed with calcium carbonate",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_medium_012",
-                            "answer": "LOESS",
-                            "clue": "Wind deposited silt forming fertile soil",
+                            "answer": "HUMUS",
+                            "clue": "Dark organic matter in soil from decomposed plant material",
                             "difficulty": "medium"
                         },
                         {
@@ -5526,14 +5606,14 @@
                         },
                         {
                             "id": "science_geology_xw_medium_014",
-                            "answer": "RIDGE",
-                            "clue": "Long narrow elevated landform",
+                            "answer": "SCARP",
+                            "clue": "Steep slope formed by erosion or faulting",
                             "difficulty": "medium"
                         },
                         {
                             "id": "science_geology_xw_medium_015",
-                            "answer": "IGNEOUS",
-                            "clue": "Rock type formed from cooled magma",
+                            "answer": "VOLCANIC",
+                            "clue": "Relating to or produced by volcanic activity",
                             "difficulty": "medium"
                         },
                         {
@@ -5544,8 +5624,8 @@
                         },
                         {
                             "id": "science_geology_xw_hard_011",
-                            "answer": "BATHOLITH",
-                            "clue": "Large mass of intrusive igneous rock",
+                            "answer": "PLUTON",
+                            "clue": "Body of intrusive igneous rock formed deep underground",
                             "difficulty": "hard"
                         },
                         {
@@ -5562,8 +5642,8 @@
                         },
                         {
                             "id": "science_geology_xw_hard_014",
-                            "answer": "HORST",
-                            "clue": "Raised block of crust bordered by faults",
+                            "answer": "TERRANE",
+                            "clue": "Block of crust with its own distinct geological history",
                             "difficulty": "hard"
                         },
                         {
@@ -5604,20 +5684,20 @@
                         },
                         {
                             "id": "science_geology_xw_easy_016",
-                            "answer": "LAVA",
-                            "clue": "Molten rock that erupts onto the surface",
+                            "answer": "FLOW",
+                            "clue": "Sheet of molten rock moving across Earth's surface",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_017",
-                            "answer": "SAND",
-                            "clue": "Loose granular material formed from rock fragments",
+                            "answer": "GRIT",
+                            "clue": "Coarse particles of stone or rock",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_geology_xw_easy_018",
-                            "answer": "CLAY",
-                            "clue": "Fine grained soil material",
+                            "answer": "TILL",
+                            "clue": "Unsorted sediment deposited directly by a glacier",
                             "difficulty": "easy"
                         },
                         {
@@ -5628,8 +5708,8 @@
                         },
                         {
                             "id": "science_geology_xw_easy_020",
-                            "answer": "SOIL",
-                            "clue": "Upper layer of Earth composed of organic matter and minerals",
+                            "answer": "TOPSOIL",
+                            "clue": "Uppermost layer of Earth richest in nutrients and organisms",
                             "difficulty": "easy"
                         },
                         {
@@ -7137,8 +7217,8 @@
                         },
                         {
                             "id": "science_physics_xw_easy_007",
-                            "answer": "ATOM",
-                            "clue": "Smallest unit of a chemical element",
+                            "answer": "SHELL",
+                            "clue": "Region around an atomic nucleus where electrons are found",
                             "difficulty": "easy"
                         },
                         {
@@ -7413,8 +7493,8 @@
                         },
                         {
                             "id": "science_physics_xw_medium_019",
-                            "answer": "TORQUE",
-                            "clue": "Rotational effect of a force",
+                            "answer": "MOMENT",
+                            "clue": "Rotational tendency produced by a force applied off-center",
                             "difficulty": "medium"
                         },
                         {
@@ -7425,8 +7505,8 @@
                         },
                         {
                             "id": "science_physics_xw_medium_021",
-                            "answer": "REFRACT",
-                            "clue": "To bend light passing between materials",
+                            "answer": "DEFLECT",
+                            "clue": "To cause a wave or particle to change direction",
                             "difficulty": "medium"
                         },
                         {
@@ -7479,8 +7559,8 @@
                         },
                         {
                             "id": "science_physics_xw_insanity_016",
-                            "answer": "RENORMALIZE",
-                            "clue": "To adjust values in quantum field theory to remove infinities",
+                            "answer": "COUPLING",
+                            "clue": "Strength of interaction between particles in quantum field theory",
                             "difficulty": "insanity"
                         },
                         {
@@ -8844,14 +8924,14 @@
                     "crosswords": [
                         {
                             "id": "science_weather_xw_easy_001",
-                            "answer": "RAIN",
-                            "clue": "Water droplets falling from clouds",
+                            "answer": "SHOWER",
+                            "clue": "Brief light rainfall",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_weather_xw_easy_002",
-                            "answer": "WIND",
-                            "clue": "Movement of air across the Earth",
+                            "answer": "ZEPHYR",
+                            "clue": "Gentle pleasant breeze",
                             "difficulty": "easy"
                         },
                         {
@@ -8862,8 +8942,8 @@
                         },
                         {
                             "id": "science_weather_xw_easy_004",
-                            "answer": "CLOUD",
-                            "clue": "Visible mass of water droplets in the sky",
+                            "answer": "NIMBUS",
+                            "clue": "Dark rain bearing cloud",
                             "difficulty": "easy"
                         },
                         {
@@ -8892,8 +8972,8 @@
                         },
                         {
                             "id": "science_weather_xw_medium_004",
-                            "answer": "TORNADO",
-                            "clue": "Violently rotating column of air touching the ground",
+                            "answer": "TWISTER",
+                            "clue": "Informal term for a violently rotating column of air",
                             "difficulty": "medium"
                         },
                         {
@@ -8904,8 +8984,8 @@
                         },
                         {
                             "id": "science_weather_xw_medium_006",
-                            "answer": "MONSOON",
-                            "clue": "Seasonal wind pattern bringing heavy rains",
+                            "answer": "HARMATTAN",
+                            "clue": "Dry dusty wind that blows from the Sahara across West Africa",
                             "difficulty": "medium"
                         },
                         {
@@ -8916,8 +8996,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_002",
-                            "answer": "ISOBAR",
-                            "clue": "Line on a map connecting equal air pressure points",
+                            "answer": "MILLIBAR",
+                            "clue": "Unit commonly used to measure atmospheric pressure",
                             "difficulty": "hard"
                         },
                         {
@@ -8928,8 +9008,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_004",
-                            "answer": "ANEMOMETER",
-                            "clue": "Instrument used to measure wind speed",
+                            "answer": "WINDVANE",
+                            "clue": "Instrument that indicates the direction of wind",
                             "difficulty": "hard"
                         },
                         {
@@ -8970,14 +9050,14 @@
                         },
                         {
                             "id": "science_weather_xw_easy_006",
-                            "answer": "HAIL",
-                            "clue": "Balls of ice that fall during some storms",
+                            "answer": "SLUSH",
+                            "clue": "Mixture of partly melted snow and water",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_weather_xw_easy_007",
-                            "answer": "FOG",
-                            "clue": "Low cloud that reduces visibility near the ground",
+                            "answer": "SMOG",
+                            "clue": "Air pollution formed by smoke and fog in urban areas",
                             "difficulty": "easy"
                         },
                         {
@@ -8988,8 +9068,8 @@
                         },
                         {
                             "id": "science_weather_xw_easy_009",
-                            "answer": "HEAT",
-                            "clue": "Thermal energy felt as warmth",
+                            "answer": "WARMTH",
+                            "clue": "Comfortable level of thermal energy in the atmosphere",
                             "difficulty": "easy"
                         },
                         {
@@ -9018,8 +9098,8 @@
                         },
                         {
                             "id": "science_weather_xw_medium_010",
-                            "answer": "PRESSURE",
-                            "clue": "Force exerted by the weight of the atmosphere",
+                            "answer": "PASCAL",
+                            "clue": "SI unit of atmospheric pressure",
                             "difficulty": "medium"
                         },
                         {
@@ -9150,8 +9230,8 @@
                         },
                         {
                             "id": "science_weather_xw_medium_014",
-                            "answer": "DROUGHT",
-                            "clue": "Prolonged period of unusually low rainfall",
+                            "answer": "ARIDITY",
+                            "clue": "Condition of persistently low moisture in a climate region",
                             "difficulty": "medium"
                         },
                         {
@@ -9186,8 +9266,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_012",
-                            "answer": "ISOTHERM",
-                            "clue": "Line on a map connecting equal temperatures",
+                            "answer": "ISOHYET",
+                            "clue": "Line on a weather map connecting equal rainfall totals",
                             "difficulty": "hard"
                         },
                         {
@@ -9198,8 +9278,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_014",
-                            "answer": "CIRRUS",
-                            "clue": "High thin wispy cloud type",
+                            "answer": "CONTRAIL",
+                            "clue": "Long streak of cloud left by a high altitude aircraft",
                             "difficulty": "hard"
                         },
                         {
@@ -9210,8 +9290,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_016",
-                            "answer": "ANEMOMETER",
-                            "clue": "Instrument that measures wind speed",
+                            "answer": "HYGROGRAPH",
+                            "clue": "Instrument that continuously records changes in humidity",
                             "difficulty": "hard"
                         },
                         {
@@ -9228,8 +9308,8 @@
                         },
                         {
                             "id": "science_weather_xw_insanity_014",
-                            "answer": "ANTICYCLONE",
-                            "clue": "High pressure system with clockwise rotation in the northern hemisphere",
+                            "answer": "SUBSIDENCE",
+                            "clue": "Downward movement of air within a high pressure weather system",
                             "difficulty": "insanity"
                         },
                         {
@@ -9294,8 +9374,8 @@
                         },
                         {
                             "id": "science_weather_xw_medium_024",
-                            "answer": "SQUALL",
-                            "clue": "Sudden strong increase in wind speed",
+                            "answer": "FLURRY",
+                            "clue": "Brief sudden burst of snow or wind",
                             "difficulty": "medium"
                         },
                         {
@@ -9432,8 +9512,8 @@
                         },
                         {
                             "id": "science_weather_xw_hard_023",
-                            "answer": "NIMBOSTRAT",
-                            "clue": "Thick layered rain cloud type",
+                            "answer": "PANNUS",
+                            "clue": "Ragged cloud fragments hanging beneath other storm clouds",
                             "difficulty": "hard"
                         },
                         {
@@ -10755,8 +10835,8 @@
                         },
                         {
                             "id": "science_space_xw_hard_001",
-                            "answer": "NEBULA",
-                            "clue": "Cloud of gas and dust in space",
+                            "answer": "REMNANT",
+                            "clue": "Expanding shell of gas left over from a supernova explosion",
                             "difficulty": "hard"
                         },
                         {
@@ -10785,8 +10865,8 @@
                         },
                         {
                             "id": "science_space_xw_insanity_001",
-                            "answer": "SINGULARITY",
-                            "clue": "Point of infinite density at the center of a black hole",
+                            "answer": "BLACKHOLE",
+                            "clue": "Region of spacetime where gravity is so strong nothing can escape",
                             "difficulty": "insanity"
                         },
                         {
@@ -10815,20 +10895,20 @@
                         },
                         {
                             "id": "science_space_xw_easy_006",
-                            "answer": "SUN",
-                            "clue": "Star at the center of our solar system",
+                            "answer": "FLARE",
+                            "clue": "Sudden burst of energy erupting from a star's surface",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_space_xw_easy_007",
-                            "answer": "SKY",
-                            "clue": "The expanse visible from Earth containing stars and planets",
+                            "answer": "AURORA",
+                            "clue": "Colorful natural light display near Earth's polar regions",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_space_xw_easy_008",
-                            "answer": "DUST",
-                            "clue": "Tiny particles found throughout interstellar space",
+                            "answer": "DEBRIS",
+                            "clue": "Scattered fragments of matter floating in space",
                             "difficulty": "easy"
                         },
                         {
@@ -10869,8 +10949,8 @@
                         },
                         {
                             "id": "science_space_xw_medium_011",
-                            "answer": "GRAVITY",
-                            "clue": "Force that attracts objects with mass toward each other",
+                            "answer": "TIDAL",
+                            "clue": "Relating to the stretching gravitational force between celestial bodies",
                             "difficulty": "medium"
                         },
                         {
@@ -10953,14 +11033,14 @@
                         },
                         {
                             "id": "science_space_xw_easy_013",
-                            "answer": "CRATER",
-                            "clue": "Bowl shaped depression formed by impact",
+                            "answer": "BASIN",
+                            "clue": "Large bowl shaped depression on a planetary surface",
                             "difficulty": "easy"
                         },
                         {
                             "id": "science_space_xw_easy_014",
-                            "answer": "GAS",
-                            "clue": "State of matter common in stars and giant planets",
+                            "answer": "VAPOR",
+                            "clue": "Gaseous matter that can condense back into liquid form",
                             "difficulty": "easy"
                         },
                         {
@@ -11259,20 +11339,20 @@
                         },
                         {
                             "id": "science_space_xw_hard_022",
-                            "answer": "ASTROLABE",
-                            "clue": "Instrument used historically to measure star positions",
+                            "answer": "SEXTANT",
+                            "clue": "Navigation instrument used to measure angular positions of stars",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_space_xw_hard_023",
-                            "answer": "COSMONAUT",
-                            "clue": "Space traveler from Russia",
+                            "answer": "SPACEMAN",
+                            "clue": "Informal term for a person who travels beyond Earth",
                             "difficulty": "hard"
                         },
                         {
                             "id": "science_space_xw_hard_024",
-                            "answer": "GRAVITON",
-                            "clue": "Hypothetical quantum particle of gravity",
+                            "answer": "PHOTINO",
+                            "clue": "Hypothetical supersymmetric partner of the photon",
                             "difficulty": "hard"
                         },
                         {
@@ -12961,8 +13041,8 @@
                         },
                         {
                             "id": "pop_culture_movies_xw_easy_008",
-                            "answer": "STAR",
-                            "clue": "Famous leading actor in a film",
+                            "answer": "CELEB",
+                            "clue": "Famous person known for appearing in film or entertainment",
                             "difficulty": "easy"
                         },
                         {
@@ -13003,8 +13083,8 @@
                         },
                         {
                             "id": "pop_culture_movies_xw_medium_011",
-                            "answer": "ADAPTATION",
-                            "clue": "Movie based on a book or other source material",
+                            "answer": "REBOOT",
+                            "clue": "Film that restarts a franchise with a fresh origin story",
                             "difficulty": "medium"
                         },
                         {
@@ -14674,8 +14754,8 @@
                         },
                         {
                             "id": "pop_culture_music_xw_medium_002",
-                            "answer": "GENRE",
-                            "clue": "Category or style of music",
+                            "answer": "STYLE",
+                            "clue": "Distinctive approach or form of musical expression",
                             "difficulty": "medium"
                         },
                         {
@@ -14764,8 +14844,8 @@
                         },
                         {
                             "id": "pop_culture_music_xw_easy_006",
-                            "answer": "DJ",
-                            "clue": "Person who mixes and plays recorded music",
+                            "answer": "MIXER",
+                            "clue": "Person who blends and manipulates recorded tracks for live performance",
                             "difficulty": "easy"
                         },
                         {
@@ -15025,6 +15105,216 @@
                             "answer": "SONATAFORM",
                             "clue": "Classical structure with exposition, development, and recapitulation",
                             "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_016",
+                            "answer": "RIFF",
+                            "clue": "A repeated melodic phrase used as the backbone of a rock song",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_017",
+                            "answer": "PITCH",
+                            "clue": "The highness or lowness of a musical sound",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_018",
+                            "answer": "BASS",
+                            "clue": "The lowest range of musical tones or the instrument that produces them",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_019",
+                            "answer": "GIGS",
+                            "clue": "Informal term for live music performances",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_020",
+                            "answer": "CHORD",
+                            "clue": "Three or more musical notes played simultaneously",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_021",
+                            "answer": "COVER",
+                            "clue": "A new recording of a song originally performed by another artist",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_022",
+                            "answer": "BRIDGE",
+                            "clue": "A contrasting section of a song that connects verse to chorus",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_easy_023",
+                            "answer": "VINYL",
+                            "clue": "A record format using grooved discs pressed from a plastic material",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_019",
+                            "answer": "SETLIST",
+                            "clue": "The planned order of songs a band will perform at a live show",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_020",
+                            "answer": "TOURING",
+                            "clue": "The practice of traveling to perform live music across multiple venues",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_021",
+                            "answer": "FRONTMAN",
+                            "clue": "The lead vocalist and primary public face of a music group",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_022",
+                            "answer": "SAMPLING",
+                            "clue": "Taking a portion of one recording and reusing it in a new song",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_023",
+                            "answer": "FALSETTO",
+                            "clue": "A singing technique producing notes above the normal vocal range",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_024",
+                            "answer": "DROPOUT",
+                            "clue": "A deliberate silence or reduction in a song to create impact",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_025",
+                            "answer": "UNSIGNED",
+                            "clue": "Describes a musician not yet contracted to a record label",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_medium_026",
+                            "answer": "COLLAB",
+                            "clue": "An informal term for two or more artists working together on a song",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_016",
+                            "answer": "VIBRATO",
+                            "clue": "A rapid slight variation in pitch used to enrich a musical note",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_017",
+                            "answer": "STACCATO",
+                            "clue": "A style of playing where each note is sharply detached from the next",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_018",
+                            "answer": "MULTITRACK",
+                            "clue": "A recording method capturing separate instruments on independent channels",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_019",
+                            "answer": "DOWNBEAT",
+                            "clue": "The first and strongest beat of a musical measure",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_020",
+                            "answer": "SOLFEGE",
+                            "clue": "A system for teaching music using syllables like do re mi",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_021",
+                            "answer": "BREAKBEAT",
+                            "clue": "A rhythmic percussion loop sampled to form the backbone of hip hop",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_022",
+                            "answer": "MIXDOWN",
+                            "clue": "The final stage of music production where all tracks are blended together",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_023",
+                            "answer": "INTERVAL",
+                            "clue": "The distance in pitch between two musical notes",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_019",
+                            "answer": "SERIALISM",
+                            "clue": "A compositional technique organizing all musical elements into strict ordered sequences",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_020",
+                            "answer": "MUSIQUE",
+                            "clue": "Relating to an early form of electronic music built from recorded real-world sounds",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_021",
+                            "answer": "LEITMOTIF",
+                            "clue": "A recurring musical theme associated with a specific character or idea",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_022",
+                            "answer": "SPECTRAL",
+                            "clue": "A compositional style based on the acoustic and harmonic properties of sound spectra",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_023",
+                            "answer": "BITONALITY",
+                            "clue": "The simultaneous use of two different keys within a single musical composition",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_024",
+                            "answer": "PHONOGRAPH",
+                            "clue": "Early device for recording and reproducing sound using a rotating grooved disc",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_025",
+                            "answer": "CROSSFADE",
+                            "clue": "A mixing technique where one audio track smoothly transitions into another",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_026",
+                            "answer": "SIDECHAIN",
+                            "clue": "A compression technique where one audio signal controls the dynamics of another",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_027",
+                            "answer": "SEQUENCER",
+                            "clue": "A device or software that records and plays back musical patterns in order",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_insanity_028",
+                            "answer": "SOUNDWAVE",
+                            "clue": "A mechanical pressure wave that carries audio energy through a medium",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_music_xw_hard_024",
+                            "answer": "WOODWIND",
+                            "clue": "A family of instruments that produce sound by blowing air through a reed or mouthpiece",
+                            "difficulty": "hard"
                         }
                     ]
                 },
@@ -16234,7 +16524,608 @@
                         }
                     ],
                     "wordoku": [],
-                    "crosswords": []
+                    "crosswords": [
+                        {
+                            "id": "pop_culture_television_xw_easy_001",
+                            "answer": "REMOTE",
+                            "clue": "Handheld device used to change TV channels",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_002",
+                            "answer": "SITCOM",
+                            "clue": "Genre of comedy TV show typically set in a home or workplace",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_003",
+                            "answer": "PILOT",
+                            "clue": "The very first episode of a TV series",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_004",
+                            "answer": "RERUN",
+                            "clue": "A TV episode that has already aired before and is being broadcast again",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_005",
+                            "answer": "CABLE",
+                            "clue": "Type of TV service delivered through wired infrastructure rather than broadcast antenna",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_001",
+                            "answer": "SPINOFF",
+                            "clue": "A new TV show derived from a character or setting in an existing series",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_002",
+                            "answer": "PREMIERE",
+                            "clue": "The very first broadcast of a new TV season or series",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_003",
+                            "answer": "NETWORK",
+                            "clue": "A broadcasting company that airs TV programming nationally",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_004",
+                            "answer": "SYNDICATED",
+                            "clue": "Describes a show licensed to air on multiple independent stations",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_005",
+                            "answer": "SHOWRUNNER",
+                            "clue": "The chief creative producer who oversees all aspects of a TV series",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_001",
+                            "answer": "MINISERIES",
+                            "clue": "A limited TV production that tells a complete story over a small number of episodes",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_002",
+                            "answer": "UPFRONTS",
+                            "clue": "Annual TV industry presentations where networks pitch their fall schedules to advertisers",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_003",
+                            "answer": "ANTHOLOGY",
+                            "clue": "A TV format where each season features an entirely different story and cast",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_004",
+                            "answer": "TIMESLOT",
+                            "clue": "The scheduled broadcast window assigned to a TV program",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_005",
+                            "answer": "SWEEPS",
+                            "clue": "Rating measurement periods during which networks air their biggest episodes",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_001",
+                            "answer": "KINESCOPE",
+                            "clue": "Early method of recording live TV broadcasts by filming directly off a monitor screen",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_002",
+                            "answer": "DEFCON",
+                            "clue": "Abbreviation used in TV writers rooms to describe the escalating urgency of a plot crisis",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_003",
+                            "answer": "HYPHENATE",
+                            "clue": "Industry term for a TV professional who holds multiple roles such as writer and director",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_004",
+                            "answer": "TEASER",
+                            "clue": "A short scene that airs before the opening credits of a TV episode",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_005",
+                            "answer": "COLDOPEN",
+                            "clue": "A scene that begins a TV episode immediately without any title card or theme song",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_006",
+                            "answer": "RATING",
+                            "clue": "Measure of how many viewers are watching a TV program",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_007",
+                            "answer": "SEASON",
+                            "clue": "A set of episodes released together under one TV series",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_008",
+                            "answer": "AIRDATE",
+                            "clue": "The scheduled date when a TV episode is first broadcast",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_009",
+                            "answer": "FINALE",
+                            "clue": "The last episode of a TV season or series",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_010",
+                            "answer": "AERIAL",
+                            "clue": "Antenna used to receive over the air television signals",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_006",
+                            "answer": "RATINGS",
+                            "clue": "Audience measurement data used to determine a show's popularity",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_007",
+                            "answer": "ENSEMBLE",
+                            "clue": "A TV show featuring a large group of equally prominent cast members",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_008",
+                            "answer": "HIATUS",
+                            "clue": "A scheduled break in a TV series between episodes or seasons",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_009",
+                            "answer": "DOCUSERIES",
+                            "clue": "A factual TV show told across multiple episodes",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_010",
+                            "answer": "STREAMING",
+                            "clue": "Delivering TV content over the internet without downloading",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_011",
+                            "answer": "PROCEDURAL",
+                            "clue": "A TV genre where each episode follows investigators solving a case",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_006",
+                            "answer": "LOGLINE",
+                            "clue": "A one sentence summary of a TV show's premise used in pitching",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_007",
+                            "answer": "BROADBAND",
+                            "clue": "High speed internet connection used to stream television content",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_008",
+                            "answer": "SHOWBIBLE",
+                            "clue": "A detailed document outlining a TV series's characters, world, and rules",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_009",
+                            "answer": "PLOTTWIST",
+                            "clue": "An unexpected story development that changes the direction of a TV episode",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_010",
+                            "answer": "BUMPER",
+                            "clue": "A short transition clip shown before or after a commercial break",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_006",
+                            "answer": "LOOKDEV",
+                            "clue": "The visual design process used to establish a TV show's aesthetic",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_007",
+                            "answer": "PROSCENIUM",
+                            "clue": "Staging format where performers face a fixed audience through a framed opening",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_008",
+                            "answer": "TURNOVER",
+                            "clue": "The rate at which TV writers or show staff are replaced each season",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_009",
+                            "answer": "LOCKIN",
+                            "clue": "A TV writers room session where the story is locked before production begins",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_010",
+                            "answer": "GREENLIGHT",
+                            "clue": "The official approval given by a network to begin producing a TV show",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_011",
+                            "answer": "SHOWFORMAT",
+                            "clue": "The structural template defining how episodes of a TV series are built",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_012",
+                            "answer": "BACKORDER",
+                            "clue": "Additional episodes commissioned after a TV show's initial run",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_013",
+                            "answer": "RUNOFSHOW",
+                            "clue": "A detailed schedule outlining every segment of a live TV broadcast",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_014",
+                            "answer": "STORYARC",
+                            "clue": "A continuous narrative thread that develops across multiple TV episodes",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_011",
+                            "answer": "VIEWER",
+                            "clue": "A person watching a television program",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_012",
+                            "answer": "STATIC",
+                            "clue": "Visual noise on a TV screen caused by poor signal reception",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_013",
+                            "answer": "LINEUP",
+                            "clue": "The schedule of programs planned for broadcast on a TV channel",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_014",
+                            "answer": "CHANNEL",
+                            "clue": "A dedicated frequency or platform on which TV programs are broadcast",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_015",
+                            "answer": "EPISODE",
+                            "clue": "A single installment of a TV series",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_012",
+                            "answer": "BROADCAST",
+                            "clue": "The transmission of a TV program over airwaves to a wide audience",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_013",
+                            "answer": "SERIALIZED",
+                            "clue": "TV format where storylines carry over from one episode to the next",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_014",
+                            "answer": "BINGEABLE",
+                            "clue": "Describes a TV show compelling enough to watch many episodes in one sitting",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_015",
+                            "answer": "WATCHLIST",
+                            "clue": "A saved collection of TV shows a viewer intends to watch",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_016",
+                            "answer": "REBOOT",
+                            "clue": "A new version of an existing TV show with a fresh take on the original",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_011",
+                            "answer": "SHOWREEL",
+                            "clue": "A compiled highlight video showcasing a TV actor or crew members work",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_012",
+                            "answer": "PICKUPS",
+                            "clue": "Additional scenes filmed after main production to fix or enhance a TV episode",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_013",
+                            "answer": "BREAKDOWN",
+                            "clue": "A detailed scene by scene analysis document used by a TV production team",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_014",
+                            "answer": "FLIGHTING",
+                            "clue": "A scheduling strategy for airing TV content in concentrated broadcast bursts",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_015",
+                            "answer": "PAYOFF",
+                            "clue": "The satisfying resolution of a storyline set up earlier in a TV series",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_015",
+                            "answer": "DAILIES",
+                            "clue": "Raw unedited footage reviewed by a TV director after each days filming",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_016",
+                            "answer": "TURNAROUND",
+                            "clue": "The period a TV project spends in limbo after a network drops it from development",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_017",
+                            "answer": "HOLDBACK",
+                            "clue": "A contractual restriction preventing a TV show from airing on competing platforms",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_018",
+                            "answer": "PICKUPRATE",
+                            "clue": "The percentage of TV pilots ordered to full series by a network",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_019",
+                            "answer": "COPRODUCED",
+                            "clue": "Describes a TV show jointly funded and created by two or more studios",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_020",
+                            "answer": "TALKBACK",
+                            "clue": "A live audience feedback session held after a TV episode screening",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_021",
+                            "answer": "PITCHROOM",
+                            "clue": "The space where TV creators present show concepts to network executives",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_022",
+                            "answer": "FREEVIEW",
+                            "clue": "A platform offering unencrypted broadcast TV channels at no cost",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_023",
+                            "answer": "PLACEDEAL",
+                            "clue": "An arrangement where a brand pays to have its product featured in a TV show",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_024",
+                            "answer": "SHOWGREEN",
+                            "clue": "Industry slang for the budget approval that allows a TV production to begin",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_016",
+                            "answer": "SIGNAL",
+                            "clue": "The transmission that carries TV audio and video to a receiver",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_017",
+                            "answer": "SCRIPTED",
+                            "clue": "Describes a TV show with written dialogue as opposed to improvised content",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_018",
+                            "answer": "HOST",
+                            "clue": "The presenter who leads a TV talk or game show",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_019",
+                            "answer": "BOXSET",
+                            "clue": "A packaged collection of all episodes from a TV series",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_020",
+                            "answer": "TALKSHOW",
+                            "clue": "A TV format built around interviews and conversation with guests",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_021",
+                            "answer": "ADBREAK",
+                            "clue": "A pause in TV programming during which commercials are aired",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_easy_022",
+                            "answer": "OFFAIR",
+                            "clue": "Describes a station or program not currently broadcasting",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_017",
+                            "answer": "WHODUNIT",
+                            "clue": "A TV mystery genre centered on uncovering the identity of a criminal",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_018",
+                            "answer": "CLIFFHANG",
+                            "clue": "A suspenseful episode ending that leaves a key question unresolved",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_019",
+                            "answer": "WATCHDOG",
+                            "clue": "A TV journalism format that investigates wrongdoing on behalf of the public",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_020",
+                            "answer": "UNSCRIPTED",
+                            "clue": "Describes reality or improvised TV programming without written dialogue",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_021",
+                            "answer": "WORLDBUILD",
+                            "clue": "The process of crafting the fictional setting and rules of a TV series",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_022",
+                            "answer": "CATCHUP",
+                            "clue": "A service allowing viewers to watch previously aired TV programs",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_medium_023",
+                            "answer": "ONDEMAND",
+                            "clue": "TV delivery model allowing viewers to watch content at any time",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_016",
+                            "answer": "WATERSHED",
+                            "clue": "The evening time after which adult TV content is permitted to broadcast",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_017",
+                            "answer": "HEADWRITER",
+                            "clue": "The senior creative responsible for a TV show's overall narrative direction",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_018",
+                            "answer": "SOFTLAUNCH",
+                            "clue": "A quiet low key debut of a TV show before its main promotional push",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_019",
+                            "answer": "RECURRENT",
+                            "clue": "A TV cast member who appears regularly but is not in every episode",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_020",
+                            "answer": "MIDSEASON",
+                            "clue": "A TV premiere or scheduled break occurring in the middle of the broadcast year",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_hard_021",
+                            "answer": "SIMULCAST",
+                            "clue": "The simultaneous broadcast of the same TV program on multiple channels",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_025",
+                            "answer": "SHOWKILLER",
+                            "clue": "Informal term for a network executive known for canceling TV series",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_026",
+                            "answer": "MEDIABUYS",
+                            "clue": "Purchases of TV advertising time slots made by brands or agencies",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_027",
+                            "answer": "MAKEGOODS",
+                            "clue": "Free replacement airtime offered to TV advertisers after an audience under-delivery",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_028",
+                            "answer": "PODBUSTING",
+                            "clue": "Technique of placing ads at the very start or end of a TV commercial break",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_029",
+                            "answer": "LIVENESS",
+                            "clue": "The quality of a TV broadcast being transmitted in real time",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_030",
+                            "answer": "CARVEOUT",
+                            "clue": "A contractual exception allowing a TV actor to work on other projects simultaneously",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_031",
+                            "answer": "SOFTNEWS",
+                            "clue": "Light entertaining TV journalism as opposed to hard breaking news coverage",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_032",
+                            "answer": "PRIMETIME",
+                            "clue": "The evening broadcast window that attracts the largest TV viewing audience",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_033",
+                            "answer": "NARROWCAST",
+                            "clue": "Targeting TV content to a specific niche audience rather than the general public",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "pop_culture_television_xw_insanity_034",
+                            "answer": "DUOPOLY",
+                            "clue": "Ownership of two TV stations in the same market by a single company",
+                            "difficulty": "insanity"
+                        }
+                    ]
                 },
                 {
                     "id": "celebrities",
@@ -29858,6 +30749,106 @@
                         {
                             "id": "geography_cities_wd_mixed_025",
                             "word": "COASTLINE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_026",
+                            "word": "LONGITUDE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_027",
+                            "word": "SOUTHWARD"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_028",
+                            "word": "EASTBOUND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_029",
+                            "word": "WESTBOUND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_030",
+                            "word": "ROCKSLIDE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_031",
+                            "word": "VOLCANISM"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_032",
+                            "word": "CLOUDBANK"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_033",
+                            "word": "RAINCLOUD"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_034",
+                            "word": "NORTHSIDE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_035",
+                            "word": "FLINTROCK"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_036",
+                            "word": "RIDGEBACK"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_037",
+                            "word": "GULFSHORE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_038",
+                            "word": "STONEARCH"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_039",
+                            "word": "BRIDGEWAY"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_040",
+                            "word": "GROUNDSEL"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_041",
+                            "word": "FROSTLAND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_042",
+                            "word": "STORMWIND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_043",
+                            "word": "SUNBRIDGE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_044",
+                            "word": "CAVELINKS"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_045",
+                            "word": "PONDWATER"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_046",
+                            "word": "SOUTHLAND"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_047",
+                            "word": "OCEANBIRD"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_048",
+                            "word": "BOGWALKER"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_049",
+                            "word": "CLOUDRISE"
+                        },
+                        {
+                            "id": "geography_cities_wd_mixed_050",
+                            "word": "FIELDWORK"
                         }
                     ],
                     "crosswords": []
@@ -36021,6 +37012,90 @@
                         {
                             "id": "literature_poems_wd_mixed_029",
                             "word": "DYSTOPIAN"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_030",
+                            "word": "RHAPSODIC"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_031",
+                            "word": "WHODUNITS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_032",
+                            "word": "FORESIGHT"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_033",
+                            "word": "PAGECOUNT"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_034",
+                            "word": "WORDSCAPE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_035",
+                            "word": "VERBOSITY"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_036",
+                            "word": "PANEGYRIC"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_037",
+                            "word": "INKWASHED"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_038",
+                            "word": "PARODYIST"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_039",
+                            "word": "THRENODIC"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_040",
+                            "word": "SYMBOLIZE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_041",
+                            "word": "INKHOLDER"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_042",
+                            "word": "LORESMITH"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_043",
+                            "word": "VERBALISM"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_044",
+                            "word": "HYPOTAXIS"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_045",
+                            "word": "JOURNALED"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_046",
+                            "word": "SKETCHPAD"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_047",
+                            "word": "FABLEWORK"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_048",
+                            "word": "DOGMATIZE"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_049",
+                            "word": "RUMINATES"
+                        },
+                        {
+                            "id": "literature_poems_wd_mixed_050",
+                            "word": "VERSIONAL"
                         }
                     ],
                     "crosswords": []
@@ -44644,6 +45719,46 @@
                         {
                             "id": "games_video_games_wd_mixed_040",
                             "word": "SPINTRACK"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_041",
+                            "word": "DEBUGPATH"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_042",
+                            "word": "GUILDWORK"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_043",
+                            "word": "FROSTMAGE"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_044",
+                            "word": "MINESHAFT"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_045",
+                            "word": "HEXCRAWLS"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_046",
+                            "word": "THROWBACK"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_047",
+                            "word": "CRITBONUS"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_048",
+                            "word": "MAGEWORLD"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_049",
+                            "word": "GLITCHMAP"
+                        },
+                        {
+                            "id": "games_video_games_wd_mixed_050",
+                            "word": "STRIKEMAP"
                         }
                     ],
                     "crosswords": []
@@ -50887,6 +52002,10 @@
                         {
                             "id": "history_ancient_times_wd_mixed_050",
                             "word": "SCULPTION"
+                        },
+                        {
+                            "id": "history_ancient_times_wd_mixed_051",
+                            "word": "OLYMPIANS"
                         }
                     ],
                     "crosswords": []

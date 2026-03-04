@@ -626,7 +626,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 504770389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595271968}
+        m_TargetAssemblyTypeName: LoginPopupUI, Assembly-CSharp
+        m_MethodName: OnCreateAccountPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +991,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 590412588}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595271968}
+        m_TargetAssemblyTypeName: LoginPopupUI, Assembly-CSharp
+        m_MethodName: OnGuestPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &595271965
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +1013,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 595271967}
-  - component: {fileID: 595271966}
   - component: {fileID: 595271968}
   m_Layer: 0
   m_Name: UIManager
@@ -998,23 +1021,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &595271966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595271965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ece8d250c8ea145a9912e619567f8b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicToggle: {fileID: 0}
-  sfxToggle: {fileID: 0}
-  vibrationToggle: {fileID: 0}
-  musicSource: {fileID: 0}
-  sfxSources: []
 --- !u!4 &595271967
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,10 +1045,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 595271965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 792c11173a84940c889dca9f60910386, type: 3}
+  m_Script: {fileID: 11500000, guid: d261bb0e676b44e41a24f4d1159a7256, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 1
+  m_EditorClassIdentifier: Assembly-CSharp::LoginPopupUI
+  usernameInput: {fileID: 1964433979}
+  passwordInput: {fileID: 2012275563}
+  statusText: {fileID: 0}
+  popupRoot: {fileID: 1986698245}
+  createAccountPanel: {fileID: 0}
+  nextSceneName: MainMenu
+  cancelLoadsScene: 0
 --- !u!1 &1155759670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1869,7 +1881,7 @@ PrefabInstance:
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 595271968}
+      objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
@@ -1880,7 +1892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: OnConfirmPressed
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1888,7 +1900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
+      value: LoginPopupUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1929,7 +1941,7 @@ PrefabInstance:
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 595271968}
+      objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
@@ -1940,7 +1952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadPreviousScene
+      value: OnCancelPressed
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1948,7 +1960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
+      value: LoginPopupUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2000,7 +2012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -86.756
+      value: -80.4
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2151,6 +2163,11 @@ PrefabInstance:
 --- !u!224 &1986698244 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 1986698243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986698245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8279863432137986298, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
   m_PrefabInstance: {fileID: 1986698243}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2012275561
