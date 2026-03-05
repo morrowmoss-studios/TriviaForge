@@ -1,594 +1,450 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Word-first crossword generator.
+///
+/// Instead of building a fixed layout and trying to fill it (which fails when
+/// the word pool doesn't match slot lengths), this generator:
+///   1. Places words one at a time onto an unbounded coordinate space.
+///   2. Each new word MUST intersect an already-placed word at exactly one shared letter.
+///   3. Parallel-adjacency is forbidden (no accidental touching words).
+///   4. After placing, the bounding box is checked — if it exceeds the grid it is undone.
+///   5. Once enough words are placed, the used cells become the layout and '#' fills the rest.
+///
+/// This guarantees the puzzle is always solvable because we build the answer first,
+/// then derive the layout from it — rather than fighting a pre-made layout.
+/// </summary>
 public static class CrosswordGenerator
 {
+    // ── public result type ───────────────────────────────────────────────────
+
     [Serializable]
     public class GeneratedCrossword
     {
         public int rows;
         public int cols;
-
-        // '.' playable, '#' blocked
-        public string[] layoutRows;
-
-        // Placed words with coordinates + direction
+        public string[] layoutRows;       // '#' = blocked, '.' = playable
         public List<CrosswordWord> placedWords;
     }
 
-    // Internal working board: '\0' empty, otherwise letter
-    private class Board
+    // ── internal types ───────────────────────────────────────────────────────
+
+    private class PlacedWord
     {
-        public int Rows;
-        public int Cols;
+        public CrosswordEntry Entry;
+        public int Row;
+        public int Col;
+        public bool IsAcross;
+    }
 
-        public char[,] Letters;     // placed letters
-        public bool[,] Blocked;     // true = '#'
+    private struct PlacementOption
+    {
+        public bool IsAcross;
+        public int Row;
+        public int Col;
+        public int Shared;
+    }
 
-        public Board(int rows, int cols, bool[,] blocked)
+    // ── public entry point ───────────────────────────────────────────────────
+
+    public static GeneratedCrossword Generate(
+        List<CrosswordEntry> pool,
+        int rows              = 10,
+        int cols              = 10,
+        int targetWords       = 18,
+        int seed              = 0,
+        int maxAttempts       = 40,
+        int maxIterPerAttempt = 6000)
+    {
+        if (pool == null || pool.Count == 0)
         {
-            Rows = rows;
-            Cols = cols;
-
-            Letters = new char[rows, cols];
-            Blocked = blocked ?? new bool[rows, cols];
+            Debug.LogError("[CrosswordGenerator] Pool is empty.");
+            return EmptyResult(rows, cols);
         }
 
-        public bool InBounds(int r, int c) => r >= 0 && r < Rows && c >= 0 && c < Cols;
-
-        public bool IsBlocked(int r, int c) => Blocked[r, c];
-
-        public char Get(int r, int c) => Letters[r, c];
-        public void Set(int r, int c, char ch) => Letters[r, c] = ch;
-
-        public bool IsEmpty(int r, int c) => Letters[r, c] == '\0';
-    }
-
-    private struct Placement
-    {
-        public bool isAcross;
-        public int startRow;
-        public int startCol;
-    }
-
-    /// <summary>
-    /// Generates a crossword by:
-    /// 1) making a classic-ish symmetric block mask (#/.)
-    /// 2) placing words onto '.' cells, trying to intersect
-    /// </summary>
-    public static GeneratedCrossword GenerateFromClueBank(
-        List<CrosswordEntry> clueBank,
-        int rows,
-        int cols,
-        int targetWordCount,
-        int seed = 0,
-        int maxAttempts = 2500,
-        int minWordLen = 3,
-        int maxWordLen = 10,
-
-        // --- NEW: layout controls ---
-        float blockPercent = 0.18f,          // 0.12–0.22 usually feels “classic”
-        int layoutGenAttempts = 200,         // tries to find a good mask
-        bool forceCenterOpen = true          // many crosswords keep center open
-    )
-    {
-        if (clueBank == null) clueBank = new List<CrosswordEntry>();
-
-        // Clean + filter clue bank (answer/clue required)
-        var pool = clueBank
-            .Where(e => e != null && !string.IsNullOrWhiteSpace(e.answer) && !string.IsNullOrWhiteSpace(e.clue))
-            .Select(e => new CrosswordEntry
-            {
-                id = e.id,
-                answer = CleanAnswer(e.answer),
-                clue = e.clue.Trim(),
-                difficulty = string.IsNullOrWhiteSpace(e.difficulty) ? "medium" : e.difficulty.Trim().ToLowerInvariant()
-            })
-            .Where(e => e.answer.Length >= minWordLen && e.answer.Length <= maxWordLen)
-            .Where(e => e.answer.All(ch => ch >= 'A' && ch <= 'Z'))
-            .DistinctBy(e => e.answer)
-            .ToList();
+        var clean = CleanPool(pool);
+        if (clean.Count == 0)
+        {
+            Debug.LogError("[CrosswordGenerator] Pool is empty after cleaning.");
+            return EmptyResult(rows, cols);
+        }
 
         var rng = (seed == 0) ? new System.Random() : new System.Random(seed);
 
-        // Shuffle by length descending (helps intersections)
-        pool = pool.OrderByDescending(e => e.answer.Length).ThenBy(_ => rng.Next()).ToList();
-
-        // 1) Generate a symmetric, connected layout
-        bool[,] blocked = GenerateClassicSymmetricMask(rows, cols, blockPercent, rng, layoutGenAttempts, forceCenterOpen);
-        string[] layoutRows = MaskToLayoutRows(blocked);
-
-        // 2) Create board with that mask
-        var board = new Board(rows, cols, blocked);
-        var placed = new List<(CrosswordEntry entry, Placement placement)>();
-
-        if (pool.Count == 0)
-            return BuildResult(board, placed, layoutRows);
-
-        // Place first word (longest) roughly centered, across
-        var first = pool[0];
-        if (!TryPlaceFirst(board, first.answer, rng, out var firstPlacement))
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
         {
-            // If first word fails, return empty puzzle (still returns layout)
-            return BuildResult(board, placed, layoutRows);
+            Shuffle(clean, rng);
+
+            var result = TryGenerate(clean, rows, cols, targetWords, rng, maxIterPerAttempt);
+            if (result != null && result.placedWords.Count >= Mathf.Max(8, targetWords - 4))
+            {
+                Debug.Log("[CrosswordGenerator] Success on attempt " + (attempt + 1) +
+                          " with " + result.placedWords.Count + " words.");
+                return result;
+            }
         }
 
-        ApplyPlacement(board, first.answer, firstPlacement);
-        placed.Add((first, firstPlacement));
+        Debug.LogError("[CrosswordGenerator] All " + maxAttempts + " attempts failed. " +
+                       "Add more words to the pool (especially 3-6 letter words).");
+        return EmptyResult(rows, cols);
+    }
 
-        var used = new HashSet<string> { first.answer };
+    // ── core single-attempt generator ────────────────────────────────────────
 
-        int attempts = 0;
+    private static GeneratedCrossword TryGenerate(
+        List<CrosswordEntry> pool,
+        int rows, int cols,
+        int target,
+        System.Random rng,
+        int maxIter)
+    {
+        // Vector2Int: x = col, y = row — Unity-native type, no named-tuple issues
+        var letters     = new Dictionary<Vector2Int, char>();
+        var acrossCells = new HashSet<Vector2Int>();
+        var downCells   = new HashSet<Vector2Int>();
 
-        while (placed.Count < targetWordCount && attempts < maxAttempts)
+        var placed    = new List<PlacedWord>();
+        var usedWords = new HashSet<string>();
+
+        // ── first word ───────────────────────────────────────────────────────
+        var starters = pool.FindAll(e => e.answer.Length >= 5 && e.answer.Length <= 8);
+        if (starters.Count == 0) starters = pool;
+
+        var first = starters[rng.Next(starters.Count)];
+        PlaceWord(letters, acrossCells, downCells, first.answer, 0, 0, true);
+        placed.Add(new PlacedWord { Entry = first, Row = 0, Col = 0, IsAcross = true });
+        usedWords.Add(first.answer);
+
+        // ── grow the puzzle ───────────────────────────────────────────────────
+        for (int iter = 0; iter < maxIter && placed.Count < target; iter++)
         {
-            attempts++;
-
             var candidate = pool[rng.Next(pool.Count)];
-            if (used.Contains(candidate.answer)) continue;
+            if (usedWords.Contains(candidate.answer)) continue;
 
-            if (TryFindIntersectingPlacement(board, candidate.answer, rng, out var placement))
+            var options = FindPlacements(letters, acrossCells, downCells,
+                                         candidate.answer, rows, cols);
+            if (options.Count == 0) continue;
+
+            options.Sort((a, b) => b.Shared.CompareTo(a.Shared));
+
+            foreach (var opt in options)
             {
-                ApplyPlacement(board, candidate.answer, placement);
-                placed.Add((candidate, placement));
-                used.Add(candidate.answer);
-            }
-            else
-            {
-                // Occasionally place non-intersecting word early so we don't stall
-                if (placed.Count < 3 && TryPlaceNonIntersecting(board, candidate.answer, rng, out var placement2))
+                PlaceWord(letters, acrossCells, downCells,
+                          candidate.answer, opt.Row, opt.Col, opt.IsAcross);
+
+                if (BoundingBoxFits(letters, rows, cols))
                 {
-                    ApplyPlacement(board, candidate.answer, placement2);
-                    placed.Add((candidate, placement2));
-                    used.Add(candidate.answer);
+                    placed.Add(new PlacedWord
+                    {
+                        Entry    = candidate,
+                        Row      = opt.Row,
+                        Col      = opt.Col,
+                        IsAcross = opt.IsAcross
+                    });
+                    usedWords.Add(candidate.answer);
+                    break;
+                }
+                else
+                {
+                    UndoPlace(letters, acrossCells, downCells,
+                              candidate.answer, opt.Row, opt.Col, opt.IsAcross);
                 }
             }
         }
 
-        var crosswordWords = BuildCrosswordWordList(placed);
+        if (placed.Count < 6) return null;
+
+        // ── normalize to top-left = (0,0) ─────────────────────────────────────
+        int minR = int.MaxValue, minC = int.MaxValue;
+        foreach (var kv in letters)
+        {
+            if (kv.Key.y < minR) minR = kv.Key.y;
+            if (kv.Key.x < minC) minC = kv.Key.x;
+        }
+
+        char[,] grid = new char[rows, cols];
+        foreach (var kv in letters)
+        {
+            int r = kv.Key.y - minR;
+            int c = kv.Key.x - minC;
+            if (r >= 0 && r < rows && c >= 0 && c < cols)
+                grid[r, c] = kv.Value;
+        }
+
+        var layoutRows = new string[rows];
+        for (int r = 0; r < rows; r++)
+        {
+            var sb = new System.Text.StringBuilder(cols);
+            for (int c = 0; c < cols; c++)
+                sb.Append(grid[r, c] == '\0' ? '#' : '.');
+            layoutRows[r] = sb.ToString();
+        }
+
+        var wordList = new List<CrosswordWord>();
+        int num = 1;
+        foreach (var pw in placed)
+        {
+            wordList.Add(new CrosswordWord
+            {
+                id       = num + (pw.IsAcross ? "A" : "D"),
+                isAcross = pw.IsAcross,
+                startRow = pw.Row - minR,
+                startCol = pw.Col - minC,
+                answer   = pw.Entry.answer,
+                clue     = pw.Entry.clue
+            });
+            num++;
+        }
 
         return new GeneratedCrossword
         {
-            rows = rows,
-            cols = cols,
-            layoutRows = layoutRows,
-            placedWords = crosswordWords
+            rows        = rows,
+            cols        = cols,
+            layoutRows  = layoutRows,
+            placedWords = wordList
         };
     }
 
-    // -------------------------------
-    // Layout generation (classic-ish)
-    // -------------------------------
+    // ── placement logic ───────────────────────────────────────────────────────
 
-    private static bool[,] GenerateClassicSymmetricMask(
-        int rows,
-        int cols,
-        float blockPercent,
-        System.Random rng,
-        int attempts,
-        bool forceCenterOpen
-    )
+    private static List<PlacementOption> FindPlacements(
+        Dictionary<Vector2Int, char> letters,
+        HashSet<Vector2Int> acrossCells,
+        HashSet<Vector2Int> downCells,
+        string word,
+        int rows, int cols)
     {
-        blockPercent = Mathf.Clamp(blockPercent, 0.05f, 0.40f);
+        var results = new List<PlacementOption>();
 
-        int total = rows * cols;
-        int targetBlocks = Mathf.RoundToInt(total * blockPercent);
-
-        // We'll generate only on half the grid and mirror (180° rotational symmetry)
-        // Each decision affects 2 cells (or 1 if it's the center cell of odd grid).
-        for (int tryIndex = 0; tryIndex < attempts; tryIndex++)
-        {
-            bool[,] blocked = new bool[rows, cols];
-
-            // Optionally force center open
-            if (forceCenterOpen && rows % 2 == 1 && cols % 2 == 1)
-            {
-                blocked[rows / 2, cols / 2] = false;
-            }
-
-            int blocksPlaced = 0;
-
-            // Build list of “unique” positions under 180° symmetry
-            var uniqueCells = new List<(int r, int c)>();
-            for (int r = 0; r < rows; r++)
-            for (int c = 0; c < cols; c++)
-            {
-                int rr = rows - 1 - r;
-                int cc = cols - 1 - c;
-
-                // only take one representative from each symmetric pair
-                if (r < rr || (r == rr && c <= cc))
-                    uniqueCells.Add((r, c));
-            }
-
-            // Shuffle them
-            uniqueCells = uniqueCells.OrderBy(_ => rng.Next()).ToList();
-
-            foreach (var cell in uniqueCells)
-            {
-                if (blocksPlaced >= targetBlocks) break;
-
-                int r = cell.r;
-                int c = cell.c;
-                int rr = rows - 1 - r;
-                int cc = cols - 1 - c;
-
-                // If we force center open, skip blocking it
-                if (forceCenterOpen && rows % 2 == 1 && cols % 2 == 1)
-                {
-                    int cr = rows / 2;
-                    int cc2 = cols / 2;
-                    if ((r == cr && c == cc2) || (rr == cr && cc == cc2))
-                        continue;
-                }
-
-                // Decide to block with some bias until we hit target
-                // (More likely early, less likely as we approach target)
-                float t = (float)blocksPlaced / Mathf.Max(1, targetBlocks);
-                float prob = Mathf.Lerp(0.65f, 0.20f, t);
-
-                if (rng.NextDouble() > prob)
-                    continue;
-
-                // Apply symmetric blocking
-                int add = (r == rr && c == cc) ? 1 : 2;
-
-                // Don't overshoot too wildly
-                if (blocksPlaced + add > targetBlocks + 1) continue;
-
-                blocked[r, c] = true;
-                blocked[rr, cc] = true;
-                blocksPlaced += add;
-            }
-
-            // Make sure open cells are connected (single region)
-            if (!IsOpenAreaConnected(blocked, rows, cols))
-                continue;
-
-            // Optional: prevent “too open” or “too blocked” by recalculating actual percent
-            // (just in case symmetry rounding made it drift)
-            int actualBlocks = CountBlocks(blocked, rows, cols);
-            float actualPct = (float)actualBlocks / total;
-
-            if (Mathf.Abs(actualPct - blockPercent) > 0.06f)
-                continue;
-
-            return blocked;
-        }
-
-        // Fallback: no blocks
-        return new bool[rows, cols];
-    }
-
-    private static int CountBlocks(bool[,] blocked, int rows, int cols)
-    {
-        int count = 0;
-        for (int r = 0; r < rows; r++)
-        for (int c = 0; c < cols; c++)
-            if (blocked[r, c]) count++;
-        return count;
-    }
-
-    private static bool IsOpenAreaConnected(bool[,] blocked, int rows, int cols)
-    {
-        // Find first open cell
-        (int r, int c) start = (-1, -1);
-        int openCount = 0;
-
-        for (int r = 0; r < rows; r++)
-        for (int c = 0; c < cols; c++)
-        {
-            if (!blocked[r, c])
-            {
-                openCount++;
-                if (start.r == -1) start = (r, c);
-            }
-        }
-
-        // If everything is blocked (shouldn't happen), treat as invalid
-        if (openCount == 0) return false;
-
-        // Flood fill
-        var visited = new bool[rows, cols];
-        var q = new Queue<(int r, int c)>();
-        q.Enqueue(start);
-        visited[start.r, start.c] = true;
-
-        int reached = 0;
-
-        while (q.Count > 0)
-        {
-            var cur = q.Dequeue();
-            reached++;
-
-            void TryEnq(int rr, int cc)
-            {
-                if (rr < 0 || rr >= rows || cc < 0 || cc >= cols) return;
-                if (visited[rr, cc]) return;
-                if (blocked[rr, cc]) return;
-                visited[rr, cc] = true;
-                q.Enqueue((rr, cc));
-            }
-
-            TryEnq(cur.r - 1, cur.c);
-            TryEnq(cur.r + 1, cur.c);
-            TryEnq(cur.r, cur.c - 1);
-            TryEnq(cur.r, cur.c + 1);
-        }
-
-        return reached == openCount;
-    }
-
-    private static string[] MaskToLayoutRows(bool[,] blocked)
-    {
-        int rows = blocked.GetLength(0);
-        int cols = blocked.GetLength(1);
-
-        var outRows = new string[rows];
-        for (int r = 0; r < rows; r++)
-        {
-            char[] line = new char[cols];
-            for (int c = 0; c < cols; c++)
-                line[c] = blocked[r, c] ? '#' : '.';
-
-            outRows[r] = new string(line);
-        }
-        return outRows;
-    }
-
-    // -------------------------------
-    // Placement logic
-    // -------------------------------
-
-    private static bool TryPlaceFirst(Board board, string word, System.Random rng, out Placement placement)
-    {
-        placement = default;
-
-        // Across, centered row (but must fit + not hit blocks)
-        int row = board.Rows / 2;
-
-        int maxStart = board.Cols - word.Length;
-        if (maxStart < 0) return false;
-
-        // Try a few nearby starts around center
-        int centerStart = Mathf.Clamp(board.Cols / 2 - word.Length / 2, 0, maxStart);
-        var starts = new List<int> { centerStart };
-
-        // add small jitter options
-        for (int d = 1; d <= 4; d++)
-        {
-            if (centerStart - d >= 0) starts.Add(centerStart - d);
-            if (centerStart + d <= maxStart) starts.Add(centerStart + d);
-        }
-
-        starts = starts.OrderBy(_ => rng.Next()).ToList();
-
-        foreach (int col in starts)
-        {
-            var p = new Placement { isAcross = true, startRow = row, startCol = col };
-            if (CanPlace(board, word, p))
-            {
-                placement = p;
-                return true;
-            }
-        }
-
-        // If center row fails due to blocks, try any row
-        for (int k = 0; k < 40; k++)
-        {
-            int r = rng.Next(0, board.Rows);
-            int c = rng.Next(0, maxStart + 1);
-            var p = new Placement { isAcross = true, startRow = r, startCol = c };
-            if (CanPlace(board, word, p))
-            {
-                placement = p;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static bool TryFindIntersectingPlacement(Board board, string word, System.Random rng, out Placement placement)
-    {
-        placement = default;
-
-        // Existing letters on board
-        var existing = new List<(int r, int c, char ch)>();
-        for (int r = 0; r < board.Rows; r++)
-        for (int c = 0; c < board.Cols; c++)
-        {
-            char ch = board.Get(r, c);
-            if (ch != '\0') existing.Add((r, c, ch));
-        }
-
-        if (existing.Count == 0) return false;
-
-        existing = existing.OrderBy(_ => rng.Next()).ToList();
-        var indices = Enumerable.Range(0, word.Length).OrderBy(_ => rng.Next()).ToList();
-
-        foreach (int i in indices)
-        {
-            char target = word[i];
-
-            foreach (var cell in existing)
-            {
-                if (cell.ch != target) continue;
-
-                // across
-                var across = new Placement
-                {
-                    isAcross = true,
-                    startRow = cell.r,
-                    startCol = cell.c - i
-                };
-                if (CanPlace(board, word, across))
-                {
-                    placement = across;
-                    return true;
-                }
-
-                // down
-                var down = new Placement
-                {
-                    isAcross = false,
-                    startRow = cell.r - i,
-                    startCol = cell.c
-                };
-                if (CanPlace(board, word, down))
-                {
-                    placement = down;
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private static bool TryPlaceNonIntersecting(Board board, string word, System.Random rng, out Placement placement)
-    {
-        placement = default;
-
-        for (int k = 0; k < 120; k++)
-        {
-            bool isAcross = rng.NextDouble() < 0.5;
-
-            int maxRow = isAcross ? board.Rows - 1 : board.Rows - word.Length;
-            int maxCol = isAcross ? board.Cols - word.Length : board.Cols - 1;
-
-            if (maxRow < 0 || maxCol < 0) return false;
-
-            int r = rng.Next(0, maxRow + 1);
-            int c = rng.Next(0, maxCol + 1);
-
-            var p = new Placement { isAcross = isAcross, startRow = r, startCol = c };
-            if (CanPlace(board, word, p) && !IntersectsAnything(board, word, p))
-            {
-                placement = p;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static bool IntersectsAnything(Board board, string word, Placement placement)
-    {
         for (int i = 0; i < word.Length; i++)
         {
-            int r = placement.startRow + (placement.isAcross ? 0 : i);
-            int c = placement.startCol + (placement.isAcross ? i : 0);
-            if (!board.InBounds(r, c)) return true;
+            char ch = word[i];
 
-            if (!board.IsEmpty(r, c))
-                return true;
+            foreach (var kv in letters)
+            {
+                if (kv.Value != ch) continue;
+
+                int gr = kv.Key.y;   // row
+                int gc = kv.Key.x;   // col
+
+                // Across: word[i] aligns with (gr, gc)
+                int sr = gr;
+                int sc = gc - i;
+                if (CanPlace(letters, acrossCells, downCells, word, sr, sc, true))
+                {
+                    int shared = CountShared(letters, word, sr, sc, true);
+                    if (shared >= 1)
+                        results.Add(new PlacementOption
+                            { IsAcross = true, Row = sr, Col = sc, Shared = shared });
+                }
+
+                // Down: word[i] aligns with (gr, gc)
+                sr = gr - i;
+                sc = gc;
+                if (CanPlace(letters, acrossCells, downCells, word, sr, sc, false))
+                {
+                    int shared = CountShared(letters, word, sr, sc, false);
+                    if (shared >= 1)
+                        results.Add(new PlacementOption
+                            { IsAcross = false, Row = sr, Col = sc, Shared = shared });
+                }
+            }
         }
-        return false;
+
+        return results;
     }
 
-    private static bool CanPlace(Board board, string word, Placement placement)
+    private static bool CanPlace(
+        Dictionary<Vector2Int, char> letters,
+        HashSet<Vector2Int> acrossCells,
+        HashSet<Vector2Int> downCells,
+        string word,
+        int r, int c,
+        bool isAcross)
     {
-        // Bounds
-        int endRow = placement.startRow + (placement.isAcross ? 0 : (word.Length - 1));
-        int endCol = placement.startCol + (placement.isAcross ? (word.Length - 1) : 0);
+        int L  = word.Length;
+        int dr = isAcross ? 0 : 1;
+        int dc = isAcross ? 1 : 0;
 
-        if (!board.InBounds(placement.startRow, placement.startCol)) return false;
-        if (!board.InBounds(endRow, endCol)) return false;
+        var ownCells = isAcross ? acrossCells : downCells;
 
-        // Block + letter conflicts
-        for (int i = 0; i < word.Length; i++)
+        // Cell before start must be empty
+        var before = new Vector2Int(c - dc, r - dr);
+        if (letters.ContainsKey(before)) return false;
+
+        // Cell after end must be empty
+        var after = new Vector2Int(c + dc * L, r + dr * L);
+        if (letters.ContainsKey(after)) return false;
+
+        int perpDr = isAcross ? 1 : 0;
+        int perpDc = isAcross ? 0 : 1;
+
+        for (int i = 0; i < L; i++)
         {
-            int r = placement.startRow + (placement.isAcross ? 0 : i);
-            int c = placement.startCol + (placement.isAcross ? i : 0);
+            int cr = r + dr * i;
+            int cc = c + dc * i;
+            char ch = word[i];
+            var pos = new Vector2Int(cc, cr);
 
-            if (board.IsBlocked(r, c))
-                return false;
-
-            char existing = board.Get(r, c);
-            char incoming = word[i];
-
-            if (existing != '\0' && existing != incoming)
-                return false;
+            char existing;
+            if (letters.TryGetValue(pos, out existing))
+            {
+                // Letter conflict
+                if (existing != ch) return false;
+                // Must be claimed by the opposite direction (valid crossing)
+                if (ownCells.Contains(pos)) return false;
+            }
+            else
+            {
+                // New cell — perpendicular neighbours must be empty
+                var perp1 = new Vector2Int(cc + perpDc, cr + perpDr);
+                var perp2 = new Vector2Int(cc - perpDc, cr - perpDr);
+                if (letters.ContainsKey(perp1)) return false;
+                if (letters.ContainsKey(perp2)) return false;
+            }
         }
 
         return true;
     }
 
-    private static void ApplyPlacement(Board board, string word, Placement placement)
+    private static int CountShared(
+        Dictionary<Vector2Int, char> letters,
+        string word, int r, int c, bool isAcross)
     {
+        int dr = isAcross ? 0 : 1;
+        int dc = isAcross ? 1 : 0;
+        int shared = 0;
         for (int i = 0; i < word.Length; i++)
         {
-            int r = placement.startRow + (placement.isAcross ? 0 : i);
-            int c = placement.startCol + (placement.isAcross ? i : 0);
-            board.Set(r, c, word[i]);
+            var pos = new Vector2Int(c + dc * i, r + dr * i);
+            if (letters.ContainsKey(pos)) shared++;
+        }
+        return shared;
+    }
+
+    private static void PlaceWord(
+        Dictionary<Vector2Int, char> letters,
+        HashSet<Vector2Int> acrossCells,
+        HashSet<Vector2Int> downCells,
+        string word, int r, int c, bool isAcross)
+    {
+        int dr = isAcross ? 0 : 1;
+        int dc = isAcross ? 1 : 0;
+        var ownCells = isAcross ? acrossCells : downCells;
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            var pos = new Vector2Int(c + dc * i, r + dr * i);
+            letters[pos] = word[i];
+            ownCells.Add(pos);
         }
     }
 
-    // -------------------------------
-    // Output formatting
-    // -------------------------------
-
-    private static GeneratedCrossword BuildResult(Board board, List<(CrosswordEntry entry, Placement placement)> placed, string[] layoutRows)
+    private static void UndoPlace(
+        Dictionary<Vector2Int, char> letters,
+        HashSet<Vector2Int> acrossCells,
+        HashSet<Vector2Int> downCells,
+        string word, int r, int c, bool isAcross)
     {
+        int dr = isAcross ? 0 : 1;
+        int dc = isAcross ? 1 : 0;
+        var ownCells = isAcross ? acrossCells : downCells;
+
+        for (int i = 0; i < word.Length; i++)
+        {
+            var pos = new Vector2Int(c + dc * i, r + dr * i);
+            ownCells.Remove(pos);
+
+            // Only remove letter if no other direction still claims this cell
+            if (!acrossCells.Contains(pos) && !downCells.Contains(pos))
+                letters.Remove(pos);
+        }
+    }
+
+    // ── utility ───────────────────────────────────────────────────────────────
+
+    private static bool BoundingBoxFits(
+        Dictionary<Vector2Int, char> letters,
+        int maxRows, int maxCols)
+    {
+        if (letters.Count == 0) return true;
+
+        int minR = int.MaxValue, maxR = int.MinValue;
+        int minC = int.MaxValue, maxC = int.MinValue;
+
+        foreach (var kv in letters)
+        {
+            int r = kv.Key.y;
+            int c = kv.Key.x;
+            if (r < minR) minR = r;
+            if (r > maxR) maxR = r;
+            if (c < minC) minC = c;
+            if (c > maxC) maxC = c;
+        }
+
+        return (maxR - minR) < maxRows && (maxC - minC) < maxCols;
+    }
+
+    private static List<CrosswordEntry> CleanPool(List<CrosswordEntry> raw)
+    {
+        var seen   = new HashSet<string>();
+        var result = new List<CrosswordEntry>();
+
+        foreach (var e in raw)
+        {
+            if (e == null) continue;
+            if (string.IsNullOrWhiteSpace(e.answer) || string.IsNullOrWhiteSpace(e.clue)) continue;
+
+            string ans = e.answer.Trim().ToUpperInvariant();
+
+            var chars = new System.Text.StringBuilder();
+            foreach (char ch in ans)
+                if (ch >= 'A' && ch <= 'Z') chars.Append(ch);
+            ans = chars.ToString();
+
+            if (ans.Length < 3 || ans.Length > 9) continue;
+            if (seen.Contains(ans)) continue;
+
+            seen.Add(ans);
+            result.Add(new CrosswordEntry
+            {
+                id         = e.id,
+                answer     = ans,
+                clue       = e.clue.Trim(),
+                difficulty = string.IsNullOrWhiteSpace(e.difficulty)
+                           ? "medium"
+                           : e.difficulty.Trim().ToLowerInvariant()
+            });
+        }
+
+        return result;
+    }
+
+    private static void Shuffle<T>(List<T> list, System.Random rng)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j   = rng.Next(i + 1);
+            T   tmp = list[i];
+            list[i] = list[j];
+            list[j] = tmp;
+        }
+    }
+
+    private static GeneratedCrossword EmptyResult(int rows, int cols)
+    {
+        var layout = new string[rows];
+        for (int r = 0; r < rows; r++)
+            layout[r] = new string('#', cols);
+
         return new GeneratedCrossword
         {
-            rows = board.Rows,
-            cols = board.Cols,
-            layoutRows = layoutRows,
-            placedWords = BuildCrosswordWordList(placed)
+            rows        = rows,
+            cols        = cols,
+            layoutRows  = layout,
+            placedWords = new List<CrosswordWord>()
         };
-    }
-
-    private static List<CrosswordWord> BuildCrosswordWordList(List<(CrosswordEntry entry, Placement placement)> placed)
-    {
-        var list = new List<CrosswordWord>();
-        int num = 1;
-
-        foreach (var p in placed)
-        {
-            list.Add(new CrosswordWord
-            {
-                id = num.ToString() + (p.placement.isAcross ? "A" : "D"),
-                isAcross = p.placement.isAcross,
-                startRow = p.placement.startRow,
-                startCol = p.placement.startCol,
-                answer = p.entry.answer,
-                clue = p.entry.clue
-            });
-            num++;
-        }
-
-        return list;
-    }
-
-    private static string CleanAnswer(string raw)
-    {
-        if (string.IsNullOrWhiteSpace(raw)) return "";
-        raw = raw.Trim().ToUpperInvariant();
-
-        var chars = new List<char>(raw.Length);
-        foreach (char ch in raw)
-        {
-            if (ch >= 'A' && ch <= 'Z')
-                chars.Add(ch);
-        }
-        return new string(chars.ToArray());
-    }
-}
-
-// Tiny helper for DistinctBy (Unity-safe)
-public static class LinqExtras
-{
-    public static IEnumerable<T> DistinctBy<T, TKey>(this IEnumerable<T> src, Func<T, TKey> key)
-    {
-        var set = new HashSet<TKey>();
-        foreach (var item in src)
-        {
-            if (set.Add(key(item)))
-                yield return item;
-        }
     }
 }

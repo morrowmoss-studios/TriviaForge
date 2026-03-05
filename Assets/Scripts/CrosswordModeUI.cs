@@ -30,6 +30,8 @@ public class CrosswordModeUI : MonoBehaviour
     // BACK
     public void OnBackButton()
     {
+        // Clear session so a fresh puzzle is generated next time
+        CrosswordSession.currentWords = null;
         SceneManager.LoadScene(modeSelectSceneName);
     }
 

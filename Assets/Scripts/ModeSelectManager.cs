@@ -129,6 +129,10 @@ public class ModeSelectManager : MonoBehaviour
         bool isWordoku = string.Equals(
             selectedGameMode,
             "Wordoku",
+            System.StringComparison.OrdinalIgnoreCase)
+            || string.Equals(
+            selectedGameMode,
+            "Crossword",
             System.StringComparison.OrdinalIgnoreCase);
 
         bool isMixedAll = string.Equals(
@@ -138,7 +142,7 @@ public class ModeSelectManager : MonoBehaviour
 
         subcategoryDropdown.ClearOptions();
 
-        // Wordoku OR MixedAll => disable subcategory and show "All"
+        // Wordoku, Crossword, OR MixedAll => disable subcategory and show "All"
         if (isWordoku || isMixedAll)
         {
             subcategoryDropdown.AddOptions(new List<string> { "All" });
@@ -189,12 +193,16 @@ public class ModeSelectManager : MonoBehaviour
         bool isWordoku = string.Equals(
             selectedGameMode,
             "Wordoku",
+            System.StringComparison.OrdinalIgnoreCase)
+            || string.Equals(
+            selectedGameMode,
+            "Crossword",
             System.StringComparison.OrdinalIgnoreCase);
 
         string subDisplay;
         string subId;
 
-        // Wordoku always uses "All" (subcategory ignored in Wordoku)
+        // Wordoku and Crossword always use "All" (subcategory not used)
         if (isWordoku)
         {
             subDisplay = "All";

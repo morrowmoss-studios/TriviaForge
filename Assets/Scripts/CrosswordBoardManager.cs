@@ -68,22 +68,85 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Awake()
     {
-        // Make our words list available to other scenes (like the clues screen)
-        CrosswordSession.currentWords = words;
+        // NOTE: Do NOT set CrosswordSession.currentWords here.
+        // Awake runs before Start, so writing here would wipe any valid session
+        // data we need to read in Start() for the Clues back-button restore.
+        // CrosswordSession is updated after generation in FillWordsFromDatabase instead.
     }
 
     private void Start()
     {
-        // Normalize layout so EVERYTHING agrees on dimensions
-        layoutRows = NormalizeLayout(layoutRows);
+        // If we're returning from the Clues screen, CrosswordSession already holds
+        // the current puzzle — reuse it instead of generating a new one.
+        if (CrosswordSession.currentWords != null && CrosswordSession.currentWords.Count > 0)
+        {
+            words.Clear();
+            words.AddRange(CrosswordSession.currentWords);
+            Debug.Log($"[CrosswordBoardManager] Restored {words.Count} words from session.");
+        }
+        else
+        {
+            // Normalize layout so EVERYTHING agrees on dimensions
+            layoutRows = NormalizeLayout(layoutRows);
 
-        if (fillFromDatabaseOnStart)
-            FillWordsFromDatabase();
+            if (fillFromDatabaseOnStart)
+                FillWordsFromDatabase();
+        }
+
+        // Always rebuild the visual board from whatever words are now loaded
+        if (words.Count > 0)
+            RebuildLayoutFromWords();
 
         BuildBoard();
 
         if (autoFillSolutionOnStart)
             RevealPlacedSolutionLettersOnly();
+    }
+
+    /// <summary>
+    /// Reconstructs layoutRows from the placed words so BuildBoard draws the
+    /// correct blocked/open cells when restoring a session.
+    /// </summary>
+    private void RebuildLayoutFromWords()
+    {
+        // Find the bounding box of all placed word cells
+        int maxR = 0, maxC = 0;
+        foreach (var w in words)
+        {
+            if (w == null) continue;
+            int endR = w.startRow + (w.isAcross ? 0 : w.answer.Length - 1);
+            int endC = w.startCol + (w.isAcross ? w.answer.Length - 1 : 0);
+            if (endR > maxR) maxR = endR;
+            if (endC > maxC) maxC = endC;
+        }
+
+        int rows2 = Mathf.Max(maxR + 1, 10);
+        int cols2 = Mathf.Max(maxC + 1, 10);
+
+        // Mark every cell that belongs to a word as open
+        bool[,] open = new bool[rows2, cols2];
+        foreach (var w in words)
+        {
+            if (w == null) continue;
+            for (int i = 0; i < w.answer.Length; i++)
+            {
+                int r = w.startRow + (w.isAcross ? 0 : i);
+                int c = w.startCol + (w.isAcross ? i : 0);
+                if (r < rows2 && c < cols2)
+                    open[r, c] = true;
+            }
+        }
+
+        var rebuilt = new string[rows2];
+        for (int r = 0; r < rows2; r++)
+        {
+            var sb = new System.Text.StringBuilder(cols2);
+            for (int c = 0; c < cols2; c++)
+                sb.Append(open[r, c] ? '.' : '#');
+            rebuilt[r] = sb.ToString();
+        }
+
+        layoutRows = rebuilt;
     }
 
     // -----------------------------
@@ -96,98 +159,96 @@ public class CrosswordBoardManager : MonoBehaviour
         string subId = TriviaSessionData.selectedSubcategoryId;
 
         string selectedDiff = TriviaSessionData.selectedDifficulty;
-        string diffKey = NormalizeDifficulty(selectedDiff);
-        bool mixed = IsMixedDifficulty(selectedDiff);
+        string diffKey      = NormalizeDifficulty(selectedDiff);
+        bool   mixed        = IsMixedDifficulty(selectedDiff);
 
-        Debug.Log($"[CrosswordBoardManager] FillWordsFromDatabase START | DB='{resourcesDbName}' cat='{catId}' sub='{subId}' diff='{diffKey}' mixed={mixed}");
+        Debug.Log($"[CrosswordBoardManager] FillWordsFromDatabase START | " +
+                  $"cat='{catId}' sub='{subId}' diff='{diffKey}' mixed={mixed}");
 
         GameDatabase db = LoadDatabase();
         if (db == null)
         {
-            Debug.LogWarning("[CrosswordBoardManager] DB load failed. Leaving existing words list as-is.");
+            Debug.LogWarning("[CrosswordBoardManager] DB load failed.");
             return;
         }
+
+        // ── collect crossword entries ─────────────────────────────────────────
+        // Use ALL difficulty levels for the generator pool.
+        // Difficulty only controls which CLUE is shown to the player, not which
+        // words are available — filtering by difficulty was the root cause of
+        // the old generator failing on "easy" mode with no long words.
+        var pool = new List<CrosswordEntry>();
 
         CategoryData cat = db.categories?.Find(c => c.id == catId);
         if (cat == null)
         {
-            Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found. Leaving existing words list as-is.");
+            Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found.");
             return;
         }
 
-        SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
-        if (sub == null)
+        // Collect from ALL subcategories in the category.
+        // Crossword selection is category-level (same as Wordoku) so subId is ignored.
+        if (cat.subcategories != null)
         {
-            Debug.LogWarning($"[CrosswordBoardManager] Subcategory '{subId}' not found under '{catId}'. Leaving existing words list as-is.");
-            return;
-        }
-
-        if (sub.crosswords == null || sub.crosswords.Count == 0)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] No crossword entries in '{catId}/{subId}'. Leaving existing words list as-is.");
-            return;
-        }
-
-        Debug.Log($"[CrosswordBoardManager] Found sub.crosswords count={sub.crosswords.Count}");
-
-        // Build candidate list from clue bank, filtered by difficulty + cleaned
-        var pool = new List<CrosswordEntry>();
-        foreach (var e in sub.crosswords)
-        {
-            if (e == null) continue;
-            if (string.IsNullOrWhiteSpace(e.answer) || string.IsNullOrWhiteSpace(e.clue)) continue;
-
-            string ans = CleanAnswer(e.answer);
-            if (ans.Length < 3 || ans.Length > 10) continue;  // match your intended sizes
-
-            string d = NormalizeDifficulty(e.difficulty);
-            if (string.IsNullOrWhiteSpace(d)) d = "medium";
-
-            if (!mixed && d != diffKey) continue;
-
-            pool.Add(new CrosswordEntry
+            foreach (var sub in cat.subcategories)
             {
-                id = e.id,
-                answer = ans,
-                clue = e.clue.Trim(),
-                difficulty = d
-            });
+                if (sub?.crosswords == null) continue;
+                foreach (var e in sub.crosswords)
+                {
+                    if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
+                        string.IsNullOrWhiteSpace(e.clue)) continue;
+
+                    string ans = CleanAnswer(e.answer);
+                    if (ans.Length < 3 || ans.Length > 9) continue;
+
+                    pool.Add(new CrosswordEntry
+                    {
+                        id         = e.id,
+                        answer     = ans,
+                        clue       = e.clue.Trim(),
+                        difficulty = NormalizeDifficulty(e.difficulty)
+                    });
+                }
+            }
         }
 
-        Debug.Log($"[CrosswordBoardManager] Pool after difficulty filter: {pool.Count}");
+        Debug.Log($"[CrosswordBoardManager] Total pool size: {pool.Count}");
 
-        if (pool.Count == 0)
+        if (pool.Count < 20)
         {
-            Debug.LogWarning($"[CrosswordBoardManager] Pool is empty after filtering. Leaving existing words list as-is.");
+            Debug.LogWarning("[CrosswordBoardManager] Pool too small (< 20). Cannot generate puzzle.");
             return;
         }
 
-        // Solve the crossword for THIS layout using DB words only (across + down).
-        bool ok = CrosswordFiller.TryFillAllSlots(
-            layoutRows,
+        // ── generate puzzle ───────────────────────────────────────────────────
+        var generated = CrosswordGenerator.Generate(
             pool,
-            out List<CrosswordWord> solvedWords,
-            seed: 0,
-            maxSolveAttempts: 40,
-            maxBacktrackNodes: 500000,
-            allowDuplicates: allowDuplicatesInPuzzle,
-            minLen: 3,
-            maxLen: 10
+            rows:         10,
+            cols:         10,
+            targetWords:  18,
+            seed:         0,          // 0 = random seed each time
+            maxAttempts:  40,
+            maxIterPerAttempt: 6000
         );
 
-        if (!ok || solvedWords == null || solvedWords.Count == 0)
+        if (generated == null || generated.placedWords == null ||
+            generated.placedWords.Count == 0)
         {
-            Debug.LogError("[CrosswordBoardManager] Could not solve crossword with current layout + DB pool. " +
-                           "This is NOT a code bug; it usually means: not enough 3–5 letter words, or layout too constrained.");
+            Debug.LogError("[CrosswordBoardManager] CrosswordGenerator failed to place any words. " +
+                           "Add more words to the pool (aim for 150+ per category, especially 3-6 letter words).");
             words.Clear();
             CrosswordSession.currentWords = words;
             return;
         }
 
-        words.Clear();
-        words.AddRange(solvedWords);
+        // ── apply result to board ─────────────────────────────────────────────
+        // Update the layout so BuildBoard() draws the right blocked cells
+        layoutRows = NormalizeLayout(generated.layoutRows);
 
-        Debug.Log($"[CrosswordBoardManager] Solver SUCCESS. Placed words={words.Count}");
+        words.Clear();
+        words.AddRange(generated.placedWords);
+
+        Debug.Log($"[CrosswordBoardManager] Generator SUCCESS — {words.Count} words placed.");
         CrosswordSession.currentWords = words;
     }
 

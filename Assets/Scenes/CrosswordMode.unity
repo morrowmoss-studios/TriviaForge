@@ -1154,8 +1154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -671.9152, y: 53.7456}
-  m_SizeDelta: {x: 304.2411, y: 349.5089}
+  m_AnchoredPosition: {x: -671.9152, y: 143.62}
+  m_SizeDelta: {x: 304.2411, y: 596.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1200919962
 MonoBehaviour:
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -2.8036194, y: 0, z: -1.4017487, w: -2.8035393}
+  m_margin: {x: -2.8036194, y: -1.5563354, z: -1.4017487, w: 1.4497871}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1338,16 +1338,16 @@ MonoBehaviour:
   cellPrefab: {fileID: 964739364145637520, guid: 7a1e17bdd1c264cbdbd691802ae6b8a6, type: 3}
   gridParent: {fileID: 1519651044}
   layoutRows:
+  - '##.......#'
+  - '#....#....'
+  - ....#....#
+  - .#........
   - ....##....
-  - ...##.....
-  - ..........
-  - ..........
-  - ..........
-  - ....####..
-  - ..........
-  - .....##...
   - ....##....
-  - ..........
+  - ........#.
+  - '#....#....'
+  - ....#....#
+  - '#.......##'
   words:
   - id: 1A
     isAcross: 1
@@ -1367,6 +1367,9 @@ MonoBehaviour:
     startCol: 0
     answer: MIND
     clue: Inner puzzle box
+  resourcesDbName: trivia_database
+  fillFromDatabaseOnStart: 1
+  allowDuplicatesInPuzzle: 0
   autoFillSolutionOnStart: 1
 --- !u!4 &1402239310
 Transform:
@@ -2186,8 +2189,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -671.915, y: 53.7456}
-  m_SizeDelta: {x: 304.241, y: 349.5089}
+  m_AnchoredPosition: {x: -671.915, y: 143.62}
+  m_SizeDelta: {x: 304.241, y: 596.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825895686
 MonoBehaviour:
