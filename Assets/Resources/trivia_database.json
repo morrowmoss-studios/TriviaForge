@@ -2891,6 +2891,606 @@
                             "answer": "APOMIXIS",
                             "clue": "Asexual plant reproduction producing seeds without fertilization",
                             "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_058",
+                            "answer": "AMEBA",
+                            "clue": "Single-celled organism that moves using flexible extensions called pseudopods",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_059",
+                            "answer": "FLORA",
+                            "clue": "The collective plant life of a particular region or habitat",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_060",
+                            "answer": "FAUNA",
+                            "clue": "The collective animal life of a particular region or habitat",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_061",
+                            "answer": "GRUB",
+                            "clue": "The soft legless larval stage of certain beetles and insects",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_062",
+                            "answer": "PUPA",
+                            "clue": "The inactive transitional stage between larva and adult in some insects",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_063",
+                            "answer": "GLAND",
+                            "clue": "An organ that produces and secretes chemical substances into the body",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_064",
+                            "answer": "LYMPH",
+                            "clue": "Colorless fluid that circulates through the lymphatic system carrying immune cells",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_065",
+                            "answer": "TRAIT",
+                            "clue": "A distinguishing characteristic or feature passed from parent to offspring",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_066",
+                            "answer": "COLON",
+                            "clue": "The large intestine where water is absorbed from digested food",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_067",
+                            "answer": "ILEUM",
+                            "clue": "The final and longest section of the small intestine",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_068",
+                            "answer": "AORTA",
+                            "clue": "The largest artery in the body carrying blood from the heart",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_069",
+                            "answer": "OVUM",
+                            "clue": "A mature female reproductive cell before fertilization",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_070",
+                            "answer": "HIVE",
+                            "clue": "A structured colony home built and inhabited by social bees",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_071",
+                            "answer": "LIMB",
+                            "clue": "An arm, leg, or wing extending from the body of an animal",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_072",
+                            "answer": "GENUS",
+                            "clue": "A taxonomic rank that groups closely related species together",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_073",
+                            "answer": "CLASS",
+                            "clue": "A taxonomic rank above order and below phylum",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_074",
+                            "answer": "ORDER",
+                            "clue": "A taxonomic rank grouping related families together above family and below class",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_075",
+                            "answer": "PHYLA",
+                            "clue": "The plural of phylum, a major division in biological classification",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_076",
+                            "answer": "NASAL",
+                            "clue": "Relating to the nose or the passages through which air enters during breathing",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_053",
+                            "answer": "GOLGI",
+                            "clue": "Cell organelle that processes, sorts, and packages proteins for transport",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_054",
+                            "answer": "LYSIN",
+                            "clue": "A substance that causes the dissolution or destruction of cells",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_055",
+                            "answer": "PRION",
+                            "clue": "A misfolded protein that causes fatal neurodegenerative diseases",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_056",
+                            "answer": "OCYTE",
+                            "clue": "A developing cell that undergoes meiosis to produce an egg",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_057",
+                            "answer": "MOTIF",
+                            "clue": "A recurring structural pattern found in proteins or DNA sequences",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_058",
+                            "answer": "TAXON",
+                            "clue": "A named group of organisms at any rank in biological classification",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_059",
+                            "answer": "POLYP",
+                            "clue": "A small sessile organism such as a coral individual or an intestinal growth",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_060",
+                            "answer": "STOMA",
+                            "clue": "A microscopic pore on a plant leaf that regulates gas exchange",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_061",
+                            "answer": "LYASE",
+                            "clue": "An enzyme that breaks chemical bonds without using water or oxygen",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_062",
+                            "answer": "SERUM",
+                            "clue": "The clear liquid component of blood that remains after clotting factors are removed",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_063",
+                            "answer": "CALYX",
+                            "clue": "The outermost whorl of sepals that encloses and protects a flower bud",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_064",
+                            "answer": "PALEA",
+                            "clue": "The upper bract that encloses the flower of a grass plant",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_065",
+                            "answer": "RENAL",
+                            "clue": "Relating to the kidneys or their function in filtering blood",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_051",
+                            "answer": "HILUM",
+                            "clue": "A scar on a seed marking the point where it was attached to the parent plant",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_052",
+                            "answer": "THECA",
+                            "clue": "A protective sheath or case enclosing a structure such as a pollen sac",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_053",
+                            "answer": "GYRUS",
+                            "clue": "A ridge on the surface of the brain lying between two sulci",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_054",
+                            "answer": "SINUS",
+                            "clue": "A hollow air-filled cavity within a bone or other tissue",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_055",
+                            "answer": "CECUM",
+                            "clue": "A blind-ended pouch at the junction of the small and large intestines",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_056",
+                            "answer": "ZOOID",
+                            "clue": "An individual organism within a colonial animal such as a coral or siphonophore",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_057",
+                            "answer": "PILUS",
+                            "clue": "A thin hair-like appendage on the surface of certain bacteria",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_058",
+                            "answer": "HYPHA",
+                            "clue": "A single thread-like filament that makes up the body of a fungus",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_059",
+                            "answer": "NARIS",
+                            "clue": "One of the external openings of the nasal cavity in a vertebrate",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_060",
+                            "answer": "OSTIA",
+                            "clue": "Small openings in the heart of arthropods through which blood is drawn in",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_051",
+                            "answer": "EXINE",
+                            "clue": "The tough outer layer of a pollen grain wall resistant to decay",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_052",
+                            "answer": "GALEA",
+                            "clue": "A helmet-shaped structure found in certain insect mouthparts and flowers",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_053",
+                            "answer": "NIDUS",
+                            "clue": "A site in body tissue where bacteria or a disease process originates",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_054",
+                            "answer": "TESTA",
+                            "clue": "The hard outer protective coat of a seed",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_055",
+                            "answer": "PYXIS",
+                            "clue": "A type of seed capsule that opens by splitting off a circular lid",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_056",
+                            "answer": "SORUS",
+                            "clue": "A cluster of spore-producing structures found on the underside of a fern frond",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_057",
+                            "answer": "ASCUS",
+                            "clue": "A sac-like cell in ascomycete fungi that contains and releases spores",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_058",
+                            "answer": "VELUM",
+                            "clue": "A veil-like membrane found in certain fungi and some species of jellyfish",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_077",
+                            "answer": "SAP",
+                            "clue": "Fluid that carries nutrients through plant stems and roots",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_078",
+                            "answer": "RNA",
+                            "clue": "Molecule that carries genetic instructions from DNA to ribosomes",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_079",
+                            "answer": "FAT",
+                            "clue": "Energy-storing lipid molecule found in animal tissue",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_080",
+                            "answer": "RIB",
+                            "clue": "Curved bone in the chest that protects the heart and lungs",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_081",
+                            "answer": "GUT",
+                            "clue": "Informal term for the digestive tract",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_082",
+                            "answer": "FIN",
+                            "clue": "Flat appendage used by fish for steering and propulsion",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_083",
+                            "answer": "EAR",
+                            "clue": "Sensory organ responsible for hearing and balance",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_084",
+                            "answer": "EYE",
+                            "clue": "Sensory organ used to detect light and form images",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_085",
+                            "answer": "JAW",
+                            "clue": "Bony structure in the skull that holds the teeth",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_086",
+                            "answer": "LAB",
+                            "clue": "Abbreviation for a controlled scientific workspace",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_087",
+                            "answer": "OVA",
+                            "clue": "Plural of ovum; mature female reproductive cells",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_088",
+                            "answer": "ROD",
+                            "clue": "Photoreceptor cell in the retina sensitive to low light levels",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_089",
+                            "answer": "SAC",
+                            "clue": "A pouch-like structure in an organism enclosing fluid or organs",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_090",
+                            "answer": "PUS",
+                            "clue": "Fluid produced at infection sites containing dead white blood cells",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_091",
+                            "answer": "FUR",
+                            "clue": "Dense coat of fine hair covering the skin of mammals",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_092",
+                            "answer": "WEB",
+                            "clue": "Thin membrane connecting toes in aquatic or semi-aquatic animals",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_093",
+                            "answer": "BUD",
+                            "clue": "A small undeveloped shoot or flower on a plant",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_094",
+                            "answer": "CAP",
+                            "clue": "The umbrella-shaped top of a mushroom that bears spores",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_095",
+                            "answer": "COD",
+                            "clue": "The protective casing that encloses seeds in a flowering plant",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_096",
+                            "answer": "GEL",
+                            "clue": "A semi-solid colloid used in biology as a growth or separation medium",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_066",
+                            "answer": "ATP",
+                            "clue": "The primary energy currency molecule used by living cells",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_067",
+                            "answer": "ADP",
+                            "clue": "A molecule produced when ATP releases its energy during cellular reactions",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_068",
+                            "answer": "NAD",
+                            "clue": "A coenzyme that carries electrons in redox reactions during cellular metabolism",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_069",
+                            "answer": "AMP",
+                            "clue": "A nucleotide that serves as a building block of RNA and a cellular signaling molecule",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_070",
+                            "answer": "TCA",
+                            "clue": "Abbreviation for the citric acid cycle central to cellular respiration",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_071",
+                            "answer": "LDL",
+                            "clue": "A lipoprotein that transports cholesterol through the bloodstream to tissues",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_072",
+                            "answer": "HDL",
+                            "clue": "A lipoprotein that carries cholesterol away from tissues back to the liver",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_073",
+                            "answer": "RBC",
+                            "clue": "Abbreviation for the oxygen-carrying disc-shaped cells in blood",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_074",
+                            "answer": "WBC",
+                            "clue": "Abbreviation for the immune cells that defend the body against infection",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_075",
+                            "answer": "CSF",
+                            "clue": "Fluid surrounding the brain and spinal cord that provides cushioning and nutrients",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_076",
+                            "answer": "ECM",
+                            "clue": "The structural network of proteins and molecules outside cells that supports tissue",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_077",
+                            "answer": "CNS",
+                            "clue": "Abbreviation for the brain and spinal cord taken together",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_078",
+                            "answer": "PNS",
+                            "clue": "The division of the nervous system consisting of nerves outside the brain and spinal cord",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_079",
+                            "answer": "BMR",
+                            "clue": "The minimum rate at which the body expends energy while completely at rest",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_061",
+                            "answer": "POD",
+                            "clue": "A dry seed vessel that splits open when its contents are fully mature",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_062",
+                            "answer": "AWN",
+                            "clue": "A stiff bristle-like extension projecting from the seed head of a grass plant",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_063",
+                            "answer": "VAS",
+                            "clue": "A duct or vessel in the body that conveys fluid such as blood or sperm",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_064",
+                            "answer": "APE",
+                            "clue": "A tailless primate of the family Hominidae closely related to humans",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_065",
+                            "answer": "SOD",
+                            "clue": "An enzyme that neutralizes harmful superoxide free radicals in cells",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_066",
+                            "answer": "COX",
+                            "clue": "An enzyme involved in prostaglandin synthesis and the inflammatory response",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_059",
+                            "answer": "GFP",
+                            "clue": "A fluorescent protein harvested from jellyfish and widely used as a biological marker in research",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_060",
+                            "answer": "PCR",
+                            "clue": "A laboratory technique used to amplify specific DNA sequences rapidly",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_061",
+                            "answer": "SNP",
+                            "clue": "A single base pair variation in a DNA sequence that differs across individuals",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_062",
+                            "answer": "ORF",
+                            "clue": "A stretch of DNA that begins with a start codon and could encode a protein",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_063",
+                            "answer": "UTR",
+                            "clue": "The non-coding region flanking each end of a messenger RNA molecule",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_064",
+                            "answer": "GTP",
+                            "clue": "An energy-carrying nucleotide used in protein synthesis and cell signaling",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_065",
+                            "answer": "FAD",
+                            "clue": "A coenzyme that accepts electrons during the later stages of cellular respiration",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_066",
+                            "answer": "CTP",
+                            "clue": "A nucleotide involved in lipid synthesis and incorporated into RNA strands",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_067",
+                            "answer": "UTP",
+                            "clue": "A nucleotide used in carbohydrate metabolism and as a building block of RNA",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_068",
+                            "answer": "SRP",
+                            "clue": "A ribonucleoprotein complex that guides ribosomes to the endoplasmic reticulum membrane",
+                            "difficulty": "insanity"
                         }
                     ]
                 },

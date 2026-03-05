@@ -26,16 +26,17 @@ public static class CrosswordFiller
             for (int c = 0; c < cols; c++)
                 blocked[r, c] = (layoutRows[r][c] == '#');
 
-        // Compute slots
-        List<Slot> slots = ComputeSlots(layoutRows, minLen);
+        // slots (both across + down)
+        var slots = ComputeSlots(layoutRows, minLen);
         if (slots.Count == 0) return false;
 
-        // Clean & index pool by length
+        // index pool by length
         var byLen = new Dictionary<int, List<CrosswordEntry>>();
         foreach (var e in pool)
         {
             if (e == null) continue;
             if (string.IsNullOrWhiteSpace(e.answer) || string.IsNullOrWhiteSpace(e.clue)) continue;
+
             string ans = e.answer.Trim().ToUpperInvariant();
             if (ans.Length < minLen || ans.Length > maxLen) continue;
 
@@ -54,45 +55,41 @@ public static class CrosswordFiller
             });
         }
 
-        // Sort slots: hardest first (most constrained)
-        // Start with longer, then those with more intersections potential (more neighbors)
-        slots.Sort((a, b) =>
-        {
-            int c1 = b.length.CompareTo(a.length);
-            if (c1 != 0) return c1;
+        // Hardest slots first: longer + more crossing potential
+        // CURRENT - longest first (wrong)
+        slots.Sort((a, b) => b.length.CompareTo(a.length));
 
-            int n1 = b.intersectionPotential.CompareTo(a.intersectionPotential);
-            if (n1 != 0) return n1;
-
-            // Across before down doesn't matter, but keep stable
-            return (a.isAcross == b.isAcross) ? 0 : (a.isAcross ? -1 : 1);
+        // FIXED - fewest available candidates first (MRV heuristic)
+        slots.Sort((a, b) => {
+            int aCount = byLen.TryGetValue(a.length, out var aList) ? aList.Count : 0;
+            int bCount = byLen.TryGetValue(b.length, out var bList) ? bList.Count : 0;
+            return aCount.CompareTo(bCount); // tightest pool first
         });
 
         System.Random rng = (seed == 0) ? new System.Random() : new System.Random(seed);
 
-        // Multiple attempts with shuffle to avoid dead ends
         for (int attempt = 0; attempt < maxSolveAttempts; attempt++)
         {
             char[,] grid = new char[rows, cols];
             var used = new HashSet<string>();
+            var placed = new List<Placed>();
+            int nodes = 0;
 
-            // Slight randomization of candidates within each length list
-            var shuffledByLen = new Dictionary<int, List<CrosswordEntry>>();
+            // Shuffle candidate lists each attempt
+            var candidatesByLen = new Dictionary<int, List<CrosswordEntry>>();
             foreach (var kv in byLen)
             {
                 var copy = new List<CrosswordEntry>(kv.Value);
                 Shuffle(copy, rng);
-                shuffledByLen[kv.Key] = copy;
+                candidatesByLen[kv.Key] = copy;
             }
-
-            int nodes = 0;
-            var result = new List<Placed>();
 
             if (Backtrack(0))
             {
-                placedWords = new List<CrosswordWord>(result.Count);
+                placedWords = new List<CrosswordWord>(placed.Count);
                 int num = 1;
-                foreach (var p in result)
+
+                foreach (var p in placed)
                 {
                     placedWords.Add(new CrosswordWord
                     {
@@ -105,6 +102,7 @@ public static class CrosswordFiller
                     });
                     num++;
                 }
+
                 return true;
             }
 
@@ -115,26 +113,19 @@ public static class CrosswordFiller
 
                 Slot slot = slots[slotIndex];
 
-                if (!shuffledByLen.TryGetValue(slot.length, out var candidates) || candidates.Count == 0)
-                    return false;
+                // FIXED - skip unfillable slots instead of aborting
+                if (!candidatesByLen.TryGetValue(slot.length, out var candidates) || candidates.Count == 0)
+                    return Backtrack(slotIndex + 1);
 
-                // Build pattern constraints from current grid
-                // pattern[i] = existing letter or '\0' if empty
+                // pattern from existing grid
                 Span<char> pattern = stackalloc char[slot.length];
-                int fixedCount = 0;
-
                 for (int i = 0; i < slot.length; i++)
                 {
                     int r = slot.startRow + (slot.isAcross ? 0 : i);
                     int c = slot.startCol + (slot.isAcross ? i : 0);
-                    char ch = grid[r, c];
-                    pattern[i] = ch;
-                    if (ch != '\0') fixedCount++;
+                    pattern[i] = grid[r, c];
                 }
 
-                // Choose candidates that match pattern
-                // Heuristic: if fixedCount is high, try those first.
-                // We iterate in randomized order already.
                 for (int i = 0; i < candidates.Count; i++)
                 {
                     var entry = candidates[i];
@@ -145,18 +136,16 @@ public static class CrosswordFiller
                     if (!MatchesPattern(entry.answer, pattern))
                         continue;
 
-                    // Place, recurse, undo
                     var written = Place(grid, blocked, slot, entry.answer);
-                    if (written == null) continue; // conflict / blocked / bounds (shouldn't happen)
+                    if (written == null) continue;
 
                     used.Add(entry.answer);
-                    result.Add(new Placed { slot = slot, entry = entry });
+                    placed.Add(new Placed { slot = slot, entry = entry });
 
                     if (Backtrack(slotIndex + 1))
                         return true;
 
-                    // undo
-                    result.RemoveAt(result.Count - 1);
+                    placed.RemoveAt(placed.Count - 1);
                     used.Remove(entry.answer);
                     Unplace(grid, written);
                 }
@@ -209,6 +198,7 @@ public static class CrosswordFiller
                 int start = c;
                 while (c < cCount && !IsBlocked(r, c)) c++;
                 int len = c - start;
+
                 if (len >= minLen)
                 {
                     slots.Add(new Slot
@@ -217,7 +207,7 @@ public static class CrosswordFiller
                         startRow = r,
                         startCol = start,
                         length = len,
-                        intersectionPotential = CountIntersectionsPotential(layout, true, r, start, len)
+                        intersectionPotential = CountIntersectionPotential(layout, true, r, start, len)
                     });
                 }
             }
@@ -233,6 +223,7 @@ public static class CrosswordFiller
                 int start = r;
                 while (r < rCount && !IsBlocked(r, c)) r++;
                 int len = r - start;
+
                 if (len >= minLen)
                 {
                     slots.Add(new Slot
@@ -241,7 +232,7 @@ public static class CrosswordFiller
                         startRow = start,
                         startCol = c,
                         length = len,
-                        intersectionPotential = CountIntersectionsPotential(layout, false, start, c, len)
+                        intersectionPotential = CountIntersectionPotential(layout, false, start, c, len)
                     });
                 }
             }
@@ -250,12 +241,10 @@ public static class CrosswordFiller
         return slots;
     }
 
-    private static int CountIntersectionsPotential(string[] layout, bool isAcross, int sr, int sc, int len)
+    private static int CountIntersectionPotential(string[] layout, bool isAcross, int sr, int sc, int len)
     {
-        // crude heuristic: how many cells in this slot have perpendicular open neighbors
         int rows = layout.Length;
         int cols = layout[0].Length;
-        int count = 0;
 
         bool IsOpen(int r, int c)
         {
@@ -263,6 +252,8 @@ public static class CrosswordFiller
             if (c < 0 || c >= cols) return false;
             return layout[r][c] != '#';
         }
+
+        int count = 0;
 
         for (int i = 0; i < len; i++)
         {
@@ -292,7 +283,7 @@ public static class CrosswordFiller
         return true;
     }
 
-    // returns list of coords written (so we can undo precisely)
+    // returns coords written (so we can undo precisely)
     private static List<(int r, int c)> Place(char[,] grid, bool[,] blocked, Slot slot, string word)
     {
         var written = new List<(int r, int c)>(word.Length);
