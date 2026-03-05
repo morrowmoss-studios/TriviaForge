@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-
-using System;
 using UnityEngine;
 
 [Serializable]
@@ -71,146 +67,283 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Awake()
     {
-        // Make our words list available to other scenes (like the clues screen)
         CrosswordSession.currentWords = words;
     }
 
     private void Start()
     {
+        // Normalize layout so EVERYTHING agrees on dimensions
+        layoutRows = NormalizeLayout(layoutRows);
+
         if (fillFromDatabaseOnStart)
-        {
             FillWordsFromDatabase();
-        }
 
         BuildBoard();
 
         if (autoFillSolutionOnStart)
-        {
             DebugFillSolution();
-        }
     }
 
     // -----------------------------
-    // DB LOADING + TEMPLATE FILL
+    // DB LOADING + SLOT FILL (SAFE)
     // -----------------------------
 
     private void FillWordsFromDatabase()
+{
+    // Always start clean so we never show inspector defaults by accident
+    words.Clear();
+
+    string catId   = TriviaSessionData.selectedCategoryId;
+    string subId   = TriviaSessionData.selectedSubcategoryId;
+    string diffKey = NormalizeDifficulty(TriviaSessionData.selectedDifficulty);
+
+    bool isMixed = (diffKey == "mixed" || diffKey == "all" || diffKey == "any");
+
+    layoutRows = NormalizeLayout(layoutRows);
+
+    Debug.Log($"[CrosswordBoardManager] FillWordsFromDatabase START | DB='{resourcesDbName}' | cat='{catId}' sub='{subId}' diff='{diffKey}' mixed={isMixed}");
+
+    GameDatabase db = LoadDatabase();
+    if (db == null)
     {
-        // Pull selection from session (same pattern as Wordoku)
-        string catId = TriviaSessionData.selectedCategoryId;
-        string subId = TriviaSessionData.selectedSubcategoryId;
-        string diffKey = NormalizeDifficulty(TriviaSessionData.selectedDifficulty);
-
-        GameDatabase db = LoadDatabase();
-        if (db == null)
-        {
-            Debug.LogWarning("[CrosswordBoardManager] DB load failed. Leaving existing words list as-is.");
-            return;
-        }
-
-        CategoryData cat = db.categories?.Find(c => c.id == catId);
-        if (cat == null)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found. Leaving existing words list as-is.");
-            return;
-        }
-
-        SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
-        if (sub == null)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] Subcategory '{subId}' not found under '{catId}'. Leaving existing words list as-is.");
-            return;
-        }
-
-        if (sub.crosswords == null || sub.crosswords.Count == 0)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] No crossword entries in '{catId}/{subId}'. Leaving existing words list as-is.");
-            return;
-        }
-
-        // 1) Compute all slots in this layout (across + down)
-        var slots = ComputeSlots(layoutRows);
-
-        if (slots.Count == 0)
-        {
-            Debug.LogWarning("[CrosswordBoardManager] No slots found in layout. Leaving existing words list as-is.");
-            return;
-        }
-
-        // 2) Build candidate list from clue bank, filtered by difficulty + cleaned
-        var pool = new List<CrosswordEntry>();
-        foreach (var e in sub.crosswords)
-        {
-            if (e == null) continue;
-            if (string.IsNullOrWhiteSpace(e.answer) || string.IsNullOrWhiteSpace(e.clue)) continue;
-
-            string d = NormalizeDifficulty(e.difficulty);
-            if (string.IsNullOrWhiteSpace(d)) d = "medium";
-
-            if (d != diffKey) continue;
-
-            string ans = CleanAnswer(e.answer);
-            if (ans.Length < 2) continue; // ignore 1-letter junk
-            pool.Add(e);
-        }
-
-        if (pool.Count == 0)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] No crossword entries matched diff='{diffKey}' in '{catId}/{subId}'. Leaving existing words list as-is.");
-            return;
-        }
-
-        // 3) Assign entries to slots by length
-        words.Clear();
-        var usedAnswers = new HashSet<string>();
-
-        int assigned = 0;
-        int slotIndex = 1;
-
-        foreach (var slot in slots)
-        {
-            // Find entries that fit this slot length
-            var matches = new List<CrosswordEntry>();
-            foreach (var e in pool)
-            {
-                string ans = CleanAnswer(e.answer);
-                if (ans.Length != slot.length) continue;
-
-                if (!allowDuplicatesInPuzzle && usedAnswers.Contains(ans))
-                    continue;
-
-                matches.Add(e);
-            }
-
-            if (matches.Count == 0)
-                continue;
-
-            var pick = matches[UnityEngine.Random.Range(0, matches.Count)];
-            string pickAnswer = CleanAnswer(pick.answer);
-
-            if (!allowDuplicatesInPuzzle)
-                usedAnswers.Add(pickAnswer);
-
-            // Create a placed word record for your existing system
-            var w = new CrosswordWord
-            {
-                id = slotIndex.ToString() + (slot.isAcross ? "A" : "D"),
-                isAcross = slot.isAcross,
-                startRow = slot.startRow,
-                startCol = slot.startCol,
-                answer = pickAnswer,
-                clue = pick.clue.Trim()
-            };
-
-            words.Add(w);
-            assigned++;
-            slotIndex++;
-        }
-
-        Debug.Log($"[CrosswordBoardManager] Filled from DB: cat='{catId}' sub='{subId}' diff='{diffKey}'. Slots={slots.Count}, assigned={assigned}, pool={pool.Count}.");
-
-        // Update session reference after rebuild
+        Debug.LogError("[CrosswordBoardManager] DB load failed (db is null).");
         CrosswordSession.currentWords = words;
+        return;
+    }
+
+    CategoryData cat = db.categories?.Find(c => c.id == catId);
+    if (cat == null)
+    {
+        Debug.LogError($"[CrosswordBoardManager] Category not found: '{catId}'");
+        CrosswordSession.currentWords = words;
+        return;
+    }
+
+    SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
+    if (sub == null)
+    {
+        Debug.LogError($"[CrosswordBoardManager] Subcategory not found: '{subId}' under '{catId}'");
+        CrosswordSession.currentWords = words;
+        return;
+    }
+
+    int rawCount = sub.crosswords?.Count ?? 0;
+    Debug.Log($"[CrosswordBoardManager] Found sub.crosswords count={rawCount}");
+    if (rawCount == 0)
+    {
+        Debug.LogError($"[CrosswordBoardManager] sub.crosswords is empty for '{catId}/{subId}'");
+        CrosswordSession.currentWords = words;
+        return;
+    }
+
+    // Build pool
+    var pool = new List<CrosswordEntry>();
+    foreach (var e in sub.crosswords)
+    {
+        if (e == null) continue;
+        if (string.IsNullOrWhiteSpace(e.answer) || string.IsNullOrWhiteSpace(e.clue)) continue;
+
+        string d = NormalizeDifficulty(e.difficulty);
+        if (string.IsNullOrWhiteSpace(d)) d = "medium";
+
+        if (!isMixed && d != diffKey) continue;
+
+        string ans = CleanAnswer(e.answer);
+        if (ans.Length < 3 || ans.Length > 10) continue;
+
+        pool.Add(new CrosswordEntry
+        {
+            id = e.id,
+            answer = ans,
+            clue = e.clue.Trim(),
+            difficulty = d
+        });
+    }
+
+    Debug.Log($"[CrosswordBoardManager] Pool after difficulty filter: {pool.Count}");
+    if (pool.Count == 0)
+    {
+        Debug.LogError($"[CrosswordBoardManager] Pool is 0 for diff='{diffKey}' mixed={isMixed}. Nothing to place.");
+        CrosswordSession.currentWords = words;
+        return;
+    }
+
+    // ---- Attempt 1: solver (smart feed-off-each-other fill) ----
+    bool ok = false;
+    List<CrosswordWord> solvedWords = null;
+
+    try
+    {
+        Debug.Log("[CrosswordBoardManager] Calling CrosswordFiller.TryFillAllSlots...");
+        ok = CrosswordFiller.TryFillAllSlots(
+            layoutRows,
+            pool,
+            out solvedWords,
+            seed: 0,
+            maxSolveAttempts: 60,
+            maxBacktrackNodes: 350000,
+            allowDuplicates: allowDuplicatesInPuzzle,
+            minLen: 3,
+            maxLen: 10
+        );
+        Debug.Log($"[CrosswordBoardManager] Solver returned ok={ok} solvedCount={(solvedWords != null ? solvedWords.Count : -1)}");
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError("[CrosswordBoardManager] Solver threw exception:\n" + ex);
+        ok = false;
+    }
+
+    if (ok && solvedWords != null && solvedWords.Count > 0)
+    {
+        words.Clear();
+        words.AddRange(solvedWords);
+        Debug.Log($"[CrosswordBoardManager] Solver SUCCESS. Words placed={words.Count}");
+        CrosswordSession.currentWords = words;
+        return;
+    }
+
+    Debug.LogWarning("[CrosswordBoardManager] Solver FAILED (or returned 0 words). Falling back to DB greedy fill so you see letters.");
+    
+    // ---- Attempt 2 (fallback): greedy fill that avoids conflicts (still DB-backed) ----
+    // We place ACROSS first (longest -> shortest), then DOWN (longest -> shortest).
+    // This prevents the "only down" outcome and produces more crossword-y intersections.
+var allSlots = ComputeSlots(layoutRows);
+
+var acrossSlots = new List<Slot>();
+var downSlots   = new List<Slot>();
+
+foreach (var s in allSlots)
+{
+    if (s.isAcross) acrossSlots.Add(s);
+    else            downSlots.Add(s);
+}
+
+// Longer first within each direction
+acrossSlots.Sort((a, b) => b.length.CompareTo(a.length));
+downSlots.Sort((a, b) => b.length.CompareTo(a.length));
+
+int rCount = layoutRows.Length;
+int cCount = layoutRows[0].Length;
+
+bool[,] blocked = new bool[rCount, cCount];
+for (int r = 0; r < rCount; r++)
+    for (int c = 0; c < cCount; c++)
+        blocked[r, c] = (layoutRows[r][c] == '#');
+
+// Reserved letters = committed intersections
+char[,] reserved = new char[rCount, cCount];
+
+// Group pool by length once
+var byLen = new Dictionary<int, List<CrosswordEntry>>();
+foreach (var e in pool)
+{
+    int len = e.answer.Length;
+    if (!byLen.TryGetValue(len, out var list))
+    {
+        list = new List<CrosswordEntry>();
+        byLen[len] = list;
+    }
+    list.Add(e);
+}
+
+var used = new HashSet<string>();
+int slotIndex = 1;
+
+// Helper local function to attempt fill a slot list
+void FillSlotList(List<Slot> slotList)
+{
+    foreach (var slot in slotList)
+    {
+        if (!byLen.TryGetValue(slot.length, out var candidates) || candidates.Count == 0)
+            continue;
+
+        // Try a handful of random candidates so we don't always pick the same
+        CrosswordEntry pick = null;
+        int tries = Mathf.Min(40, candidates.Count);
+
+        for (int t = 0; t < tries; t++)
+        {
+            var cand = candidates[UnityEngine.Random.Range(0, candidates.Count)];
+            if (!allowDuplicatesInPuzzle && used.Contains(cand.answer)) continue;
+
+            if (CanFitSlot(slot, cand.answer, reserved, blocked, rCount, cCount))
+            {
+                pick = cand;
+                break;
+            }
+        }
+
+        if (pick == null) continue;
+
+        ApplyToReserved(slot, pick.answer, reserved);
+
+        if (!allowDuplicatesInPuzzle)
+            used.Add(pick.answer);
+
+        words.Add(new CrosswordWord
+        {
+            id = slotIndex.ToString() + (slot.isAcross ? "A" : "D"),
+            isAcross = slot.isAcross,
+            startRow = slot.startRow,
+            startCol = slot.startCol,
+            answer = pick.answer,
+            clue = pick.clue
+        });
+
+        slotIndex++;
+    }
+}
+
+// Place across first, then down
+FillSlotList(acrossSlots);
+FillSlotList(downSlots);
+
+Debug.Log($"[CrosswordBoardManager] Greedy fallback placed {words.Count} words (Across={acrossSlots.Count}, Down={downSlots.Count}).");
+CrosswordSession.currentWords = words;
+}
+
+    private static bool CanFitSlot(
+        Slot slot,
+        string answer,
+        char[,] reserved,
+        bool[,] blocked,
+        int rows,
+        int cols)
+    {
+        if (string.IsNullOrEmpty(answer)) return false;
+        if (answer.Length != slot.length) return false;
+
+        for (int i = 0; i < answer.Length; i++)
+        {
+            int r = slot.startRow + (slot.isAcross ? 0 : i);
+            int c = slot.startCol + (slot.isAcross ? i : 0);
+
+            if (r < 0 || r >= rows || c < 0 || c >= cols)
+                return false;
+
+            if (blocked[r, c])
+                return false;
+
+            char existing = reserved[r, c];
+            char incoming = answer[i];
+
+            // intersection must match existing reserved letter
+            if (existing != '\0' && existing != incoming)
+                return false;
+        }
+
+        return true;
+    }
+
+    private static void ApplyToReserved(Slot slot, string answer, char[,] reserved)
+    {
+        for (int i = 0; i < answer.Length; i++)
+        {
+            int r = slot.startRow + (slot.isAcross ? 0 : i);
+            int c = slot.startCol + (slot.isAcross ? i : 0);
+            reserved[r, c] = answer[i];
+        }
     }
 
     private GameDatabase LoadDatabase()
@@ -242,16 +375,11 @@ public class CrosswordBoardManager : MonoBehaviour
         if (string.IsNullOrWhiteSpace(diff)) return "medium";
 
         diff = diff.Trim().ToLowerInvariant();
-        // ModeSelect uses "Easy/Medium/Hard/Insanity" sometimes
+        if (diff == "insane") return "insanity";
+        if (diff == "insanity") return "insanity";
         if (diff == "easy") return "easy";
         if (diff == "medium") return "medium";
         if (diff == "hard") return "hard";
-        if (diff == "insanity") return "insanity";
-
-        // also accept title case inputs
-        if (diff == "easy") return "easy";
-        if (diff == "hard") return "hard";
-        if (diff == "insane") return "insanity";
 
         return diff;
     }
@@ -261,7 +389,6 @@ public class CrosswordBoardManager : MonoBehaviour
         if (string.IsNullOrWhiteSpace(raw)) return "";
         raw = raw.Trim().ToUpperInvariant();
 
-        // Remove spaces, hyphens, apostrophes, etc.
         var chars = new List<char>(raw.Length);
         foreach (char ch in raw)
         {
@@ -269,6 +396,30 @@ public class CrosswordBoardManager : MonoBehaviour
                 chars.Add(ch);
         }
         return new string(chars.ToArray());
+    }
+
+    private static string[] NormalizeLayout(string[] input)
+    {
+        if (input == null || input.Length == 0)
+            return new[] { ".........." };
+
+        int rCount = input.Length;
+        int cCount = 0;
+        for (int r = 0; r < rCount; r++)
+            cCount = Mathf.Max(cCount, input[r]?.Length ?? 0);
+
+        if (cCount <= 0) cCount = 10;
+
+        var output = new string[rCount];
+        for (int r = 0; r < rCount; r++)
+        {
+            string line = input[r] ?? "";
+            if (line.Length < cCount) line = line.PadRight(cCount, '.');
+            if (line.Length > cCount) line = line.Substring(0, cCount);
+            output[r] = line;
+        }
+
+        return output;
     }
 
     private struct Slot
@@ -291,8 +442,7 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             if (r < 0 || r >= rCount) return true;
             if (c < 0 || c >= cCount) return true;
-            char ch = layout[r][c];
-            return ch == '#';
+            return layout[r][c] == '#';
         }
 
         // Across slots
@@ -307,9 +457,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 int len = c - start;
 
                 if (len >= 2)
-                {
                     slots.Add(new Slot { isAcross = true, startRow = r, startCol = start, length = len });
-                }
             }
         }
 
@@ -325,9 +473,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 int len = r - start;
 
                 if (len >= 2)
-                {
                     slots.Add(new Slot { isAcross = false, startRow = start, startCol = c, length = len });
-                }
             }
         }
 
@@ -335,7 +481,7 @@ public class CrosswordBoardManager : MonoBehaviour
     }
 
     // -----------------------------
-    // EXISTING BUILD + PLAY LOGIC
+    // BUILD + INDEXING (STRICT)
     // -----------------------------
 
     private void BuildBoard()
@@ -355,11 +501,9 @@ public class CrosswordBoardManager : MonoBehaviour
         rows = layoutRows.Length;
         cols = layoutRows[0].Length;
 
-        // nuke any old children under the grid (just in case)
+        // nuke any old children under the grid
         for (int i = gridParent.childCount - 1; i >= 0; i--)
-        {
             Destroy(gridParent.GetChild(i).gameObject);
-        }
 
         cells = new CrosswordCell[rows, cols];
         solutionLetters = new char[rows, cols];
@@ -367,10 +511,6 @@ public class CrosswordBoardManager : MonoBehaviour
         for (int r = 0; r < rows; r++)
         {
             string rowString = layoutRows[r];
-
-            if (rowString.Length < cols)
-                rowString = rowString.PadRight(cols, '.');
-
             for (int c = 0; c < cols; c++)
             {
                 var cellInstance = Instantiate(cellPrefab, gridParent);
@@ -386,9 +526,7 @@ public class CrosswordBoardManager : MonoBehaviour
         IndexWords();
 
         if (autoFillSolutionOnStart)
-        {
             ApplySolutionToCellsForTesting();
-        }
     }
 
     private void IndexWords()
@@ -396,52 +534,75 @@ public class CrosswordBoardManager : MonoBehaviour
         acrossAt = new CrosswordWord[rows, cols];
         downAt   = new CrosswordWord[rows, cols];
 
-        // reset solution letters
         for (int r = 0; r < rows; r++)
-            for (int c = 0; c < cols; c++)
-                solutionLetters[r, c] = '\0';
+        for (int c = 0; c < cols; c++)
+            solutionLetters[r, c] = '\0';
 
         foreach (var w in words)
         {
-            if (string.IsNullOrEmpty(w.answer)) continue;
+            if (w == null) continue;
+            if (string.IsNullOrWhiteSpace(w.answer)) continue;
 
-            string upperAnswer = w.answer.ToUpperInvariant();
+            string ans = w.answer.ToUpperInvariant();
 
-            int r = w.startRow;
-            int c = w.startCol;
-
-            for (int i = 0; i < upperAnswer.Length; i++)
+            // Validate full fit (bounds + not blocked)
+            if (!WordFullyFits(w, ans))
             {
-                int rr = r + (w.isAcross ? 0 : i);
-                int cc = c + (w.isAcross ? i : 0);
+                Debug.LogWarning($"[CrosswordBoardManager] Word {w.id} does not fully fit (bounds/blocked). Skipping.");
+                continue;
+            }
 
-                if (rr < 0 || rr >= rows || cc < 0 || cc >= cols)
-                {
-                    Debug.LogWarning($"Word {w.id} runs off the board at {rr},{cc}.");
-                    break;
-                }
+            // Validate conflicts BEFORE writing anything
+            if (WordConflictsExisting(w, ans))
+            {
+                Debug.LogWarning($"[CrosswordBoardManager] Word {w.id} conflicts with existing letters. Skipping.");
+                continue;
+            }
 
-                if (cells[rr, cc].IsBlocked)
-                {
-                    Debug.LogWarning($"Word {w.id} hits a blocked cell at {rr},{cc}.");
-                    break;
-                }
-
-                char letter = upperAnswer[i];
+            // Safe write
+            for (int i = 0; i < ans.Length; i++)
+            {
+                int rr = w.startRow + (w.isAcross ? 0 : i);
+                int cc = w.startCol + (w.isAcross ? i : 0);
 
                 if (w.isAcross) acrossAt[rr, cc] = w;
                 else            downAt[rr, cc]   = w;
 
-                // conflict check (optional): if already set and different, warn
-                char existing = solutionLetters[rr, cc];
-                if (existing != '\0' && existing != letter)
-                {
-                    Debug.LogWarning($"Conflict at {rr},{cc}: existing='{existing}' new='{letter}' (word {w.id}).");
-                }
-
-                solutionLetters[rr, cc] = letter;
+                solutionLetters[rr, cc] = ans[i];
             }
         }
+    }
+
+    private bool WordFullyFits(CrosswordWord w, string ans)
+    {
+        for (int i = 0; i < ans.Length; i++)
+        {
+            int rr = w.startRow + (w.isAcross ? 0 : i);
+            int cc = w.startCol + (w.isAcross ? i : 0);
+
+            if (rr < 0 || rr >= rows || cc < 0 || cc >= cols)
+                return false;
+
+            if (cells[rr, cc].IsBlocked)
+                return false;
+        }
+        return true;
+    }
+
+    private bool WordConflictsExisting(CrosswordWord w, string ans)
+    {
+        for (int i = 0; i < ans.Length; i++)
+        {
+            int rr = w.startRow + (w.isAcross ? 0 : i);
+            int cc = w.startCol + (w.isAcross ? i : 0);
+
+            char existing = solutionLetters[rr, cc];
+            char incoming = ans[i];
+
+            if (existing != '\0' && existing != incoming)
+                return true;
+        }
+        return false;
     }
 
     private void ApplySolutionToCellsForTesting()
@@ -449,20 +610,16 @@ public class CrosswordBoardManager : MonoBehaviour
         if (cells == null || solutionLetters == null) return;
 
         for (int r = 0; r < rows; r++)
+        for (int c = 0; c < cols; c++)
         {
-            for (int c = 0; c < cols; c++)
-            {
-                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
-
-                char sol = solutionLetters[r, c];
-
-                if (sol != '\0')
-                    cells[r, c].SetLetter(sol);
-                else
-                    cells[r, c].SetLetter('\0');
-            }
+            if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+            cells[r, c].SetLetter(solutionLetters[r, c]);
         }
     }
+
+    // -----------------------------
+    // UI / INPUT
+    // -----------------------------
 
     public void OnCellClicked(CrosswordCell cell)
     {
@@ -476,8 +633,7 @@ public class CrosswordBoardManager : MonoBehaviour
         CrosswordWord word = acrossAt[r, c] ?? downAt[r, c];
         if (word == null)
         {
-            if (CrosswordClueDisplay.Instance != null)
-                CrosswordClueDisplay.Instance.ClearClue();
+            CrosswordClueDisplay.Instance?.ClearClue();
             return;
         }
 
@@ -521,9 +677,8 @@ public class CrosswordBoardManager : MonoBehaviour
         if (cells == null) return;
 
         for (int r = 0; r < rows; r++)
-            for (int c = 0; c < cols; c++)
-                if (cells[r, c] != null)
-                    cells[r, c].SetHighlighted(false);
+        for (int c = 0; c < cols; c++)
+            cells[r, c]?.SetHighlighted(false);
     }
 
     private void HighlightAcrossWord(int row, int col)
@@ -567,16 +722,14 @@ public class CrosswordBoardManager : MonoBehaviour
         if (solutionLetters == null || cells == null) return;
 
         for (int r = 0; r < rows; r++)
+        for (int c = 0; c < cols; c++)
         {
-            for (int c = 0; c < cols; c++)
-            {
-                if (cells[r, c] == null) continue;
-                if (cells[r, c].IsBlocked) continue;
+            if (cells[r, c] == null) continue;
+            if (cells[r, c].IsBlocked) continue;
 
-                char ch = solutionLetters[r, c];
-                if (ch != '\0')
-                    cells[r, c].SetLetter(ch);
-            }
+            char ch = solutionLetters[r, c];
+            if (ch != '\0')
+                cells[r, c].SetLetter(ch);
         }
     }
 
