@@ -2291,6 +2291,606 @@
                             "answer": "EPIDERMIS",
                             "clue": "Outermost layer of skin or plant tissue",
                             "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_028",
+                            "answer": "STEM",
+                            "clue": "Structural plant part that supports leaves and carries nutrients",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_029",
+                            "answer": "PETAL",
+                            "clue": "Colorful leaf-like part of a flower that attracts pollinators",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_030",
+                            "answer": "SPORE",
+                            "clue": "Tiny reproductive unit produced by fungi, mosses, and ferns",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_031",
+                            "answer": "CLAW",
+                            "clue": "Sharp curved nail on the foot of an animal",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_032",
+                            "answer": "PREY",
+                            "clue": "An animal hunted and eaten by another animal",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_033",
+                            "answer": "NEST",
+                            "clue": "Structure built by animals to shelter their young",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_034",
+                            "answer": "PUPIL",
+                            "clue": "The dark opening in the eye that controls light entry",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_035",
+                            "answer": "MUSCLE",
+                            "clue": "Tissue that contracts to produce movement in the body",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_036",
+                            "answer": "NERVE",
+                            "clue": "Fiber that transmits electrical signals through the body",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_037",
+                            "answer": "ARTERY",
+                            "clue": "Blood vessel that carries oxygenated blood away from the heart",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_038",
+                            "answer": "VENULE",
+                            "clue": "A small blood vessel that collects blood from capillaries",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_039",
+                            "answer": "EMBRYO",
+                            "clue": "An organism in the earliest stages of development",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_040",
+                            "answer": "POLLEN",
+                            "clue": "Fine powder produced by flowers that enables fertilization",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_041",
+                            "answer": "STOMACH",
+                            "clue": "Organ that breaks down food using acid and enzymes",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_042",
+                            "answer": "KIDNEY",
+                            "clue": "Organ that filters waste from the blood to produce urine",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_043",
+                            "answer": "HEART",
+                            "clue": "Muscular organ that pumps blood throughout the body",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_044",
+                            "answer": "THORN",
+                            "clue": "Sharp pointed outgrowth on a plant stem",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_045",
+                            "answer": "LARVA",
+                            "clue": "Immature worm-like form of certain insects before metamorphosis",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_046",
+                            "answer": "FIBER",
+                            "clue": "Thread-like structure found in plant cell walls and animal tissue",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_047",
+                            "answer": "JOINT",
+                            "clue": "Point in the body where two bones meet and allow movement",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_048",
+                            "answer": "TOXIN",
+                            "clue": "A poisonous substance produced by a living organism",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_049",
+                            "answer": "CLONE",
+                            "clue": "An organism genetically identical to its parent",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_050",
+                            "answer": "SPINAL",
+                            "clue": "Relating to the vertebral column protecting the spinal cord",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_051",
+                            "answer": "FUNGAL",
+                            "clue": "Relating to or caused by a fungus",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_052",
+                            "answer": "CYST",
+                            "clue": "A closed sac within tissue containing fluid or other material",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_029",
+                            "answer": "SYMBIOSIS",
+                            "clue": "A close long-term interaction between two different species",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_030",
+                            "answer": "PREDATOR",
+                            "clue": "An animal that hunts and kills other animals for food",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_031",
+                            "answer": "PARASITE",
+                            "clue": "An organism that lives on or in a host and benefits at its expense",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_032",
+                            "answer": "DOMINANT",
+                            "clue": "Describes the allele whose trait is expressed when paired with another",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_033",
+                            "answer": "RECESSIVE",
+                            "clue": "Describes an allele whose trait is masked by a dominant version",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_034",
+                            "answer": "MUTATION",
+                            "clue": "A change in the DNA sequence of an organism",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_035",
+                            "answer": "DIFFUSION",
+                            "clue": "Movement of molecules from an area of high to low concentration",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_036",
+                            "answer": "CAPILLARY",
+                            "clue": "The smallest type of blood vessel in the body",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_037",
+                            "answer": "FLAGELLA",
+                            "clue": "Whip-like appendages used by some cells for movement",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_038",
+                            "answer": "TROPHIC",
+                            "clue": "Relating to feeding relationships within an ecosystem",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_039",
+                            "answer": "NICHE",
+                            "clue": "The role and position a species occupies within its ecosystem",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_040",
+                            "answer": "BIOMASS",
+                            "clue": "The total mass of living organisms in a given area",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_041",
+                            "answer": "CORTEX",
+                            "clue": "The outer layer of an organ such as the brain or kidney",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_042",
+                            "answer": "DENDRITE",
+                            "clue": "Branch-like extension of a neuron that receives incoming signals",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_043",
+                            "answer": "STIMULUS",
+                            "clue": "An environmental change that triggers a response in an organism",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_044",
+                            "answer": "CILIA",
+                            "clue": "Tiny hair-like structures on cell surfaces that aid movement",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_045",
+                            "answer": "PLACENTA",
+                            "clue": "Organ connecting a developing fetus to the uterine wall",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_046",
+                            "answer": "TENDONS",
+                            "clue": "Fibrous tissue connecting muscles to bones",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_047",
+                            "answer": "PIGMENTS",
+                            "clue": "Colored compounds in cells that absorb specific wavelengths of light",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_048",
+                            "answer": "TROPISM",
+                            "clue": "Growth or movement of a plant in response to an external stimulus",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_028",
+                            "answer": "APICAL",
+                            "clue": "Relating to the tip or apex of a plant root or shoot",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_029",
+                            "answer": "DIPLOID",
+                            "clue": "A cell containing two complete sets of chromosomes",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_030",
+                            "answer": "HAPLOID",
+                            "clue": "A cell containing only one set of chromosomes",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_031",
+                            "answer": "AUXIN",
+                            "clue": "A plant hormone that promotes cell elongation and growth",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_032",
+                            "answer": "PLASMOLYZ",
+                            "clue": "To cause a plant cell to shrink by losing water through osmosis",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_033",
+                            "answer": "STROMA",
+                            "clue": "The fluid-filled space inside a chloroplast where carbon fixation occurs",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_034",
+                            "answer": "LYSIS",
+                            "clue": "The destruction of a cell by rupturing its outer membrane",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_035",
+                            "answer": "EXOCYTOSIS",
+                            "clue": "Process by which cells export material by fusing vesicles with the membrane",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_036",
+                            "answer": "CAPSID",
+                            "clue": "The protein shell that surrounds the genetic material of a virus",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_037",
+                            "answer": "COEVOLVED",
+                            "clue": "Describes species that have mutually influenced each others evolutionary path",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_038",
+                            "answer": "AXON",
+                            "clue": "The long fiber of a neuron that transmits impulses away from the cell body",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_039",
+                            "answer": "ZOONOTIC",
+                            "clue": "Describes a disease capable of spreading from animals to humans",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_040",
+                            "answer": "BENIGN",
+                            "clue": "Describes a tumor that is not cancerous and does not invade other tissue",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_041",
+                            "answer": "GAMETE",
+                            "clue": "A mature reproductive cell such as a sperm or egg",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_042",
+                            "answer": "SUBSTRATE",
+                            "clue": "The specific molecule upon which an enzyme acts",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_043",
+                            "answer": "SENSORY",
+                            "clue": "Relating to nerves that carry signals from body receptors to the brain",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_044",
+                            "answer": "SPORADIC",
+                            "clue": "Describes a condition occurring irregularly with no clear genetic pattern",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_045",
+                            "answer": "CARCINOMA",
+                            "clue": "A type of cancer originating in epithelial tissue",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_046",
+                            "answer": "PHLOEM",
+                            "clue": "Vascular plant tissue that transports sugars away from leaves",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_047",
+                            "answer": "XYLEM",
+                            "clue": "Vascular plant tissue that transports water upward from roots",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_028",
+                            "answer": "ENDOSYMB",
+                            "clue": "Abbreviated term for the theory that organelles like mitochondria originated as engulfed bacteria",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_029",
+                            "answer": "MERISTEM",
+                            "clue": "Undifferentiated plant tissue capable of active cell division",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_030",
+                            "answer": "TELOMERE",
+                            "clue": "Protective cap at the end of a chromosome that shortens with each cell division",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_031",
+                            "answer": "CYTOSKEL",
+                            "clue": "Abbreviated term for the protein filament network that maintains cell shape and structure",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_032",
+                            "answer": "LIGASE",
+                            "clue": "Enzyme that joins two nucleic acid strands together during DNA repair",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_033",
+                            "answer": "CHAPERONE",
+                            "clue": "Protein that assists the correct folding of other newly made proteins",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_034",
+                            "answer": "PROMOTER",
+                            "clue": "DNA sequence that signals where transcription of a gene should begin",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_035",
+                            "answer": "COENZYME",
+                            "clue": "A non-protein molecule required alongside an enzyme for it to function",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_036",
+                            "answer": "ANABOLISM",
+                            "clue": "Metabolic processes that build complex molecules from simpler ones",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_037",
+                            "answer": "CATABOLISM",
+                            "clue": "Metabolic processes that break down complex molecules to release energy",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_038",
+                            "answer": "ALLOSTERIC",
+                            "clue": "Relating to enzyme regulation by binding at a site other than the active site",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_039",
+                            "answer": "CHEMOTAXIS",
+                            "clue": "Directed movement of a cell toward or away from a chemical stimulus",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_040",
+                            "answer": "SENESCENCE",
+                            "clue": "The process of biological aging and gradual deterioration of cells",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_041",
+                            "answer": "NUCLEOSOME",
+                            "clue": "Basic unit of DNA packaging formed by DNA wrapped around histone proteins",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_042",
+                            "answer": "PROTEASOME",
+                            "clue": "Cellular complex responsible for degrading unwanted or damaged proteins",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_043",
+                            "answer": "PHYLOGENY",
+                            "clue": "The evolutionary history and branching relationships among organisms",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_044",
+                            "answer": "INTRON",
+                            "clue": "Non-coding gene sequence that is removed from RNA during processing",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_045",
+                            "answer": "EXON",
+                            "clue": "Coding sequence of a gene that is retained in the final messenger RNA",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_046",
+                            "answer": "RIBOSWITCH",
+                            "clue": "RNA element that regulates gene expression by changing shape upon binding a molecule",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_047",
+                            "answer": "TRANSPOSON",
+                            "clue": "A DNA sequence capable of changing its position within the genome",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_053",
+                            "answer": "SCALE",
+                            "clue": "Flat overlapping plate covering the skin of fish or reptiles",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_054",
+                            "answer": "CREST",
+                            "clue": "A tuft or ridge found on the head of certain animals",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_055",
+                            "answer": "TALON",
+                            "clue": "Sharp curved claw of a bird of prey",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_056",
+                            "answer": "SHELL",
+                            "clue": "Hard protective outer covering of mollusks and some reptiles",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_easy_057",
+                            "answer": "MUCUS",
+                            "clue": "Slippery secretion that lines and protects body cavities",
+                            "difficulty": "easy"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_049",
+                            "answer": "SPECIATION",
+                            "clue": "The evolutionary process by which new distinct species form",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_050",
+                            "answer": "GLYCOGEN",
+                            "clue": "A polysaccharide that serves as the primary energy storage in animals",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_051",
+                            "answer": "OOGONIUM",
+                            "clue": "A female reproductive cell found in certain algae and fungi",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_medium_052",
+                            "answer": "GANGLION",
+                            "clue": "A cluster of nerve cells forming a signaling center outside the brain",
+                            "difficulty": "medium"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_048",
+                            "answer": "LEUCOCYTE",
+                            "clue": "A white blood cell that plays a key role in immune defense",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_049",
+                            "answer": "ACROSOME",
+                            "clue": "Cap-like structure at the tip of a sperm cell that helps membrane penetration",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_hard_050",
+                            "answer": "MORPHOGEN",
+                            "clue": "A signaling molecule that governs the spatial pattern of tissue development",
+                            "difficulty": "hard"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_048",
+                            "answer": "IMPRINTING",
+                            "clue": "An epigenetic process where gene expression depends on which parent passed the gene",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_049",
+                            "answer": "EPISOMAL",
+                            "clue": "Describing DNA that replicates independently of chromosomal DNA",
+                            "difficulty": "insanity"
+                        },
+                        {
+                            "id": "science_biology_xw_insanity_050",
+                            "answer": "APOMIXIS",
+                            "clue": "Asexual plant reproduction producing seeds without fertilization",
+                            "difficulty": "insanity"
                         }
                     ]
                 },
