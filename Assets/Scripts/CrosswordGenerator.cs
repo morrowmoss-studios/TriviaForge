@@ -113,8 +113,10 @@ public static class CrosswordGenerator
         if (starters.Count == 0) starters = pool;
 
         var first = starters[rng.Next(starters.Count)];
-        PlaceWord(letters, acrossCells, downCells, first.answer, 0, 0, true);
-        placed.Add(new PlacedWord { Entry = first, Row = 0, Col = 0, IsAcross = true });
+        // Randomise starting direction so puzzles grow in different orientations
+        bool firstAcross = (rng.Next(2) == 0);
+        PlaceWord(letters, acrossCells, downCells, first.answer, 0, 0, firstAcross);
+        placed.Add(new PlacedWord { Entry = first, Row = 0, Col = 0, IsAcross = firstAcross });
         usedWords.Add(first.answer);
 
         // ── grow the puzzle ───────────────────────────────────────────────────

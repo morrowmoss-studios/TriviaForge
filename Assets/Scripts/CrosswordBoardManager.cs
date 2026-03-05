@@ -221,12 +221,15 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         // ── generate puzzle ───────────────────────────────────────────────────
+        // Use TickCount as seed so every new puzzle is guaranteed different,
+        // even if Generate() is called multiple times in quick succession.
+        int puzzleSeed = System.Environment.TickCount;
         var generated = CrosswordGenerator.Generate(
             pool,
             rows:         10,
             cols:         10,
             targetWords:  18,
-            seed:         0,          // 0 = random seed each time
+            seed:         puzzleSeed,
             maxAttempts:  40,
             maxIterPerAttempt: 6000
         );
