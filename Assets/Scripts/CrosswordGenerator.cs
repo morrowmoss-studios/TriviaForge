@@ -78,7 +78,7 @@ public static class CrosswordGenerator
             Shuffle(clean, rng);
 
             var result = TryGenerate(clean, rows, cols, targetWords, rng, maxIterPerAttempt);
-            if (result != null && result.placedWords.Count >= Mathf.Max(8, targetWords - 4))
+            if (result != null && result.placedWords.Count >= 18)
             {
                 Debug.Log("[CrosswordGenerator] Success on attempt " + (attempt + 1) +
                           " with " + result.placedWords.Count + " words.");

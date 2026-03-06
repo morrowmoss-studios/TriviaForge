@@ -228,7 +228,7 @@ public class CrosswordBoardManager : MonoBehaviour
             pool,
             rows:         10,
             cols:         10,
-            targetWords:  18,
+            targetWords:  22,
             seed:         puzzleSeed,
             maxAttempts:  40,
             maxIterPerAttempt: 6000
