@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dark_Marcellus-Regular SDF 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dark_Marcellus-Regular SDF 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Roboto_Notes.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Roboto_Notes.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Clues_Crossword.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Clues_Crossword.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordBoardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordBoardManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordCluesUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordCluesUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordGenerator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +98,9 @@
       <workItem from="1772572237827" duration="6000" />
       <workItem from="1772632200956" duration="48000" />
       <workItem from="1772805842669" duration="8000" />
+      <workItem from="1772824422640" duration="75000" />
+      <workItem from="1772828598570" duration="15000" />
+      <workItem from="1773158047351" duration="111000" />
     </task>
     <servers />
   </component>

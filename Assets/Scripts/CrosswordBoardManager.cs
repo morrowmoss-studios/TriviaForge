@@ -68,85 +68,22 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Awake()
     {
-        // NOTE: Do NOT set CrosswordSession.currentWords here.
-        // Awake runs before Start, so writing here would wipe any valid session
-        // data we need to read in Start() for the Clues back-button restore.
-        // CrosswordSession is updated after generation in FillWordsFromDatabase instead.
+        // Make our words list available to other scenes (like the clues screen)
+        CrosswordSession.currentWords = words;
     }
 
     private void Start()
     {
-        // If we're returning from the Clues screen, CrosswordSession already holds
-        // the current puzzle — reuse it instead of generating a new one.
-        if (CrosswordSession.currentWords != null && CrosswordSession.currentWords.Count > 0)
-        {
-            words.Clear();
-            words.AddRange(CrosswordSession.currentWords);
-            Debug.Log($"[CrosswordBoardManager] Restored {words.Count} words from session.");
-        }
-        else
-        {
-            // Normalize layout so EVERYTHING agrees on dimensions
-            layoutRows = NormalizeLayout(layoutRows);
+        // Normalize layout so EVERYTHING agrees on dimensions
+        layoutRows = NormalizeLayout(layoutRows);
 
-            if (fillFromDatabaseOnStart)
-                FillWordsFromDatabase();
-        }
-
-        // Always rebuild the visual board from whatever words are now loaded
-        if (words.Count > 0)
-            RebuildLayoutFromWords();
+        if (fillFromDatabaseOnStart)
+            FillWordsFromDatabase();
 
         BuildBoard();
 
         if (autoFillSolutionOnStart)
             RevealPlacedSolutionLettersOnly();
-    }
-
-    /// <summary>
-    /// Reconstructs layoutRows from the placed words so BuildBoard draws the
-    /// correct blocked/open cells when restoring a session.
-    /// </summary>
-    private void RebuildLayoutFromWords()
-    {
-        // Find the bounding box of all placed word cells
-        int maxR = 0, maxC = 0;
-        foreach (var w in words)
-        {
-            if (w == null) continue;
-            int endR = w.startRow + (w.isAcross ? 0 : w.answer.Length - 1);
-            int endC = w.startCol + (w.isAcross ? w.answer.Length - 1 : 0);
-            if (endR > maxR) maxR = endR;
-            if (endC > maxC) maxC = endC;
-        }
-
-        int rows2 = Mathf.Max(maxR + 1, 10);
-        int cols2 = Mathf.Max(maxC + 1, 10);
-
-        // Mark every cell that belongs to a word as open
-        bool[,] open = new bool[rows2, cols2];
-        foreach (var w in words)
-        {
-            if (w == null) continue;
-            for (int i = 0; i < w.answer.Length; i++)
-            {
-                int r = w.startRow + (w.isAcross ? 0 : i);
-                int c = w.startCol + (w.isAcross ? i : 0);
-                if (r < rows2 && c < cols2)
-                    open[r, c] = true;
-            }
-        }
-
-        var rebuilt = new string[rows2];
-        for (int r = 0; r < rows2; r++)
-        {
-            var sb = new System.Text.StringBuilder(cols2);
-            for (int c = 0; c < cols2; c++)
-                sb.Append(open[r, c] ? '.' : '#');
-            rebuilt[r] = sb.ToString();
-        }
-
-        layoutRows = rebuilt;
     }
 
     // -----------------------------
@@ -186,14 +123,36 @@ public class CrosswordBoardManager : MonoBehaviour
             return;
         }
 
-        // Collect from ALL subcategories in the category.
-        // Crossword selection is category-level (same as Wordoku) so subId is ignored.
-        if (cat.subcategories != null)
+        // Collect from the selected subcategory
+        SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
+        if (sub?.crosswords != null)
         {
-            foreach (var sub in cat.subcategories)
+            foreach (var e in sub.crosswords)
             {
-                if (sub?.crosswords == null) continue;
-                foreach (var e in sub.crosswords)
+                if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
+                    string.IsNullOrWhiteSpace(e.clue)) continue;
+
+                string ans = CleanAnswer(e.answer);
+                if (ans.Length < 3 || ans.Length > 9) continue;
+
+                pool.Add(new CrosswordEntry
+                {
+                    id         = e.id,
+                    answer     = ans,
+                    clue       = e.clue.Trim(),
+                    difficulty = NormalizeDifficulty(e.difficulty)
+                });
+            }
+        }
+
+        // If the subcategory pool is thin (< 80 words), also pull from sibling
+        // subcategories in the same category to give the generator more to work with.
+        if (pool.Count < 80 && cat.subcategories != null)
+        {
+            foreach (var sibling in cat.subcategories)
+            {
+                if (sibling.id == subId || sibling.crosswords == null) continue;
+                foreach (var e in sibling.crosswords)
                 {
                     if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
                         string.IsNullOrWhiteSpace(e.clue)) continue;
@@ -209,7 +168,11 @@ public class CrosswordBoardManager : MonoBehaviour
                         difficulty = NormalizeDifficulty(e.difficulty)
                     });
                 }
+                if (pool.Count >= 150) break;
             }
+
+            if (pool.Count > sub?.crosswords?.Count)
+                Debug.Log($"[CrosswordBoardManager] Pool supplemented from siblings: {pool.Count} total entries.");
         }
 
         Debug.Log($"[CrosswordBoardManager] Total pool size: {pool.Count}");
@@ -221,17 +184,18 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         // ── generate puzzle ───────────────────────────────────────────────────
-        // Use TickCount as seed so every new puzzle is guaranteed different,
-        // even if Generate() is called multiple times in quick succession.
-        int puzzleSeed = System.Environment.TickCount;
         var generated = CrosswordGenerator.Generate(
-            pool,
-            rows:         10,
-            cols:         10,
-            targetWords:  22,
-            seed:         puzzleSeed,
-            maxAttempts:  40,
-            maxIterPerAttempt: 6000
+            clueBank:          pool,
+            rows:              10,
+            cols:              10,
+            targetWordCount:   15,    // 15 is reliably achievable; 18 caused frequent failures
+            seed:              0,     // 0 = random seed each time
+            maxAttempts:       3000,  // was 40 — far too low; needs thousands to place 15 words reliably
+            minWordLen:        3,
+            maxWordLen:        9,
+            blockPercent:      0.16f,
+            layoutGenAttempts: 300,
+            forceCenterOpen:   true
         );
 
         if (generated == null || generated.placedWords == null ||
