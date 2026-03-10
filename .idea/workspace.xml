@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/generate_puzzles.py" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/generate_puzzles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordBoardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordBoardManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrosswordGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrosswordGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameDatabase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +98,8 @@
       <workItem from="1772828598570" duration="15000" />
       <workItem from="1773158047351" duration="111000" />
       <workItem from="1773166445416" duration="11000" />
+      <workItem from="1773166925414" duration="39000" />
+      <workItem from="1773167701387" duration="883000" />
     </task>
     <servers />
   </component>

@@ -93,14 +93,8 @@ public class CrosswordBoardManager : MonoBehaviour
     private void FillWordsFromDatabase()
     {
         string catId = TriviaSessionData.selectedCategoryId;
-        string subId = TriviaSessionData.selectedSubcategoryId;
 
-        string selectedDiff = TriviaSessionData.selectedDifficulty;
-        string diffKey      = NormalizeDifficulty(selectedDiff);
-        bool   mixed        = IsMixedDifficulty(selectedDiff);
-
-        Debug.Log($"[CrosswordBoardManager] FillWordsFromDatabase START | " +
-                  $"cat='{catId}' sub='{subId}' diff='{diffKey}' mixed={mixed}");
+        Debug.Log($"[CrosswordBoardManager] Loading puzzle bank for category '{catId}'");
 
         GameDatabase db = LoadDatabase();
         if (db == null)
@@ -109,106 +103,73 @@ public class CrosswordBoardManager : MonoBehaviour
             return;
         }
 
-        // ── collect crossword entries ─────────────────────────────────────────
-        // Pull from ALL subcategories in the category — CrosswordFiller is a
-        // backtracking constraint solver that needs maximum word variety per
-        // slot length to find a valid fill. More words = faster solve.
-        var pool = new List<CrosswordEntry>();
+        var rng = new System.Random();
+        PreGeneratedPuzzle puzzle = null;
 
-        CategoryData cat = db.categories?.Find(c => c.id == catId);
-        if (cat == null)
-        {
-            Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found.");
-            return;
-        }
+        bool isMixed = string.IsNullOrWhiteSpace(catId)
+                       || catId == "mixed" || catId == "all" || catId == "mix"
+                       || catId == "mixed_all";
 
-        if (cat.subcategories != null)
+        if (isMixed)
         {
-            foreach (var subcategory in cat.subcategories)
+            // Collect all puzzles from all categories and pick one at random
+            var allPuzzles = new List<PreGeneratedPuzzle>();
+            if (db.categories != null)
+                foreach (var c in db.categories)
+                    if (c.puzzles != null)
+                        allPuzzles.AddRange(c.puzzles);
+
+            if (allPuzzles.Count == 0)
             {
-                if (subcategory?.crosswords == null) continue;
-                foreach (var e in subcategory.crosswords)
-                {
-                    if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
-                        string.IsNullOrWhiteSpace(e.clue)) continue;
-
-                    string ans = CleanAnswer(e.answer);
-                    if (ans.Length < 3 || ans.Length > 10) continue;
-
-                    pool.Add(new CrosswordEntry
-                    {
-                        id         = e.id,
-                        answer     = ans,
-                        clue       = e.clue.Trim(),
-                        difficulty = NormalizeDifficulty(e.difficulty)
-                    });
-                }
+                Debug.LogWarning("[CrosswordBoardManager] No puzzles found across any category.");
+                return;
             }
+
+            puzzle = allPuzzles[rng.Next(allPuzzles.Count)];
+        }
+        else
+        {
+            CategoryData cat = db.categories?.Find(c => c.id == catId);
+            if (cat == null)
+            {
+                Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found.");
+                return;
+            }
+
+            if (cat.puzzles == null || cat.puzzles.Count == 0)
+            {
+                Debug.LogWarning($"[CrosswordBoardManager] No pre-generated puzzles for '{catId}'. " +
+                                 "Re-run generate_puzzles.py and reimport trivia_database.json.");
+                return;
+            }
+
+            puzzle = cat.puzzles[rng.Next(cat.puzzles.Count)];
         }
 
-        Debug.Log($"[CrosswordBoardManager] Total pool size: {pool.Count}");
-
-        if (pool.Count < 20)
+        if (puzzle.layoutRows == null || puzzle.placedWords == null || puzzle.placedWords.Count == 0)
         {
-            Debug.LogWarning("[CrosswordBoardManager] Pool too small (< 20). Cannot generate puzzle.");
+            Debug.LogWarning("[CrosswordBoardManager] Selected puzzle has no data.");
             return;
         }
 
-        // ── generate puzzle ───────────────────────────────────────────────────
-        // Step 1: generate a symmetric block layout.
-        //         Higher blockPercent = shorter slots = much easier for the filler to solve.
-        // Step 2: CrosswordFiller fills EVERY slot with a real word from the pool,
-        //         guaranteeing no nonsense letter runs in either direction.
-
-        string[] layout = null;
-        List<CrosswordWord> filledWords = null;
-        bool success = false;
-
-        for (int layoutAttempt = 0; layoutAttempt < 15 && !success; layoutAttempt++)
-        {
-            layout = CrosswordGenerator.GenerateLayout(
-                rows:              10,
-                cols:              10,
-                seed:              0,
-                blockPercent:      0.22f,   // higher = shorter slots = easier to fill
-                layoutGenAttempts: 400,
-                forceCenterOpen:   true
-            );
-
-            success = CrosswordFiller.TryFillAllSlots(
-                layoutRows:        layout,
-                pool:              pool,
-                placedWords:       out filledWords,
-                seed:              0,
-                maxSolveAttempts:  40,
-                maxBacktrackNodes: 2000000,
-                allowDuplicates:   false,
-                minLen:            3,
-                maxLen:            10
-            );
-
-            if (!success)
-                Debug.Log($"[CrosswordBoardManager] Layout attempt {layoutAttempt + 1} unsolvable, retrying.");
-        }
-
-        var generated = success ? filledWords : null;
-
-        if (generated == null || generated.Count == 0)
-        {
-            Debug.LogError("[CrosswordBoardManager] CrosswordFiller failed to fill any layout after 8 attempts. " +
-                           "Ensure the pool has 150+ words covering lengths 3–9.");
-            words.Clear();
-            CrosswordSession.currentWords = words;
-            return;
-        }
-
-        // ── apply result to board ─────────────────────────────────────────────
-        layoutRows = NormalizeLayout(layout);
+        layoutRows = NormalizeLayout(puzzle.layoutRows.ToArray());
 
         words.Clear();
-        words.AddRange(generated);
+        foreach (var pw in puzzle.placedWords)
+        {
+            words.Add(new CrosswordWord
+            {
+                id        = pw.id,
+                isAcross  = pw.isAcross,
+                startRow  = pw.startRow,
+                startCol  = pw.startCol,
+                answer    = pw.answer,
+                clue      = pw.clue
+            });
+        }
 
-        Debug.Log($"[CrosswordBoardManager] Generator SUCCESS — {words.Count} words placed.");
+        Debug.Log($"[CrosswordBoardManager] Loaded puzzle — {words.Count} words, " +
+                  $"{layoutRows.Length}×{layoutRows[0].Length} grid.");
         CrosswordSession.currentWords = words;
     }
 

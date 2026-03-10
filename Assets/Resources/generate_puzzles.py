@@ -18,9 +18,11 @@ import os
 # ─────────────────────────────────────────────
 # Config
 # ─────────────────────────────────────────────
-GRID_SIZE       = 13      # 13x13 gives plenty of room
+GRID_SIZE       = 10      # matches Unity board renderer exactly
+PUZZLE_ROWS     = 10      # output is always padded to this
+PUZZLE_COLS     = 10
 PUZZLES_PER_CAT = 25
-MIN_WORDS       = 8       # minimum words to consider a puzzle valid
+MIN_WORDS       = 12      # reject sparse puzzles
 TARGET_WORDS    = 16      # aim for this many placed words
 MAX_PLACE_TRIES = 6000    # attempts to place each word
 INPUT_FILE      = "trivia_database.json"
@@ -156,7 +158,7 @@ class CrosswordGrid:
         })
 
     def to_puzzle(self):
-        """Return (layoutRows, placedWords) trimmed to used area."""
+        """Return (layoutRows, placedWords) centered in a PUZZLE_ROWS x PUZZLE_COLS grid."""
         used_cells = set()
         for p in self.placed:
             for i in range(len(p['word'])):
@@ -167,25 +169,37 @@ class CrosswordGrid:
         if not used_cells:
             return None, None
 
+        # Find bounding box of placed words
         min_r = min(r for r, c in used_cells)
         max_r = max(r for r, c in used_cells)
         min_c = min(c for r, c in used_cells)
         max_c = max(c for r, c in used_cells)
 
-        layout = []
-        for r in range(min_r, max_r + 1):
-            row_str = ''
-            for c in range(min_c, max_c + 1):
-                row_str += '.' if (r, c) in used_cells else '#'
-            layout.append(row_str)
+        used_rows = max_r - min_r + 1
+        used_cols = max_c - min_c + 1
 
+        # Center the cluster in the 10x10 grid
+        offset_r = (PUZZLE_ROWS - used_rows) // 2
+        offset_c = (PUZZLE_COLS - used_cols) // 2
+
+        # Build full 10x10 layout
+        layout = [['#'] * PUZZLE_COLS for _ in range(PUZZLE_ROWS)]
+        for (r, c) in used_cells:
+            nr = r - min_r + offset_r
+            nc = c - min_c + offset_c
+            if 0 <= nr < PUZZLE_ROWS and 0 <= nc < PUZZLE_COLS:
+                layout[nr][nc] = '.'
+
+        layout = [''.join(row) for row in layout]
+
+        # Build word list with adjusted coordinates
         words = []
         for idx, p in enumerate(self.placed):
             words.append({
                 'id':       f"{idx + 1}{'A' if p['across'] else 'D'}",
                 'isAcross': p['across'],
-                'startRow': p['row'] - min_r,
-                'startCol': p['col'] - min_c,
+                'startRow': p['row'] - min_r + offset_r,
+                'startCol': p['col'] - min_c + offset_c,
                 'answer':   p['word'],
                 'clue':     p['clue']
             })

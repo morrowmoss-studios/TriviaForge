@@ -13,6 +13,27 @@ public class CategoryData
     public string id;
     public string name;
     public List<SubcategoryData> subcategories;
+
+    // Pre-generated crossword puzzles for this category
+    public List<PreGeneratedPuzzle> puzzles;
+}
+
+[Serializable]
+public class PreGeneratedPuzzle
+{
+    public List<string> layoutRows;
+    public List<PlacedWord> placedWords;
+}
+
+[Serializable]
+public class PlacedWord
+{
+    public string id;
+    public bool isAcross;
+    public int startRow;
+    public int startCol;
+    public string answer;
+    public string clue;
 }
 
 [Serializable]
@@ -22,11 +43,7 @@ public class SubcategoryData
     public string name;
 
     public List<TriviaEntry> trivia;
-
-    // ✅ Wordoku is just 9-letter words + difficulty
     public List<WordokuEntry> wordoku;
-
-    // ✅ Crossword is a clue bank (answer + clue + difficulty)
     public List<CrosswordEntry> crosswords;
 }
 
@@ -44,14 +61,14 @@ public class TriviaEntry
 public class WordokuEntry
 {
     public string id;
-    public string word; // 9 letters
+    public string word;
 }
 
 [Serializable]
 public class CrosswordEntry
 {
     public string id;
-    public string answer;     // e.g., "ION"
-    public string clue;       // e.g., "Atom with a net electric charge"
-    public string difficulty; // "easy" | "medium" | "hard" | "insanity"
+    public string answer;
+    public string clue;
+    public string difficulty;
 }
