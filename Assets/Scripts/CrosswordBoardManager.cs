@@ -61,8 +61,8 @@ public class CrosswordBoardManager : MonoBehaviour
     [SerializeField] private bool allowDuplicatesInPuzzle = false;
 
     [Header("Debug / Testing")]
-    [Tooltip("If true, shows the solved letters (BUT only for placed words).")]
-    [SerializeField] private bool autoFillSolutionOnStart = true;
+    [Tooltip("If true, shows the solved letters (BUT only for placed words). Keep FALSE for release.")]
+    [SerializeField] private bool autoFillSolutionOnStart = false;
 
     private GameDatabase dbCached;
 
@@ -110,10 +110,9 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         // ── collect crossword entries ─────────────────────────────────────────
-        // Use ALL difficulty levels for the generator pool.
-        // Difficulty only controls which CLUE is shown to the player, not which
-        // words are available — filtering by difficulty was the root cause of
-        // the old generator failing on "easy" mode with no long words.
+        // Pull from ALL subcategories in the category — CrosswordFiller is a
+        // backtracking constraint solver that needs maximum word variety per
+        // slot length to find a valid fill. More words = faster solve.
         var pool = new List<CrosswordEntry>();
 
         CategoryData cat = db.categories?.Find(c => c.id == catId);
@@ -123,42 +122,18 @@ public class CrosswordBoardManager : MonoBehaviour
             return;
         }
 
-        // Collect from the selected subcategory
-        SubcategoryData sub = cat.subcategories?.Find(s => s.id == subId);
-        if (sub?.crosswords != null)
+        if (cat.subcategories != null)
         {
-            foreach (var e in sub.crosswords)
+            foreach (var subcategory in cat.subcategories)
             {
-                if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
-                    string.IsNullOrWhiteSpace(e.clue)) continue;
-
-                string ans = CleanAnswer(e.answer);
-                if (ans.Length < 3 || ans.Length > 9) continue;
-
-                pool.Add(new CrosswordEntry
-                {
-                    id         = e.id,
-                    answer     = ans,
-                    clue       = e.clue.Trim(),
-                    difficulty = NormalizeDifficulty(e.difficulty)
-                });
-            }
-        }
-
-        // If the subcategory pool is thin (< 80 words), also pull from sibling
-        // subcategories in the same category to give the generator more to work with.
-        if (pool.Count < 80 && cat.subcategories != null)
-        {
-            foreach (var sibling in cat.subcategories)
-            {
-                if (sibling.id == subId || sibling.crosswords == null) continue;
-                foreach (var e in sibling.crosswords)
+                if (subcategory?.crosswords == null) continue;
+                foreach (var e in subcategory.crosswords)
                 {
                     if (e == null || string.IsNullOrWhiteSpace(e.answer) ||
                         string.IsNullOrWhiteSpace(e.clue)) continue;
 
                     string ans = CleanAnswer(e.answer);
-                    if (ans.Length < 3 || ans.Length > 9) continue;
+                    if (ans.Length < 3 || ans.Length > 10) continue;
 
                     pool.Add(new CrosswordEntry
                     {
@@ -168,11 +143,7 @@ public class CrosswordBoardManager : MonoBehaviour
                         difficulty = NormalizeDifficulty(e.difficulty)
                     });
                 }
-                if (pool.Count >= 150) break;
             }
-
-            if (pool.Count > sub?.crosswords?.Count)
-                Debug.Log($"[CrosswordBoardManager] Pool supplemented from siblings: {pool.Count} total entries.");
         }
 
         Debug.Log($"[CrosswordBoardManager] Total pool size: {pool.Count}");
@@ -184,36 +155,58 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         // ── generate puzzle ───────────────────────────────────────────────────
-        var generated = CrosswordGenerator.Generate(
-            clueBank:          pool,
-            rows:              10,
-            cols:              10,
-            targetWordCount:   15,    // 15 is reliably achievable; 18 caused frequent failures
-            seed:              0,     // 0 = random seed each time
-            maxAttempts:       3000,  // was 40 — far too low; needs thousands to place 15 words reliably
-            minWordLen:        3,
-            maxWordLen:        9,
-            blockPercent:      0.16f,
-            layoutGenAttempts: 300,
-            forceCenterOpen:   true
-        );
+        // Step 1: generate a symmetric block layout.
+        //         Higher blockPercent = shorter slots = much easier for the filler to solve.
+        // Step 2: CrosswordFiller fills EVERY slot with a real word from the pool,
+        //         guaranteeing no nonsense letter runs in either direction.
 
-        if (generated == null || generated.placedWords == null ||
-            generated.placedWords.Count == 0)
+        string[] layout = null;
+        List<CrosswordWord> filledWords = null;
+        bool success = false;
+
+        for (int layoutAttempt = 0; layoutAttempt < 15 && !success; layoutAttempt++)
         {
-            Debug.LogError("[CrosswordBoardManager] CrosswordGenerator failed to place any words. " +
-                           "Add more words to the pool (aim for 150+ per category, especially 3-6 letter words).");
+            layout = CrosswordGenerator.GenerateLayout(
+                rows:              10,
+                cols:              10,
+                seed:              0,
+                blockPercent:      0.22f,   // higher = shorter slots = easier to fill
+                layoutGenAttempts: 400,
+                forceCenterOpen:   true
+            );
+
+            success = CrosswordFiller.TryFillAllSlots(
+                layoutRows:        layout,
+                pool:              pool,
+                placedWords:       out filledWords,
+                seed:              0,
+                maxSolveAttempts:  40,
+                maxBacktrackNodes: 2000000,
+                allowDuplicates:   false,
+                minLen:            3,
+                maxLen:            10
+            );
+
+            if (!success)
+                Debug.Log($"[CrosswordBoardManager] Layout attempt {layoutAttempt + 1} unsolvable, retrying.");
+        }
+
+        var generated = success ? filledWords : null;
+
+        if (generated == null || generated.Count == 0)
+        {
+            Debug.LogError("[CrosswordBoardManager] CrosswordFiller failed to fill any layout after 8 attempts. " +
+                           "Ensure the pool has 150+ words covering lengths 3–9.");
             words.Clear();
             CrosswordSession.currentWords = words;
             return;
         }
 
         // ── apply result to board ─────────────────────────────────────────────
-        // Update the layout so BuildBoard() draws the right blocked cells
-        layoutRows = NormalizeLayout(generated.layoutRows);
+        layoutRows = NormalizeLayout(layout);
 
         words.Clear();
-        words.AddRange(generated.placedWords);
+        words.AddRange(generated);
 
         Debug.Log($"[CrosswordBoardManager] Generator SUCCESS — {words.Count} words placed.");
         CrosswordSession.currentWords = words;

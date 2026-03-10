@@ -120,29 +120,20 @@ public static class CrosswordGenerator
 
         var used = new HashSet<string> { first.answer };
 
-        // Build a shuffled list of remaining candidates so we never waste
-        // an attempt re-picking an already-used word.
-        var remaining = pool
-            .Where(e => !used.Contains(e.answer))
-            .OrderBy(_ => rng.Next())
-            .ToList();
-
         int attempts = 0;
 
-        while (placed.Count < targetWordCount && attempts < maxAttempts && remaining.Count > 0)
+        while (placed.Count < targetWordCount && attempts < maxAttempts)
         {
             attempts++;
 
-            // Pick a random candidate from the unused pool
-            int idx = rng.Next(remaining.Count);
-            var candidate = remaining[idx];
+            var candidate = pool[rng.Next(pool.Count)];
+            if (used.Contains(candidate.answer)) continue;
 
             if (TryFindIntersectingPlacement(board, candidate.answer, rng, out var placement))
             {
                 ApplyPlacement(board, candidate.answer, placement);
                 placed.Add((candidate, placement));
                 used.Add(candidate.answer);
-                remaining.RemoveAt(idx);   // remove so we never pick it again
             }
             else
             {
@@ -152,15 +143,6 @@ public static class CrosswordGenerator
                     ApplyPlacement(board, candidate.answer, placement2);
                     placed.Add((candidate, placement2));
                     used.Add(candidate.answer);
-                    remaining.RemoveAt(idx);
-                }
-                // Don't remove on failure — let it try this word again after
-                // other words have filled the board and created new intersections.
-                // But rotate it to the back so we try others first.
-                else
-                {
-                    remaining.RemoveAt(idx);
-                    remaining.Add(candidate);
                 }
             }
         }
@@ -174,6 +156,30 @@ public static class CrosswordGenerator
             layoutRows = layoutRows,
             placedWords = crosswordWords
         };
+    }
+
+    // -------------------------------
+    // Public layout-only entry point
+    // -------------------------------
+
+    /// <summary>
+    /// Generates only the block mask as string[] rows of '.' and '#'.
+    /// Pass the result to CrosswordFiller.TryFillAllSlots to guarantee every
+    /// letter run between black squares is a real word in both directions.
+    /// </summary>
+    public static string[] GenerateLayout(
+        int rows              = 10,
+        int cols              = 10,
+        int seed              = 0,
+        float blockPercent    = 0.16f,
+        int layoutGenAttempts = 300,
+        bool forceCenterOpen  = true
+    )
+    {
+        var rng = (seed == 0) ? new System.Random() : new System.Random(seed);
+        bool[,] blocked = GenerateClassicSymmetricMask(
+            rows, cols, blockPercent, rng, layoutGenAttempts, forceCenterOpen);
+        return MaskToLayoutRows(blocked);
     }
 
     // -------------------------------
@@ -580,32 +586,6 @@ public static class CrosswordGenerator
         }
 
         return list;
-    }
-
-    // ------------------------------------------------------------------
-    // Backward-compatible wrapper so callers can use either name.
-    // CrosswordBoardManager (and any legacy code) calls Generate();
-    // new code can call GenerateFromClueBank() directly.
-    // ------------------------------------------------------------------
-    public static GeneratedCrossword Generate(
-        List<CrosswordEntry> clueBank,
-        int rows             = 10,
-        int cols             = 10,
-        int targetWordCount  = 15,
-        int seed             = 0,
-        int maxAttempts      = 3000,
-        int minWordLen       = 3,
-        int maxWordLen       = 9,
-        float blockPercent   = 0.16f,
-        int layoutGenAttempts = 300,
-        bool forceCenterOpen  = true
-    )
-    {
-        return GenerateFromClueBank(
-            clueBank, rows, cols, targetWordCount,
-            seed, maxAttempts, minWordLen, maxWordLen,
-            blockPercent, layoutGenAttempts, forceCenterOpen
-        );
     }
 
     private static string CleanAnswer(string raw)
