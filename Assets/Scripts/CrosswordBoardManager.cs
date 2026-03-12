@@ -50,6 +50,10 @@ public class CrosswordBoardManager : MonoBehaviour
     // solution letter for each cell (empty = '\0')
     private char[,] solutionLetters;
 
+    // selection state for tap-to-toggle direction
+    private CrosswordCell _selectedCell;
+    private bool _selectedAcross = true;
+
     [Header("Database")]
     [Tooltip("Resources file name (without .json). Default expects Assets/Resources/trivia_database.json")]
     [SerializeField] private string resourcesDbName = "trivia_database";
@@ -303,6 +307,7 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         IndexWordsAndBuildSolution();
+        AssignCellNumbers();
     }
 
     private void IndexWordsAndBuildSolution()
@@ -340,6 +345,30 @@ public class CrosswordBoardManager : MonoBehaviour
 
     // IMPORTANT: reveal letters ONLY if that cell belongs to a placed word.
     // This prevents "nonsense down words" from appearing just because across letters line up.
+    private void AssignCellNumbers()
+    {
+        if (cells == null) return;
+
+        // Extract numeric part from word id (e.g. "3A" -> 3, "12D" -> 12)
+        // and write it to the starting cell's NumberLabel
+        foreach (var w in words)
+        {
+            if (w == null || string.IsNullOrWhiteSpace(w.id)) continue;
+
+            // id format is e.g. "4A" or "12D" — strip trailing letter(s)
+            string numStr = w.id.TrimEnd('A', 'D', 'a', 'd');
+
+            int r = w.startRow;
+            int c = w.startCol;
+
+            if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
+            if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+
+            // Don't overwrite if a higher-priority number is already there
+            // (when across and down share the same start cell, same number applies)
+            cells[r, c].SetNumber(numStr);
+        }
+    }
     private void RevealPlacedSolutionLettersOnly()
     {
         if (cells == null || solutionLetters == null) return;
@@ -370,46 +399,55 @@ public class CrosswordBoardManager : MonoBehaviour
         int r = cell.row;
         int c = cell.col;
 
-        ClearHighlights();
+        CrosswordWord acrossWord = acrossAt[r, c];
+        CrosswordWord downWord   = downAt[r, c];
 
-        CrosswordWord word = acrossAt[r, c] ?? downAt[r, c];
-        if (word == null)
+        bool hasAcross = acrossWord != null;
+        bool hasDown   = downWord   != null;
+
+        // Nothing here at all
+        if (!hasAcross && !hasDown)
         {
             CrosswordClueDisplay.Instance?.ClearClue();
             return;
         }
 
+        // Decide direction:
+        // - If only one direction exists, always use that
+        // - If both exist and this is the SAME cell as last tap, toggle
+        // - If both exist and this is a NEW cell, prefer across
+        bool goAcross;
+        if (hasAcross && !hasDown)
+            goAcross = true;
+        else if (hasDown && !hasAcross)
+            goAcross = false;
+        else if (_selectedCell == cell)
+            goAcross = !_selectedAcross;   // toggle on repeat tap
+        else
+            goAcross = true;               // new cell — default to across
+
+        _selectedCell   = cell;
+        _selectedAcross = goAcross;
+
+        ClearHighlights();
+
+        CrosswordWord activeWord   = goAcross ? acrossWord : downWord;
+        CrosswordWord inactiveWord = goAcross ? downWord   : acrossWord;
+
+        // Clue display — active clue first with ▶, inactive below
         if (CrosswordClueDisplay.Instance != null)
         {
-            CrosswordWord acrossWord = acrossAt[r, c];
-            CrosswordWord downWord   = downAt[r, c];
-
-            bool hasAcross = acrossWord != null;
-            bool hasDown   = downWord   != null;
-
-            if (hasAcross && hasDown)
-            {
+            if (inactiveWord != null)
                 CrosswordClueDisplay.Instance.ShowMultiClue(
-                    acrossWord.id, acrossWord.clue,
-                    downWord.id,   downWord.clue
-                );
-            }
-            else if (hasAcross)
-            {
-                CrosswordClueDisplay.Instance.ShowClue(acrossWord.id, acrossWord.clue);
-            }
-            else if (hasDown)
-            {
-                CrosswordClueDisplay.Instance.ShowClue(downWord.id, downWord.clue);
-            }
+                    activeWord.id,   activeWord.clue,
+                    inactiveWord.id, inactiveWord.clue);
             else
-            {
-                CrosswordClueDisplay.Instance.ClearClue();
-            }
+                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue);
         }
 
-        if (word.isAcross) HighlightAcrossWord(r, c);
-        else HighlightDownWord(r, c);
+        // Highlight
+        if (goAcross) HighlightAcrossWord(r, c);
+        else          HighlightDownWord(r, c);
     }
 
     private void ClearHighlights()

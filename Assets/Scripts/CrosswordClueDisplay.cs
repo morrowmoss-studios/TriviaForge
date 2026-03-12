@@ -26,14 +26,15 @@ public class CrosswordClueDisplay : MonoBehaviour
     public void ShowClue(string label, string clue)
     {
         if (clueText == null) return;
-        clueText.text = $"{label} – {clue}";
+        clueText.text = $"<b>{label}</b> – {clue}";
     }
 
-    public void ShowMultiClue(string acrossLabel, string acrossClue,
-        string downLabel, string downClue)
+    // Active clue is bold, inactive clue is normal weight below it
+    public void ShowMultiClue(string activeLabel, string activeClue,
+        string inactiveLabel, string inactiveClue)
     {
         if (clueText == null) return;
-        clueText.text = $"{acrossLabel} – {acrossClue}\n{downLabel} – {downClue}";
+        clueText.text = $"<b>{activeLabel}</b> – {activeClue}\n\n{inactiveLabel} – {inactiveClue}";
     }
 
     public void ClearClue()
