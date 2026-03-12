@@ -129,8 +129,9 @@ public class ModeSelectManager : MonoBehaviour
         bool isWordoku = string.Equals(
             selectedGameMode,
             "Wordoku",
-            System.StringComparison.OrdinalIgnoreCase)
-            || string.Equals(
+            System.StringComparison.OrdinalIgnoreCase);
+
+        bool isCrossword = string.Equals(
             selectedGameMode,
             "Crossword",
             System.StringComparison.OrdinalIgnoreCase);
@@ -143,7 +144,7 @@ public class ModeSelectManager : MonoBehaviour
         subcategoryDropdown.ClearOptions();
 
         // Wordoku, Crossword, OR MixedAll => disable subcategory and show "All"
-        if (isWordoku || isMixedAll)
+        if (isWordoku || isCrossword || isMixedAll)
         {
             subcategoryDropdown.AddOptions(new List<string> { "All" });
             subcategoryDropdown.value = 0;
@@ -193,8 +194,9 @@ public class ModeSelectManager : MonoBehaviour
         bool isWordoku = string.Equals(
             selectedGameMode,
             "Wordoku",
-            System.StringComparison.OrdinalIgnoreCase)
-            || string.Equals(
+            System.StringComparison.OrdinalIgnoreCase);
+
+        bool isCrossword = string.Equals(
             selectedGameMode,
             "Crossword",
             System.StringComparison.OrdinalIgnoreCase);
@@ -203,7 +205,7 @@ public class ModeSelectManager : MonoBehaviour
         string subId;
 
         // Wordoku and Crossword always use "All" (subcategory not used)
-        if (isWordoku)
+        if (isWordoku || isCrossword)
         {
             subDisplay = "All";
             subId = "";
@@ -257,6 +259,7 @@ public class ModeSelectManager : MonoBehaviour
                 SceneManager.LoadScene("TriviaMode");
                 break;
             case "Crossword":
+                CrosswordSession.ClearPuzzle();
                 SceneManager.LoadScene("CrosswordMode");
                 break;
             case "Wordoku":

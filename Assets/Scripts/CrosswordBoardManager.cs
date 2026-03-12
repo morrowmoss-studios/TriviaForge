@@ -98,56 +98,67 @@ public class CrosswordBoardManager : MonoBehaviour
     {
         string catId = TriviaSessionData.selectedCategoryId;
 
-        Debug.Log($"[CrosswordBoardManager] Loading puzzle bank for category '{catId}'");
+        // Reuse cached puzzle if returning from Clues scene
+        PreGeneratedPuzzle puzzle = CrosswordSession.activePuzzle;
 
-        GameDatabase db = LoadDatabase();
-        if (db == null)
+        if (puzzle == null)
         {
-            Debug.LogWarning("[CrosswordBoardManager] DB load failed.");
-            return;
-        }
+            Debug.Log($"[CrosswordBoardManager] Loading puzzle bank for category '{catId}'");
 
-        var rng = new System.Random();
-        PreGeneratedPuzzle puzzle = null;
-
-        bool isMixed = string.IsNullOrWhiteSpace(catId)
-                       || catId == "mixed" || catId == "all" || catId == "mix"
-                       || catId == "mixed_all";
-
-        if (isMixed)
-        {
-            // Collect all puzzles from all categories and pick one at random
-            var allPuzzles = new List<PreGeneratedPuzzle>();
-            if (db.categories != null)
-                foreach (var c in db.categories)
-                    if (c.puzzles != null)
-                        allPuzzles.AddRange(c.puzzles);
-
-            if (allPuzzles.Count == 0)
+            GameDatabase db = LoadDatabase();
+            if (db == null)
             {
-                Debug.LogWarning("[CrosswordBoardManager] No puzzles found across any category.");
+                Debug.LogWarning("[CrosswordBoardManager] DB load failed.");
                 return;
             }
 
-            puzzle = allPuzzles[rng.Next(allPuzzles.Count)];
+            var rng = new System.Random();
+
+            bool isMixed = string.IsNullOrWhiteSpace(catId)
+                           || catId == "mixed" || catId == "all" || catId == "mix"
+                           || catId == "mixed_all";
+
+            if (isMixed)
+            {
+                var allPuzzles = new List<PreGeneratedPuzzle>();
+                if (db.categories != null)
+                    foreach (var c in db.categories)
+                        if (c.puzzles != null)
+                            allPuzzles.AddRange(c.puzzles);
+
+                if (allPuzzles.Count == 0)
+                {
+                    Debug.LogWarning("[CrosswordBoardManager] No puzzles found across any category.");
+                    return;
+                }
+
+                puzzle = allPuzzles[rng.Next(allPuzzles.Count)];
+            }
+            else
+            {
+                CategoryData cat = db.categories?.Find(c => c.id == catId);
+                if (cat == null)
+                {
+                    Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found.");
+                    return;
+                }
+
+                if (cat.puzzles == null || cat.puzzles.Count == 0)
+                {
+                    Debug.LogWarning($"[CrosswordBoardManager] No pre-generated puzzles for '{catId}'. " +
+                                     "Re-run generate_puzzles.py and reimport trivia_database.json.");
+                    return;
+                }
+
+                puzzle = cat.puzzles[rng.Next(cat.puzzles.Count)];
+            }
+
+            // Cache it so returning from Clues scene reloads the same puzzle
+            CrosswordSession.activePuzzle = puzzle;
         }
         else
         {
-            CategoryData cat = db.categories?.Find(c => c.id == catId);
-            if (cat == null)
-            {
-                Debug.LogWarning($"[CrosswordBoardManager] Category '{catId}' not found.");
-                return;
-            }
-
-            if (cat.puzzles == null || cat.puzzles.Count == 0)
-            {
-                Debug.LogWarning($"[CrosswordBoardManager] No pre-generated puzzles for '{catId}'. " +
-                                 "Re-run generate_puzzles.py and reimport trivia_database.json.");
-                return;
-            }
-
-            puzzle = cat.puzzles[rng.Next(cat.puzzles.Count)];
+            Debug.Log("[CrosswordBoardManager] Resuming cached puzzle.");
         }
 
         if (puzzle.layoutRows == null || puzzle.placedWords == null || puzzle.placedWords.Count == 0)
