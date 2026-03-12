@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -120,19 +121,15 @@ public class CrosswordBoardManager : MonoBehaviour
 
             if (isMixed)
             {
-                var allPuzzles = new List<PreGeneratedPuzzle>();
-                if (db.categories != null)
-                    foreach (var c in db.categories)
-                        if (c.puzzles != null)
-                            allPuzzles.AddRange(c.puzzles);
-
-                if (allPuzzles.Count == 0)
+                // For mixed, pick from a random category using seen tracking
+                var eligibleCats = db.categories?.Where(c => c.puzzles != null && c.puzzles.Count > 0).ToList();
+                if (eligibleCats == null || eligibleCats.Count == 0)
                 {
                     Debug.LogWarning("[CrosswordBoardManager] No puzzles found across any category.");
                     return;
                 }
-
-                puzzle = allPuzzles[rng.Next(allPuzzles.Count)];
+                var randomCat = eligibleCats[rng.Next(eligibleCats.Count)];
+                puzzle = SeenContentTracker.PickUnseenCrossword(randomCat.id, randomCat.puzzles, rng);
             }
             else
             {
@@ -150,7 +147,7 @@ public class CrosswordBoardManager : MonoBehaviour
                     return;
                 }
 
-                puzzle = cat.puzzles[rng.Next(cat.puzzles.Count)];
+                puzzle = SeenContentTracker.PickUnseenCrossword(catId, cat.puzzles, rng);
             }
 
             // Cache it so returning from Clues scene reloads the same puzzle

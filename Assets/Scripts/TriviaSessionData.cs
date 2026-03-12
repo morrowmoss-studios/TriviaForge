@@ -10,14 +10,26 @@ public static class TriviaSessionData
     public static string selectedGameMode;
     public static string selectedCategory;
     public static string selectedSubcategory;
-    public static string selectedCategoryId;      // e.g. "science"
-    public static string selectedSubcategoryId;   // e.g. "physics_quantum"
-    public static string selectedDifficulty = "Medium"; //Default level
-    public static int strikes = 0;
-    public const int maxStrikes = 3;
+    public static string selectedCategoryId;
+    public static string selectedSubcategoryId;
+    public static string selectedDifficulty = "Medium";
+    public static int strikes    = 0;
+    public const  int maxStrikes = 3;
     public static bool roundOver = false;
-
 
     // Question index so we know where we are in the list
     public static int currentQuestionIndex = 0;
+
+    // Persisted shuffled question list — survives scene reloads within a session
+    // Stores just the DB entry ids so we can reconstruct Questions without
+    // holding full objects across scenes
+    public static System.Collections.Generic.List<TriviaEntry> sessionQuestions = null;
+
+    public static void ClearSession()
+    {
+        currentQuestionIndex = 0;
+        strikes              = 0;
+        roundOver            = false;
+        sessionQuestions     = null;
+    }
 }

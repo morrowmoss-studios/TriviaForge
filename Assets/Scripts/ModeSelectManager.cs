@@ -256,6 +256,12 @@ public class ModeSelectManager : MonoBehaviour
         switch (selectedGameMode)
         {
             case "Trivia":
+                TriviaSessionData.ClearSession();
+                TriviaSessionData.strikes = 0;
+
+                if (ScoreManager.Instance != null)
+                    ScoreManager.Instance.ResetScore();
+
                 SceneManager.LoadScene("TriviaMode");
                 break;
             case "Crossword":

@@ -10,7 +10,6 @@ public class TriviaResultScene : MonoBehaviour
 
     private void Start()
     {
-        // Title: Correct / Wrong
         titleText.text = TriviaSessionData.wasCorrect ? "Correct!" : "Wrong!";
 
         int chosen  = TriviaSessionData.chosenIndex;
@@ -22,7 +21,6 @@ public class TriviaResultScene : MonoBehaviour
         string chosenText  = TriviaSessionData.answers[chosen];
         string correctText = TriviaSessionData.answers[correct];
 
-        // displaying right or wrong answers
         if (TriviaSessionData.wasCorrect)
         {
             bodyText.text = $"You chose: <b>{chosenLetter}. {chosenText}</b>";
@@ -46,36 +44,25 @@ public class TriviaResultScene : MonoBehaviour
             default: return "?";
         }
     }
-    
+
     // called by Next button
     public void OnNextPressed()
     {
-        // ✅ 3 strikes -> end the round immediately (after showing this result screen)
-        if (TriviaSessionData.roundOver || TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
+        // Strikes or out of questions -> game over
+        if (TriviaSessionData.roundOver)
         {
             SceneManager.LoadScene("GameOver_PopUp");
             return;
         }
 
-        // move to the next question index
-        TriviaSessionData.currentQuestionIndex++;
-
-        if (TriviaSessionData.currentQuestionIndex >= TriviaSessionData.totalQuestions)
-        {
-            // ✅ Out of questions -> go to Game Over popup instead of ModeSelect
-            SceneManager.LoadScene("GameOver_PopUp");
-        }
-        else
-        {
-            // still have questions -> go back to TriviaMode for the next one
-            SceneManager.LoadScene("TriviaMode");
-        }
+        // TriviaQuestionManager already advanced currentQuestionIndex when
+        // the answer was clicked — don't increment again here
+        SceneManager.LoadScene("TriviaMode");
     }
 
     // called by Quit button
     public void OnQuitPressed()
     {
-        // still fine to send them back to ModeSelect / MainMenu on manual quit
-        SceneManager.LoadScene("ModeSelect");       // or "MainMenu" if you prefer
+        SceneManager.LoadScene("ModeSelect");
     }
 }

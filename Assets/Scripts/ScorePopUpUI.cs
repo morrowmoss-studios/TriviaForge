@@ -66,10 +66,7 @@ public class ScorePopupUI : MonoBehaviour
 
     public void OnGoToTriviaMode()
     {
-        // Full reset for a fresh run
-        TriviaSessionData.currentQuestionIndex = 0;
-        TriviaSessionData.strikes              = 0;
-        TriviaSessionData.roundOver            = false;
+        TriviaSessionData.ClearSession();
 
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.ResetScore();

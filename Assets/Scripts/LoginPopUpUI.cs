@@ -11,30 +11,19 @@ public class LoginPopupUI : MonoBehaviour
     [Header("Optional: Feedback Text")]
     [SerializeField] private TMP_Text statusText;
 
-    [Header("Popup Root (what to hide on cancel/success)")]
-    [SerializeField] private GameObject popupRoot;
-
     [Header("Optional: Create Account Panel")]
     [SerializeField] private GameObject createAccountPanel;
 
+    [Header("Scene Names")]
+    [SerializeField] private string mainMenuSceneName      = "MainMenu";
+    [SerializeField] private string modeSelectSceneName    = "ModeSelect";
     [SerializeField] private string createAccountSceneName = "CreateAccount_PopUp";
 
-    [Header("Navigation")]
-    [Tooltip("Scene to go to after login/guest. Leave blank to just close popup.")]
-    [SerializeField] private string nextSceneName = "MainMenu";
-
-    [Tooltip("If true, Cancel will load nextSceneName (or MainMenu). If false, it just hides popupRoot.")]
-    [SerializeField] private bool cancelLoadsScene = false;
-
-    // ---------------------------------------
-    // TEMP LOCAL AUTH (for testing only)
-    // ---------------------------------------
     private const string PrefKey_User = "TF_USER_";
     private const string PrefKey_Pass = "TF_PASS_";
 
     private void Awake()
     {
-        if (popupRoot == null) popupRoot = gameObject;
         SetStatus("");
     }
 
@@ -56,7 +45,6 @@ public class LoginPopupUI : MonoBehaviour
             return;
         }
 
-        // TEMP: local login using PlayerPrefs
         if (!HasUser(user))
         {
             SetStatus("Account not found. Use Create New Account.");
@@ -69,47 +57,30 @@ public class LoginPopupUI : MonoBehaviour
             return;
         }
 
-        // Success
-        SetStatus("Login successful!");
         SetSessionLoggedIn(user, isGuest: false);
-
-        GoNextOrClose();
+        SceneManager.LoadScene(modeSelectSceneName);
     }
 
-    // CANCEL button
+    // CANCEL button — go back to main menu
     public void OnCancelPressed()
     {
-        SetStatus("");
-
-        if (cancelLoadsScene)
-        {
-            LoadSceneSafe(string.IsNullOrWhiteSpace(nextSceneName) ? "MainMenu" : nextSceneName);
-            return;
-        }
-
-        // Hide the popup (best for your "Login_PopUp" overlay approach)
-        if (popupRoot != null) popupRoot.SetActive(false);
-        else gameObject.SetActive(false);
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 
-    // "Create New Account" text/button
+    // "Create New Account" button
     public void OnCreateAccountPressed()
     {
-        SetStatus("");
-        LoadSceneSafe(createAccountSceneName);
+        SceneManager.LoadScene(createAccountSceneName);
     }
 
-    // "Play as Guest" text/button
+    // "Play as Guest" button
     public void OnGuestPressed()
     {
-        SetStatus("Playing as Guest...");
         SetSessionLoggedIn("Guest", isGuest: true);
-        GoNextOrClose();
+        SceneManager.LoadScene(modeSelectSceneName);
     }
 
-    // ---------------------------------------
-    // PUBLIC helper for a Create Account script
-    // ---------------------------------------
+    // Public helper for CreateAccount script
     public void CreateLocalAccount(string username, string password)
     {
         username = username.Trim();
@@ -136,29 +107,6 @@ public class LoginPopupUI : MonoBehaviour
     // ---------------------------------------
     // Internal helpers
     // ---------------------------------------
-    private void GoNextOrClose()
-    {
-        if (!string.IsNullOrWhiteSpace(nextSceneName))
-        {
-            LoadSceneSafe(nextSceneName);
-            return;
-        }
-
-        // No scene specified, just close popup
-        if (popupRoot != null) popupRoot.SetActive(false);
-        else gameObject.SetActive(false);
-    }
-
-    private void LoadSceneSafe(string sceneName)
-    {
-        if (string.IsNullOrWhiteSpace(sceneName))
-        {
-            Debug.LogWarning("[LoginPopupUI] No scene name provided.");
-            return;
-        }
-
-        SceneManager.LoadScene(sceneName);
-    }
 
     private void SetStatus(string msg)
     {
@@ -179,7 +127,6 @@ public class LoginPopupUI : MonoBehaviour
 
     private static void SetSessionLoggedIn(string username, bool isGuest)
     {
-        // If you already have PlayerDatabase / TriviaSessionData, swap these to your real system.
         PlayerPrefs.SetString("TF_CurrentUser", username);
         PlayerPrefs.SetInt("TF_IsGuest", isGuest ? 1 : 0);
         PlayerPrefs.Save();
