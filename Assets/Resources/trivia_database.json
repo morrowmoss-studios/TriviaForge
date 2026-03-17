@@ -144081,6 +144081,330 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_036",
+              "questionText": "Who is the Greek god of the sea?",
+              "answers": [
+                "Poseidon",
+                "Zeus",
+                "Hades",
+                "Ares"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_037",
+              "questionText": "What is the name of the Norse world tree connecting the nine realms?",
+              "answers": [
+                "Yggdrasil",
+                "Bifrost",
+                "Asgard",
+                "Valhalla"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_038",
+              "questionText": "Who is the Egyptian god of the dead?",
+              "answers": [
+                "Osiris",
+                "Ra",
+                "Anubis",
+                "Horus"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_039",
+              "questionText": "What hero killed the Minotaur in Greek mythology?",
+              "answers": [
+                "Theseus",
+                "Perseus",
+                "Hercules",
+                "Achilles"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_040",
+              "questionText": "What did Prometheus steal from the gods to give to humanity?",
+              "answers": [
+                "Fire",
+                "Immortality",
+                "Wisdom",
+                "The sun"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_036",
+              "questionText": "In Norse mythology, what is Ragnar\u00f6k?",
+              "answers": [
+                "The prophesied end of the world in which gods and monsters destroy each other",
+                "The great hall where warriors feast after death",
+                "The bridge connecting Asgard to Earth",
+                "The home of the frost giants"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_037",
+              "questionText": "What Hindu text features Arjuna receiving divine wisdom from Krishna before battle?",
+              "answers": [
+                "The Bhagavad Gita",
+                "The Ramayana",
+                "The Upanishads",
+                "The Vedas"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_038",
+              "questionText": "What was Achilles' one vulnerability in Greek mythology?",
+              "answers": [
+                "His heel",
+                "His left arm",
+                "His eyes",
+                "His heart"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_039",
+              "questionText": "Who is the trickster god in Norse mythology?",
+              "answers": [
+                "Loki",
+                "Thor",
+                "Odin",
+                "Freyr"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_040",
+              "questionText": "What is the Aztec god of the sun and war?",
+              "answers": [
+                "Huitzilopochtli",
+                "Quetzalcoatl",
+                "Tlaloc",
+                "Tezcatlipoca"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_028",
+              "questionText": "What is the Enuma Elish?",
+              "answers": [
+                "A Babylonian creation myth in which Marduk defeats the chaos dragon Tiamat to create the world",
+                "The Sumerian flood narrative predating the biblical account",
+                "An Egyptian hymn to Ra recited at dawn",
+                "The oldest known written legal code"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_029",
+              "questionText": "What is the Dreamtime in Australian Aboriginal mythology?",
+              "answers": [
+                "The sacred era of creation in which Ancestral Beings shaped the land and established laws \u2014 it coexists with the present rather than being purely historical",
+                "The spirit world inhabited by the dead awaiting reincarnation",
+                "A trance state used by shamans to communicate with ancestors",
+                "The period of darkness before the first sunrise"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_030",
+              "questionText": "What is the Finnish epic the Kalevala and why is it significant?",
+              "answers": [
+                "A 19th-century compilation of Finnish oral mythology by Elias L\u00f6nnrot that helped forge Finnish national identity and influenced Tolkien",
+                "The oldest written Norse saga predating the Eddas",
+                "A shamanistic ritual text used by Finnish folk healers",
+                "A collection of Viking battle poems translated into Finnish"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_031",
+              "questionText": "What is the Japanese creation myth of Izanagi and Izanami?",
+              "answers": [
+                "The creator pair who stirred the ocean to form the Japanese islands \u2014 Izanami died giving birth to fire and Izanagi descended to retrieve her from the underworld",
+                "The sun goddess and moon god whose conflict explains day and night",
+                "Twin tricksters who brought writing and rice cultivation to Japan",
+                "The divine pair whose love story explains the seasonal cycle"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_027",
+              "questionText": "What is the monomyth or Hero's Journey as described by Joseph Campbell?",
+              "answers": [
+                "A universal narrative pattern \u2014 separation, initiation, return \u2014 found across world mythologies in which the hero leaves the ordinary world, faces trials, gains wisdom, and returns transformed",
+                "A Jungian theory that all myths are projections of the collective unconscious",
+                "A method tracing common motifs across unrelated cultures",
+                "A structuralist framework analyzing myths as binary oppositions"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_028",
+              "questionText": "What is euhemerism in mythology studies?",
+              "answers": [
+                "The theory that myths are garbled accounts of real historical events and that gods were originally real people who were deified over time",
+                "The interpretation of myths as allegories for natural phenomena",
+                "A method comparing myths across cultures to find universal archetypes",
+                "The study of how myths change as they are transmitted across generations"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_029",
+              "questionText": "What is the dying and rising god motif in comparative mythology?",
+              "answers": [
+                "A recurring pattern \u2014 Osiris, Dionysus, Adonis \u2014 featuring a deity who dies and returns, often associated with agricultural cycles and seasonal renewal",
+                "A Christian theological concept applied retrospectively to other religions",
+                "A Jungian archetype representing the ego's transformation through crisis",
+                "A narrative device unique to Mediterranean religious traditions"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_030",
+              "questionText": "What is the axis mundi concept across world mythologies?",
+              "answers": [
+                "A symbolic center of the world connecting heaven, earth, and underworld \u2014 represented by Yggdrasil, Mount Olympus, Mount Meru, and similar structures across cultures",
+                "The mythological explanation for the Earth's rotational axis",
+                "A universal creation myth involving a cosmic serpent",
+                "The sacred direction from which divine power descends in most mythological systems"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_041",
+              "questionText": "What is the name of the Roman equivalent of the Greek god Zeus?",
+              "answers": [
+                "Jupiter",
+                "Mars",
+                "Neptune",
+                "Mercury"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_041",
+              "questionText": "In Greek mythology, what is the Elysian Fields?",
+              "answers": [
+                "A paradise in the afterlife reserved for heroes and the virtuous",
+                "The realm of the dead ruled by Hades",
+                "The home of the gods on Mount Olympus",
+                "The underworld river that souls must cross after death"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_042",
+              "questionText": "What is the Mahabharata?",
+              "answers": [
+                "One of the two major Sanskrit epics of ancient India \u2014 a vast narrative of the Kurukshetra War between the Pandavas and Kauravas",
+                "A collection of creation hymns forming the oldest Vedic scripture",
+                "The sacred biography of the god Vishnu's ten avatars",
+                "The Hindu code of laws attributed to the sage Manu"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_032",
+              "questionText": "What is the significance of the trickster archetype across world mythologies?",
+              "answers": [
+                "Tricksters \u2014 Coyote, Anansi, Loki, Hermes \u2014 transgress boundaries, expose absurdity, and create change through chaos; they are simultaneously creators and destroyers who enable cultural transformation",
+                "Tricksters are purely negative figures representing evil in all mythological traditions",
+                "The trickster archetype is unique to Native American and West African mythologies",
+                "Tricksters always represent the underdog overcoming more powerful figures through cleverness"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_hard_033",
+              "questionText": "What is the significance of the flood narrative appearing across world mythologies?",
+              "answers": [
+                "The near-universal flood myth \u2014 Gilgamesh, Noah, Manu, Deucalion \u2014 may reflect cultural memories of real prehistoric floods, the universality of water as threat, or common narrative structures rather than a single origin",
+                "It definitively proves a single ancient civilization whose story spread globally",
+                "The parallel myths confirm the historical reality of Noah's biblical flood",
+                "It reflects a universal unconscious fear of water encoded in human DNA"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_031",
+              "questionText": "What is the structuralist analysis of myth associated with Claude L\u00e9vi-Strauss?",
+              "answers": [
+                "Myths are structured as systems of binary oppositions \u2014 nature/culture, raw/cooked, life/death \u2014 and their narrative function is to mediate or resolve fundamental contradictions that cannot be resolved in reality",
+                "Myths are collective memories of historical events distorted by oral transmission",
+                "All myths derive from a single ur-narrative shared by prehistoric humanity",
+                "Myths are primarily psychological projections of individual neurosis at a collective scale"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_insanity_032",
+              "questionText": "What is the significance of the Orpheus and Eurydice myth in comparative mythology?",
+              "answers": [
+                "One of the most widespread tale types globally \u2014 the descent into the underworld to retrieve a lost loved one, ultimately failed through a taboo violation \u2014 it appears across Greek, Slavic, Japanese, and other traditions",
+                "A myth unique to Greek culture with no parallels in other mythological traditions",
+                "A literal historical account of a real shaman's near-death experience",
+                "The myth's primary function is as an origin story for music and poetry"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_myths_and_mythology_easy_042",
+              "questionText": "Who is the messenger god in Roman mythology?",
+              "answers": [
+                "Mercury",
+                "Mars",
+                "Venus",
+                "Saturn"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_myths_and_mythology_medium_043",
+              "questionText": "In Norse mythology, what is Valhalla?",
+              "answers": [
+                "The great hall where warriors slain in battle feast with Odin",
+                "The realm of the dead ruled by Hel",
+                "The home of the Valkyries",
+                "The underworld where dishonored dead go"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
             }
           ],
           "wordoku": [],
@@ -146076,6 +146400,330 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_037",
+              "questionText": "What mythical creature has the body of a lion and the head of a human?",
+              "answers": [
+                "Sphinx",
+                "Centaur",
+                "Minotaur",
+                "Griffin"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_038",
+              "questionText": "What is a werewolf?",
+              "answers": [
+                "A human who transforms into a wolf, usually during a full moon",
+                "A wolf that can speak and reason like a human",
+                "A spirit that possesses wolves",
+                "A wolf-human hybrid born naturally"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_039",
+              "questionText": "What legendary sea creature could supposedly sink ships?",
+              "answers": [
+                "The Kraken",
+                "Leviathan",
+                "Charybdis",
+                "Scylla"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_040",
+              "questionText": "In Greek mythology, what creature had the body of a horse and upper body of a human?",
+              "answers": [
+                "Centaur",
+                "Satyr",
+                "Minotaur",
+                "Faun"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_036",
+              "questionText": "What is a kitsune in Japanese folklore?",
+              "answers": [
+                "A fox spirit with magical powers that gains additional tails \u2014 up to nine \u2014 as it grows in wisdom",
+                "A water demon that drowns travellers",
+                "A shapeshifting raccoon dog that plays tricks",
+                "A guardian dragon protecting sacred shrines"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_037",
+              "questionText": "What is the banshee in Irish folklore?",
+              "answers": [
+                "A wailing female spirit whose cry is an omen of imminent death in a family",
+                "A malevolent fairy that steals children",
+                "A shapeshifting water horse that drowns riders",
+                "A spirit that guards ancient burial mounds"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_038",
+              "questionText": "What is a golem in Jewish folklore?",
+              "answers": [
+                "An artificial being animated by inscribing the Hebrew word for truth on its forehead \u2014 destroyed by erasing one letter",
+                "A protective spirit bound to a household",
+                "A demon summoned to carry out divine punishment",
+                "A shapeshifter taking the form of deceased loved ones"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_039",
+              "questionText": "What is the chupacabra in Latin American folklore?",
+              "answers": [
+                "A creature said to drain the blood of livestock \u2014 its name means 'goat sucker' in Spanish",
+                "A wolf-like predator with venomous saliva",
+                "A shapeshifting spirit that causes drought",
+                "A desert demon that steals wandering children"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_040",
+              "questionText": "What distinguishes a selkie from a mermaid in Celtic folklore?",
+              "answers": [
+                "A selkie is a seal that sheds its skin to become human on land; a mermaid is permanently half-human half-fish",
+                "A selkie is benevolent; a mermaid always lures sailors to death",
+                "A selkie lives in freshwater; a mermaid in saltwater",
+                "A selkie is male; a mermaid is always female"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_027",
+              "questionText": "What is the nuckelavee in Orcadian folklore?",
+              "answers": [
+                "A horrific skinless horse-like demon from the sea whose breath withers crops \u2014 one of the most terrifying creatures in Scottish island mythology",
+                "A water spirit that creates whirlpools",
+                "A shapeshifting seal that becomes human on land",
+                "A malevolent giant beneath sea lochs"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_028",
+              "questionText": "What is the tengu in Japanese folklore and how did its depiction evolve?",
+              "answers": [
+                "Originally a malevolent bird-demon, it evolved into a proud mountain spirit associated with martial arts \u2014 depicted with a long nose and red face in later tradition",
+                "A fox spirit associated exclusively with Shinto shrines",
+                "A water creature that challenges travellers to wrestling",
+                "A dragon associated with storms and rainfall"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_029",
+              "questionText": "What is the strigoi in Romanian folklore?",
+              "answers": [
+                "A type of vampire \u2014 a troubled spirit of the dead that returns to drain life from the living \u2014 a direct source for Bram Stoker's Dracula mythology",
+                "A werewolf variant specific to Transylvanian mountain communities",
+                "A witch who transforms into an owl",
+                "A demon that enters homes through keyholes"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_030",
+              "questionText": "What is the Dullahan in Irish mythology?",
+              "answers": [
+                "A headless horseman who carries his own glowing head \u2014 wherever he halts, someone dies; he cannot be stopped by locked gates",
+                "A skeletal figure appearing only at crossroads on Halloween",
+                "A faceless spirit signaling the death of an entire family line",
+                "A headless woman wandering battlefields collecting souls"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_027",
+              "questionText": "What is the folkloric significance of the Wild Hunt across Germanic and Celtic traditions?",
+              "answers": [
+                "A spectral procession of riders and hounds sweeping through the night sky \u2014 seeing it portended death or disaster, appearing across Norse, German, Welsh, and other traditions with local variations",
+                "A ritual hunt performed at midsummer to drive evil spirits from the land",
+                "A myth explaining the northern lights as the horses of dead warriors",
+                "A seasonal ceremony driving livestock between bonfires for protection"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_028",
+              "questionText": "What is the academic debate between cultural diffusion vs independent invention for similar creatures across world folklore?",
+              "answers": [
+                "Some scholars argue similar creatures spread through trade and migration; others argue similar human fears independently generate similar monsters \u2014 the debate remains unresolved",
+                "Cultural diffusion has been definitively proven to explain all cross-cultural mythological parallels",
+                "Independent invention explains all parallels because human psychology universally generates the same fears",
+                "Similar creatures prove all world mythologies derive from a single Proto-Indo-European source"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_029",
+              "questionText": "What is the protective monster paradox in folklore studies?",
+              "answers": [
+                "Many creatures are simultaneously threatening and protective \u2014 dragons guard treasure, gargoyles ward off evil, kitsune bring fortune or ruin \u2014 reflecting ambivalent folk attitudes toward powerful forces",
+                "The paradox that belief in monsters coexists with rational worldviews in the same communities",
+                "The fact that monsters created to frighten children become beloved cultural icons",
+                "The contradiction between monsters being described as terrifying but consistently defeated by heroes"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_030",
+              "questionText": "What is the liminal nature of shapeshifters in world folklore?",
+              "answers": [
+                "Shapeshifters occupy the boundary between categories \u2014 human and animal, living and dead, self and other \u2014 making them ideal symbols for anxieties about identity, transformation, and the instability of fixed categories",
+                "Shapeshifters always represent evil deception in folklore without exception",
+                "Their significance is purely practical \u2014 explaining mysterious animal behavior to pre-scientific communities",
+                "Shapeshifters appear only in cultures with strong shamanic traditions involving animal spirit helpers"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_041",
+              "questionText": "What is the name of the half-human half-bull creature in Greek mythology?",
+              "answers": [
+                "Minotaur",
+                "Centaur",
+                "Sphinx",
+                "Satyr"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_041",
+              "questionText": "What is the basilisk in European folklore?",
+              "answers": [
+                "A legendary reptile whose gaze or breath could kill \u2014 also called the King of Serpents; a weasel was said to be its only natural enemy",
+                "A giant serpent that could swallow ships whole",
+                "A fire-breathing dragon unique to British heraldic tradition",
+                "A serpent with a woman's head that lured travellers to their doom"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_042",
+              "questionText": "What is the difference between a ghost and a revenant in Western folklore?",
+              "answers": [
+                "A ghost is typically a spirit that cannot fully interact with the physical world; a revenant is a physical corpse that has returned to life and can cause tangible harm",
+                "A ghost is always benevolent; a revenant is always malevolent",
+                "A ghost is visible; a revenant is only detectable by sound and smell",
+                "A ghost has unfinished business; a revenant has no memory of its former life"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_031",
+              "questionText": "What is the vodyanoy in Slavic folklore?",
+              "answers": [
+                "A water spirit \u2014 appearing as an old man covered in algae \u2014 that drowned people and kept their souls in pots underwater; mill workers and fishermen made offerings to appease him",
+                "A fire spirit that protected Slavic hearths and punished those who neglected them",
+                "A forest spirit that lured travellers off paths to become lost forever",
+                "A spirit of the harvest that rewarded hard-working farmers with abundant crops"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_031",
+              "questionText": "What is the role of the dragon in Eastern versus Western mythology?",
+              "answers": [
+                "Eastern dragons (Chinese, Japanese) are typically benevolent water spirits associated with wisdom and prosperity; Western dragons are typically malevolent fire-breathing hoarders \u2014 reflecting fundamentally different cultural attitudes toward natural power",
+                "Dragon myths are universal and always represent the same chaotic forces",
+                "Eastern and Western dragon myths derive from a single common ancestor creature",
+                "The difference is purely artistic \u2014 both traditions treat dragons with equal fear"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_032",
+              "questionText": "What is the psychoanalytic interpretation of the vampire in folklore scholarship?",
+              "answers": [
+                "Vampires embody anxieties about sexuality, death, blood, and boundary violation \u2014 the undead returning to feed on the living maps onto unconscious fears about desire, disease, and the predatory dead",
+                "The vampire myth originated from observing actual corpse preservation phenomena misinterpreted by pre-scientific communities",
+                "Vampire folklore is exclusively a reflection of historical epidemic disease \u2014 victims of plague returning to spread illness",
+                "The vampire is purely a literary invention of the 18th century with no genuine folk precursor"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_legendary_creatures_easy_042",
+              "questionText": "What is a phoenix?",
+              "answers": [
+                "A mythical bird that bursts into flames and is reborn from its own ashes",
+                "A fire-breathing dragon from Persian mythology",
+                "A giant eagle that carries off elephants",
+                "A bird of paradise that causes flowers to bloom wherever it lands"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_legendary_creatures_medium_043",
+              "questionText": "What is a djinn (genie) in Islamic and Arabic folklore?",
+              "answers": [
+                "A supernatural being made of smokeless fire that can be good, evil, or neutral \u2014 they predate humanity and can be summoned and bound",
+                "A spirit of the dead that possesses the living",
+                "A trickster spirit that grants three wishes but always twists them maliciously",
+                "A minor deity of desert winds bound to serve whoever finds their vessel"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_legendary_creatures_hard_032",
+              "questionText": "What is the pooka in Irish folklore?",
+              "answers": [
+                "A shapeshifting spirit that can appear as a horse, hare, or goblin \u2014 it can be helpful or harmful and is associated with harvest time and liminal spaces",
+                "A benevolent fairy that protects homes from malevolent spirits",
+                "A death omen that appears specifically to sailors before storms",
+                "A forest spirit that steals children and replaces them with changelings"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_legendary_creatures_insanity_033",
+              "questionText": "What is the significance of the ouroboros symbol across world mythologies?",
+              "answers": [
+                "A serpent eating its own tail \u2014 representing cyclical time, eternal return, and the unity of opposites; it appears in ancient Egyptian, Greek, Norse, and Hindu traditions independently or through cultural diffusion",
+                "A protective symbol exclusive to ancient Egyptian religious practice",
+                "A mathematical symbol representing infinity adopted from Egyptian religion",
+                "A symbol representing the world serpent that will devour the world at Ragnar\u00f6k"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
             }
           ],
           "wordoku": [],
@@ -148059,6 +148707,342 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_036",
+              "questionText": "What does Rumpelstiltskin demand in the fairy tale?",
+              "answers": [
+                "The queen's firstborn child",
+                "Her golden ring",
+                "Her kingdom's treasure",
+                "Her voice"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_037",
+              "questionText": "In Jack and the Beanstalk, what does Jack trade the family cow for?",
+              "answers": [
+                "Magic beans",
+                "A golden harp",
+                "A bag of coins",
+                "A hen that lays golden eggs"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_038",
+              "questionText": "What Hans Christian Andersen tale features a girl whose red shoes force her to dance forever?",
+              "answers": [
+                "The Red Shoes",
+                "The Little Mermaid",
+                "The Snow Queen",
+                "Thumbelina"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_039",
+              "questionText": "In Aesop's fable of the tortoise and the hare, what is the moral?",
+              "answers": [
+                "Slow and steady wins the race",
+                "Speed and skill always triumph",
+                "Never underestimate your opponent",
+                "Rest when tired but race when ready"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_040",
+              "questionText": "What is the original dark ending of The Little Mermaid by Hans Christian Andersen?",
+              "answers": [
+                "The mermaid fails to win the prince and dissolves into sea foam",
+                "She kills the prince and returns to the sea",
+                "She becomes human after killing a sea witch",
+                "She and the prince both die and are reunited in the afterlife"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_036",
+              "questionText": "What is the changeling belief in European fairy lore?",
+              "answers": [
+                "The idea that fairies steal healthy babies and replace them with sickly fairy children \u2014 used historically to explain developmental disabilities",
+                "A fairy that changes shape to trick travellers",
+                "A human child who gains magical powers after being raised by fairies",
+                "A baby born with fairy features indicating elfin ancestry"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_037",
+              "questionText": "What is the recurring rule of three in fairy tales?",
+              "answers": [
+                "Three attempts, three brothers, three tasks \u2014 the third always succeeds, rewarding the humble youngest sibling",
+                "A magical number granting three wishes to the protagonist",
+                "The three stages of a hero's journey in fairy tale structure",
+                "A structural rule requiring three villains or obstacles per story"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_038",
+              "questionText": "What were the Grimm Brothers by profession before collecting fairy tales?",
+              "answers": [
+                "Philologists and librarians \u2014 the tales were initially a byproduct of their academic language research",
+                "Priests who used tales to teach moral lessons",
+                "Court entertainers performing stories for nobility",
+                "Schoolteachers collecting tales from their students"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_039",
+              "questionText": "What is the ATU index in fairy tale scholarship?",
+              "answers": [
+                "The Aarne-Thompson-Uther classification system cataloguing fairy tale types by plot structure \u2014 used to trace variants across cultures",
+                "A rating system measuring the darkness of fairy tale content",
+                "The bibliography of all known Grimm manuscript variants",
+                "A chronological database of fairy tale first appearances in print"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_040",
+              "questionText": "What makes Scheherazade in One Thousand and One Nights a meta-narrative figure?",
+              "answers": [
+                "She survives by telling stories \u2014 storytelling is both the frame and the content, demonstrating narrative's power to save lives",
+                "She appears as a character inside one of the stories she tells",
+                "She is revealed at the end to have been telling the story to the reader",
+                "She breaks the fourth wall by acknowledging she is fictional"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_028",
+              "questionText": "What is Vladimir Propp's contribution to fairy tale analysis?",
+              "answers": [
+                "He identified 31 narrative functions and 8 character types appearing across Russian fairy tales in consistent sequence \u2014 a foundational work of structural narrative analysis",
+                "He proved all European fairy tales derived from a single Sanskrit source",
+                "He developed the psychological interpretation of fairy tales as Jungian archetypes",
+                "He compiled the definitive scholarly edition of the Brothers Grimm manuscripts"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_029",
+              "questionText": "What is the significance of Bruno Bettelheim's The Uses of Enchantment?",
+              "answers": [
+                "It argued fairy tales serve essential psychological functions for children \u2014 helping them process fears and desires through symbolic narratives",
+                "It proved that fairy tale violence causes psychological harm in young readers",
+                "It traced all Western fairy tales to a common Indo-European source",
+                "It argued the Grimms deliberately darkened originally cheerful folk tales"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_030",
+              "questionText": "What is the forest as a symbolic space in European fairy tales?",
+              "answers": [
+                "A liminal zone outside civilization where normal rules dissolve \u2014 characters who enter are transformed or tested; it represents the dangerous unconscious in Jungian readings",
+                "Simply a practical setting reflecting the heavily forested medieval European landscape",
+                "A stand-in for the ocean in landlocked communities' tales",
+                "A symbol of abundance contrasted with the danger of cities"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_031",
+              "questionText": "What is the scholarly debate about the Grimms' editorial process?",
+              "answers": [
+                "The Grimms repeatedly revised tales across editions \u2014 making them more German, Christian, and child-appropriate, and many informants were educated middle-class women not rural peasants \u2014 complicating the 'authentic folk' claim",
+                "The debate is about whether the Grimms invented tales entirely or merely recorded existing ones",
+                "Scholars disagree about whether the Grimms' changes improved or degraded the original stories",
+                "The debate centers on whether the Grimms plagiarized tales from Perrault"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_026",
+              "questionText": "What is the beauty and the beast tale type's deeper folkloric function according to scholars?",
+              "answers": [
+                "It addresses arranged marriage anxieties \u2014 learning to love an initially repellent spouse \u2014 and the transformation from beast to human mirrors the civilizing function of marriage in many cultures",
+                "It is a nature myth about winter giving way to spring",
+                "It is a warning tale about the dangers of female vanity",
+                "It derives directly from the myth of Cupid and Psyche with no independent folkloric origin"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_027",
+              "questionText": "What is perraultization in fairy tale scholarship?",
+              "answers": [
+                "The process by which Perrault added courtly and moralistic elements to oral tales \u2014 making them more palatable to 17th-century French aristocratic audiences and transforming their character",
+                "The theory that Perrault invented all the tales attributed to him",
+                "The academic term for sanitizing folk tales for modern children",
+                "The spread of French fairy tale conventions across Europe via Perrault's influence"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_028",
+              "questionText": "What is the significance of the tale type AT 425 (search for the lost husband) across world folklore?",
+              "answers": [
+                "One of the most widespread tale types globally \u2014 Cupid and Psyche, East of the Sun West of the Moon, Beauty and the Beast \u2014 it explores female agency, forbidden knowledge, and the restoration of a transformed spouse",
+                "A tale type unique to European cultures with no parallels in non-Western traditions",
+                "A tale type that always features a male protagonist in its original forms",
+                "A myth explaining seasonal separation between lovers representing agricultural cycles"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_041",
+              "questionText": "Who wrote the fairy tales 'The Ugly Duckling' and 'Thumbelina'?",
+              "answers": [
+                "Hans Christian Andersen",
+                "Brothers Grimm",
+                "Charles Perrault",
+                "Andrew Lang"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_041",
+              "questionText": "What is the moral of Aesop's fable 'The Boy Who Cried Wolf'?",
+              "answers": [
+                "Liars are not believed even when they tell the truth",
+                "Never underestimate a perceived threat",
+                "Persistence eventually wins trust back",
+                "Community cooperation is stronger than individual deception"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_042",
+              "questionText": "What fairy tale type features a protagonist winning a kingdom by solving impossible tasks?",
+              "answers": [
+                "The grateful dead / impossible task tales \u2014 common across European and Asian traditions where completing three impossible tasks wins a bride, kingdom, or treasure",
+                "A tale type unique to the Brothers Grimm collections",
+                "The Cinderella tale type in which identity is revealed through an object",
+                "The swan maiden tale type in which a magical bride is captured through theft of her disguise"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_032",
+              "questionText": "What is the significance of the Panchatantra in world fable tradition?",
+              "answers": [
+                "A Sanskrit collection of animal fables (~300 BCE) that spread across the world through Arabic, Persian, and eventually European translations \u2014 a major source for Aesop's tradition and La Fontaine's fables",
+                "The oldest known collection of written fables predating all other traditions",
+                "A Buddhist text using animal stories to teach the doctrine of rebirth",
+                "A collection of Indian folk tales recorded by colonial British administrators"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_029",
+              "questionText": "What is the 'tale type' concept in comparative folklore and why does it matter?",
+              "answers": [
+                "Tale types are recurring narrative plots that appear across cultures with local variants \u2014 identifying them allows scholars to map the spread and transformation of stories across time and geography, revealing cultural contact and shared human narrative concerns",
+                "Tale types prove that all world folklore derives from a single prehistoric ur-tradition",
+                "Tale types show that human storytelling is entirely culturally determined with no universal patterns",
+                "The tale type system was abandoned by modern folklorists in favor of motif indexing"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_030",
+              "questionText": "What is the feminist critique of traditional fairy tales associated with scholars like Angela Carter?",
+              "answers": [
+                "Traditional tales enforce passive female roles \u2014 beautiful, obedient, rewarded for suffering \u2014 and Carter's retellings in 'The Bloody Chamber' subvert these by giving female characters agency, desire, and the capacity for violence",
+                "Feminist scholars argue all fairy tales are secretly empowering regardless of surface narrative",
+                "The critique focuses exclusively on Disney adaptations rather than the original tales",
+                "Feminist scholars argue that female-authored fairy tales were systematically excluded from the Grimm collections"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_042",
+              "questionText": "What fairy tale features a girl who visits three bears' house and tastes their porridge?",
+              "answers": [
+                "Goldilocks and the Three Bears",
+                "Little Red Riding Hood",
+                "Snow White",
+                "Hansel and Gretel"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_medium_043",
+              "questionText": "What is the Pied Piper of Hamelin legend about?",
+              "answers": [
+                "A piper who leads rats out of a town and then, when unpaid, leads the town's children away never to return",
+                "A musician who puts a sleeping curse on an entire village",
+                "A wandering storyteller who trades stories for food across medieval Germany",
+                "A folk hero who uses music to cure plague-infected livestock"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_hard_033",
+              "questionText": "What is the significance of the 'trickster helper' figure in fairy tales?",
+              "answers": [
+                "A figure \u2014 often animal, fairy, or beggar \u2014 who assists the protagonist in exchange for kindness; they reward the virtuous and punish the cruel, encoding the tale's moral logic",
+                "A villain who tricks the protagonist into dangerous situations",
+                "A spirit guide available only to the third and youngest sibling",
+                "A figure representing the donor of magical objects in Propp's narrative functions"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_insanity_031",
+              "questionText": "What is the oral-formulaic theory and how does it apply to fairy tale tradition?",
+              "answers": [
+                "Milman Parry and Albert Lord's theory that oral poets compose through formulaic phrases and narrative patterns \u2014 applied to fairy tales, it explains how tales maintain core structure while varying in performance, and challenges the idea of a single authentic original",
+                "A theory proving that all fairy tales were composed by single authors and then entered oral tradition",
+                "The argument that fairy tales degenerate through oral transmission from original artistic masterpieces",
+                "A theory that oral fairy tales are always superior to their literary versions"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_fairytales_and_fables_easy_043",
+              "questionText": "In the fairy tale Hansel and Gretel, what is the house made of?",
+              "answers": [
+                "Candy and gingerbread",
+                "Gold and silver",
+                "Straw and sticks",
+                "Ice and snow"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
             }
           ],
           "wordoku": [
@@ -150619,6 +151603,366 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_036",
+              "questionText": "What is a poltergeist?",
+              "answers": [
+                "A type of ghost associated with physical disturbances \u2014 moving objects, strange noises \u2014 rather than visual apparitions",
+                "A ghost that appears only at midnight",
+                "A benevolent spirit that protects its former home",
+                "A ghost that can only be seen by children"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_037",
+              "questionText": "What famous castle in Edinburgh is considered one of Scotland's most haunted locations?",
+              "answers": [
+                "Edinburgh Castle",
+                "Holyrood Palace",
+                "Stirling Castle",
+                "Balmoral Castle"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_038",
+              "questionText": "What is the witching hour traditionally said to be?",
+              "answers": [
+                "3 AM (or midnight in some traditions) \u2014 when supernatural activity is strongest",
+                "Dusk, when darkness first falls",
+                "Midnight exactly, when clocks strike twelve",
+                "The hour before dawn when ghosts must return"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_039",
+              "questionText": "What is a residual haunting?",
+              "answers": [
+                "A haunting where a ghost repeats the same actions in a loop like a recording \u2014 it doesn't interact with the living",
+                "A haunting where the ghost can communicate with the living",
+                "A haunting caused by a living person's psychic energy",
+                "A haunting that only occurs on specific dates"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_040",
+              "questionText": "What ghost is most famously associated with the Tower of London?",
+              "answers": [
+                "Anne Boleyn (among others)",
+                "Lady Jane Grey",
+                "Catherine Howard",
+                "Mary Queen of Scots"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_034",
+              "questionText": "What is the legend of the Flying Dutchman?",
+              "answers": [
+                "A ghost ship doomed to sail the seas forever \u2014 seeing it is an omen of disaster; the captain was cursed for blasphemy during a storm",
+                "A Dutch pirate whose treasure is guarded by his ghost",
+                "A spectral ship appearing only during storms to lure sailors onto rocks",
+                "A phantom vessel ferrying the souls of drowned sailors"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_035",
+              "questionText": "What is the Stone Tape Theory of hauntings?",
+              "answers": [
+                "The hypothesis that stones and building materials can record and play back emotional or traumatic events \u2014 explaining residual hauntings",
+                "A geological theory about electromagnetic fields at ancient stone circles",
+                "A Victorian spiritualist belief that ghosts are solidified emotion",
+                "The theory that haunted locations are built on ley lines"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_036",
+              "questionText": "What is the Amityville Horror and why is it controversial?",
+              "answers": [
+                "The Lutz family claimed their house was haunted after a mass murder there \u2014 subsequent investigation cast serious doubt and the haunting is widely considered a hoax",
+                "A documented poltergeist case investigated by university researchers",
+                "A haunting whose paranormal evidence was accepted by a New York court",
+                "A mass haunting in which an entire town reported supernatural experiences"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_037",
+              "questionText": "What is the Borley Rectory legend and why is it significant in paranormal history?",
+              "answers": [
+                "Called 'the most haunted house in England' by Harry Price in the 1930s \u2014 later investigations suggested Price may have fabricated evidence, making it a case study in paranormal investigation ethics",
+                "The site of England's last official church exorcism in the 19th century",
+                "A Victorian manor where multiple residents died under mysterious circumstances",
+                "The location of England's most documented poltergeist case"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_038",
+              "questionText": "What is orb photography in ghost hunting and what do skeptics say?",
+              "answers": [
+                "Circular light anomalies in photos attributed by some to spirits \u2014 skeptics explain them as dust, moisture, or lens artifacts reflecting the camera flash",
+                "A scientific technique measuring electromagnetic fields around haunted locations",
+                "An infrared photography method revealing cold spots",
+                "A thermal imaging technique detecting temperature drops caused by spirit energy"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_028",
+              "questionText": "What is a crisis apparition in paranormal accounts?",
+              "answers": [
+                "A vision appearing to someone at the exact moment of another person's death or serious injury \u2014 often before the witness could have known about the event",
+                "A ghost that appears during natural disasters",
+                "A mass hallucination triggered by extreme psychological stress",
+                "An apparition that appears only to people with terminal illness"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_029",
+              "questionText": "What is the psychological explanation for sleep paralysis ghost encounters?",
+              "answers": [
+                "During sleep paralysis the brain generates vivid hallucinations of presences and figures \u2014 the felt presence and chest pressure have been interpreted across cultures as demons, ghosts, and aliens",
+                "Sleep paralysis is caused by ghosts draining the sleeper's energy",
+                "The hallucinations prove that the veil between worlds is thinner during sleep",
+                "REM sleep creates a portal state where spirits can interact with the living"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_030",
+              "questionText": "What is the Enfield Poltergeist case and why is it contested?",
+              "answers": [
+                "A 1977 London case involving claimed poltergeist activity including levitation \u2014 investigators were divided between suspecting fraud by the children and finding inexplicable evidence",
+                "A thoroughly debunked hoax confessed to by the family",
+                "The first poltergeist case investigated using scientific instruments",
+                "A haunting that converted several skeptical scientists to belief in the paranormal"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_031",
+              "questionText": "What is the folkloric significance of crossroads in supernatural traditions?",
+              "answers": [
+                "Crossroads are liminal spaces between worlds in many cultures \u2014 sites for summoning spirits, burying suicides, making deals with the devil, and supernatural encounters",
+                "Crossroads are universally avoided as places of concentrated evil",
+                "They are considered protective because spirits cannot follow across an intersection",
+                "They mark the boundaries of a ghost's permitted territory in European ghost lore"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_insanity_026",
+              "questionText": "What is the temporal lobe hypothesis for paranormal experiences?",
+              "answers": [
+                "The theory that unusual temporal lobe activity \u2014 triggered by electromagnetic fields or psychological stress \u2014 generates the feelings of presence and visions associated with paranormal encounters",
+                "A theory that ghosts are remnants of past time periods leaking into the present",
+                "A neurological explanation for why some people are psychically sensitive",
+                "The theory that trauma creates ghost-like memory imprints detectable by sensitives"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_insanity_027",
+              "questionText": "What is the sociological function of haunted house legends in communities?",
+              "answers": [
+                "They encode community history, trauma, and taboo \u2014 haunted sites often mark places of violence or shame that communities cannot openly discuss; the ghost story becomes a vehicle for processing collective memory",
+                "They purely entertain and have no deeper social function",
+                "They function exclusively as warnings to keep children away from dangerous buildings",
+                "Haunted legends always reflect economic anxiety about abandoned properties"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_insanity_028",
+              "questionText": "What is the third man factor documented by explorers and disaster survivors?",
+              "answers": [
+                "A phenomenon where people in extreme survival situations report an unseen companion guiding them \u2014 documented by Shackleton, Lindbergh, and others; researchers link it to brain responses to extreme stress",
+                "A ghost sighting that occurs precisely three days after a traumatic event",
+                "A folklore pattern requiring three deaths before a location becomes formally haunted",
+                "The third ghost encountered in a haunting is always the most powerful"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_041",
+              "questionText": "What is a s\u00e9ance?",
+              "answers": [
+                "A gathering in which participants attempt to communicate with the dead through a medium",
+                "A religious ceremony for exorcising demons",
+                "A scientific investigation of alleged paranormal phenomena",
+                "A ritual to prevent a ghost from haunting a location"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_039",
+              "questionText": "What is the significance of the Gettysburg battlefield in American ghost lore?",
+              "answers": [
+                "The site of the bloodiest battle of the Civil War \u2014 the scale of death and trauma makes it one of America's most intensely haunted locations in popular legend, with widespread paranormal claims",
+                "The location where the first documented ghost photograph was taken in 1865",
+                "The battlefield where Confederate general Lee witnessed a spectral vision that changed his battle strategy",
+                "A site where archaeologists have documented unexplained electromagnetic anomalies"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_040",
+              "questionText": "What is the white lady ghost type found across world folklore?",
+              "answers": [
+                "A female ghost typically in white associated with tragedy, betrayal, or violent death \u2014 appearing across European, Asian, and Latin American traditions as a mourning or vengeful spirit",
+                "A benevolent ghost that specifically protects women and children",
+                "A ghost type unique to British Isles folklore",
+                "A spirit associated exclusively with aristocratic families marking places of old money and privilege"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_032",
+              "questionText": "What is the distinction between active and passive hauntings in paranormal typology?",
+              "answers": [
+                "Active hauntings involve intelligent interaction \u2014 responding to questions or reacting to events; passive (residual) hauntings replay like recordings with no awareness of the present",
+                "Active hauntings cause physical harm; passive hauntings are purely visual",
+                "Active hauntings are caused by living people's psychic energy; passive by actual spirits",
+                "Active hauntings require exorcism; passive hauntings resolve on their own over time"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_insanity_029",
+              "questionText": "What is the infrasound hypothesis for paranormal experiences in allegedly haunted buildings?",
+              "answers": [
+                "Very low frequency sound waves (~18-19 Hz) can cause anxiety, unease, and visual disturbances in humans \u2014 researcher Vic Tandy linked infrasound in specific rooms to feelings of presence and dread, potentially explaining some haunting experiences",
+                "Infrasound is definitively proven to cause all paranormal experiences in haunted locations",
+                "The hypothesis has been thoroughly tested and rejected as having no effect on human perception",
+                "Infrasound causes only physical symptoms and cannot generate visual hallucinations"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_042",
+              "questionText": "What country is associated with the legend of La Llorona, a weeping woman who drowns children?",
+              "answers": [
+                "Mexico (and broader Latin America)",
+                "Spain",
+                "Brazil",
+                "Argentina"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_041",
+              "questionText": "What is the Mothman legend?",
+              "answers": [
+                "A winged humanoid creature sighted around Point Pleasant, West Virginia in 1966\u201367 \u2014 associated with the Silver Bridge collapse; it became a major American cryptid legend",
+                "A moth-like alien encountered by US Air Force personnel in the 1950s",
+                "A ghost in the shape of a giant moth associated with deaths in Appalachian mining communities",
+                "A cryptid unique to the Pacific Northwest with no connection to any specific disaster"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_033",
+              "questionText": "What is the philosophical problem of ghost evidence and why does it matter for paranormal investigation?",
+              "answers": [
+                "Ghost claims rely heavily on personal testimony, which is unreliable, and the evidence offered (photos, EVP) always has mundane alternative explanations \u2014 the standard of proof required for an extraordinary claim (consciousness surviving death) is much higher than what investigators typically provide",
+                "Ghost evidence is inherently unfalsifiable making it neither true nor false by definition",
+                "The main problem is that ghost investigators lack access to the proper scientific equipment",
+                "Ghost evidence is considered scientifically valid when three or more independent witnesses corroborate the same experience"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_insanity_030",
+              "questionText": "What is the cross-cultural universality of ghost belief and what does it suggest?",
+              "answers": [
+                "Belief in spirits of the dead appears in virtually every human culture \u2014 it likely reflects universal cognitive tendencies to over-attribute agency and continuity of identity, which are adaptive but also generate belief in the presence of the absent dead",
+                "Ghost belief proves the existence of the soul because it is too universal to be a cultural invention",
+                "Ghost belief is culturally universal but its content (what ghosts want, how they look) is identical across cultures",
+                "Universal ghost belief has been eliminated in scientifically literate societies leaving it confined to the developing world"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_easy_043",
+              "questionText": "What is an exorcism?",
+              "answers": [
+                "A religious ritual to expel a demon or evil spirit from a person or place",
+                "A s\u00e9ance to communicate with a ghost",
+                "A spell to bind a ghost to a specific location",
+                "A ceremony welcoming a spirit into a new home"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_042",
+              "questionText": "What is the legend of the Bell Witch?",
+              "answers": [
+                "A 19th-century Tennessee haunting in which the Bell family was allegedly terrorized by an invisible entity \u2014 one of the most famous American ghost cases, reportedly even investigated by Andrew Jackson",
+                "A colonial-era legend about a witch whose ghost haunts New England churchyards",
+                "A Civil War legend about a woman who cursed a Union officer before her execution",
+                "A ghost story originating from an Appalachian folk ballad about a murdered woman"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_hard_034",
+              "questionText": "What is EVP (Electronic Voice Phenomenon) and what do skeptics say about it?",
+              "answers": [
+                "Alleged voices of the dead captured on recording devices \u2014 skeptics attribute them to pareidolia (hearing patterns in random noise), radio interference, and auditory suggestion from investigators primed to hear voices",
+                "A scientifically validated method of spirit communication accepted by mainstream psychologists",
+                "A technique proven to capture real voices in controlled laboratory conditions",
+                "A phenomenon explained by ghosts using electromagnetic energy to imprint sounds on recording media"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_ghosts_and_haunted_places_medium_043",
+              "questionText": "What is the tradition of D\u00eda de los Muertos in Mexican culture?",
+              "answers": [
+                "A multi-day holiday honoring deceased ancestors where families build ofrendas and visit graves \u2014 the dead are believed to return briefly to be with family, making it celebratory rather than mournful",
+                "A solemn Catholic observance identical to All Souls' Day",
+                "A day when all supernatural activity is suspended and ghosts cannot walk",
+                "A harvest festival that was rebranded as a memorial observance after Spanish colonization"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
             }
           ],
           "wordoku": [],
@@ -152590,6 +153934,354 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_easy_036",
+              "questionText": "What is the urban legend about alligators in New York City sewers?",
+              "answers": [
+                "Baby alligators flushed down toilets grew to full size in the sewers \u2014 almost certainly false but the legend persists",
+                "Alligators escaped from a zoo during a 1930s flood",
+                "Pet shop alligators were released and thrived in the warm sewer environment",
+                "A single alligator was found once and the story snowballed"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_easy_037",
+              "questionText": "What is the razor blade in Halloween candy urban legend?",
+              "answers": [
+                "The widespread fear that strangers put razor blades or poison in Halloween candy \u2014 research found virtually no verified cases; it is primarily a moral panic",
+                "A real documented case that sparked annual candy X-ray programs",
+                "A legend that originated from a single widely misreported incident",
+                "A fear promoted by candy companies to discourage homemade treats"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_easy_038",
+              "questionText": "What is Bloody Mary as an urban legend?",
+              "answers": [
+                "Summoning a ghost by saying 'Bloody Mary' three times in front of a dark mirror \u2014 a widespread slumber party ritual",
+                "A ghost that appears only on Friday the 13th",
+                "A spirit that possesses mirrors in houses where murders occurred",
+                "A legend about Queen Mary I's vengeful ghost haunting Protestant households"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_easy_039",
+              "questionText": "What is the hook hand killer urban legend?",
+              "answers": [
+                "A killer with a hook for a hand who attacks couples parked at lovers' lanes \u2014 one of the most classic American teen horror legends",
+                "A real serial killer whose legend grew after his capture",
+                "A story invented by parents to discourage teenage parking",
+                "A legend originating from a single 1950s newspaper story"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_easy_040",
+              "questionText": "What is the Vanishing Hitchhiker urban legend?",
+              "answers": [
+                "A ghost hitches a ride and disappears from a moving car, often near where they died",
+                "A killer who targets people who pick up hitchhikers",
+                "A babysitter who discovers a threatening caller is inside the house",
+                "A phantom motorist who appears on roads on the anniversary of a crash"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_medium_036",
+              "questionText": "What is a FOAF tale in folklore studies?",
+              "answers": [
+                "Friend of a Friend \u2014 a legend attributed to someone two or three degrees removed, making verification impossible while keeping the story believable",
+                "A fairy tale originating from oral tradition rather than literary sources",
+                "A type of legend unique to internet culture",
+                "A term for legends that prove to be true upon investigation"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_medium_037",
+              "questionText": "Who is Jan Harold Brunvand and what is his significance to urban legend scholarship?",
+              "answers": [
+                "Brunvand collected and analyzed American urban legends as folklore \u2014 his books brought academic attention to how modern legends spread and function",
+                "Brunvand proved that all urban legends have a kernel of verifiable truth",
+                "His research showed urban legends are primarily invented by journalists",
+                "He developed the psychological theory explaining why urban legends cluster around adolescent fears"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_medium_038",
+              "questionText": "What is the kidney theft urban legend?",
+              "answers": [
+                "A traveller wakes up in a bathtub of ice with a note explaining their kidney was stolen for the black market \u2014 no verified cases exist despite wide belief",
+                "A real criminal operation exposed by police that became exaggerated",
+                "A legend that emerged after a real organ trafficking scandal",
+                "A metaphorical legend about healthcare system exploitation"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_medium_039",
+              "questionText": "What is Slender Man as a modern folklore phenomenon?",
+              "answers": [
+                "A fictional supernatural figure invented on the internet in 2009 that spread through social media \u2014 a case study in how internet culture generates and spreads folklore",
+                "A real figure from German folklore translated to English",
+                "A creepypasta proven to be based on documented encounters",
+                "A fictional character who became an urban legend after being misrepresented as real news"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_medium_040",
+              "questionText": "What is creepypasta and why do folklorists consider it a legitimate folk genre?",
+              "answers": [
+                "Horror stories shared online that follow traditional folklore mechanics \u2014 anonymous authorship, variation across retellings, community transmission, and belief negotiation \u2014 even though they originate online",
+                "Horror writing that is only folklore once it leaves the internet and enters oral tradition",
+                "An internet genre not accepted as legitimate folklore by academic folklorists",
+                "A format qualifying as folklore only when stories are printed rather than shared digitally"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_hard_027",
+              "questionText": "What is the moral panic theory as applied to urban legends?",
+              "answers": [
+                "Urban legends often encode and amplify community anxieties about perceived threats \u2014 stranger danger, contaminated food \u2014 functioning as cautionary tales that reinforce social norms",
+                "Moral panics always generate false urban legends while real dangers produce true ones",
+                "Urban legends exclusively target minority groups as scapegoats",
+                "The moral panic theory was developed specifically to explain Halloween candy legends"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_hard_028",
+              "questionText": "What is ostension in folklore studies?",
+              "answers": [
+                "When people act out a legend \u2014 committing crimes or rituals inspired by folklore \u2014 the legend becomes real through performance; Slender Man-inspired crimes are cited as extreme examples",
+                "The process by which a legend acquires false authority through repeated citation",
+                "The academic term for legends that turn out to be true",
+                "The transmission of legends through visual media rather than oral tradition"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_hard_029",
+              "questionText": "What is the legend trip as a cultural practice?",
+              "answers": [
+                "Adolescent groups visiting allegedly haunted or cursed sites to test the legend \u2014 a ritualized rite of passage combining boundary testing, peer bonding, and belief negotiation",
+                "A scholarly journey to verify the origins of a specific urban legend",
+                "A folk ritual performed to summon the spirit associated with a location",
+                "A police term for repeat visits by paranormal enthusiasts to crime scenes"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_hard_030",
+              "questionText": "What does the prevalence of contamination urban legends reveal about modern anxieties?",
+              "answers": [
+                "They reflect anxieties about anonymous industrial food production and the vulnerability of trusting systems you cannot personally verify \u2014 the same fears driving medieval poison-in-the-well accusations",
+                "They reflect memories of genuine food contamination scandals that are misremembered as legends",
+                "They are unique to post-industrial societies with no equivalent in pre-modern folklore",
+                "They primarily target specific corporations and reflect legitimate consumer advocacy"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_026",
+              "questionText": "What is the belief-nonbelief-legend spectrum in folklore scholarship?",
+              "answers": [
+                "Legends exist on a spectrum from fully believed to clearly fictional \u2014 what makes them legends is the active negotiation of belief: tellers and audiences simultaneously entertain and question the story's truth",
+                "All urban legends require full sincere belief from both teller and audience to qualify as legends",
+                "Non-belief automatically converts a legend into a joke or fictional narrative",
+                "The spectrum model was rejected by modern folklorists in favor of a binary classification"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_027",
+              "questionText": "What is the vernacular theory of urban legend transmission in the digital age?",
+              "answers": [
+                "Digital platforms accelerate transmission and create stable documented variants simultaneously \u2014 legends spread faster but are also frozen in text, changing the traditional oral variation dynamic",
+                "The internet has killed urban legends by exposing all of them as false immediately",
+                "Digital transmission has no meaningful difference from oral transmission for legend purposes",
+                "Urban legends only spread virally online; face-to-face transmission no longer occurs"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_028",
+              "questionText": "What is the psychosocial function of horror urban legends for adolescents specifically?",
+              "answers": [
+                "They provide a safe context for processing fears about autonomy, sexuality, danger, and adult world threats \u2014 the legends cluster around spaces of adolescent independence (cars, sleepovers, babysitting) and the consequences of breaking rules",
+                "They function purely as entertainment with no developmental significance",
+                "They primarily serve to reinforce parental authority by showing the consequences of disobedience",
+                "Horror legends are equally distributed across all age groups with no adolescent concentration"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_easy_041",
+              "questionText": "What is the urban legend that Disney World freezes Walt Disney's body in a secret vault?",
+              "answers": [
+                "A widespread false belief \u2014 Walt Disney was actually cremated; the cryonics legend has no factual basis",
+                "A story confirmed by a Disney whistleblower in the 1980s",
+                "A rumor that Disney's lawyers have repeatedly declined to deny",
+                "A legend that began from a misquoted biography of Walt Disney"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_medium_041",
+              "questionText": "What is the 'dead cat bounce' of urban legend cycles?",
+              "answers": [
+                "Legends definitively debunked often return in a new form \u2014 the core fear resurfaces with updated details fitting contemporary anxieties",
+                "The brief period between a legend's creation and its debunking",
+                "The spike in a legend's spread immediately after it is publicly discredited",
+                "The revival of a dormant legend when a superficially similar real event occurs"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_hard_031",
+              "questionText": "What does the persistence of the 'man in the backseat' urban legend reveal about fear psychology?",
+              "answers": [
+                "It exploits the terror of a threat you cannot see in a space you consider safe \u2014 the car as personal space invaded by a hidden predator triggers primal vulnerability regardless of actual statistical risk",
+                "It reflects statistically justified anxiety about carjacking as a common crime",
+                "It persists exclusively because of a single real incident that was widely reported",
+                "It is a feminist legend specifically about male violence against women driving alone"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_029",
+              "questionText": "What is the relationship between urban legends and news media according to folklore scholars?",
+              "answers": [
+                "News media both debunks and amplifies legends \u2014 debunking stories spread legends by repeating their core narrative, while genuine news events are reinterpreted through existing legend templates, blurring the line between fact and folklore",
+                "News media has a purely negative effect on urban legends by exposing all of them as false",
+                "Urban legends only spread through face-to-face communication and are unaffected by news media",
+                "Journalism has replaced oral tradition entirely as the vehicle for contemporary legend transmission"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_easy_042",
+              "questionText": "What is the urban legend about pop rocks and soda?",
+              "answers": [
+                "Eating Pop Rocks and drinking soda at the same time will cause your stomach to explode \u2014 it is false; the gas produced is minimal",
+                "A true warning based on a real child's death in the 1970s",
+                "A story invented by rival candy companies to eliminate Pop Rocks from the market",
+                "A legend proven false only after scientific testing in the 1990s"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_medium_042",
+              "questionText": "What is the significance of the 'escaped maniac from the asylum' theme in teen horror legends?",
+              "answers": [
+                "It reflects anxieties about the breakdown of institutional control \u2014 the asylum patient represents chaos that has escaped its proper containment \u2014 and typically targets teenagers in spaces of unsupervised freedom",
+                "It reflects historical reality about high rates of violent psychiatric patient escapes",
+                "It is a legend specific to the American South with no equivalent in other cultures",
+                "It derives from a single real incident in the 1950s that became the template for all subsequent legends"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_hard_032",
+              "questionText": "What is the 'Satanic panic' of the 1980s and how does it relate to urban legend studies?",
+              "answers": [
+                "A moral panic about alleged Satanic ritual abuse in daycare centers and communities \u2014 scholars note it followed classic urban legend patterns: FOAF transmission, impossible to verify claims, reflecting anxieties about working mothers and child safety",
+                "A documented criminal conspiracy involving multiple daycare centers across the United States",
+                "A panic that was fully justified by the evidence and led to real convictions that were later upheld",
+                "A panic exclusive to fundamentalist religious communities with no broader cultural impact"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_030",
+              "questionText": "What is the concept of 'narrative truth' as applied to urban legends even when they are factually false?",
+              "answers": [
+                "False legends can carry emotional and social truth \u2014 articulating real fears, encoding genuine social tensions, and producing real behavioral changes \u2014 making factual falsity separate from cultural significance",
+                "Narrative truth is the academic term for urban legends that turn out to be true",
+                "All urban legends that persist must contain some factual core to maintain credibility",
+                "Narrative truth applies only to legends with clear moral messages and not to horror legends"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_urban_legends_easy_043",
+              "questionText": "What is the urban legend about microwaving a cat?",
+              "answers": [
+                "A woman dried her wet cat in a microwave and it died \u2014 sometimes falsely cited as the basis for microwave warning labels, though the label claim is false",
+                "A story proven true that led to mandatory appliance warning labels",
+                "A legend that is actually documented in multiple verified cases",
+                "A story invented by appliance manufacturers to justify adding warning labels"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_urban_legends_medium_043",
+              "questionText": "What is the 'Humans Can Lick Too' urban legend?",
+              "answers": [
+                "A girl believes her dog is licking her hand at night for comfort \u2014 she later discovers her dog was locked up and a killer had been under her bed licking her hand",
+                "A story about a woman who adopts a dog only to discover it is a large rat",
+                "A legend about a child who befriends a wolf believing it to be a dog",
+                "A cautionary tale about accepting food from strangers at Halloween"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_urban_legends_hard_033",
+              "questionText": "What is the 'context collapse' phenomenon and how does it affect urban legend spread online?",
+              "answers": [
+                "When content created for one audience reaches a completely different one \u2014 urban legends spread virally when stripped of their original social context, reaching audiences who lack the cues to evaluate credibility and treat them as news",
+                "A phenomenon where urban legends lose their meaning when translated across cultural contexts",
+                "The collapse of the distinction between true news and false legends in algorithmic feeds",
+                "The process by which a legend's details get simplified until only the core fear remains"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_urban_legends_insanity_031",
+              "questionText": "What is the 'availability heuristic' and how does it explain why urban legends about rare dangers persist?",
+              "answers": [
+                "The cognitive bias making easily recalled information feel more probable \u2014 vivid urban legends about razor blades in candy or poison in Halloween treats make these scenarios feel common despite being virtually nonexistent statistically",
+                "A marketing concept explaining why legends about branded products spread faster than those about generic ones",
+                "A memory phenomenon causing people to recall only the frightening details of legends and forget the reassuring context",
+                "The tendency for legends to persist because the people they would warn are no longer alive to contradict them"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
             }
           ],
           "wordoku": [],
@@ -154477,6 +156169,438 @@
               ],
               "correctIndex": 0,
               "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_028",
+              "questionText": "What were the Salem Witch Trials?",
+              "answers": [
+                "A 1692 mass hysteria in Massachusetts in which 20 people were executed for alleged witchcraft",
+                "A series of witch burnings in England under King James I",
+                "A medieval European witch hunt that killed thousands",
+                "A colonial-era legal reform redefining witchcraft as a civil matter"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_029",
+              "questionText": "What is a familiar in witch folklore?",
+              "answers": [
+                "A supernatural animal companion \u2014 often a cat, toad, or bird \u2014 that assists a witch",
+                "A witch's apprentice who learns magic from a master",
+                "A demon that possesses a witch and grants her power",
+                "A human assistant who handles the witch's mundane affairs"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_030",
+              "questionText": "What tool is most associated with witches in European folklore?",
+              "answers": [
+                "A broomstick used for flying",
+                "A cauldron",
+                "A pointed hat",
+                "A black cat"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_031",
+              "questionText": "What is a hex in folk magic traditions?",
+              "answers": [
+                "A curse cast on a person or property to cause harm or misfortune",
+                "A protective charm against evil",
+                "A spell requiring a full moon to activate",
+                "A type of divination using written symbols"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_032",
+              "questionText": "What is the Witches' Sabbath in witch trial mythology?",
+              "answers": [
+                "A nocturnal gathering of witches worshipping the devil \u2014 a concept largely invented by inquisitors during witch trials",
+                "A weekly gathering of local cunning folk to share herbal knowledge",
+                "A ritual performed on the winter solstice",
+                "A dance performed to cause crop failure in neighboring villages"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_028",
+              "questionText": "What is the Malleus Maleficarum and what role did it play in the witch trials?",
+              "answers": [
+                "A 1487 handbook for identifying and prosecuting witches that codified witch trial procedures and promoted the idea of an organized Satanic conspiracy",
+                "The papal bull officially declaring witchcraft a capital crime",
+                "A collection of folk remedies for countering witchcraft",
+                "The legal code used in the Salem trials"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_029",
+              "questionText": "What are cunning folk in British folk magic history?",
+              "answers": [
+                "Local practitioners of folk magic who provided healing, divination, and counter-magic services to communities \u2014 often tolerated despite fears of witchcraft",
+                "The official term for licensed herbalists in Tudor England",
+                "A secret society of witches operating under the cover of midwifery",
+                "Church-approved exorcists who countered malefic witchcraft"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_030",
+              "questionText": "What is the swimming test for witches in early modern Europe?",
+              "answers": [
+                "Accused witches were thrown in water \u2014 floating was evidence of guilt and sinking indicated innocence \u2014 a lose-lose test demonstrating the irrationality of witch trial procedures",
+                "A test requiring witches to cross running water which they supposedly could not do",
+                "A trial by ordeal requiring witches to swim a fixed distance",
+                "A theological test determining whether a witch could be baptized"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_031",
+              "questionText": "What was the role of spectral evidence in the Salem witch trials?",
+              "answers": [
+                "Testimony that the accused's spirit appeared to the witness in a dream or vision \u2014 admitted as valid evidence in Salem but later rejected as unreliable after the trials ended",
+                "Physical evidence like wax dolls found in the accused's home",
+                "Witness testimony from other convicted witches naming accomplices",
+                "The accused's refusal to recite the Lord's Prayer as proof of guilt"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_032",
+              "questionText": "What is Wicca and how does it relate to historical witch trials?",
+              "answers": [
+                "A modern religious movement founded by Gerald Gardner in the 1950s \u2014 it draws on occult traditions and romanticizes the witch figure but has no direct historical continuity with those executed in witch trials",
+                "The direct descendant of pre-Christian European paganism suppressed by the Church",
+                "A religion founded specifically to rehabilitate the reputations of those killed in witch trials",
+                "A tradition of folk magic passed secretly since the Middle Ages"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_024",
+              "questionText": "What is the historiographical debate about the scale of the European witch trials?",
+              "answers": [
+                "Modern scholarship suggests approximately 40,000\u201360,000 executions over three centuries \u2014 far lower than the nine million figure popularized by feminist historians in the 1970s",
+                "Scholars agree the trials killed over nine million people making them a form of genocide",
+                "The trials killed primarily men in Germany but primarily women in England and France",
+                "Modern research proved the trials were entirely fabricated and no executions occurred"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_025",
+              "questionText": "What social factors explain the timing and geography of European witch hunts?",
+              "answers": [
+                "Witch panics clustered during periods of social stress \u2014 crop failure, disease, religious conflict \u2014 and were most intense in fragmented jurisdictions with competing legal authorities rather than centralized states",
+                "Witch hunts occurred randomly with no correlation to social conditions",
+                "They were driven exclusively by Church institutional policy uniformly applied across Europe",
+                "Witch hunts intensified during periods of prosperity when communities had resources for expensive trials"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_026",
+              "questionText": "What is the ergotism theory proposed to explain the Salem witch trials?",
+              "answers": [
+                "The hypothesis that Salem's afflicted girls consumed rye bread contaminated with ergot fungus causing hallucinations and convulsions \u2014 it is an interesting but disputed and unproven theory",
+                "The proven medical cause of all Salem symptoms confirmed by modern toxicology",
+                "A theory accepted by all historians as the definitive explanation for Salem",
+                "A theory definitively disproven by re-examining soil samples from Salem farms"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_038",
+              "questionText": "What is the functionalist interpretation of witch trials in social anthropology?",
+              "answers": [
+                "Witch accusations served social functions \u2014 resolving community tensions, punishing deviance, scapegoating marginalized members \u2014 regardless of whether accusers consciously intended these effects",
+                "The theory that witch trials were rational responses to real supernatural threats",
+                "A Marxist interpretation viewing witch trials exclusively as class warfare",
+                "The theory that all witch accusations were cynical fabrications by accusers who knew them to be false"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_039",
+              "questionText": "What is maleficium in the legal history of witchcraft prosecution?",
+              "answers": [
+                "The harmful magic \u2014 crop failure, illness, death \u2014 that gave witch trials their legal basis; authorities required proof of actual harm, not just heresy, in most jurisdictions",
+                "The formal charge of making a pact with the devil \u2014 the core legal category in most witch trials",
+                "The legal term for the evidence of witchcraft found in an accused's home",
+                "The category of natural disasters attributed to witchcraft in medieval law"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_040",
+              "questionText": "What is the significance of the witches' sabbath image in art history relative to actual folk practice?",
+              "answers": [
+                "The sabbath image was largely constructed by inquisitors and artists \u2014 the lurid scenes of flying and devil worship were extracted through torture and had little relation to actual folk magic practices of cunning folk and herbalists",
+                "The sabbath images accurately recorded ceremonies practiced by organized witch covens",
+                "The artistic depictions were created as protective warnings by the Church with no evidentiary basis",
+                "The sabbath was a real annual gathering documented by independent witnesses before the trials"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_033",
+              "questionText": "What famous play by Arthur Miller uses the Salem Witch Trials as an allegory for McCarthyism?",
+              "answers": [
+                "The Crucible",
+                "Death of a Salesman",
+                "All My Sons",
+                "A View from the Bridge"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_034",
+              "questionText": "What is a cauldron associated with in witch folklore?",
+              "answers": [
+                "Brewing potions, spells, and poisons",
+                "Summoning demons",
+                "Seeing the future through the reflection of water in it",
+                "Communicating with the dead"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_033",
+              "questionText": "What is the significance of the witch's pointed hat as a cultural image?",
+              "answers": [
+                "The pointed hat's origin is unclear \u2014 theories include association with Jewish distinctiveness markings, heretical iconography, or simple theatrical exaggeration; it became a witch marker through early modern woodcuts rather than folk tradition",
+                "The pointed hat was a real garment worn by accused witches during trials as identification",
+                "The hat derives from headgear worn by pagan priestesses whose traditions were demonized by the Church",
+                "The pointed hat was a protective talisman believed to channel magical energy downward"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_034",
+              "questionText": "What is 'witch cake' in the context of the Salem witch trials?",
+              "answers": [
+                "A diagnostic cake made with the urine of afflicted girls fed to a dog \u2014 the dog's reaction was meant to reveal the witch's identity; it was baked by a slave named Tituba",
+                "A cake baked as an offering to a witch to lift a curse",
+                "A communion bread used in alleged Black Mass ceremonies",
+                "A ritual food described in confessions extracted under torture"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_027",
+              "questionText": "What is the role of confession in the European witch trials?",
+              "answers": [
+                "Confession was the most valued form of evidence \u2014 and torture was legally sanctioned to obtain it \u2014 meaning the trial system was designed to produce guilt regardless of actual innocence",
+                "Confession was considered unreliable because it could be coerced, so most jurisdictions required independent witness testimony",
+                "Voluntary confession was treated with suspicion as it might indicate mental illness",
+                "Confession was only admissible if corroborated by physical evidence like a witch's mark"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_041",
+              "questionText": "What is the 'night witch' tradition in Slavic folklore and how does it differ from Western witch stereotypes?",
+              "answers": [
+                "Slavic night witches (vedma, stregheria) are more ambiguous figures \u2014 sometimes dangerous, sometimes protective \u2014 and are more closely tied to natural cycles and ancestral spirits than the Satanic-pact stereotype dominant in Western inquisitorial witch trials",
+                "Slavic witches are always male in contrast to the female-dominated Western tradition",
+                "The Slavic tradition involves witches who only operate during daylight hours",
+                "Slavic witch belief was entirely invented by the Christian Church with no pre-Christian folk basis"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_035",
+              "questionText": "What country passed the Witchcraft Act of 1735, which persecuted fraudulent fortune tellers rather than actual witches?",
+              "answers": [
+                "Great Britain",
+                "France",
+                "Germany",
+                "Spain"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_036",
+              "questionText": "What is a spell or charm created to bring harm called in witchcraft folklore?",
+              "answers": [
+                "A curse or malediction",
+                "A hex (same thing but in German-American folk tradition)",
+                "A jinx",
+                "All of the above are correct"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_035",
+              "questionText": "What is 'sympathetic magic' in folk witchcraft traditions?",
+              "answers": [
+                "Magic based on the principle that like affects like \u2014 sticking pins in a wax doll affects the person it represents, burning someone's hair affects them directly",
+                "Magic that works by generating empathy in the target",
+                "A form of healing magic that treats emotional wounds",
+                "Magic that requires the willing participation of the target to function"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_036",
+              "questionText": "What is the role of the cunning man or wise woman as a counter to witchcraft?",
+              "answers": [
+                "Folk practitioners who used magic to identify witches, lift curses, recover stolen goods, and heal the bewitched \u2014 they occupied an ambiguous position, using magic against magic",
+                "Church-appointed exorcists who countered witchcraft through prayer and holy water exclusively",
+                "A benevolent witch who reformed after being caught by the community",
+                "An herbalist who provided natural remedies with no magical component"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_028",
+              "questionText": "What is the significance of the witch's mark in early modern witch trial procedures?",
+              "answers": [
+                "A bodily mark (birthmark, scar, or insensitive spot) believed to be the place where the devil sealed his pact with the witch \u2014 searchers would probe the accused's body with pins to find insensitive spots as evidence",
+                "A tattoo that accused witches were required to have visible at all times",
+                "A brand applied to convicted witches before execution as a public warning",
+                "A mark that only appeared under ultraviolet light, discovered through a special church ritual"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_042",
+              "questionText": "What is the difference between malefica and beneficia in historical witch belief?",
+              "answers": [
+                "Malefica was harmful magic causing illness, death, and crop failure; beneficia was helpful magic for healing, love, and protection \u2014 the same practitioner might be consulted for both, complicating the binary good/evil framing of witch trials",
+                "Malefica was practiced by women and beneficia by men according to inquisitorial theory",
+                "The Church condemned malefica as diabolical but tolerated beneficia as natural healing",
+                "Beneficia was always considered more dangerous because it built dependency on magical practitioners"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_037",
+              "questionText": "What Shakespeare play features three witches who prophesy Macbeth's rise to power?",
+              "answers": [
+                "Macbeth",
+                "A Midsummer Night's Dream",
+                "The Tempest",
+                "Hamlet"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_038",
+              "questionText": "What is the name of the pointed hat most associated with witches in popular culture?",
+              "answers": [
+                "A conical or dunce-style hat",
+                "A wide-brimmed floppy hat",
+                "A tall stovepipe hat",
+                "A hood with a pointed cowl"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_037",
+              "questionText": "What is the 'witch bottle' in British folk magic tradition?",
+              "answers": [
+                "A bottle filled with pins, nails, urine, and hair buried near the hearth to trap and neutralize a witch's curse \u2014 a counter-magic device used from the 16th\u201318th centuries",
+                "A potion bottle used by witches to brew love spells",
+                "A glass bottle in which a witch's spirit could be imprisoned",
+                "A decorative bottle hung in windows to catch evil spirits before they entered the home"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_medium_038",
+              "questionText": "What was Tituba's role in the Salem witch trials?",
+              "answers": [
+                "An enslaved woman from Barbados whose confession describing the devil and a witches' meeting helped ignite the panic \u2014 her vivid testimony shaped the trial's narrative",
+                "The first person executed in the Salem trials",
+                "A judge who later recanted her role in convicting innocent people",
+                "The doctor who diagnosed the afflicted girls as bewitched"
+              ],
+              "correctIndex": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_029",
+              "questionText": "What is the 'witch window' architectural feature found in Vermont homes?",
+              "answers": [
+                "A window installed at a diagonal angle \u2014 folklore holds that witches cannot fly through angled windows on their broomsticks; the practical reason was ease of moving furniture",
+                "A small triangular window built into attic gables for ventilation",
+                "A window with lead glass panes believed to distort a witch's reflection and repel her",
+                "A window facing north deliberately kept dark to prevent witches from seeing inside"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_hard_030",
+              "questionText": "What is the 'familiars' evidence used in English witch trials that differed from Continental practice?",
+              "answers": [
+                "English trials emphasized the familiar spirit \u2014 a small animal imp supplied by the devil \u2014 as central evidence; this was less prominent in Continental trials which focused more on the Sabbath and devil's pact",
+                "English trials required physical evidence of the familiar's existence; Continental trials accepted testimony alone",
+                "English trials used familiars as an alternative to torture which was officially banned in England",
+                "The familiar was considered more serious evidence than the devil's mark in English law"
+              ],
+              "correctIndex": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "folklore_witches_witchcraft_insanity_043",
+              "questionText": "What is the historiographical significance of Keith Thomas's 'Religion and the Decline of Magic'?",
+              "answers": [
+                "It argued that witchcraft accusations in early modern England reflected real social tensions between neighbors \u2014 the accused were often those who had been refused charity and whose subsequent curse seemed to be fulfilled by real misfortune",
+                "It proved that the witch trials were primarily driven by the Church rather than popular belief",
+                "It demonstrated that witch belief disappeared entirely once literacy rates exceeded 50%",
+                "It argued that cunning folk and witches were part of an organized pagan resistance to Christianity"
+              ],
+              "correctIndex": 0,
+              "difficulty": "insanity"
+            },
+            {
+              "id": "folklore_witches_witchcraft_easy_039",
+              "questionText": "In folklore, what herb is traditionally said to repel witches and evil spirits?",
+              "answers": [
+                "Rowan (mountain ash)",
+                "Rosemary",
+                "Sage",
+                "Lavender"
+              ],
+              "correctIndex": 0,
+              "difficulty": "easy"
             }
           ],
           "wordoku": [],
