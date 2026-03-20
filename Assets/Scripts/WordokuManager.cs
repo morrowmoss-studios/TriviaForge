@@ -49,6 +49,7 @@ public class WordokuManager : MonoBehaviour
 
     private void Start()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
         // Wait one frame so the board + layout are fully built
         StartCoroutine(GenerateAfterLayout());
     }

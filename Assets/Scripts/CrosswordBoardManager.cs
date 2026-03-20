@@ -79,6 +79,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Start()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
         // Normalize layout so EVERYTHING agrees on dimensions
         layoutRows = NormalizeLayout(layoutRows);
 

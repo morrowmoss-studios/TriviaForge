@@ -10,6 +10,7 @@ public class TriviaResultScene : MonoBehaviour
 
     private void Start()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.OnMenuScene();
         titleText.text = TriviaSessionData.wasCorrect ? "Correct!" : "Wrong!";
 
         int chosen  = TriviaSessionData.chosenIndex;

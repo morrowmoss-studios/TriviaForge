@@ -18,11 +18,46 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (AudioManager.Instance == null) return;
+
+        string scene = SceneManager.GetActiveScene().name;
+
+        switch (scene)
+        {
+            case "GameOver_PopUp":
+            case "Scores_PopUp":
+            case "Leaderboard_PopUp":
+            case "TriviaResult":
+            case "ModeSelect":
+            case "MainMenu":
+            case "AboutGame":
+            case "CreateAccount_PopUp":
+            case "Credits":
+            case "HowToPlay":
+            case "PrivacyPolicy":
+            case "Quit_PopUp":
+            case "Win_PopUp":
+            case "TermsOfUse":
+            case "Login_PopUp":    
+                AudioManager.Instance.OnMenuScene();
+                break;
+
+            case "TriviaMode":
+            case "CrosswordMode":
+            case "WordokuMode":
+                AudioManager.Instance.OnGameScene();
+                break;
+
+            // All other scenes (Settings, Credits, etc.) leave music as-is
+        }
+    }
+
     // -------------------------------------------------------------
     //  Scene Controls
     // -------------------------------------------------------------
 
-    // Called by buttons to go to another scene
     public void LoadScene(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
@@ -31,25 +66,21 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        // Store the current scene before changing
         SetPreviousScene();
         SceneManager.LoadScene(sceneName);
     }
 
-    // Reloads the current active scene
     public void ReloadCurrentScene()
     {
         Scene current = SceneManager.GetActiveScene();
         SceneManager.LoadScene(current.name);
     }
 
-    // Set the previous scene manually (for special transitions)
     public static void SetPreviousScene()
     {
         previousSceneName = SceneManager.GetActiveScene().name;
     }
 
-    // Go back to the last scene visited
     public void LoadPreviousScene()
     {
         if (!string.IsNullOrEmpty(previousSceneName))
@@ -67,7 +98,6 @@ public class UIManager : MonoBehaviour
     //  App Controls
     // -------------------------------------------------------------
 
-    // Hook this to a Quit/Exit button if you ever add one
     public void QuitGame()
     {
 #if UNITY_EDITOR
@@ -76,14 +106,13 @@ public class UIManager : MonoBehaviour
         Application.Quit();
 #endif
     }
-    
+
     public void OpenSettingsScene()
     {
         SetPreviousScene();
         SceneManager.LoadScene("Settings");
     }
 
-    // For external links (itch page, email, website, etc.)
     public void OpenURL(string url)
     {
         if (string.IsNullOrEmpty(url))

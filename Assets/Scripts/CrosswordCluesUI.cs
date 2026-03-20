@@ -22,12 +22,20 @@ public class CrosswordCluesUI : MonoBehaviour
 
     private void Start()
     {
+        // Audio
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.OnMenuScene();
+
+        // Fix scrollviews before populating
+        FixScrollView(acrossScroll);
+        FixScrollView(downScroll);
+
         List<CrosswordWord> words = CrosswordSession.currentWords;
 
         if (words == null || words.Count == 0)
         {
             if (acrossText != null) acrossText.text = "No crossword data.";
-            if (downText != null)   downText.text   = "";
+            if (downText   != null) downText.text   = "";
             return;
         }
 
@@ -38,16 +46,13 @@ public class CrosswordCluesUI : MonoBehaviour
         foreach (var w in words)
         {
             if (w == null) continue;
-
-            if (w.isAcross)
-                across.Add(w);
-            else
-                down.Add(w);
+            if (w.isAcross) across.Add(w);
+            else            down.Add(w);
         }
 
         // Sort by clue number
-        across.Sort((a,b) => ExtractNumber(a.id).CompareTo(ExtractNumber(b.id)));
-        down.Sort((a,b)   => ExtractNumber(a.id).CompareTo(ExtractNumber(b.id)));
+        across.Sort((a, b) => ExtractNumber(a.id).CompareTo(ExtractNumber(b.id)));
+        down.Sort((a,   b) => ExtractNumber(a.id).CompareTo(ExtractNumber(b.id)));
 
         var acrossBuilder = new StringBuilder();
         var downBuilder   = new StringBuilder();
@@ -59,18 +64,93 @@ public class CrosswordCluesUI : MonoBehaviour
             downBuilder.AppendLine($"{w.id}  {w.clue}");
 
         if (acrossText != null)
+        {
             acrossText.text = acrossBuilder.ToString();
+            acrossText.ForceMeshUpdate();
+        }
 
         if (downText != null)
+        {
             downText.text = downBuilder.ToString();
+            downText.ForceMeshUpdate();
+        }
 
-        // Reset scroll to top
+        // Rebuild layouts so ContentSizeFitter recalculates heights
         if (acrossScroll != null)
-            acrossScroll.verticalNormalizedPosition = 1f;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(
+                acrossScroll.content ?? acrossScroll.GetComponent<RectTransform>());
 
         if (downScroll != null)
-            downScroll.verticalNormalizedPosition = 1f;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(
+                downScroll.content ?? downScroll.GetComponent<RectTransform>());
+
+        // Reset scroll to top
+        if (acrossScroll != null) acrossScroll.verticalNormalizedPosition = 1f;
+        if (downScroll   != null) downScroll.verticalNormalizedPosition   = 1f;
     }
+
+    // ── Scroll fix ────────────────────────────────────────────────────────
+
+    void FixScrollView(ScrollRect scrollRect)
+    {
+        if (scrollRect == null) return;
+
+        // Configure ScrollRect
+        scrollRect.vertical          = true;
+        scrollRect.horizontal        = false;
+        scrollRect.movementType      = ScrollRect.MovementType.Clamped;
+        scrollRect.scrollSensitivity = 30f;
+        scrollRect.inertia           = true;
+        scrollRect.decelerationRate  = 0.135f;
+
+        // Viewport needs an Image + Mask for clipping to work
+        RectTransform viewport = scrollRect.viewport;
+        if (viewport != null)
+        {
+            Image vpImage = viewport.GetComponent<Image>();
+            if (vpImage == null) vpImage = viewport.gameObject.AddComponent<Image>();
+            vpImage.color = new Color(0, 0, 0, 0);
+
+            Mask mask = viewport.GetComponent<Mask>();
+            if (mask == null) mask = viewport.gameObject.AddComponent<Mask>();
+            mask.showMaskGraphic = false;
+
+            viewport.anchorMin = Vector2.zero;
+            viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = Vector2.zero;
+            viewport.offsetMax = Vector2.zero;
+        }
+
+        // Content anchors: top-stretch, pivot top
+        RectTransform content = scrollRect.content;
+        if (content != null)
+        {
+            content.anchorMin = new Vector2(0f, 1f);
+            content.anchorMax = new Vector2(1f, 1f);
+            content.pivot     = new Vector2(0.5f, 1f);
+            content.offsetMin = new Vector2(content.offsetMin.x, 0f);
+            content.offsetMax = new Vector2(content.offsetMax.x, 0f);
+
+            // Ensure ContentSizeFitter exists
+            ContentSizeFitter csf = content.GetComponent<ContentSizeFitter>();
+            if (csf == null) csf = content.gameObject.AddComponent<ContentSizeFitter>();
+            csf.verticalFit   = ContentSizeFitter.FitMode.PreferredSize;
+            csf.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+
+            // Turn off raycast on child graphics so they don't eat scroll input
+            foreach (var graphic in content.GetComponentsInChildren<MaskableGraphic>())
+                graphic.raycastTarget = false;
+        }
+
+        // ScrollRect itself needs a transparent Image with raycastTarget ON
+        // so touch input reaches the ScrollRect component
+        Image srImage = scrollRect.GetComponent<Image>();
+        if (srImage == null) srImage = scrollRect.gameObject.AddComponent<Image>();
+        srImage.color         = new Color(0, 0, 0, 0);
+        srImage.raycastTarget = true;
+    }
+
+    // ── Utilities ─────────────────────────────────────────────────────────
 
     private int ExtractNumber(string id)
     {
@@ -85,7 +165,7 @@ public class CrosswordCluesUI : MonoBehaviour
         return 0;
     }
 
-    // ---------- BUTTON HOOKS ----------
+    // ── Button hooks ──────────────────────────────────────────────────────
 
     public void OnBackPressed()
     {

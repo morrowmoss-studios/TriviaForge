@@ -8,10 +8,6 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle sfxToggle;
     [SerializeField] private Toggle vibrationToggle;
 
-    [Header("Optional audio hookups")]
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource[] sfxSources;
-
     // PlayerPrefs keys
     private const string MusicKey = "TF_MusicOn";
     private const string SfxKey   = "TF_SfxOn";
@@ -30,9 +26,9 @@ public class SettingsMenu : MonoBehaviour
     private void Awake()
     {
         // Load saved values (default all ON)
-        musicOn      = PlayerPrefs.GetInt(MusicKey, 1) == 1;
-        sfxOn        = PlayerPrefs.GetInt(SfxKey,   1) == 1;
-        vibrationOn  = PlayerPrefs.GetInt(VibKey,   1) == 1;
+        musicOn     = PlayerPrefs.GetInt(MusicKey, 1) == 1;
+        sfxOn       = PlayerPrefs.GetInt(SfxKey,   1) == 1;
+        vibrationOn = PlayerPrefs.GetInt(VibKey,   1) == 1;
 
         originalMusicOn     = musicOn;
         originalSfxOn       = sfxOn;
@@ -43,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
         if (sfxToggle       != null) sfxToggle.isOn       = sfxOn;
         if (vibrationToggle != null) vibrationToggle.isOn = vibrationOn;
 
-        // Apply to the world so it matches what we loaded
+        // Apply to AudioManager so it matches what we loaded
         ApplyMusic(musicOn);
         ApplySfx(sfxOn);
         ApplyVibration(vibrationOn);
@@ -85,43 +81,38 @@ public class SettingsMenu : MonoBehaviour
 
     private void ApplyMusic(bool enabled)
     {
-        if (musicSource != null)
-            musicSource.mute = !enabled;
-        // later you can forward this to a global AudioManager instead
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetMusicEnabled(enabled);
     }
 
     private void ApplySfx(bool enabled)
     {
-        if (sfxSources == null) return;
-
-        foreach (var s in sfxSources)
-        {
-            if (s != null) s.mute = !enabled;
-        }
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.SetSFXEnabled(enabled);
     }
 
     private void ApplyVibration(bool enabled)
     {
-        // For now just store the value; other scripts can read PlayerPrefs or a static helper
+        // Value stored in PlayerPrefs — other scripts can read TF_VibrationOn as needed
     }
 
     // -------- called by buttons --------
 
-    // Hook this to CONFIRM (before you leave the scene)
+    // Hook this to CONFIRM
     public void SaveSettings()
     {
-        PlayerPrefs.SetInt(MusicKey, musicOn      ? 1 : 0);
-        PlayerPrefs.SetInt(SfxKey,   sfxOn        ? 1 : 0);
-        PlayerPrefs.SetInt(VibKey,   vibrationOn  ? 1 : 0);
+        PlayerPrefs.SetInt(MusicKey, musicOn     ? 1 : 0);
+        PlayerPrefs.SetInt(SfxKey,   sfxOn       ? 1 : 0);
+        PlayerPrefs.SetInt(VibKey,   vibrationOn ? 1 : 0);
         PlayerPrefs.Save();
     }
 
-    // Hook this to CANCEL (before you leave the scene)
+    // Hook this to CANCEL
     public void RevertSettings()
     {
-        musicOn      = originalMusicOn;
-        sfxOn        = originalSfxOn;
-        vibrationOn  = originalVibrationOn;
+        musicOn     = originalMusicOn;
+        sfxOn       = originalSfxOn;
+        vibrationOn = originalVibrationOn;
 
         ApplyMusic(musicOn);
         ApplySfx(sfxOn);

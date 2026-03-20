@@ -36,6 +36,7 @@ public class ModeSelectManager : MonoBehaviour
 
     private void Start()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.OnMenuScene();
         SetupGameModeDropdown();
         SetupDifficultyDropdown();
         SetupCategoryDropdown();
