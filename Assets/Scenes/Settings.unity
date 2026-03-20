@@ -1075,8 +1075,6 @@ MonoBehaviour:
   musicToggle: {fileID: 940385128}
   sfxToggle: {fileID: 256514488}
   vibrationToggle: {fileID: 2102644398}
-  musicSource: {fileID: 0}
-  sfxSources: []
 --- !u!4 &595271967
 Transform:
   m_ObjectHideFlags: 0
@@ -2370,7 +2368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2394,7 +2392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
+      value: LoadPreviousScene
       objectReference: {fileID: 0}
     - target: {fileID: 1221970387386632138, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2430,7 +2428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2454,7 +2452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
+      value: LoadPreviousScene
       objectReference: {fileID: 0}
     - target: {fileID: 1421629112387156839, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

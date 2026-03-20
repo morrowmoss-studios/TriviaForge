@@ -1,17 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
-
-    [Header("Music Sources")]
-    [SerializeField] private AudioSource musicSourceA;
-    [SerializeField] private AudioSource musicSourceB;
-
-    [Header("SFX Source")]
-    [SerializeField] private AudioSource sfxSource;
 
     [Header("Chill Playlist (Menus / Results)")]
     public AudioClip Village_Ambiance;
@@ -41,17 +35,29 @@ public class AudioManager : MonoBehaviour
     private bool musicEnabled = true;
     private bool sfxEnabled   = true;
 
+    // AudioSources created at runtime — not serialized, so Unity can't lose them
+    private AudioSource sourceA;
+    private AudioSource sourceB;
+    private AudioSource sfxSource;
+
+    private AudioSource activeMusicSource;
+    private AudioSource inactiveMusicSource;
+
     private List<AudioClip> chillPlaylist  = new List<AudioClip>();
     private List<AudioClip> activePlaylist = new List<AudioClip>();
     private List<AudioClip> currentPlaylist;
 
     private int  currentTrackIndex = -1;
     private bool isActivePlaylist  = false;
+    private bool isMusicPlaying    = false;
 
-    private AudioSource activeMusicSource;
-    private AudioSource inactiveMusicSource;
-    private Coroutine   crossfadeCoroutine;
-    private Coroutine   autoAdvanceCoroutine;
+    private Coroutine crossfadeCoroutine;
+    private Coroutine autoAdvanceCoroutine;
+
+    private readonly HashSet<string> gameplayScenes = new HashSet<string>
+    {
+        "TriviaMode", "CrosswordMode", "WordokuMode"
+    };
 
     private const string PREF_MUSIC_VOL     = "MusicVolume";
     private const string PREF_SFX_VOL       = "SFXVolume";
@@ -71,26 +77,95 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // Add persistent AudioListener
+        if (GetComponent<AudioListener>() == null)
+            gameObject.AddComponent<AudioListener>();
+
         musicVolume  = PlayerPrefs.GetFloat(PREF_MUSIC_VOL, 0.5f);
         sfxVolume    = PlayerPrefs.GetFloat(PREF_SFX_VOL, 1f);
         musicEnabled = PlayerPrefs.GetInt(PREF_MUSIC_ENABLED, 1) == 1;
         sfxEnabled   = PlayerPrefs.GetInt(PREF_SFX_ENABLED,   1) == 1;
 
-        activeMusicSource   = musicSourceA;
-        inactiveMusicSource = musicSourceB;
+        // Create AudioSources directly on this GameObject at runtime
+        // so they can never be destroyed by scene unloads
+        sourceA  = CreateMusicSource("MusicSourceA");
+        sourceB  = CreateMusicSource("MusicSourceB");
+        sfxSource = gameObject.AddComponent<AudioSource>();
+        sfxSource.loop         = false;
+        sfxSource.spatialBlend = 0f;
+        sfxSource.playOnAwake  = false;
 
-        if (musicSourceA != null) { musicSourceA.loop = false; musicSourceA.volume = 0f; }
-        if (musicSourceB != null) { musicSourceB.loop = false; musicSourceB.volume = 0f; }
+        activeMusicSource   = sourceA;
+        inactiveMusicSource = sourceB;
+
+        Debug.Log("[AudioManager] Sources created at runtime — A=" + sourceA + " B=" + sourceB);
+
+        BuildPlaylists();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        ForceStartChill();
     }
 
-    void Start()
+    AudioSource CreateMusicSource(string label)
     {
-        BuildPlaylists();
-        // AudioManager always starts the chill playlist on boot.
-        // Scene managers call OnMenuScene/OnGameScene to switch playlists —
-        // the IsMusicActive() guard prevents them from interrupting a
-        // crossfade that's already running.
-        ForceChill();
+        var s = gameObject.AddComponent<AudioSource>();
+        s.loop         = false;
+        s.volume       = 0f;
+        s.spatialBlend = 0f;
+        s.playOnAwake  = false;
+        Debug.Log($"[AudioManager] Created {label}");
+        return s;
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // ── Scene loaded callback ─────────────────────────────────────────────
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[AudioManager] Scene loaded: {scene.name}");
+
+        // Disable other AudioListeners
+        foreach (var listener in FindObjectsOfType<AudioListener>())
+        {
+            if (listener == null) continue;
+            if (listener.gameObject != this.gameObject)
+                listener.enabled = false;
+        }
+
+        if (!musicEnabled) return;
+
+        bool shouldBeActive = gameplayScenes.Contains(scene.name);
+
+        if (shouldBeActive && !isActivePlaylist)
+        {
+            Debug.Log("[AudioManager] → Active playlist.");
+            isActivePlaylist  = true;
+            currentPlaylist   = activePlaylist;
+            currentTrackIndex = -1;
+            PlayNextTrack();
+        }
+        else if (!shouldBeActive && isActivePlaylist)
+        {
+            Debug.Log("[AudioManager] → Chill playlist.");
+            isActivePlaylist  = false;
+            currentPlaylist   = chillPlaylist;
+            currentTrackIndex = -1;
+            PlayNextTrack();
+        }
+        else if (!isMusicPlaying && crossfadeCoroutine == null)
+        {
+            Debug.Log("[AudioManager] Music stopped — restarting.");
+            PlayNextTrack();
+        }
+        else
+        {
+            Debug.Log("[AudioManager] Music already running — no change.");
+        }
     }
 
     // ── Playlist building ─────────────────────────────────────────────────
@@ -114,49 +189,40 @@ public class AudioManager : MonoBehaviour
         ShuffleList(activePlaylist);
     }
 
-    // ── Playlist switching ────────────────────────────────────────────────
-
-    // Called by scene managers — only acts if we need to CHANGE playlist type.
-    // If the correct playlist is already running, does nothing.
-    public void OnMenuScene()
+    void ForceStartChill()
     {
-        if (!isActivePlaylist && IsMusicActive()) return; // already on chill, leave it
-        isActivePlaylist = false;
-        SwitchPlaylist(chillPlaylist);
-    }
-
-    public void OnGameScene()
-    {
-        if (isActivePlaylist && IsMusicActive()) return; // already on active, leave it
-        isActivePlaylist = true;
-        SwitchPlaylist(activePlaylist);
-    }
-
-    // Internal — starts chill unconditionally (used only on first boot)
-    void ForceChill()
-    {
-        isActivePlaylist = false;
-        SwitchPlaylist(chillPlaylist);
-    }
-
-    // Keep these as aliases in case anything else calls them directly
-    public void PlayChillPlaylist()  => OnMenuScene();
-    public void PlayActivePlaylist() => OnGameScene();
-
-    void SwitchPlaylist(List<AudioClip> playlist)
-    {
-        if (playlist == null || playlist.Count == 0) return;
-        if (!SourcesValid()) return;
-
-        currentPlaylist   = playlist;
+        isActivePlaylist  = false;
+        currentPlaylist   = chillPlaylist;
         currentTrackIndex = -1;
         PlayNextTrack();
     }
 
+    // ── Public helpers ────────────────────────────────────────────────────
+
+    public void OnGameScene()
+    {
+        if (isActivePlaylist && isMusicPlaying) return;
+        isActivePlaylist  = true;
+        currentPlaylist   = activePlaylist;
+        currentTrackIndex = -1;
+        PlayNextTrack();
+    }
+
+    public void OnMenuScene()
+    {
+        if (!isActivePlaylist && isMusicPlaying) return;
+        isActivePlaylist  = false;
+        currentPlaylist   = chillPlaylist;
+        currentTrackIndex = -1;
+        PlayNextTrack();
+    }
+
+    // ── Track playback ────────────────────────────────────────────────────
+
     void PlayNextTrack()
     {
         if (currentPlaylist == null || currentPlaylist.Count == 0) return;
-        if (!SourcesValid()) return;
+        if (activeMusicSource == null || inactiveMusicSource == null) return;
 
         currentTrackIndex = (currentTrackIndex + 1) % currentPlaylist.Count;
         if (currentTrackIndex == 0) ShuffleList(currentPlaylist);
@@ -168,13 +234,19 @@ public class AudioManager : MonoBehaviour
     IEnumerator CrossfadeTo(AudioClip newClip)
     {
         if (newClip == null) yield break;
-        if (!SourcesValid()) yield break;
+        if (activeMusicSource == null || inactiveMusicSource == null) yield break;
 
-        inactiveMusicSource.clip   = newClip;
-        inactiveMusicSource.volume = 0f;
+        isMusicPlaying = false;
+
+        inactiveMusicSource.clip         = newClip;
+        inactiveMusicSource.volume       = 0f;
+        inactiveMusicSource.spatialBlend = 0f;
 
         if (musicEnabled)
+        {
             inactiveMusicSource.Play();
+            isMusicPlaying = true;
+        }
 
         float timer     = 0f;
         float startVol  = activeMusicSource.volume;
@@ -182,7 +254,7 @@ public class AudioManager : MonoBehaviour
 
         while (timer < crossfadeDuration)
         {
-            if (!SourcesValid()) yield break;
+            if (activeMusicSource == null || inactiveMusicSource == null) yield break;
 
             timer += Time.deltaTime;
             float t = timer / crossfadeDuration;
@@ -191,7 +263,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        if (!SourcesValid()) yield break;
+        if (activeMusicSource == null || inactiveMusicSource == null) yield break;
 
         activeMusicSource.Stop();
         activeMusicSource.volume = 0f;
@@ -208,28 +280,15 @@ public class AudioManager : MonoBehaviour
     IEnumerator AutoAdvance(float delay)
     {
         yield return new WaitForSeconds(Mathf.Max(delay, 0.5f));
-        if (SourcesValid())
-            PlayNextTrack();
-    }
-
-    // ── Helpers ───────────────────────────────────────────────────────────
-
-    bool SourcesValid()
-    {
-        return activeMusicSource != null && inactiveMusicSource != null;
-    }
-
-    // True if music is actively playing OR a crossfade is in progress
-    bool IsMusicActive()
-    {
-        return crossfadeCoroutine != null ||
-               (SourcesValid() && activeMusicSource.isPlaying);
+        isMusicPlaying = false;
+        PlayNextTrack();
     }
 
     void StopAllMusicCoroutines()
     {
         if (crossfadeCoroutine   != null) { StopCoroutine(crossfadeCoroutine);   crossfadeCoroutine   = null; }
         if (autoAdvanceCoroutine != null) { StopCoroutine(autoAdvanceCoroutine); autoAdvanceCoroutine = null; }
+        isMusicPlaying = false;
     }
 
     // ── Enable / Disable ──────────────────────────────────────────────────
@@ -240,22 +299,20 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetInt(PREF_MUSIC_ENABLED, enabled ? 1 : 0);
         PlayerPrefs.Save();
 
-        if (!SourcesValid()) return;
-
         if (!enabled)
         {
-            musicSourceA.volume = 0f;
-            musicSourceB.volume = 0f;
-            musicSourceA.Pause();
-            musicSourceB.Pause();
+            if (sourceA != null) { sourceA.volume = 0f; sourceA.Pause(); }
+            if (sourceB != null) { sourceB.volume = 0f; sourceB.Pause(); }
+            isMusicPlaying = false;
         }
         else
         {
-            if (activeMusicSource.clip != null)
+            if (activeMusicSource != null && activeMusicSource.clip != null)
             {
                 activeMusicSource.UnPause();
                 if (!activeMusicSource.isPlaying) activeMusicSource.Play();
                 activeMusicSource.volume = musicVolume;
+                isMusicPlaying = true;
             }
             else
             {
@@ -274,12 +331,10 @@ public class AudioManager : MonoBehaviour
     public bool GetMusicEnabled() => musicEnabled;
     public bool GetSFXEnabled()   => sfxEnabled;
 
-    // ── Volume ────────────────────────────────────────────────────────────
-
     public void SetMusicVolume(float vol)
     {
         musicVolume = Mathf.Clamp01(vol);
-        if (musicEnabled && SourcesValid() && activeMusicSource.isPlaying)
+        if (musicEnabled && activeMusicSource != null)
             activeMusicSource.volume = musicVolume;
         PlayerPrefs.SetFloat(PREF_MUSIC_VOL, musicVolume);
         PlayerPrefs.Save();
