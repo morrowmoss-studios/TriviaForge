@@ -507,7 +507,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Last Updated: December 2025\nThis Privacy Policy describes how MorrowMoss
+  m_text: "Last Updated: March 2026\nThis Privacy Policy describes how MorrowMoss
     Studios (\u201Cwe,\u201D \u201Cus,\u201D or \u201Cour\u201D) collects, uses,
     and protects information when you use TriviaForge (the \u201CGame\u201D).\nThis
     document is provided as a placeholder for testing purposes and may not represent
@@ -568,6 +568,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -704,6 +705,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
