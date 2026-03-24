@@ -440,10 +440,10 @@ MonoBehaviour:
   The_Longest_Journey: {fileID: 8300000, guid: 0f873b5a524a74ca385a9f27460de53a, type: 3}
   One_Bard_Band: {fileID: 8300000, guid: bcf203216f56442cf9325f2c27bd5b97, type: 3}
   Tavern_Loop_One: {fileID: 8300000, guid: 5ce6d9619720c41f58ccd4e5a24a0001, type: 3}
-  sfxCorrect: {fileID: 8300000, guid: aed9c1861d23345f19c32a11487283be, type: 3}
+  sfxCorrect: {fileID: 8300000, guid: 6ccba552c402c43d18a9ecf8ebd386a5, type: 3}
   sfxWrong: {fileID: 8300000, guid: 2e7e4e7758c9748fab3655d7da273691, type: 3}
   sfxStrike: {fileID: 8300000, guid: a76fc478c78604d29b4e4bd9c71dfca2, type: 3}
-  sfxButtonPress: {fileID: 8300000, guid: 754851f24b45b4d8982cfc12b31224ee, type: 3}
+  sfxButtonPress: {fileID: 8300000, guid: c9c56a0ead8d74aaa928903d546b5768, type: 3}
   sfxUIClick: {fileID: 8300000, guid: 738b87d6f388f4ffb99757f13ec978e0, type: 3}
   sfxFanfare: {fileID: 8300000, guid: d193ff5eb48f148489e55daa5803532c, type: 3}
   sfxTilePlaced: {fileID: 8300000, guid: e83e9bfe54553455080791afb4675883, type: 3}

@@ -6,20 +6,20 @@ using UnityEngine;
 [Serializable]
 public class CrosswordWord
 {
-    public string id;          // e.g. "1A", "2D"
-    public bool isAcross;      // true = across, false = down
+    public string id;
+    public bool isAcross;
     public int startRow;
     public int startCol;
-    public string answer;      // "DRAGONFLY"
+    public string answer;
     [TextArea]
-    public string clue;        // clue text
+    public string clue;
 }
 
 public class CrosswordBoardManager : MonoBehaviour
 {
     [Header("Prefabs & Parents")]
     [SerializeField] private CrosswordCell cellPrefab;
-    [SerializeField] private Transform gridParent;   // Cross_GridParent
+    [SerializeField] private Transform gridParent;
 
     [Header("Layout (# = blocked, . = playable)")]
     [TextArea(1, 20)]
@@ -44,43 +44,36 @@ public class CrosswordBoardManager : MonoBehaviour
     [Header("Words & Clues (runtime-filled)")]
     public List<CrosswordWord> words = new List<CrosswordWord>();
 
-    // quick lookup: which word(s) live on each cell
     private CrosswordWord[,] acrossAt;
     private CrosswordWord[,] downAt;
-
-    // solution letter for each cell (empty = '\0')
     private char[,] solutionLetters;
 
-    // selection state for tap-to-toggle direction
     private CrosswordCell _selectedCell;
     private bool _selectedAcross = true;
 
     [Header("Database")]
-    [Tooltip("Resources file name (without .json). Default expects Assets/Resources/trivia_database.json")]
     [SerializeField] private string resourcesDbName = "trivia_database";
-
-    [Tooltip("If true, fills the crossword from the DB based on ModeSelect session.")]
     [SerializeField] private bool fillFromDatabaseOnStart = true;
-
-    [Tooltip("When pulling answers, allow reuse within the same puzzle if needed (not recommended).")]
     [SerializeField] private bool allowDuplicatesInPuzzle = false;
 
     [Header("Debug / Testing")]
-    [Tooltip("If true, shows the solved letters (BUT only for placed words). Keep FALSE for release.")]
+    [Tooltip("Keep FALSE for release.")]
     [SerializeField] private bool autoFillSolutionOnStart = false;
+
+    // ── Mobile keyboard ───────────────────────────────────────────────────
+    private TouchScreenKeyboard keyboard;
+    private string lastKeyboardText = "";
 
     private GameDatabase dbCached;
 
     private void Awake()
     {
-        // Make our words list available to other scenes (like the clues screen)
         CrosswordSession.currentWords = words;
     }
 
     private void Start()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
-        // Normalize layout so EVERYTHING agrees on dimensions
+        
         layoutRows = NormalizeLayout(layoutRows);
 
         if (fillFromDatabaseOnStart)
@@ -92,15 +85,176 @@ public class CrosswordBoardManager : MonoBehaviour
             RevealPlacedSolutionLettersOnly();
     }
 
-    // -----------------------------
-    // DB LOADING + SOLVER FILL
-    // -----------------------------
+    // ── Keyboard input ────────────────────────────────────────────────────
+
+    private void Update()
+    {
+        // Handle mobile TouchScreenKeyboard input
+        if (keyboard != null && TouchScreenKeyboard.isSupported && keyboard.active)
+        {
+            string text = keyboard.text;
+
+            // Something was typed
+            if (text.Length > lastKeyboardText.Length)
+            {
+                // Get the newest character
+                char newChar = text[text.Length - 1];
+                newChar = char.ToUpper(newChar);
+
+                if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
+                {
+                    _selectedCell.SetLetter(newChar);
+                    AdvanceToNextCell();
+                }
+
+                // Reset keyboard text to empty so next input is clean
+                keyboard.text = "";
+                lastKeyboardText = "";
+            }
+            else if (text.Length < lastKeyboardText.Length || text == "\b")
+            {
+                // Backspace — clear current cell
+                if (_selectedCell != null)
+                    _selectedCell.SetLetter('\0');
+
+                keyboard.text = "";
+                lastKeyboardText = "";
+            }
+            else
+            {
+                lastKeyboardText = text;
+            }
+        }
+
+        // Also handle physical keyboard input in editor / desktop testing
+#if UNITY_EDITOR
+        if (_selectedCell != null)
+        {
+            var keyboard2 = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard2 != null)
+            {
+                // Backspace
+                if (keyboard2.backspaceKey.wasPressedThisFrame)
+                {
+                    _selectedCell.SetLetter('\0');
+                }
+                else
+                {
+                    // Check A-Z keys
+                    foreach (var key in keyboard2.allKeys)
+                    {
+                        if (!key.wasPressedThisFrame) continue;
+                        string keyName = key.name;
+                        if (keyName.Length == 1)
+                        {
+                            char ch = char.ToUpper(keyName[0]);
+                            if (ch >= 'A' && ch <= 'Z')
+                            {
+                                _selectedCell.SetLetter(ch);
+                                AdvanceToNextCell();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+#endif
+    }
+
+    private void OpenKeyboard()
+    {
+        // Open a single-character input keyboard with no visible text field
+        keyboard = TouchScreenKeyboard.Open(
+            "",
+            TouchScreenKeyboardType.Default,
+            false,  // autocorrection
+            false,  // multiline
+            false,  // secure
+            false,  // alert
+            "",     // placeholder
+            0       // characterLimit — 0 = unlimited, we handle limit ourselves
+        );
+
+        lastKeyboardText = "";
+        if (keyboard != null) keyboard.text = "";
+    }
+
+    // Automatically moves selection to the next empty cell in the current word
+    private void AdvanceToNextCell()
+    {
+        if (_selectedCell == null) return;
+
+        int r = _selectedCell.row;
+        int c = _selectedCell.col;
+
+        // Find the next empty cell in the current direction
+        if (_selectedAcross)
+        {
+            // Move right
+            int nextC = c + 1;
+            while (nextC < cols && !cells[r, nextC].IsBlocked)
+            {
+                if (cells[r, nextC].GetLetter() == '\0')
+                {
+                    SelectCell(cells[r, nextC], true);
+                    return;
+                }
+                nextC++;
+            }
+        }
+        else
+        {
+            // Move down
+            int nextR = r + 1;
+            while (nextR < rows && !cells[nextR, c].IsBlocked)
+            {
+                if (cells[nextR, c].GetLetter() == '\0')
+                {
+                    SelectCell(cells[nextR, c], false);
+                    return;
+                }
+                nextR++;
+            }
+        }
+        // If no next empty cell found, stay on current cell
+    }
+
+    private void SelectCell(CrosswordCell cell, bool isAcross)
+    {
+        _selectedCell  = cell;
+        _selectedAcross = isAcross;
+
+        ClearHighlights();
+
+        int r = cell.row;
+        int c = cell.col;
+
+        CrosswordWord acrossWord = acrossAt[r, c];
+        CrosswordWord downWord   = downAt[r, c];
+        CrosswordWord activeWord   = isAcross ? acrossWord : downWord;
+        CrosswordWord inactiveWord = isAcross ? downWord   : acrossWord;
+
+        if (CrosswordClueDisplay.Instance != null)
+        {
+            if (activeWord != null && inactiveWord != null)
+                CrosswordClueDisplay.Instance.ShowMultiClue(
+                    activeWord.id, activeWord.clue,
+                    inactiveWord.id, inactiveWord.clue);
+            else if (activeWord != null)
+                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue);
+        }
+
+        if (isAcross) HighlightAcrossWord(r, c);
+        else          HighlightDownWord(r, c);
+    }
+
+    // ── DB loading ────────────────────────────────────────────────────────
 
     private void FillWordsFromDatabase()
     {
         string catId = TriviaSessionData.selectedCategoryId;
 
-        // Reuse cached puzzle if returning from Clues scene
         PreGeneratedPuzzle puzzle = CrosswordSession.activePuzzle;
 
         if (puzzle == null)
@@ -122,7 +276,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
             if (isMixed)
             {
-                // For mixed, pick from a random category using seen tracking
                 var eligibleCats = db.categories?.Where(c => c.puzzles != null && c.puzzles.Count > 0).ToList();
                 if (eligibleCats == null || eligibleCats.Count == 0)
                 {
@@ -143,15 +296,13 @@ public class CrosswordBoardManager : MonoBehaviour
 
                 if (cat.puzzles == null || cat.puzzles.Count == 0)
                 {
-                    Debug.LogWarning($"[CrosswordBoardManager] No pre-generated puzzles for '{catId}'. " +
-                                     "Re-run generate_puzzles.py and reimport trivia_database.json.");
+                    Debug.LogWarning($"[CrosswordBoardManager] No pre-generated puzzles for '{catId}'.");
                     return;
                 }
 
                 puzzle = SeenContentTracker.PickUnseenCrossword(catId, cat.puzzles, rng);
             }
 
-            // Cache it so returning from Clues scene reloads the same puzzle
             CrosswordSession.activePuzzle = puzzle;
         }
         else
@@ -172,12 +323,12 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             words.Add(new CrosswordWord
             {
-                id        = pw.id,
-                isAcross  = pw.isAcross,
-                startRow  = pw.startRow,
-                startCol  = pw.startCol,
-                answer    = pw.answer,
-                clue      = pw.clue
+                id       = pw.id,
+                isAcross = pw.isAcross,
+                startRow = pw.startRow,
+                startCol = pw.startCol,
+                answer   = pw.answer,
+                clue     = pw.clue
             });
         }
 
@@ -197,10 +348,7 @@ public class CrosswordBoardManager : MonoBehaviour
             return null;
         }
 
-        try
-        {
-            dbCached = JsonUtility.FromJson<GameDatabase>(jsonAsset.text);
-        }
+        try { dbCached = JsonUtility.FromJson<GameDatabase>(jsonAsset.text); }
         catch (Exception ex)
         {
             Debug.LogError("[CrosswordBoardManager] Failed to parse GameDatabase JSON: " + ex.Message);
@@ -208,44 +356,6 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         return dbCached;
-    }
-
-    private static bool IsMixedDifficulty(string diff)
-    {
-        if (string.IsNullOrWhiteSpace(diff)) return false;
-        diff = diff.Trim().ToLowerInvariant();
-        return diff == "mixed" || diff == "mix" || diff == "all";
-    }
-
-    private static string NormalizeDifficulty(string diff)
-    {
-        if (string.IsNullOrWhiteSpace(diff)) return "medium";
-
-        diff = diff.Trim().ToLowerInvariant();
-
-        if (diff == "insane") return "insanity";
-        if (diff == "insanity") return "insanity";
-        if (diff == "easy") return "easy";
-        if (diff == "medium") return "medium";
-        if (diff == "hard") return "hard";
-
-        if (diff == "mixed" || diff == "mix" || diff == "all") return "mixed";
-
-        return diff;
-    }
-
-    private static string CleanAnswer(string raw)
-    {
-        if (string.IsNullOrWhiteSpace(raw)) return "";
-        raw = raw.Trim().ToUpperInvariant();
-
-        var chars = new List<char>(raw.Length);
-        foreach (char ch in raw)
-        {
-            if (ch >= 'A' && ch <= 'Z')
-                chars.Add(ch);
-        }
-        return new string(chars.ToArray());
     }
 
     private static string[] NormalizeLayout(string[] input)
@@ -272,9 +382,7 @@ public class CrosswordBoardManager : MonoBehaviour
         return output;
     }
 
-    // -----------------------------
-    // BUILD + PLAY LOGIC
-    // -----------------------------
+    // ── Board building ────────────────────────────────────────────────────
 
     private void BuildBoard()
     {
@@ -293,11 +401,10 @@ public class CrosswordBoardManager : MonoBehaviour
         rows = layoutRows.Length;
         cols = layoutRows[0].Length;
 
-        // clear old
         for (int i = gridParent.childCount - 1; i >= 0; i--)
             Destroy(gridParent.GetChild(i).gameObject);
 
-        cells = new CrosswordCell[rows, cols];
+        cells          = new CrosswordCell[rows, cols];
         solutionLetters = new char[rows, cols];
 
         for (int r = 0; r < rows; r++)
@@ -330,12 +437,10 @@ public class CrosswordBoardManager : MonoBehaviour
 
         foreach (var w in words)
         {
-            if (w == null) continue;
-            if (string.IsNullOrWhiteSpace(w.answer)) continue;
+            if (w == null || string.IsNullOrWhiteSpace(w.answer)) continue;
 
             string ans = w.answer.ToUpperInvariant();
 
-            // Place letters; solver guarantees no conflicts, but still guard bounds/blocks
             for (int i = 0; i < ans.Length; i++)
             {
                 int rr = w.startRow + (w.isAcross ? 0 : i);
@@ -352,19 +457,14 @@ public class CrosswordBoardManager : MonoBehaviour
         }
     }
 
-    // IMPORTANT: reveal letters ONLY if that cell belongs to a placed word.
-    // This prevents "nonsense down words" from appearing just because across letters line up.
     private void AssignCellNumbers()
     {
         if (cells == null) return;
 
-        // Extract numeric part from word id (e.g. "3A" -> 3, "12D" -> 12)
-        // and write it to the starting cell's NumberLabel
         foreach (var w in words)
         {
             if (w == null || string.IsNullOrWhiteSpace(w.id)) continue;
 
-            // id format is e.g. "4A" or "12D" — strip trailing letter(s)
             string numStr = w.id.TrimEnd('A', 'D', 'a', 'd');
 
             int r = w.startRow;
@@ -373,11 +473,10 @@ public class CrosswordBoardManager : MonoBehaviour
             if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
             if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
 
-            // Don't overwrite if a higher-priority number is already there
-            // (when across and down share the same start cell, same number applies)
             cells[r, c].SetNumber(numStr);
         }
     }
+
     private void RevealPlacedSolutionLettersOnly()
     {
         if (cells == null || solutionLetters == null) return;
@@ -389,17 +488,14 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
 
                 bool belongs = (acrossAt[r, c] != null) || (downAt[r, c] != null);
-                if (!belongs)
-                {
-                    cells[r, c].SetLetter('\0');
-                    continue;
-                }
+                if (!belongs) { cells[r, c].SetLetter('\0'); continue; }
 
-                char ch = solutionLetters[r, c];
-                cells[r, c].SetLetter(ch);
+                cells[r, c].SetLetter(solutionLetters[r, c]);
             }
         }
     }
+
+    // ── Cell click handling ───────────────────────────────────────────────
 
     public void OnCellClicked(CrosswordCell cell)
     {
@@ -414,26 +510,17 @@ public class CrosswordBoardManager : MonoBehaviour
         bool hasAcross = acrossWord != null;
         bool hasDown   = downWord   != null;
 
-        // Nothing here at all
         if (!hasAcross && !hasDown)
         {
             CrosswordClueDisplay.Instance?.ClearClue();
             return;
         }
 
-        // Decide direction:
-        // - If only one direction exists, always use that
-        // - If both exist and this is the SAME cell as last tap, toggle
-        // - If both exist and this is a NEW cell, prefer across
         bool goAcross;
-        if (hasAcross && !hasDown)
-            goAcross = true;
-        else if (hasDown && !hasAcross)
-            goAcross = false;
-        else if (_selectedCell == cell)
-            goAcross = !_selectedAcross;   // toggle on repeat tap
-        else
-            goAcross = true;               // new cell — default to across
+        if (hasAcross && !hasDown)        goAcross = true;
+        else if (hasDown && !hasAcross)   goAcross = false;
+        else if (_selectedCell == cell)   goAcross = !_selectedAcross;
+        else                              goAcross = true;
 
         _selectedCell   = cell;
         _selectedAcross = goAcross;
@@ -443,7 +530,6 @@ public class CrosswordBoardManager : MonoBehaviour
         CrosswordWord activeWord   = goAcross ? acrossWord : downWord;
         CrosswordWord inactiveWord = goAcross ? downWord   : acrossWord;
 
-        // Clue display — active clue first with ▶, inactive below
         if (CrosswordClueDisplay.Instance != null)
         {
             if (inactiveWord != null)
@@ -454,10 +540,14 @@ public class CrosswordBoardManager : MonoBehaviour
                 CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue);
         }
 
-        // Highlight
         if (goAcross) HighlightAcrossWord(r, c);
         else          HighlightDownWord(r, c);
+
+        // Open the mobile keyboard for input
+        OpenKeyboard();
     }
+
+    // ── Highlight helpers ─────────────────────────────────────────────────
 
     private void ClearHighlights()
     {
@@ -469,16 +559,13 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void HighlightAcrossWord(int row, int col)
     {
-        if (cells == null) return;
-        if (cells[row, col].IsBlocked) return;
+        if (cells == null || cells[row, col].IsBlocked) return;
 
         int startCol = col;
-        while (startCol - 1 >= 0 && !cells[row, startCol - 1].IsBlocked)
-            startCol--;
+        while (startCol - 1 >= 0 && !cells[row, startCol - 1].IsBlocked) startCol--;
 
         int endCol = col;
-        while (endCol + 1 < cols && !cells[row, endCol + 1].IsBlocked)
-            endCol++;
+        while (endCol + 1 < cols && !cells[row, endCol + 1].IsBlocked) endCol++;
 
         for (int c = startCol; c <= endCol; c++)
             cells[row, c].SetHighlighted(true);
@@ -486,16 +573,13 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void HighlightDownWord(int row, int col)
     {
-        if (cells == null) return;
-        if (cells[row, col].IsBlocked) return;
+        if (cells == null || cells[row, col].IsBlocked) return;
 
         int startRow = row;
-        while (startRow - 1 >= 0 && !cells[startRow - 1, col].IsBlocked)
-            startRow--;
+        while (startRow - 1 >= 0 && !cells[startRow - 1, col].IsBlocked) startRow--;
 
         int endRow = row;
-        while (endRow + 1 < rows && !cells[endRow + 1, col].IsBlocked)
-            endRow++;
+        while (endRow + 1 < rows && !cells[endRow + 1, col].IsBlocked) endRow++;
 
         for (int r = startRow; r <= endRow; r++)
             cells[r, col].SetHighlighted(true);

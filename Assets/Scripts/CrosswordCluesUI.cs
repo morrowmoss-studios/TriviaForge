@@ -23,9 +23,6 @@ public class CrosswordCluesUI : MonoBehaviour
 
     private void Start()
     {
-        // Audio
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.OnMenuScene();
 
         // Turn off raycast on text objects so they don't eat scroll input
         if (acrossText != null) acrossText.raycastTarget = false;

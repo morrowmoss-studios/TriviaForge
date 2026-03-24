@@ -40,8 +40,7 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private void Start()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
-
+        
         // ── Build question list only once per game session ──────────────────
         if (TriviaSessionData.sessionQuestions == null)
         {

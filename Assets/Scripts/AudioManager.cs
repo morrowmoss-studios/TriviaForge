@@ -7,17 +7,17 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [Header("Chill Playlist (Menus / Results)")]
+    [Header("Chill Playlist (Main Menu / Settings only)")]
     public AudioClip Village_Ambiance;
-    public AudioClip Forest_Walk;
     public AudioClip Celtic_Ambiance;
-    public AudioClip Celtic_Atmosphere;
 
-    [Header("Active Playlist (Gameplay)")]
+    [Header("Active Playlist (Gameplay + Results + Everything Else)")]
     public AudioClip Magic_Tavern;
     public AudioClip The_Longest_Journey;
     public AudioClip One_Bard_Band;
     public AudioClip Tavern_Loop_One;
+    public AudioClip Forest_Walk;
+    public AudioClip Celtic_Atmosphere;
 
     [Header("SFX")]
     public AudioClip sfxCorrect;
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxButtonPress;
     public AudioClip sfxUIClick;
     public AudioClip sfxFanfare;
-    public AudioClip sfxTilePlaced;   // 145127__dwoboyle__bathroom_tiles-handled-01
+    public AudioClip sfxTilePlaced;
 
     [Header("Settings")]
     [Range(0f, 1f)] public float musicVolume = 0.5f;
@@ -54,15 +54,27 @@ public class AudioManager : MonoBehaviour
     private Coroutine crossfadeCoroutine;
     private Coroutine autoAdvanceCoroutine;
 
-    private readonly HashSet<string> gameplayScenes = new HashSet<string>
+    // Only these scenes use the chill playlist — everything else uses active
+    private readonly HashSet<string> chillScenes = new HashSet<string>
     {
-        "TriviaMode", "CrosswordMode", "WordokuMode"
+        "MainMenu",
+        "Login_PopUp",
+        "CreateAccount_PopUp",
+        "ModeSelect",
+        "Settings",
+        "AboutGame",
+        "HowToPlay",
+        "Credits",
+        "PrivacyPolicy",
+        "TermsOfUse"
     };
 
     private const string PREF_MUSIC_VOL     = "MusicVolume";
     private const string PREF_SFX_VOL       = "SFXVolume";
     private const string PREF_MUSIC_ENABLED = "MusicEnabled";
     private const string PREF_SFX_ENABLED   = "SFXEnabled";
+
+    // ── Lifecycle ─────────────────────────────────────────────────────────
 
     void Awake()
     {
@@ -97,6 +109,7 @@ public class AudioManager : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        // Start on chill since we boot from MainMenu
         ForceStartChill();
     }
 
@@ -115,10 +128,11 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    // ── Scene loaded callback ─────────────────────────────────────────────
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"[AudioManager] Scene loaded: {scene.name}");
-
+        // Disable other AudioListeners
         foreach (var listener in FindObjectsOfType<AudioListener>())
         {
             if (listener == null) continue;
@@ -128,49 +142,45 @@ public class AudioManager : MonoBehaviour
 
         if (!musicEnabled) return;
 
-        bool shouldBeActive = gameplayScenes.Contains(scene.name);
+        bool shouldBeChill = chillScenes.Contains(scene.name);
 
-        if (shouldBeActive && !isActivePlaylist)
+        if (shouldBeChill && isActivePlaylist)
         {
-            Debug.Log("[AudioManager] → Active playlist.");
-            isActivePlaylist  = true;
-            currentPlaylist   = activePlaylist;
-            currentTrackIndex = -1;
-            PlayNextTrack();
-        }
-        else if (!shouldBeActive && isActivePlaylist)
-        {
-            Debug.Log("[AudioManager] → Chill playlist.");
+            // Switch to chill
             isActivePlaylist  = false;
             currentPlaylist   = chillPlaylist;
             currentTrackIndex = -1;
             PlayNextTrack();
         }
-        else if (!isMusicPlaying && crossfadeCoroutine == null)
+        else if (!shouldBeChill && !isActivePlaylist)
         {
-            Debug.Log("[AudioManager] Music stopped — restarting.");
+            // Switch to active
+            isActivePlaylist  = true;
+            currentPlaylist   = activePlaylist;
+            currentTrackIndex = -1;
             PlayNextTrack();
         }
-        else
-        {
-            Debug.Log("[AudioManager] Music already running — no change.");
-        }
+        // Otherwise music is already playing the right playlist — leave it alone
     }
+
+    // ── Playlist building ─────────────────────────────────────────────────
 
     void BuildPlaylists()
     {
         chillPlaylist.Clear();
         activePlaylist.Clear();
 
-        if (Village_Ambiance)  chillPlaylist.Add(Village_Ambiance);
-        if (Forest_Walk)       chillPlaylist.Add(Forest_Walk);
-        if (Celtic_Ambiance)   chillPlaylist.Add(Celtic_Ambiance);
-        if (Celtic_Atmosphere) chillPlaylist.Add(Celtic_Atmosphere);
+        // Chill — just two calm tracks for menus
+        if (Village_Ambiance) chillPlaylist.Add(Village_Ambiance);
+        if (Celtic_Ambiance)  chillPlaylist.Add(Celtic_Ambiance);
 
+        // Active — everything else, used for gameplay AND results/scores/leaderboard
         if (Magic_Tavern)        activePlaylist.Add(Magic_Tavern);
         if (The_Longest_Journey) activePlaylist.Add(The_Longest_Journey);
         if (One_Bard_Band)       activePlaylist.Add(One_Bard_Band);
         if (Tavern_Loop_One)     activePlaylist.Add(Tavern_Loop_One);
+        if (Forest_Walk)         activePlaylist.Add(Forest_Walk);
+        if (Celtic_Atmosphere)   activePlaylist.Add(Celtic_Atmosphere);
 
         ShuffleList(chillPlaylist);
         ShuffleList(activePlaylist);
@@ -184,6 +194,9 @@ public class AudioManager : MonoBehaviour
         PlayNextTrack();
     }
 
+    // ── Public helpers ────────────────────────────────────────────────────
+
+    // These are still available if any script calls them directly
     public void OnGameScene()
     {
         if (isActivePlaylist && isMusicPlaying) return;
@@ -201,6 +214,8 @@ public class AudioManager : MonoBehaviour
         currentTrackIndex = -1;
         PlayNextTrack();
     }
+
+    // ── Track playback ────────────────────────────────────────────────────
 
     void PlayNextTrack()
     {
@@ -274,6 +289,8 @@ public class AudioManager : MonoBehaviour
         isMusicPlaying = false;
     }
 
+    // ── Enable / Disable ──────────────────────────────────────────────────
+
     public void SetMusicEnabled(bool enabled)
     {
         musicEnabled = enabled;
@@ -312,6 +329,8 @@ public class AudioManager : MonoBehaviour
     public bool GetMusicEnabled() => musicEnabled;
     public bool GetSFXEnabled()   => sfxEnabled;
 
+    // ── Volume ────────────────────────────────────────────────────────────
+
     public void SetMusicVolume(float vol)
     {
         musicVolume = Mathf.Clamp01(vol);
@@ -346,6 +365,8 @@ public class AudioManager : MonoBehaviour
         if (!sfxEnabled || clip == null || sfxSource == null) return;
         sfxSource.PlayOneShot(clip, sfxVolume);
     }
+
+    // ── Utility ───────────────────────────────────────────────────────────
 
     void ShuffleList<T>(List<T> list)
     {

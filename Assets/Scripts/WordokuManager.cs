@@ -49,8 +49,7 @@ public class WordokuManager : MonoBehaviour
 
     private void Start()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
-
+       
         // Initialise notes button to inactive state
         RefreshNotesButtonVisual();
 
