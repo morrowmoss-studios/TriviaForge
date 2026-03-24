@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ public enum WordokuDifficulty
 public class WordokuManager : MonoBehaviour
 {
     [Header("References")]
-    public WordokuBoard board;   // Assigned in Inspector
+    public WordokuBoard board;
 
     [Header("Fallback Word List (used only if DB fails/empty)")]
     public string[] wordokuWords = { "DRAGONFLY", "STARBOUND", "CAMPFIRES", "MISTCLOUD", "WILDFROST" };
@@ -25,24 +26,23 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Notes Mode")]
     [SerializeField] private bool notesMode = false;
-    public bool NotesMode => notesMode;   // read-only for cells
+    [SerializeField] private Button notesButton;           // assign Notes_Button in inspector
+    [SerializeField] private Color notesActiveColor   = new Color(0.4f, 0.4f, 0.4f, 1f);  // greyed out = ON
+    [SerializeField] private Color notesInactiveColor = Color.white;                        // normal = OFF
+    public bool NotesMode => notesMode;
 
     public bool enforceSolutionWhileTesting = true;
 
     [Header("Database")]
-    [Tooltip("Resources file name (without .json). Default expects Assets/Resources/trivia_database.json")]
     [SerializeField] private string resourcesDbName = "trivia_database";
-
-    [Tooltip("If DB lookup fails, use fallback word list above.")]
     [SerializeField] private bool fallbackToDefaultWords = true;
 
     private WordokuDifficulty difficulty = WordokuDifficulty.Medium;
 
-    // PUBLIC READ-ONLY STATE
-    public string CurrentWord { get; private set; }
+    public string CurrentWord    { get; private set; }
     public char[] CurrentLetters { get; private set; }
 
-    private char[,] solution = new char[9, 9];
+    private char[,] solution     = new char[9, 9];
     private char[,] startingBoard = new char[9, 9];
 
     private GameDatabase dbCached;
@@ -50,7 +50,10 @@ public class WordokuManager : MonoBehaviour
     private void Start()
     {
         if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
-        // Wait one frame so the board + layout are fully built
+
+        // Initialise notes button to inactive state
+        RefreshNotesButtonVisual();
+
         StartCoroutine(GenerateAfterLayout());
     }
 
@@ -64,7 +67,7 @@ public class WordokuManager : MonoBehaviour
     {
         SetDifficultyFromSession();
 
-        CurrentWord = GetRandomWord();
+        CurrentWord    = GetRandomWord();
         CurrentLetters = CurrentWord.ToCharArray();
 
         GenerateSolutionGrid(CurrentWord);
@@ -72,9 +75,7 @@ public class WordokuManager : MonoBehaviour
         PopulateBoardUI();
 
         if (letterChoiceManager != null)
-        {
             letterChoiceManager.PopulateFromWord(CurrentLetters);
-        }
 
         UpdateLetterCompletion();
     }
@@ -85,42 +86,27 @@ public class WordokuManager : MonoBehaviour
 
         switch (diffStr)
         {
-            case "Easy":
-                difficulty = WordokuDifficulty.Easy;
-                break;
-            case "Hard":
-                difficulty = WordokuDifficulty.Hard;
-                break;
-            case "Insanity":
-                difficulty = WordokuDifficulty.Insanity;
-                break;
+            case "Easy":     difficulty = WordokuDifficulty.Easy;     break;
+            case "Hard":     difficulty = WordokuDifficulty.Hard;     break;
+            case "Insanity": difficulty = WordokuDifficulty.Insanity; break;
             case "Medium":
-            default:
-                difficulty = WordokuDifficulty.Medium;
-                break;
+            default:         difficulty = WordokuDifficulty.Medium;   break;
         }
 
         Debug.Log($"[WordokuManager] Wordoku difficulty set to: {difficulty}");
     }
 
-    // -------------------------------
-    // DATABASE WORD PICKING (Category-only)
-    // - Ignores subcategory completely
-    // - Ignores word difficulty completely
-    // - Difficulty only affects masking (GenerateStartingBoard)
-    // -------------------------------
+    // ── Database word picking ─────────────────────────────────────────────
 
     private string GetRandomWord()
     {
         string catId = TriviaSessionData.selectedCategoryId;
 
         GameDatabase db = LoadDatabase();
-        if (db == null)
-            return FallbackWord("DB load failed.");
+        if (db == null) return FallbackWord("DB load failed.");
 
         CategoryData cat = db.categories?.Find(c => c.id == catId);
-        if (cat == null)
-            return FallbackWord($"Category '{catId}' not found.");
+        if (cat == null) return FallbackWord($"Category '{catId}' not found.");
 
         if (cat.subcategories == null || cat.subcategories.Count == 0)
             return FallbackWord($"Category '{catId}' has no subcategories.");
@@ -133,18 +119,11 @@ public class WordokuManager : MonoBehaviour
 
             foreach (var entry in sub.wordoku)
             {
-                if (entry == null || string.IsNullOrWhiteSpace(entry.word))
-                    continue;
+                if (entry == null || string.IsNullOrWhiteSpace(entry.word)) continue;
 
                 string word = entry.word.Trim().ToUpperInvariant();
-
-                // Must be exactly 9 letters
-                if (word.Length != 9)
-                    continue;
-
-                // Strongly recommended: 9 unique letters
-                if (!HasAllUniqueLetters(word))
-                    continue;
+                if (word.Length != 9) continue;
+                if (!HasAllUniqueLetters(word)) continue;
 
                 candidates.Add(word);
             }
@@ -180,10 +159,7 @@ public class WordokuManager : MonoBehaviour
             return null;
         }
 
-        try
-        {
-            dbCached = JsonUtility.FromJson<GameDatabase>(jsonAsset.text);
-        }
+        try { dbCached = JsonUtility.FromJson<GameDatabase>(jsonAsset.text); }
         catch (Exception ex)
         {
             Debug.LogError("[WordokuManager] Failed to parse GameDatabase JSON: " + ex.Message);
@@ -198,7 +174,7 @@ public class WordokuManager : MonoBehaviour
         if (!fallbackToDefaultWords || wordokuWords == null || wordokuWords.Length == 0)
         {
             Debug.LogError($"[WordokuManager] No fallback words available. Reason: {reason}");
-            return "DRAGONFLY"; // last-ditch
+            return "DRAGONFLY";
         }
 
         string pick = wordokuWords[UnityEngine.Random.Range(0, wordokuWords.Length)].ToUpperInvariant();
@@ -206,27 +182,19 @@ public class WordokuManager : MonoBehaviour
         return pick;
     }
 
-    // -------------------------------
-    // YOUR EXISTING PUZZLE LOGIC BELOW
-    // -------------------------------
+    // ── Puzzle generation ─────────────────────────────────────────────────
 
     private void GenerateSolutionGrid(string word)
     {
         char[] letters = word.ToCharArray();
         System.Random rng = new System.Random();
-
-        // Shuffle the letters once (this defines the whole puzzle)
         char[] baseRow = letters.OrderBy(_ => rng.Next()).ToArray();
 
-        // Generate solution using Sudoku shift pattern
         for (int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
             {
-                int shift =
-                    (row % 3) * 3 +   // shift inside a block
-                    (row / 3);        // shift between blocks
-
+                int shift = (row % 3) * 3 + (row / 3);
                 int index = (col + shift) % 9;
                 solution[row, col] = baseRow[index];
             }
@@ -235,41 +203,23 @@ public class WordokuManager : MonoBehaviour
 
     private void GenerateStartingBoard()
     {
-        // Copy full solution
         for (int row = 0; row < 9; row++)
-        {
             for (int col = 0; col < 9; col++)
-            {
                 startingBoard[row, col] = solution[row, col];
-            }
-        }
 
         int emptiesMin, emptiesMax;
         string diff = TriviaSessionData.selectedDifficulty;
 
         switch (diff)
         {
-            case "Easy":
-                emptiesMin = 40;
-                emptiesMax = 45;
-                break;
-            case "Medium":
-                emptiesMin = 48;
-                emptiesMax = 52;
-                break;
-            case "Hard":
-                emptiesMin = 55;
-                emptiesMax = 58;
-                break;
+            case "Easy":     emptiesMin = 40; emptiesMax = 45; break;
+            case "Medium":   emptiesMin = 48; emptiesMax = 52; break;
+            case "Hard":     emptiesMin = 55; emptiesMax = 58; break;
             case "Insanity":
-            default:
-                emptiesMin = 60;
-                emptiesMax = 64;
-                break;
+            default:         emptiesMin = 60; emptiesMax = 64; break;
         }
 
-        int emptiesTarget = UnityEngine.Random.Range(emptiesMin, emptiesMax + 1);
-        emptiesTarget = Mathf.Clamp(emptiesTarget, 0, 81);
+        int emptiesTarget = Mathf.Clamp(UnityEngine.Random.Range(emptiesMin, emptiesMax + 1), 0, 81);
 
         var allCells = new List<(int row, int col)>(81);
         for (int r = 0; r < 9; r++)
@@ -288,8 +238,7 @@ public class WordokuManager : MonoBehaviour
             startingBoard[cell.row, cell.col] = '\0';
         }
 
-        int cluesLeft = 81 - emptiesTarget;
-        Debug.Log($"[WordokuManager] Wordoku difficulty: {diff}, empties: {emptiesTarget}, clues left: {cluesLeft}");
+        Debug.Log($"[WordokuManager] Wordoku difficulty: {diff}, empties: {emptiesTarget}, clues left: {81 - emptiesTarget}");
     }
 
     private void PopulateBoardUI()
@@ -301,19 +250,13 @@ public class WordokuManager : MonoBehaviour
                 WordokuCell cell = board.boardCells[row, col];
                 char value = startingBoard[row, col];
 
-                if (value != '\0')
-                {
-                    cell.SetLetter(value.ToString());
-                    cell.SetLocked(true);
-                }
-                else
-                {
-                    cell.SetLetter("");
-                    cell.SetLocked(false);
-                }
+                if (value != '\0') { cell.SetLetter(value.ToString()); cell.SetLocked(true); }
+                else               { cell.SetLetter("");               cell.SetLocked(false); }
             }
         }
     }
+
+    // ── Public actions ────────────────────────────────────────────────────
 
     public void ResetBoard()
     {
@@ -328,7 +271,6 @@ public class WordokuManager : MonoBehaviour
             for (int col = 0; col < 9; col++)
             {
                 WordokuCell cell = board.boardCells[row, col];
-
                 if (!cell.isLocked && string.IsNullOrEmpty(cell.GetLetter()))
                 {
                     cell.SetLetter(solution[row, col].ToString());
@@ -342,35 +284,46 @@ public class WordokuManager : MonoBehaviour
     public void ToggleNotesMode()
     {
         notesMode = !notesMode;
+        RefreshNotesButtonVisual();
         Debug.Log("Notes mode: " + (notesMode ? "ON" : "OFF"));
     }
 
+    // ── Notes button visual ───────────────────────────────────────────────
+
+    private void RefreshNotesButtonVisual()
+    {
+        if (notesButton == null) return;
+
+        // Change the button's image color to indicate active/inactive state
+        var img = notesButton.GetComponent<UnityEngine.UI.Image>();
+        if (img != null)
+            img.color = notesMode ? notesActiveColor : notesInactiveColor;
+
+        // Also dim the button's interactable children text if any
+        var tmp = notesButton.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmp != null)
+            tmp.color = notesMode ? new Color(tmp.color.r, tmp.color.g, tmp.color.b, 0.5f)
+                                  : new Color(tmp.color.r, tmp.color.g, tmp.color.b, 1f);
+    }
+
+    // ── Validation ────────────────────────────────────────────────────────
+
     public bool IsValidPlacement(int row, int col, char letter)
     {
-        bool inRow = IsInRow(row, letter);
-        bool inCol = IsInColumn(col, letter);
-        bool inBlock = IsInBlock(row, col, letter);
-
-        return !(inRow || inCol || inBlock);
+        return !(IsInRow(row, letter) || IsInColumn(col, letter) || IsInBlock(row, col, letter));
     }
 
     private bool IsInRow(int row, char letter)
     {
         for (int c = 0; c < 9; c++)
-        {
-            if (board.boardCells[row, c].GetLetter() == letter.ToString())
-                return true;
-        }
+            if (board.boardCells[row, c].GetLetter() == letter.ToString()) return true;
         return false;
     }
 
     private bool IsInColumn(int col, char letter)
     {
         for (int r = 0; r < 9; r++)
-        {
-            if (board.boardCells[r, col].GetLetter() == letter.ToString())
-                return true;
-        }
+            if (board.boardCells[r, col].GetLetter() == letter.ToString()) return true;
         return false;
     }
 
@@ -380,72 +333,61 @@ public class WordokuManager : MonoBehaviour
         int startCol = (col / 3) * 3;
 
         for (int r = startRow; r < startRow + 3; r++)
-        {
             for (int c = startCol; c < startCol + 3; c++)
-            {
-                if (board.boardCells[r, c].GetLetter() == letter.ToString())
-                    return true;
-            }
-        }
+                if (board.boardCells[r, c].GetLetter() == letter.ToString()) return true;
+
         return false;
     }
 
-    public char GetSolutionLetter(int row, int col)
-    {
-        return solution[row, col];
-    }
+    public char GetSolutionLetter(int row, int col) => solution[row, col];
+
+    // ── Board change notification ─────────────────────────────────────────
 
     public void NotifyBoardChanged()
     {
+        // Tile placed SFX
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
+
         UpdateLetterCompletion();
         CheckForWin();
     }
+
+    // ── Letter completion tracking ────────────────────────────────────────
 
     private void UpdateLetterCompletion()
     {
         var totals = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
-        {
             for (int c = 0; c < 9; c++)
             {
                 char ch = solution[r, c];
                 if (ch == '\0') continue;
-
-                if (!totals.ContainsKey(ch))
-                    totals[ch] = 0;
-
+                if (!totals.ContainsKey(ch)) totals[ch] = 0;
                 totals[ch]++;
             }
-        }
 
         var used = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
-        {
             for (int c = 0; c < 9; c++)
             {
                 string s = board.boardCells[r, c].GetLetter();
                 if (string.IsNullOrEmpty(s)) continue;
-
                 char ch = s[0];
-                if (!used.ContainsKey(ch))
-                    used[ch] = 0;
-
+                if (!used.ContainsKey(ch)) used[ch] = 0;
                 used[ch]++;
             }
-        }
 
         var allButtons = FindObjectsOfType<LetterChoiceButton>(true);
         foreach (var btn in allButtons)
         {
             char ch = btn.GetLetter();
-
             totals.TryGetValue(ch, out int total);
             used.TryGetValue(ch, out int count);
-
-            bool completed = total > 0 && count >= total;
-            btn.SetCompleted(completed);
+            btn.SetCompleted(total > 0 && count >= total);
         }
     }
+
+    // ── Win check ─────────────────────────────────────────────────────────
 
     private void CheckForWin()
     {
@@ -453,17 +395,9 @@ public class WordokuManager : MonoBehaviour
         {
             for (int col = 0; col < 9; col++)
             {
-                WordokuCell cell = board.boardCells[row, col];
-
-                string letter = cell.GetLetter();
-                if (string.IsNullOrEmpty(letter))
-                    return;
-
-                char actual = letter[0];
-                char expected = solution[row, col];
-
-                if (actual != expected)
-                    return;
+                string letter = board.boardCells[row, col].GetLetter();
+                if (string.IsNullOrEmpty(letter)) return;
+                if (letter[0] != solution[row, col]) return;
             }
         }
 

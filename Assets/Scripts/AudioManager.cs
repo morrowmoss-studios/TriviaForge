@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip sfxButtonPress;
     public AudioClip sfxUIClick;
     public AudioClip sfxFanfare;
+    public AudioClip sfxTilePlaced;   // 145127__dwoboyle__bathroom_tiles-handled-01
 
     [Header("Settings")]
     [Range(0f, 1f)] public float musicVolume = 0.5f;
@@ -35,7 +36,6 @@ public class AudioManager : MonoBehaviour
     private bool musicEnabled = true;
     private bool sfxEnabled   = true;
 
-    // AudioSources created at runtime — not serialized, so Unity can't lose them
     private AudioSource sourceA;
     private AudioSource sourceB;
     private AudioSource sfxSource;
@@ -64,8 +64,6 @@ public class AudioManager : MonoBehaviour
     private const string PREF_MUSIC_ENABLED = "MusicEnabled";
     private const string PREF_SFX_ENABLED   = "SFXEnabled";
 
-    // ── Lifecycle ─────────────────────────────────────────────────────────
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -77,7 +75,6 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Add persistent AudioListener
         if (GetComponent<AudioListener>() == null)
             gameObject.AddComponent<AudioListener>();
 
@@ -86,10 +83,8 @@ public class AudioManager : MonoBehaviour
         musicEnabled = PlayerPrefs.GetInt(PREF_MUSIC_ENABLED, 1) == 1;
         sfxEnabled   = PlayerPrefs.GetInt(PREF_SFX_ENABLED,   1) == 1;
 
-        // Create AudioSources directly on this GameObject at runtime
-        // so they can never be destroyed by scene unloads
-        sourceA  = CreateMusicSource("MusicSourceA");
-        sourceB  = CreateMusicSource("MusicSourceB");
+        sourceA   = CreateMusicSource("MusicSourceA");
+        sourceB   = CreateMusicSource("MusicSourceB");
         sfxSource = gameObject.AddComponent<AudioSource>();
         sfxSource.loop         = false;
         sfxSource.spatialBlend = 0f;
@@ -97,8 +92,6 @@ public class AudioManager : MonoBehaviour
 
         activeMusicSource   = sourceA;
         inactiveMusicSource = sourceB;
-
-        Debug.Log("[AudioManager] Sources created at runtime — A=" + sourceA + " B=" + sourceB);
 
         BuildPlaylists();
 
@@ -114,7 +107,6 @@ public class AudioManager : MonoBehaviour
         s.volume       = 0f;
         s.spatialBlend = 0f;
         s.playOnAwake  = false;
-        Debug.Log($"[AudioManager] Created {label}");
         return s;
     }
 
@@ -123,13 +115,10 @@ public class AudioManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // ── Scene loaded callback ─────────────────────────────────────────────
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log($"[AudioManager] Scene loaded: {scene.name}");
 
-        // Disable other AudioListeners
         foreach (var listener in FindObjectsOfType<AudioListener>())
         {
             if (listener == null) continue;
@@ -168,8 +157,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // ── Playlist building ─────────────────────────────────────────────────
-
     void BuildPlaylists()
     {
         chillPlaylist.Clear();
@@ -197,8 +184,6 @@ public class AudioManager : MonoBehaviour
         PlayNextTrack();
     }
 
-    // ── Public helpers ────────────────────────────────────────────────────
-
     public void OnGameScene()
     {
         if (isActivePlaylist && isMusicPlaying) return;
@@ -216,8 +201,6 @@ public class AudioManager : MonoBehaviour
         currentTrackIndex = -1;
         PlayNextTrack();
     }
-
-    // ── Track playback ────────────────────────────────────────────────────
 
     void PlayNextTrack()
     {
@@ -291,8 +274,6 @@ public class AudioManager : MonoBehaviour
         isMusicPlaying = false;
     }
 
-    // ── Enable / Disable ──────────────────────────────────────────────────
-
     public void SetMusicEnabled(bool enabled)
     {
         musicEnabled = enabled;
@@ -358,14 +339,13 @@ public class AudioManager : MonoBehaviour
     public void PlayButtonPress() => PlaySFX(sfxButtonPress);
     public void PlayUIClick()     => PlaySFX(sfxUIClick);
     public void PlayFanfare()     => PlaySFX(sfxFanfare);
+    public void PlayTilePlaced()  => PlaySFX(sfxTilePlaced);
 
     void PlaySFX(AudioClip clip)
     {
         if (!sfxEnabled || clip == null || sfxSource == null) return;
         sfxSource.PlayOneShot(clip, sfxVolume);
     }
-
-    // ── Utility ───────────────────────────────────────────────────────────
 
     void ShuffleList<T>(List<T> list)
     {

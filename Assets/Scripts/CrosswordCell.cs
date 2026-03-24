@@ -8,7 +8,7 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     [Header("Visuals")]
     [SerializeField] private Image tileImage;
     [SerializeField] private TMP_Text letterText;
-    [SerializeField] private TMP_Text numberLabel;   // wire up NumberLabel in prefab
+    [SerializeField] private TMP_Text numberLabel;
     [SerializeField] private Sprite playableSprite;
     [SerializeField] private Sprite blockedSprite;
 
@@ -24,6 +24,9 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     private char currentLetter = '\0';
     private CrosswordBoardManager manager;
 
+    // Prevents tile SFX firing during board setup
+    private bool isInitialized = false;
+
     public void Init(CrosswordBoardManager mgr, int r, int c, bool blocked)
     {
         manager = mgr;
@@ -33,6 +36,8 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         SetHighlighted(false);
         SetLetter('\0');
         SetNumber("");
+
+        isInitialized = true;
     }
 
     private void Awake()
@@ -81,6 +86,12 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
 
     public void SetLetter(char ch)
     {
+        // Only play SFX when a real letter is placed into an empty cell after board setup
+        if (isInitialized && ch != '\0' && currentLetter == '\0')
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
+        }
+
         currentLetter = ch;
         if (letterText == null) return;
         letterText.text = (ch == '\0' || ch == ' ') ? "" : ch.ToString().ToUpper();

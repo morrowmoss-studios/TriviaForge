@@ -5150,6 +5150,9 @@ MonoBehaviour:
   - WILDFROST
   letterChoiceManager: {fileID: 1485569418}
   notesMode: 0
+  notesButton: {fileID: 34436483}
+  notesActiveColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  notesInactiveColor: {r: 1, g: 1, b: 1, a: 1}
   enforceSolutionWhileTesting: 1
   resourcesDbName: trivia_database
   fallbackToDefaultWords: 1

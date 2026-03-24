@@ -446,6 +446,7 @@ MonoBehaviour:
   sfxButtonPress: {fileID: 8300000, guid: 754851f24b45b4d8982cfc12b31224ee, type: 3}
   sfxUIClick: {fileID: 8300000, guid: 738b87d6f388f4ffb99757f13ec978e0, type: 3}
   sfxFanfare: {fileID: 8300000, guid: d193ff5eb48f148489e55daa5803532c, type: 3}
+  sfxTilePlaced: {fileID: 8300000, guid: e83e9bfe54553455080791afb4675883, type: 3}
   musicVolume: 0.5
   sfxVolume: 1
   crossfadeDuration: 1.5
