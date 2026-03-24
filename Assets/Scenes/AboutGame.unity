@@ -1676,7 +1676,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1697406188526938438, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1068537899}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1768447059}
   m_SourcePrefab: {fileID: 100100000, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
 --- !u!224 &1768447056 stripped
 RectTransform:
@@ -1688,6 +1691,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
   m_PrefabInstance: {fileID: 1768447055}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1768447058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 1768447055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1768447059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768447058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &1990854289
 GameObject:
   m_ObjectHideFlags: 0

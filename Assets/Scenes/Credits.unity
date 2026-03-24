@@ -257,13 +257,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 427730922}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 394327447}
   m_SourcePrefab: {fileID: 100100000, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
 --- !u!224 &394327445 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
   m_PrefabInstance: {fileID: 394327444}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &394327446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 394327444}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &394327447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394327446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &427730921
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +577,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -692,6 +714,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

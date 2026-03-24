@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 1298569003}
   - component: {fileID: 1298569002}
   - component: {fileID: 1298569001}
+  - component: {fileID: 1298569004}
   m_Layer: 5
   m_Name: Next_Button
   m_TagString: Untagged
@@ -610,6 +611,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298568999}
   m_CullTransparentMesh: 1
+--- !u!114 &1298569004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298568999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &1330241931
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +959,8 @@ MonoBehaviour:
   mainMenuSceneName: ModeSelect
   leaderboardSceneName: Leaderboard_PopUp
   scoreSceneName: Scores_PopUp
+  triviaSceneName: TriviaMode
+  modeSelectSceneName: ModeSelect
 --- !u!1 &1585816088
 GameObject:
   m_ObjectHideFlags: 0

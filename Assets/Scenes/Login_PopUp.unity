@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 504770390}
   - component: {fileID: 504770389}
   - component: {fileID: 504770391}
+  - component: {fileID: 504770392}
   m_Layer: 5
   m_Name: CreateAccount_Button
   m_TagString: Untagged
@@ -639,6 +640,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &504770392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +836,7 @@ GameObject:
   - component: {fileID: 590412589}
   - component: {fileID: 590412588}
   - component: {fileID: 590412590}
+  - component: {fileID: 590412591}
   m_Layer: 5
   m_Name: Guest_Button
   m_TagString: Untagged
@@ -1004,6 +1019,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &590412591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590412586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &595271965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1664,7 @@ GameObject:
   - component: {fileID: 1426905322}
   - component: {fileID: 1426905321}
   - component: {fileID: 1426905320}
+  - component: {fileID: 1426905323}
   m_Layer: 5
   m_Name: ForgotPassword_Button
   m_TagString: Untagged
@@ -1806,6 +1835,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426905318}
   m_CullTransparentMesh: 1
+--- !u!114 &1426905323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426905318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &1479750539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,13 +2525,55 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1591261765}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4375522627595982962, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1986698248}
+    - targetCorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1986698247}
   m_SourcePrefab: {fileID: 100100000, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
 --- !u!224 &1986698244 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8632852965299658004, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
   m_PrefabInstance: {fileID: 1986698243}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986698245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1412776086562712799, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 1986698243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1986698246 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4375522627595982962, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 1986698243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1986698247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986698245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
+--- !u!114 &1986698248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986698246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c173b3753948745069e7adff1cac568c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonSFX
+  sfxType: 0
 --- !u!1 &2012275561
 GameObject:
   m_ObjectHideFlags: 0

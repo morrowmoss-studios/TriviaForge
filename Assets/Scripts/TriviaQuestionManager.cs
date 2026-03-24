@@ -23,7 +23,7 @@ public class TriviaQuestionManager : MonoBehaviour
     [SerializeField] public Sprite wrongOutlineSprite;
 
     [Header("Scoring")]
-    [SerializeField] private TriviaScoreUI  scoreUI;
+    [SerializeField] private TriviaScoreUI   scoreUI;
     [SerializeField] private TriviaStrikesUI strikesUI;
 
     private List<Question> questions = new List<Question>();
@@ -41,6 +41,7 @@ public class TriviaQuestionManager : MonoBehaviour
     private void Start()
     {
         if (AudioManager.Instance != null) AudioManager.Instance.OnGameScene();
+
         // ── Build question list only once per game session ──────────────────
         if (TriviaSessionData.sessionQuestions == null)
         {
@@ -52,55 +53,47 @@ public class TriviaQuestionManager : MonoBehaviour
                       $"{TriviaSessionData.selectedCategory} / {TriviaSessionData.selectedSubcategory} " +
                       $"at difficulty {difficulty}");
 
-        // ── Build tiered question list ───────────────────────────────────────
-        // Start at selected difficulty, cascade up through harder tiers so the
-        // player never hits an empty pool — difficulty escalates naturally.
-        var tierOrder = new List<string> { "easy", "medium", "hard", "insanity" };
+            var tierOrder = new List<string> { "easy", "medium", "hard", "insanity" };
 
-        string selectedDiff = difficulty.ToLowerInvariant();
-        bool isMixedDiff    = selectedDiff == "mixed";
+            string selectedDiff = difficulty.ToLowerInvariant();
+            bool isMixedDiff    = selectedDiff == "mixed";
 
-        List<TriviaEntry> dbTrivia;
+            List<TriviaEntry> dbTrivia;
 
-        if (string.Equals(categoryId, "mixed_all", System.StringComparison.OrdinalIgnoreCase))
-            dbTrivia = GameDatabaseAPI.GetAllTrivia();
-        else
-            dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
+            if (string.Equals(categoryId, "mixed_all", System.StringComparison.OrdinalIgnoreCase))
+                dbTrivia = GameDatabaseAPI.GetAllTrivia();
+            else
+                dbTrivia = GameDatabaseAPI.GetTrivia(categoryId, subcategoryId);
 
-        if (dbTrivia == null) dbTrivia = new List<TriviaEntry>();
+            if (dbTrivia == null) dbTrivia = new List<TriviaEntry>();
 
-        List<TriviaEntry> orderedQuestions = new List<TriviaEntry>();
+            List<TriviaEntry> orderedQuestions = new List<TriviaEntry>();
 
-        if (isMixedDiff)
-        {
-            // Mixed: filter seen, shuffle everything together
-            dbTrivia = SeenContentTracker.FilterSeenTrivia(dbTrivia);
-            ShuffleTriviaEntries(dbTrivia);
-            orderedQuestions = dbTrivia;
-        }
-        else
-        {
-            // Find the starting tier index
-            int startTier = tierOrder.IndexOf(selectedDiff);
-            if (startTier < 0) startTier = 0;
-
-            // Append each tier from selected difficulty upward, each shuffled separately
-            for (int t = startTier; t < tierOrder.Count; t++)
+            if (isMixedDiff)
             {
-                string tier = tierOrder[t];
-                var tierQuestions = dbTrivia
-                    .Where(e => string.Equals(e.difficulty, tier,
-                                              System.StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-
-                // Filter seen per tier so unseen easy comes before unseen medium etc.
-                tierQuestions = SeenContentTracker.FilterSeenTrivia(tierQuestions);
-                ShuffleTriviaEntries(tierQuestions);
-                orderedQuestions.AddRange(tierQuestions);
+                dbTrivia = SeenContentTracker.FilterSeenTrivia(dbTrivia);
+                ShuffleTriviaEntries(dbTrivia);
+                orderedQuestions = dbTrivia;
             }
-        }
+            else
+            {
+                int startTier = tierOrder.IndexOf(selectedDiff);
+                if (startTier < 0) startTier = 0;
 
-            // Store in session so reloading TriviaMode doesn't reshuffle
+                for (int t = startTier; t < tierOrder.Count; t++)
+                {
+                    string tier = tierOrder[t];
+                    var tierQuestions = dbTrivia
+                        .Where(e => string.Equals(e.difficulty, tier,
+                                                  System.StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+
+                    tierQuestions = SeenContentTracker.FilterSeenTrivia(tierQuestions);
+                    ShuffleTriviaEntries(tierQuestions);
+                    orderedQuestions.AddRange(tierQuestions);
+                }
+            }
+
             TriviaSessionData.sessionQuestions     = orderedQuestions;
             TriviaSessionData.currentQuestionIndex = 0;
             TriviaSessionData.totalQuestions       = orderedQuestions.Count;
@@ -115,12 +108,9 @@ public class TriviaQuestionManager : MonoBehaviour
                       $"{TriviaSessionData.sessionQuestions.Count}");
         }
 
-        // ── Build Question objects from the persisted entry list ─────────────
         questions.Clear();
         foreach (var entry in TriviaSessionData.sessionQuestions)
-        {
             questions.Add(BuildQuestionFromEntry(entry));
-        }
 
         if (questions.Count == 0)
         {
@@ -234,10 +224,8 @@ public class TriviaQuestionManager : MonoBehaviour
         TriviaSessionData.chosenIndex  = button.answerIndex;
         TriviaSessionData.wasCorrect   = (button.answerIndex == q.correctIndex);
 
-        // Advance index so next load shows the next question
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
 
-        // Mark this question as seen for logged-in players
         if (TriviaSessionData.sessionQuestions != null &&
             currentQuestionIndex < TriviaSessionData.sessionQuestions.Count)
         {
@@ -252,19 +240,31 @@ public class TriviaQuestionManager : MonoBehaviour
 
         TriviaSessionData.roundOver = false;
 
-        if (!isCorrect)
+        if (isCorrect)
         {
+            // ── Correct answer SFX ───────────────────────────────────────────
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayCorrect();
+            button.ShowAsCorrect();
+        }
+        else
+        {
+            // ── Wrong answer SFX ─────────────────────────────────────────────
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayWrong();
+            button.ShowAsWrong();
+
             TriviaSessionData.strikes++;
 
             if (strikesUI != null) strikesUI.Refresh();
 
             Debug.Log($"[Trivia] Strike {TriviaSessionData.strikes}/{TriviaSessionData.maxStrikes}");
 
+            // ── Strike SFX ───────────────────────────────────────────────────
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayStrike();
+
             if (TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
                 TriviaSessionData.roundOver = true;
         }
 
-        // Check if we've run out of questions
         if (TriviaSessionData.currentQuestionIndex >= questions.Count)
             TriviaSessionData.roundOver = true;
 
@@ -274,9 +274,6 @@ public class TriviaQuestionManager : MonoBehaviour
         if (scoreUI != null)
             scoreUI.UpdateScoreText();
 
-        if (isCorrect) button.ShowAsCorrect();
-        else           button.ShowAsWrong();
-
         SceneManager.LoadScene("TriviaResult");
     }
 
@@ -285,6 +282,9 @@ public class TriviaQuestionManager : MonoBehaviour
     public void OnHintPressed()
     {
         if (hintUsed || questionLocked) return;
+
+        // ── Hint SFX ─────────────────────────────────────────────────────────
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayUIClick();
 
         Question q = questions[currentQuestionIndex];
         List<int> wrongIndexes = new List<int>();
