@@ -161,7 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.2
+      value: -3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -157.9
       objectReference: {fileID: 0}
     - target: {fileID: 8279863432137986298, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_Name
@@ -321,8 +325,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.2547, y: 0.9696}
-  m_SizeDelta: {x: 266.812, y: 213.5756}
+  m_AnchoredPosition: {x: -6.2547, y: -12.157}
+  m_SizeDelta: {x: 266.812, y: 261.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427730923
 MonoBehaviour:
@@ -505,8 +509,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.3327026, y: 0}
+  m_SizeDelta: {x: -2.6655, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945730512
 MonoBehaviour:
@@ -528,18 +532,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game Design & Development\n\u2022 Zak (MorrowMoss Studios)\n\nArt & Visual
-    Direction\n\u2022 Zak, assisted by concept art tools and hand-painted polish\n\nWriting
-    & Content\n\u2022 Trivia category concepts and puzzle design by Zak\n\nTechnology\n\u2022
-    Engine: Unity\n\u2022 Programming Language: C#\n\u2022 Tools: JetBrains Rider,
-    GIMP, Blender, and assorted caffeinated beverages\n\nTesting & Feedback\n\u2022
-    Early testers from hostels, friends, and fellow gremlins encountered across Southeast
-    Asia\n\nSpecial Thanks\n\u2022 To everyone who ever said, \u201Cyou should make
-    a game like THIS\u201D  \n\u2022 To the moss gods, for their bioluminescent blessings 
-    \n\u2022 To the ADHD community, for inspiring games that allow breathing room,
-    pacing, and cozy focus  \n\nMental Health Note\nTriviaForge is built with grounding
-    and comfort in mind, but it is not a replacement for therapy or professional
-    mental health care.\n\n\xA9 2025 MorrowMoss Studios\n"
+  m_text: "MUSIC\nTavern Loop One by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nCeltic Ambiance by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nMagic Tavern by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nVillage Ambiance by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nCeltic Atmosphere by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nThe Longest Journey by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nForest Walk by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nOne Bard Band by Alexander Nakarada\ncreatorchords.com\nLicensed
+    under Creative Commons BY 4.0\n\nSOUND EFFECTS\nBuddhist bell 01 by miduno\nfreesound.org/s/671260\nLicense:
+    Attribution 4.0\n\nBathroom Tiles Handled 01 by DWOBoyle\nfreesound.org/s/145127\nLicense:
+    Attribution 4.0\n\nBicycle bell 2 by KeyKrusher\nfreesound.org/s/173000\nLicense:
+    Attribution 4.0\n\nADDITIONAL SOUND EFFECTS\nThe following sounds are used under
+    Creative Commons 0 (no rights reserved)\n\nThump by egomassive -- freesound.org/s/536768\n\nFlashlight
+    button press by Sadiquecat -- freesound.org/s/706439\n\nOrchestral crescendo
+    by nolhananas -- freesound.org/s/683770\n\nDrum Hit 3 by robertmcdonald -- freesound.org/s/139507\n\nCLICK
+    81 by Jaszunio15 -- freesound.org/s/421422\n\n\xA9 2026 MorrowMoss Studios\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -930,7 +938,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -17}
+  m_SizeDelta: {x: 0, y: -4.1049}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1785643283
 MonoBehaviour:
@@ -1017,8 +1025,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2000}
+  m_AnchoredPosition: {x: 0, y: -0}
+  m_SizeDelta: {x: 0, y: 3059.9297}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1799304218
 MonoBehaviour:
