@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
-    </list>
+    <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,6 +96,7 @@
       <workItem from="1773167701387" duration="2095000" />
       <workItem from="1773424455332" duration="1237000" />
       <workItem from="1773774412907" duration="10000" />
+      <workItem from="1774396891955" duration="26000" />
     </task>
     <servers />
   </component>
