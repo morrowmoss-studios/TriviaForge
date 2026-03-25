@@ -18,6 +18,12 @@ public class TriviaQuestionManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questionLabel;
     [SerializeField] private AnswerButtonUI[] answerButtons;
 
+    [Header("Timer")]
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private Color normalTimerColor = Color.yellow;
+    [SerializeField] private Color urgentTimerColor = Color.red;
+    [SerializeField] private float urgentThreshold  = 5f;
+
     [Header("Outline Sprites")]
     [SerializeField] public Sprite rightOutlineSprite;
     [SerializeField] public Sprite wrongOutlineSprite;
@@ -28,19 +34,51 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private List<Question> questions = new List<Question>();
 
-    private int  currentQuestionIndex = 0;
-    private bool questionLocked       = false;
-    private bool hintUsed             = false;
+    private int   currentQuestionIndex = 0;
+    private bool  questionLocked       = false;
+    private bool  hintUsed             = false;
+
+    private float timeRemaining = 20f;
+    private bool  timerRunning  = false;
+
+    // ── Timer duration by difficulty ──────────────────────────────────────
+
+    private float GetTimerDuration()
+    {
+        switch (TriviaSessionData.selectedDifficulty)
+        {
+            case "Easy":     return 20f;
+            case "Medium":   return 15f;
+            case "Hard":     return 12f;
+            case "Insanity": return 8f;
+            case "Mixed":    return 15f;
+            default:         return 20f;
+        }
+    }
+
+    // ── Lifecycle ─────────────────────────────────────────────────────────
 
     private void Awake()
     {
         if (scoreUI == null)
             scoreUI = FindObjectOfType<TriviaScoreUI>();
+
+        // Auto-find Timer_Text by name if not assigned in inspector
+        if (timerText == null)
+        {
+            foreach (var t in FindObjectsOfType<TextMeshProUGUI>(true))
+            {
+                if (t.gameObject.name == "Timer_Text")
+                {
+                    timerText = t;
+                    break;
+                }
+            }
+        }
     }
 
     private void Start()
     {
-        
         // ── Build question list only once per game session ──────────────────
         if (TriviaSessionData.sessionQuestions == null)
         {
@@ -123,6 +161,72 @@ public class TriviaQuestionManager : MonoBehaviour
         if (strikesUI != null) strikesUI.Refresh();
     }
 
+    // ── Timer update ──────────────────────────────────────────────────────
+
+    private void Update()
+    {
+        if (!timerRunning || questionLocked) return;
+
+        timeRemaining -= Time.deltaTime;
+
+        if (timerText != null)
+        {
+            timerText.text  = Mathf.CeilToInt(Mathf.Max(timeRemaining, 0f)).ToString();
+            timerText.color = timeRemaining <= urgentThreshold ? urgentTimerColor : normalTimerColor;
+        }
+
+        if (timeRemaining <= 0f)
+        {
+            timerRunning = false;
+            OnTimeExpired();
+        }
+    }
+
+    // ── Time expired ──────────────────────────────────────────────────────
+
+    private void OnTimeExpired()
+    {
+        if (questionLocked) return;
+        questionLocked = true;
+
+        Question q = questions[currentQuestionIndex];
+
+        TriviaSessionData.questionText = q.questionText;
+        TriviaSessionData.correctIndex = q.correctIndex;
+        TriviaSessionData.chosenIndex  = -1; // -1 = timed out
+        TriviaSessionData.wasCorrect   = false;
+
+        TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
+
+        for (int i = 0; i < q.answers.Length && i < TriviaSessionData.answers.Length; i++)
+            TriviaSessionData.answers[i] = q.answers[i];
+
+        TriviaSessionData.roundOver = false;
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayWrong();
+
+        TriviaSessionData.strikes++;
+        if (strikesUI != null) strikesUI.Refresh();
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayStrike();
+
+        Debug.Log($"[Trivia] Time expired — Strike {TriviaSessionData.strikes}/{TriviaSessionData.maxStrikes}");
+
+        if (TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
+            TriviaSessionData.roundOver = true;
+
+        if (TriviaSessionData.currentQuestionIndex >= questions.Count)
+            TriviaSessionData.roundOver = true;
+
+        if (ScoreManager.Instance != null)
+            ScoreManager.Instance.RegisterAnswer(false, hintUsed);
+
+        if (scoreUI != null)
+            scoreUI.UpdateScoreText();
+
+        SceneManager.LoadScene("TriviaResult");
+    }
+
     // ---------- QUESTION BUILDING ----------
 
     private Question BuildQuestionFromEntry(TriviaEntry entry)
@@ -201,6 +305,16 @@ public class TriviaQuestionManager : MonoBehaviour
                 answerButtons[i].Init(this, i, letters[i], answerText);
             }
         }
+
+        // Start the timer fresh for this question
+        timeRemaining = GetTimerDuration();
+        timerRunning  = true;
+
+        if (timerText != null)
+        {
+            timerText.text  = Mathf.CeilToInt(timeRemaining).ToString();
+            timerText.color = normalTimerColor;
+        }
     }
 
     // ---------- ANSWER CLICK ----------
@@ -209,6 +323,7 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         if (questionLocked) return;
         questionLocked = true;
+        timerRunning   = false; // stop the timer on answer
 
         if (button == null)
         {
@@ -241,23 +356,19 @@ public class TriviaQuestionManager : MonoBehaviour
 
         if (isCorrect)
         {
-            // ── Correct answer SFX ───────────────────────────────────────────
             if (AudioManager.Instance != null) AudioManager.Instance.PlayCorrect();
             button.ShowAsCorrect();
         }
         else
         {
-            // ── Wrong answer SFX ─────────────────────────────────────────────
             if (AudioManager.Instance != null) AudioManager.Instance.PlayWrong();
             button.ShowAsWrong();
 
             TriviaSessionData.strikes++;
-
             if (strikesUI != null) strikesUI.Refresh();
 
             Debug.Log($"[Trivia] Strike {TriviaSessionData.strikes}/{TriviaSessionData.maxStrikes}");
 
-            // ── Strike SFX ───────────────────────────────────────────────────
             if (AudioManager.Instance != null) AudioManager.Instance.PlayStrike();
 
             if (TriviaSessionData.strikes >= TriviaSessionData.maxStrikes)
@@ -282,7 +393,6 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         if (hintUsed || questionLocked) return;
 
-        // ── Hint SFX ─────────────────────────────────────────────────────────
         if (AudioManager.Instance != null) AudioManager.Instance.PlayUIClick();
 
         Question q = questions[currentQuestionIndex];
