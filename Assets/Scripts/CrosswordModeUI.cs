@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,30 @@ public class CrosswordModeUI : MonoBehaviour
 
     [Header("Board Ref (for hint, reset, etc.)")]
     [SerializeField] private CrosswordBoardManager boardManager;
+
+    [Header("Hint UI")]
+    [SerializeField] private TMP_Text hintCountText;
+
+    private void Start()
+    {
+        if (boardManager != null)
+        {
+            boardManager.OnHintsChanged += UpdateHintDisplay;
+            UpdateHintDisplay(3);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (boardManager != null)
+            boardManager.OnHintsChanged -= UpdateHintDisplay;
+    }
+
+    private void UpdateHintDisplay(int hintsRemaining)
+    {
+        if (hintCountText != null)
+            hintCountText.text = hintsRemaining.ToString();
+    }
 
     // CLUES
     public void OnCluesButton()

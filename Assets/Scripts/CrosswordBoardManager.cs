@@ -51,6 +51,15 @@ public class CrosswordBoardManager : MonoBehaviour
     private CrosswordCell _selectedCell;
     private bool _selectedAcross = true;
 
+    // ── Hints ─────────────────────────────────────────────────────────────
+    private const int MaxHints = 3;
+    private int hintsRemaining = MaxHints;
+
+    /// <summary>
+    /// Fired whenever hint count changes so UI can update the button label.
+    /// </summary>
+    public event Action<int> OnHintsChanged;
+
     [Header("Database")]
     [SerializeField] private string resourcesDbName = "trivia_database";
     [SerializeField] private bool fillFromDatabaseOnStart = true;
@@ -425,6 +434,10 @@ public class CrosswordBoardManager : MonoBehaviour
 
         IndexWordsAndBuildSolution();
         AssignCellNumbers();
+
+        // Reset hints for the new puzzle
+        hintsRemaining = MaxHints;
+        OnHintsChanged?.Invoke(hintsRemaining);
     }
 
     private void IndexWordsAndBuildSolution()
@@ -588,7 +601,40 @@ public class CrosswordBoardManager : MonoBehaviour
 
     public void RequestHint()
     {
-        Debug.Log("CrosswordBoardManager: Hint requested (not implemented yet).");
+        if (hintsRemaining <= 0)
+        {
+            Debug.Log("[CrosswordBoardManager] No hints remaining.");
+            return;
+        }
+
+        if (_selectedCell == null)
+        {
+            Debug.Log("[CrosswordBoardManager] No cell selected for hint.");
+            return;
+        }
+
+        int r = _selectedCell.row;
+        int c = _selectedCell.col;
+        char solution = solutionLetters[r, c];
+
+        if (solution == '\0')
+        {
+            Debug.Log("[CrosswordBoardManager] Selected cell has no solution letter.");
+            return;
+        }
+
+        // If the cell is already correct, don't burn a hint
+        if (_selectedCell.GetLetter() == solution)
+        {
+            Debug.Log("[CrosswordBoardManager] Cell already correct — hint not consumed.");
+            return;
+        }
+
+        _selectedCell.SetLetter(solution);
+        hintsRemaining--;
+        OnHintsChanged?.Invoke(hintsRemaining);
+
+        Debug.Log($"[CrosswordBoardManager] Hint used. {hintsRemaining} remaining.");
     }
 
     // ── Reset ─────────────────────────────────────────────────────────────
