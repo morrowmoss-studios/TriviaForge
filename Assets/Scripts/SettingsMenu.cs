@@ -122,4 +122,13 @@ public class SettingsMenu : MonoBehaviour
         if (sfxToggle       != null) sfxToggle.isOn       = sfxOn;
         if (vibrationToggle != null) vibrationToggle.isOn = vibrationOn;
     }
+
+    // Hook this to RESTORE PURCHASES button
+    public void RestorePurchases()
+    {
+        if (TriviaForgeIAPManager.Instance != null)
+            TriviaForgeIAPManager.Instance.RestorePurchases();
+        else
+            Debug.LogWarning("[SettingsMenu] TriviaForgeIAPManager instance not found.");
+    }
 }
