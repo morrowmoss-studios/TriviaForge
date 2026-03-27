@@ -16,6 +16,8 @@ public static class TriviaSessionData
     public static int strikes    = 0;
     public const  int maxStrikes = 3;
     public static bool roundOver = false;
+    // Saved timer value when navigating away mid-question (e.g. to Settings)
+    public static float savedTimeRemaining = -1f;
 
     // Question index so we know where we are in the list
     public static int currentQuestionIndex = 0;

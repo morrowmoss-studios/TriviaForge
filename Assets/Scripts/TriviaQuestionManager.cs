@@ -158,6 +158,20 @@ public class TriviaQuestionManager : MonoBehaviour
         currentQuestionIndex = TriviaSessionData.currentQuestionIndex;
         LoadQuestion(currentQuestionIndex);
 
+        // Restore timer if returning from Settings mid-question
+        if (TriviaSessionData.savedTimeRemaining > 0f)
+        {
+            timeRemaining = TriviaSessionData.savedTimeRemaining;
+            TriviaSessionData.savedTimeRemaining = -1f;
+
+            // Update the display immediately so it doesn't flicker to full
+            if (timerText != null)
+            {
+                timerText.text  = Mathf.CeilToInt(timeRemaining).ToString();
+                timerText.color = timeRemaining <= urgentThreshold ? urgentTimerColor : normalTimerColor;
+            }
+        }
+
         if (strikesUI != null) strikesUI.Refresh();
     }
 
@@ -180,6 +194,19 @@ public class TriviaQuestionManager : MonoBehaviour
             timerRunning = false;
             OnTimeExpired();
         }
+    }
+
+    // ── Settings button ───────────────────────────────────────────────────
+
+    /// <summary>
+    /// Call this from the Settings button OnClick BEFORE UIManager.OpenSettingsScene.
+    /// Saves the current time and pauses the timer so it survives the scene reload.
+    /// </summary>
+    public void OnSettingsPressed()
+    {
+        TriviaSessionData.savedTimeRemaining = timeRemaining;
+        timerRunning = false;
+        Debug.Log($"[TriviaQuestionManager] Timer paused at {timeRemaining:F2}s before Settings.");
     }
 
     // ── Time expired ──────────────────────────────────────────────────────
@@ -323,7 +350,7 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         if (questionLocked) return;
         questionLocked = true;
-        timerRunning   = false; // stop the timer on answer
+        timerRunning   = false;
 
         if (button == null)
         {
