@@ -64,6 +64,10 @@ public class CrosswordBoardManager : MonoBehaviour
     private TouchScreenKeyboard keyboard;
     private string lastKeyboardText = "";
 
+    // Sentinel keeps one character in the buffer so backspace always produces
+    // a detectable length decrease (fixes: backspace on empty field = 0 < 0 = noop)
+    private const string KeyboardSentinel = "|";
+
     private GameDatabase dbCached;
 
     private void Awake()
@@ -73,7 +77,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Start()
     {
-        
         layoutRows = NormalizeLayout(layoutRows);
 
         if (fillFromDatabaseOnStart)
@@ -94,12 +97,10 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             string text = keyboard.text;
 
-            // Something was typed
+            // Something was typed (longer than sentinel)
             if (text.Length > lastKeyboardText.Length)
             {
-                // Get the newest character
-                char newChar = text[text.Length - 1];
-                newChar = char.ToUpper(newChar);
+                char newChar = char.ToUpper(text[text.Length - 1]);
 
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
@@ -107,18 +108,18 @@ public class CrosswordBoardManager : MonoBehaviour
                     AdvanceToNextCell();
                 }
 
-                // Reset keyboard text to empty so next input is clean
-                keyboard.text = "";
-                lastKeyboardText = "";
+                // Reset back to sentinel so next backspace is always detectable
+                keyboard.text = KeyboardSentinel;
+                lastKeyboardText = KeyboardSentinel;
             }
-            else if (text.Length < lastKeyboardText.Length || text == "\b")
+            else if (text.Length < lastKeyboardText.Length)
             {
-                // Backspace — clear current cell
+                // Backspace — clear the selected cell
                 if (_selectedCell != null)
                     _selectedCell.SetLetter('\0');
 
-                keyboard.text = "";
-                lastKeyboardText = "";
+                keyboard.text = KeyboardSentinel;
+                lastKeyboardText = KeyboardSentinel;
             }
             else
             {
@@ -164,9 +165,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void OpenKeyboard()
     {
-        // Open a single-character input keyboard with no visible text field
         keyboard = TouchScreenKeyboard.Open(
-            "",
+            KeyboardSentinel,
             TouchScreenKeyboardType.Default,
             false,  // autocorrection
             false,  // multiline
@@ -176,8 +176,9 @@ public class CrosswordBoardManager : MonoBehaviour
             0       // characterLimit — 0 = unlimited, we handle limit ourselves
         );
 
-        lastKeyboardText = "";
-        if (keyboard != null) keyboard.text = "";
+        // Always start with the sentinel so backspace has something to subtract from
+        lastKeyboardText = KeyboardSentinel;
+        if (keyboard != null) keyboard.text = KeyboardSentinel;
     }
 
     // Automatically moves selection to the next empty cell in the current word
@@ -588,5 +589,27 @@ public class CrosswordBoardManager : MonoBehaviour
     public void RequestHint()
     {
         Debug.Log("CrosswordBoardManager: Hint requested (not implemented yet).");
+    }
+
+    // ── Reset ─────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Clears all player-entered letters and resets selection.
+    /// Wire this to your Reset button via CrosswordModeUI.OnResetButton().
+    /// </summary>
+    public void ResetPuzzle()
+    {
+        if (cells == null) return;
+
+        for (int r = 0; r < rows; r++)
+            for (int c = 0; c < cols; c++)
+                if (cells[r, c] != null && !cells[r, c].IsBlocked)
+                    cells[r, c].SetLetter('\0');
+
+        _selectedCell = null;
+        ClearHighlights();
+        CrosswordClueDisplay.Instance?.ClearClue();
+
+        Debug.Log("[CrosswordBoardManager] Puzzle reset.");
     }
 }

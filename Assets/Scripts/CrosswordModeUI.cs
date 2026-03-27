@@ -5,11 +5,11 @@ public class CrosswordModeUI : MonoBehaviour
 {
     [Header("Scene Names")]
     [SerializeField] private string cluesSceneName      = "Clues_Crossword";
-    [SerializeField] private string modeSelectSceneName = "ModeSelect";      // whatever yours is
-    [SerializeField] private string settingsSceneName   = "Settings";   // adjust
-    [SerializeField] private string quitPopupSceneName  = "Quit_PopUp";      // <- your popup scene
+    [SerializeField] private string modeSelectSceneName = "ModeSelect";
+    [SerializeField] private string settingsSceneName   = "Settings";
+    [SerializeField] private string quitPopupSceneName  = "Quit_PopUp";
 
-    [Header("Board Ref (for hint etc.)")]
+    [Header("Board Ref (for hint, reset, etc.)")]
     [SerializeField] private CrosswordBoardManager boardManager;
 
     // CLUES
@@ -27,6 +27,15 @@ public class CrosswordModeUI : MonoBehaviour
             Debug.LogWarning("CrosswordModeUI: No boardManager wired for hints.");
     }
 
+    // RESET — clears all player-entered letters
+    public void OnResetButton()
+    {
+        if (boardManager != null)
+            boardManager.ResetPuzzle();
+        else
+            Debug.LogWarning("CrosswordModeUI: No boardManager wired for reset.");
+    }
+
     // BACK
     public void OnBackButton()
     {
@@ -38,8 +47,8 @@ public class CrosswordModeUI : MonoBehaviour
     // SETTINGS
     public void OnSettingsPressed()
     {
-        UIManager.SetPreviousScene();          // save current scene name
-        SceneManager.LoadScene("Settings");    // go to settings
+        UIManager.SetPreviousScene();
+        SceneManager.LoadScene("Settings");
     }
 
     // QUIT -> load the Quit_PopUp scene
