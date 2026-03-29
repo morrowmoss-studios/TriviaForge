@@ -528,63 +528,334 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Trivia Mode \u2013 How to Play\n\nGoal:\nAnswer as many questions correctly
-    as you can.\n\nHow it works\nEach round you\u2019ll see one question and four
-    answers.\nTap the answer you think is correct.\nThe game will immediately show
-    if you were:\n\u2705 Correct \u2013 your answer is highlighted as right.\n\u274C
-    Incorrect \u2013 your chosen answer is marked wrong and the correct one is revealed.\nThen
-    continue to the next question.\n\nButtons & controls\nPlay / Next \u2013 move
-    on to the next question.\nHint (if enabled) \u2013 reveals information to help
-    you find the right answer.\nHints are limited, so use them wisely.\nBack \u2013
-    return to the previous menu.\nQuit \u2013 exit to the title screen.\n\nTips\nYou
-    don\u2019t have to answer quickly\u2014there\u2019s no time limit unless a specific
-    mode says so.\nUse hints when you\u2019re stuck, not just unsure. They\u2019re
-    meant for real \u201Cno idea\u201D moments.\n---------------------\n\n\U0001F520
-    Wordoku \u2013 How to Play\n\nGoal:\nFill the grid so that each row, each column,
-    and each 3\xD73 box contains every letter of the word exactly once.\nIf the word
-    is MISTCLOUD, then every row, column, and 3\xD73 box must contain:\nM, I, S,
-    T, C, L, O, U, D\n\nBoard layout\nThe 9\xD79 grid in the center is your puzzle.\nSome
-    letters are already on the board:\nThese are fixed clues and can\u2019t be changed.\nThey
-    appear slightly dimmer.\nOn the left side, you\u2019ll see letter tiles for the
-    current word.\nThese are the letters you can place.\n\nPlacing letters\nTap a
-    letter tile on the left to select it.\nThe selected letter is highlighted.\nTap
-    a cell on the board to place that letter there.\nTap the same cell again with
-    the same letter selected to erase it.\n\nWrong placements\nIf a letter doesn\u2019t
-    match the hidden solution, the tile will briefly turn bright red \u2013 your
-    \u201Cscarlet letter of shame\u201D.\nThe red color is just a warning:\nYou can
-    tap again to clear it.\nYou\u2019re free to make mistakes and correct them as
-    you go.\n\nLetter buttons\nWhen all nine copies of a letter are used somewhere
-    on the board, that letter\u2019s tile on the left disappears.\nIf you erase one
-    of those letters from the board, its tile reappears, meaning you can still place
-    it elsewhere.\nNotes mode (pencil marks)\nTap the NOTES button to toggle Notes
-    mode ON/OFF.\n\nWhile Notes is ON:\nSelecting a letter and tapping a cell will
-    add or remove a small \u201Cpenciled\u201D letter inside that cell.\nYou can
-    place multiple different notes in the same cell.\nNotes are just reminders\u2014they
-    don\u2019t count as an answer.\n\nWhile Notes is OFF:\nSelecting a letter and
-    tapping a cell places it as a full answer.\nTapping a filled cell with the same
-    letter selected clears it.\n\nOther buttons\nHint \u2013 fills in one correct
-    letter somewhere on the board.\nHints are limited.\nReset \u2013 restores the
-    puzzle to its starting state (fixed clues only).\nBack \u2013 return to the mode
-    select screen.\nQuit \u2013 exit to the title screen.\n-----------------------\n\n\u270F\uFE0F
-    Crossword \u2013 How to Play\n\nGoal:\nFill every white square with letters so
-    that all Across and Down clues are correctly answered.\n\nBoard layout\nThe crossword
-    grid has:\nWhite squares \u2013 where you can type letters.\nBlack/blocked squares
-    \u2013 walls that separate words.\nEach word has a clue and a number, shown in
-    the clue list.\n\nSelecting words & entering letters\nTap a cell on the grid
-    to select it.\nThe game highlights the current word (Across or Down).\nUse the
-    keyboard / letter input to fill in the word.\n\nMove through the word:\nTyping
-    a letter usually moves to the next cell.\nYou can tap another cell to jump to
-    a different word.\n\nSwitching Across / Down\nTap the same selected cell again
-    to toggle between its Across word and Down word (if it\u2019s part of both).\nOr
-    tap another cell in the direction you want to focus on.\n\nEditing\nTap a filled
-    cell and use Backspace / Clear to remove a letter.\nYou can overwrite letters
-    at any time until you\u2019re happy with the word.\n\nHints & tools (adjust to
-    what you implement)\nHint \u2013 reveals either:\nA single letter, or\nAn entire
-    word (depending on the mode you choose).\nCheck / Validate (if present) \u2013
-    can highlight letters or words that are incorrect.\nReset \u2013 clears the puzzle
-    back to its starting state.\n\nButtons\nHint \u2013 get help on a tricky spot.
-    Hints are limited.\nReset \u2013 clear your progress on this crossword.\nBack
-    \u2013 go back to mode select.\nQuit \u2013 exit to the title screen."
+  m_text: '## Trivia Mode
+
+
+    **Your Quest:**
+
+    Prove your worth at the forge.
+    Answer questions correctly, build a streak, and earn your place on the leaderboard.
+
+
+    **How
+    It Works**
+
+    Each round, the forge presents one question and four possible
+    answers.
+
+    Tap the answer you believe is correct.
+
+    The forge will judge
+    your choice immediately:
+
+    Correct: your answer is marked right. The streak
+    grows. The multiplier rises.
+
+    Incorrect: your answer is marked wrong and
+    the correct one is revealed. Your streak resets.
+
+
+    **The Clock**
+
+    The
+    forge does not wait forever. A timer counts down with each question.
+
+    How
+    long you have depends on the difficulty you chose:
+
+    - Easy: 20 seconds
+
+    -
+    Medium: 15 seconds
+
+    - Hard: 12 seconds
+
+    - Insanity: 8 seconds
+
+
+    Let
+    the clock run out and it counts as a wrong answer.
+
+
+    **Streaks and Multipliers**
+
+    Answer
+    correctly back to back and your streak grows.
+
+    - 3 correct in a row: your
+    score multiplier rises to 1.5x
+
+    - 5 correct in a row: your score multiplier
+    rises to 2x
+
+    - Any wrong answer breaks the streak and resets the multiplier
+    back to 1x.
+
+
+    **Scoring**
+
+    Every correct answer earns points based on
+    your chosen difficulty:
+
+    - Easy: 10 points
+
+    - Medium: 20 points
+
+    -
+    Hard: 35 points
+
+    - Insanity: 50 points
+
+
+    Used a hint? You earn half points
+    for that question.
+
+    Multipliers are applied on top. A hard question at 2x
+    with no hint is worth 70 points.
+
+
+    **Hints**
+
+    The forge grants you a
+    limited number of hints per session.
+
+    A hint eliminates one wrong answer
+    from the four choices, narrowing your odds.
+
+    Use them wisely. If you run
+    out, you can watch an ad to earn more.
+
+
+    **Buttons**
+
+    - Hint: eliminate
+    one wrong answer. Limited uses.
+
+    - Back: return to the previous menu.
+
+    -
+    Quit: exit to the title screen.
+
+
+    **Tips**
+
+    Save hints for Insanity difficulty
+    when the clock is breathing down your neck.
+
+    Chase the streak. A 2x multiplier
+    on Hard questions is where legends are made.
+
+
+    ---
+
+
+    ## Wordoku
+
+
+    **Your
+    Quest:**
+
+    A word has been etched into the forge. Your task is to fill the
+    grid so that every row, every column, and every 3x3 box contains each letter
+    of that word exactly once.
+
+
+    If the word is MISTCLOUD, then every row, column,
+    and 3x3 box must contain:
+
+    M, I, S, T, C, L, O, U, D
+
+
+    **The Board**
+
+    The
+    9x9 grid in the center is your puzzle.
+
+    Some letters are already placed.
+    These are fixed clues, forged into the board. They cannot be changed.
+
+    On
+    the left side you will find the letter tiles for the current word. These are
+    yours to place.
+
+
+    **Placing Letters**
+
+    Tap a letter tile on the left
+    to select it. It will glow to show it is chosen.
+
+    Tap any open cell on the
+    grid to place it.
+
+    Tap the same cell again with the same letter selected
+    to erase it.
+
+
+    **The Scarlet Letter of Shame**
+
+    The forge knows the solution.
+    If the letter you place does not match, the tile burns red. Your scarlet letter
+    of shame.
+
+    The red is a warning, not a sentence.
+
+    Tap the cell again
+    to clear the letter and the shame along with it.
+
+    You are free to make mistakes
+    and correct them as you go.
+
+
+    **Letter Tiles**
+
+    When all nine copies
+    of a letter have been placed on the board, that letter tile on the left fades
+    away. It has been fully used.
+
+    Erase one of those letters from the board
+    and the tile returns, ready to be placed again.
+
+
+    **Notes Mode**
+
+    Tap
+    the NOTES button to toggle pencil mark mode on and off.
+
+
+    While Notes is
+    ON:
+
+    Selecting a letter and tapping a cell pencils in a small reminder mark.
+    It does not count as your answer.
+
+    You can pencil multiple different letters
+    into the same cell.
+
+
+    While Notes is OFF:
+
+    Selecting a letter and tapping
+    a cell places it as your answer.
+
+
+    **Hints**
+
+    The forge will grant you
+    3 hints per puzzle.
+
+    Each hint reveals one correct letter in an empty cell.
+
+    If
+    you run out, you can watch an ad to earn more.
+
+
+    **Buttons**
+
+    - Notes:
+    toggle pencil mark mode on and off.
+
+    - Hint: reveal one correct letter. 3
+    per puzzle.
+
+    - Reset: restore the puzzle to its starting state. Your placed
+    letters are cleared, the fixed clues remain.
+
+    - Back: return to mode select.
+
+    -
+    Quit: exit to the title screen.
+
+
+    ---
+
+
+    ## Crossword
+
+
+    **Your Quest:**
+
+    The
+    forge presents a grid of words, locked together like puzzle pieces. Fill every
+    white square with the correct letters to complete all the Across and Down answers.
+
+
+    **The
+    Board**
+
+    White squares are where your letters go.
+
+    Dark blocked squares
+    are walls that separate words and cannot be filled.
+
+    Each word has a number
+    and a clue. Numbers appear in the corner of the cell where that word begins.
+
+
+    **Selecting
+    and Entering Letters**
+
+    Tap any white cell to select it. The current word
+    lights up so you know what you are working on.
+
+    Type your letter and the
+    cursor moves forward automatically.
+
+    Tap the same cell again to switch between
+    its Across word and its Down word if it belongs to both.
+
+    Tap any other cell
+    to jump to a different word.
+
+
+    **Editing**
+
+    Use Backspace to clear the
+    selected cell and remove any shame along with it.
+
+
+    **How the Forge Judges
+    You**
+
+    The forge only checks your work when every white square has been filled.
+
+    If
+    everything is correct, the puzzle is complete and the forge acknowledges your
+    victory.
+
+    If any letters are wrong, those cells turn red. No answers are
+    revealed. The forge shows you where you failed. The rest is up to you.
+
+
+    **Hints**
+
+    The
+    forge grants you 3 hints per puzzle.
+
+    Each hint reveals the correct letter
+    for whichever cell you currently have selected.
+
+    If the selected cell is
+    already correct, no hint is consumed.
+
+    If you run out, you can watch an ad
+    to earn more.
+
+
+    **Buttons**
+
+    - Clues: view the full list of Across and
+    Down clues.
+
+    - Hint: reveal the correct letter in the selected cell. 3 per
+    puzzle.
+
+    - Reset: clear all your letters and start fresh. Fixed clues are
+    not affected.
+
+    - Back: return to mode select.
+
+    - Quit: exit to the title
+    screen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1062,8 +1333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2000}
+  m_AnchoredPosition: {x: 0, y: 0.0001}
+  m_SizeDelta: {x: 0, y: 6542.965}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1799304218
 MonoBehaviour:
