@@ -55,9 +55,6 @@ public class CrosswordBoardManager : MonoBehaviour
     private const int MaxHints = 3;
     private int hintsRemaining = MaxHints;
 
-    /// <summary>
-    /// Fired whenever hint count changes so UI can update the button label.
-    /// </summary>
     public event Action<int> OnHintsChanged;
 
     [Header("Database")]
@@ -72,12 +69,12 @@ public class CrosswordBoardManager : MonoBehaviour
     // ── Mobile keyboard ───────────────────────────────────────────────────
     private TouchScreenKeyboard keyboard;
     private string lastKeyboardText = "";
-
-    // Sentinel keeps one character in the buffer so backspace always produces
-    // a detectable length decrease (fixes: backspace on empty field = 0 < 0 = noop)
     private const string KeyboardSentinel = "|";
 
     private GameDatabase dbCached;
+
+    // Prevents win from firing multiple times
+    private bool puzzleSolved = false;
 
     private void Awake()
     {
@@ -101,12 +98,10 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Update()
     {
-        // Handle mobile TouchScreenKeyboard input
         if (keyboard != null && TouchScreenKeyboard.isSupported && keyboard.active)
         {
             string text = keyboard.text;
 
-            // Something was typed (longer than sentinel)
             if (text.Length > lastKeyboardText.Length)
             {
                 char newChar = char.ToUpper(text[text.Length - 1]);
@@ -115,15 +110,14 @@ public class CrosswordBoardManager : MonoBehaviour
                 {
                     _selectedCell.SetLetter(newChar);
                     AdvanceToNextCell();
+                    CheckForWin();
                 }
 
-                // Reset back to sentinel so next backspace is always detectable
                 keyboard.text = KeyboardSentinel;
                 lastKeyboardText = KeyboardSentinel;
             }
             else if (text.Length < lastKeyboardText.Length)
             {
-                // Backspace — clear the selected cell
                 if (_selectedCell != null)
                     _selectedCell.SetLetter('\0');
 
@@ -136,21 +130,18 @@ public class CrosswordBoardManager : MonoBehaviour
             }
         }
 
-        // Also handle physical keyboard input in editor / desktop testing
 #if UNITY_EDITOR
         if (_selectedCell != null)
         {
             var keyboard2 = UnityEngine.InputSystem.Keyboard.current;
             if (keyboard2 != null)
             {
-                // Backspace
                 if (keyboard2.backspaceKey.wasPressedThisFrame)
                 {
                     _selectedCell.SetLetter('\0');
                 }
                 else
                 {
-                    // Check A-Z keys
                     foreach (var key in keyboard2.allKeys)
                     {
                         if (!key.wasPressedThisFrame) continue;
@@ -162,6 +153,7 @@ public class CrosswordBoardManager : MonoBehaviour
                             {
                                 _selectedCell.SetLetter(ch);
                                 AdvanceToNextCell();
+                                CheckForWin();
                                 break;
                             }
                         }
@@ -177,20 +169,13 @@ public class CrosswordBoardManager : MonoBehaviour
         keyboard = TouchScreenKeyboard.Open(
             KeyboardSentinel,
             TouchScreenKeyboardType.Default,
-            false,  // autocorrection
-            false,  // multiline
-            false,  // secure
-            false,  // alert
-            "",     // placeholder
-            0       // characterLimit — 0 = unlimited, we handle limit ourselves
+            false, false, false, false, "", 0
         );
 
-        // Always start with the sentinel so backspace has something to subtract from
         lastKeyboardText = KeyboardSentinel;
         if (keyboard != null) keyboard.text = KeyboardSentinel;
     }
 
-    // Automatically moves selection to the next empty cell in the current word
     private void AdvanceToNextCell()
     {
         if (_selectedCell == null) return;
@@ -198,10 +183,8 @@ public class CrosswordBoardManager : MonoBehaviour
         int r = _selectedCell.row;
         int c = _selectedCell.col;
 
-        // Find the next empty cell in the current direction
         if (_selectedAcross)
         {
-            // Move right
             int nextC = c + 1;
             while (nextC < cols && !cells[r, nextC].IsBlocked)
             {
@@ -215,7 +198,6 @@ public class CrosswordBoardManager : MonoBehaviour
         }
         else
         {
-            // Move down
             int nextR = r + 1;
             while (nextR < rows && !cells[nextR, c].IsBlocked)
             {
@@ -227,12 +209,11 @@ public class CrosswordBoardManager : MonoBehaviour
                 nextR++;
             }
         }
-        // If no next empty cell found, stay on current cell
     }
 
     private void SelectCell(CrosswordCell cell, bool isAcross)
     {
-        _selectedCell  = cell;
+        _selectedCell   = cell;
         _selectedAcross = isAcross;
 
         ClearHighlights();
@@ -240,8 +221,8 @@ public class CrosswordBoardManager : MonoBehaviour
         int r = cell.row;
         int c = cell.col;
 
-        CrosswordWord acrossWord = acrossAt[r, c];
-        CrosswordWord downWord   = downAt[r, c];
+        CrosswordWord acrossWord   = acrossAt[r, c];
+        CrosswordWord downWord     = downAt[r, c];
         CrosswordWord activeWord   = isAcross ? acrossWord : downWord;
         CrosswordWord inactiveWord = isAcross ? downWord   : acrossWord;
 
@@ -414,7 +395,7 @@ public class CrosswordBoardManager : MonoBehaviour
         for (int i = gridParent.childCount - 1; i >= 0; i--)
             Destroy(gridParent.GetChild(i).gameObject);
 
-        cells          = new CrosswordCell[rows, cols];
+        cells           = new CrosswordCell[rows, cols];
         solutionLetters = new char[rows, cols];
 
         for (int r = 0; r < rows; r++)
@@ -435,9 +416,10 @@ public class CrosswordBoardManager : MonoBehaviour
         IndexWordsAndBuildSolution();
         AssignCellNumbers();
 
-        // Reset hints for the new puzzle
         hintsRemaining = MaxHints;
         OnHintsChanged?.Invoke(hintsRemaining);
+
+        puzzleSolved = false;
     }
 
     private void IndexWordsAndBuildSolution()
@@ -557,7 +539,6 @@ public class CrosswordBoardManager : MonoBehaviour
         if (goAcross) HighlightAcrossWord(r, c);
         else          HighlightDownWord(r, c);
 
-        // Open the mobile keyboard for input
         OpenKeyboard();
     }
 
@@ -599,6 +580,8 @@ public class CrosswordBoardManager : MonoBehaviour
             cells[r, col].SetHighlighted(true);
     }
 
+    // ── Hint ─────────────────────────────────────────────────────────────
+
     public void RequestHint()
     {
         if (hintsRemaining <= 0)
@@ -623,7 +606,6 @@ public class CrosswordBoardManager : MonoBehaviour
             return;
         }
 
-        // If the cell is already correct, don't burn a hint
         if (_selectedCell.GetLetter() == solution)
         {
             Debug.Log("[CrosswordBoardManager] Cell already correct — hint not consumed.");
@@ -634,15 +616,64 @@ public class CrosswordBoardManager : MonoBehaviour
         hintsRemaining--;
         OnHintsChanged?.Invoke(hintsRemaining);
 
+        CheckForWin();
+
         Debug.Log($"[CrosswordBoardManager] Hint used. {hintsRemaining} remaining.");
+    }
+
+    // ── Win check ─────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Fires when all playable cells are filled.
+    /// Wrong cells get the scarlet letter of shame (red).
+    /// Triggers win only if everything is correct.
+    /// </summary>
+    private void CheckForWin()
+    {
+        if (puzzleSolved || cells == null) return;
+
+        // First pass — bail out if any playable cell is still empty
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+                if (solutionLetters[r, c] == '\0') continue;
+                if (cells[r, c].GetLetter() == '\0') return;
+            }
+        }
+
+        // All filled — second pass: mark wrong cells red, check for full correctness
+        bool allCorrect = true;
+
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+                if (solutionLetters[r, c] == '\0') continue;
+
+                bool correct = cells[r, c].GetLetter() == solutionLetters[r, c];
+                cells[r, c].SetWrong(!correct);
+
+                if (!correct) allCorrect = false;
+            }
+        }
+
+        if (allCorrect)
+        {
+            puzzleSolved = true;
+            Debug.Log("[CrosswordBoardManager] Puzzle solved!");
+            GameWinController.TriggerWin("Crossword");
+        }
+        else
+        {
+            Debug.Log("[CrosswordBoardManager] Board full but has errors — wrong cells marked red.");
+        }
     }
 
     // ── Reset ─────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Clears all player-entered letters and resets selection.
-    /// Wire this to your Reset button via CrosswordModeUI.OnResetButton().
-    /// </summary>
     public void ResetPuzzle()
     {
         if (cells == null) return;
@@ -652,6 +683,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (cells[r, c] != null && !cells[r, c].IsBlocked)
                     cells[r, c].SetLetter('\0');
 
+        puzzleSolved  = false;
         _selectedCell = null;
         ClearHighlights();
         CrosswordClueDisplay.Instance?.ClearClue();

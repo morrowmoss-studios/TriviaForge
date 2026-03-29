@@ -15,12 +15,15 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     [Header("Highlight")]
     [SerializeField] private Color normalColor    = Color.white;
     [SerializeField] private Color highlightColor = Color.cyan;
+    [SerializeField] private Color wrongColor     = new Color(1f, 0.2f, 0.2f, 1f);
 
     [Header("Grid Coords (read-only at runtime)")]
     public int row;
     public int col;
 
     private bool isBlocked;
+    private bool isHighlighted;
+    private bool isWrong;
     private char currentLetter = '\0';
     private CrosswordBoardManager manager;
 
@@ -93,8 +96,14 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         }
 
         currentLetter = ch;
+
+        // Clear wrong state whenever the letter changes (including backspace -> '\0')
+        isWrong = false;
+
         if (letterText == null) return;
         letterText.text = (ch == '\0' || ch == ' ') ? "" : ch.ToString().ToUpper();
+
+        RefreshColor();
     }
 
     public char GetLetter() => currentLetter;
@@ -108,22 +117,47 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         numberLabel.gameObject.SetActive(!string.IsNullOrEmpty(num));
     }
 
-    // ---------- BLOCK / HIGHLIGHT ----------
+    // ---------- BLOCK / HIGHLIGHT / WRONG ----------
 
     public void SetBlocked(bool blocked)
     {
         isBlocked = blocked;
         if (tileImage == null) return;
         tileImage.sprite = blocked ? blockedSprite : playableSprite;
-        tileImage.color  = normalColor;
+        RefreshColor();
     }
 
     public bool IsBlocked => isBlocked;
 
     public void SetHighlighted(bool highlighted)
     {
+        isHighlighted = highlighted;
+        RefreshColor();
+    }
+
+    /// <summary>
+    /// Marks this cell as containing a wrong letter (scarlet letter of shame).
+    /// Cleared automatically when SetLetter is called.
+    /// </summary>
+    public void SetWrong(bool wrong)
+    {
+        isWrong = wrong;
+        RefreshColor();
+    }
+
+    public bool IsWrong => isWrong;
+
+    // Color priority: wrong > highlighted > normal
+    private void RefreshColor()
+    {
         if (tileImage == null) return;
-        tileImage.color = highlighted ? highlightColor : normalColor;
+
+        if (isWrong)
+            tileImage.color = wrongColor;
+        else if (isHighlighted)
+            tileImage.color = highlightColor;
+        else
+            tileImage.color = normalColor;
     }
 
     // ---------- CLICK ----------
