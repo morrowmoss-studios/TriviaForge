@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2242e8cd6c94efabc1c37d20aefe86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StreakUI
-  streakText: {fileID: 1109435675}
-  multiplierText: {fileID: 1789611231}
+  streakText: {fileID: 1789611231}
+  multiplierText: {fileID: 1109435675}
 --- !u!1 &192810561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 1109435676}
   - component: {fileID: 1109435675}
   m_Layer: 5
-  m_Name: Streak_Text
+  m_Name: Multiplier_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3393,7 +3393,7 @@ GameObject:
   - component: {fileID: 1789611232}
   - component: {fileID: 1789611231}
   m_Layer: 5
-  m_Name: Multiplier_Text
+  m_Name: Streak_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

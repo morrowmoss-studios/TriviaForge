@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Attach to any GameObject in TriviaMode.
@@ -9,6 +10,9 @@ public class StreakUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI streakText;
     [SerializeField] private TextMeshProUGUI multiplierText;
+
+    // Flame sprite sitting as a child of Multiplier_Text
+    private Image flameImage;
 
     private void Start()
     {
@@ -26,6 +30,10 @@ public class StreakUI : MonoBehaviour
             foreach (var t in all)
                 if (t.gameObject.name == "Multiplier_Text") { multiplierText = t; break; }
         }
+
+        // Grab the flame Image child of Multiplier_Text
+        if (multiplierText != null)
+            flameImage = multiplierText.GetComponentInChildren<Image>(true);
 
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.OnScoreChanged += Refresh;
@@ -46,26 +54,24 @@ public class StreakUI : MonoBehaviour
         int streak       = ScoreManager.Instance.CurrentStreak;
         float multiplier = ScoreManager.Instance.CurrentMultiplier;
 
-        // Streak display — hide at 0, show flame + count above 0
+        // Streak text — hide at 0
         if (streakText != null)
         {
-            if (streak > 0)
-            {
-                streakText.text = $"🔥 {streak}";
-                streakText.gameObject.SetActive(true);
-            }
-            else
-            {
-                streakText.text = "";
-                streakText.gameObject.SetActive(false);
-            }
+            streakText.text = streak > 0 ? streak.ToString() : "";
+            streakText.gameObject.SetActive(streak > 0);
         }
 
-        // Multiplier display — hide at 1x, show at 1.5x and 2x
+        // Flame image — only visible when streak is active
+        if (flameImage != null)
+            flameImage.gameObject.SetActive(streak > 0);
+
+        // Multiplier text — blank at 1x
         if (multiplierText != null)
         {
-            if (multiplier > 1f)
-                multiplierText.text = $"{multiplier}x";
+            if (multiplier >= 2f)
+                multiplierText.text = "x2";
+            else if (multiplier >= 1.5f)
+                multiplierText.text = "x1.5";
             else
                 multiplierText.text = "";
         }
