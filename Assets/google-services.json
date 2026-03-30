@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "326302456595",
+    "project_id": "triviaforge-6c9f2",
+    "storage_bucket": "triviaforge-6c9f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326302456595:android:f61a6fb390b8767fb658e6",
+        "android_client_info": {
+          "package_name": "com.MorrowMossStudios.TriviaForge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVm0T0o4wBvIM7KUUyb1Dr-_pzGC1Hyf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

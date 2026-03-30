@@ -1,156 +1,327 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using Firebase.Firestore;
 using UnityEngine;
 
+/// <summary>
+/// All player data now lives in Firestore.
+/// Local PlayerProfile is a session cache — loaded on login, pushed to Firestore on every Save().
+/// Guests skip all Firestore operations entirely.
+/// </summary>
 public static class PlayerDatabaseAPI
 {
-    private static PlayerDatabase _db;
+    private static PlayerProfile _currentPlayer;
     private static bool _loaded;
 
-    private static string SavePath =>
-        Path.Combine(Application.persistentDataPath, "player_database.json");
+    private const string PlayersCollection = "players";
 
-    // ---------- LOAD / SAVE ----------
+    // ── Session helpers ───────────────────────────────────────────────────
 
-    public static void Load()
+    public static string CurrentUsername =>
+        PlayerPrefs.GetString("TF_CurrentUser", "");
+
+    public static bool IsGuest =>
+        PlayerPrefs.GetInt("TF_IsGuest", 0) == 1;
+
+    // ── Password hashing ──────────────────────────────────────────────────
+
+    public static string HashPassword(string password)
     {
-        if (_loaded) return;
-
-        if (File.Exists(SavePath))
-        {
-            string json = File.ReadAllText(SavePath);
-            _db = JsonUtility.FromJson<PlayerDatabase>(json);
-            if (_db == null)
-            {
-                Debug.LogWarning("[PlayerDatabaseAPI] Failed to parse existing player DB, creating new one.");
-                _db = new PlayerDatabase();
-            }
-        }
-        else
-        {
-            Debug.Log("[PlayerDatabaseAPI] No player DB found, creating new one.");
-            _db = new PlayerDatabase();
-            Save();
-        }
-
-        _loaded = true;
-        Debug.Log($"[PlayerDatabaseAPI] Loaded player DB from: {SavePath}");
+        using var sha  = SHA256.Create();
+        byte[] bytes   = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return BitConverter.ToString(bytes).Replace("-", "").ToLower();
     }
+
+    // ── Account creation ──────────────────────────────────────────────────
+
+    public static async Task<(bool success, string error)> CreateAccountAsync(
+        string username, string password)
+    {
+        if (!FirebaseManager.IsReady)
+            await FirebaseManager.WaitUntilReadyAsync();
+
+        try
+        {
+            var docRef   = FirebaseManager.Db.Collection(PlayersCollection).Document(username);
+            var snapshot = await docRef.GetSnapshotAsync();
+
+            if (snapshot.Exists)
+                return (false, "That username is already taken.");
+
+            var profile = new PlayerProfile
+            {
+                playerId                = Guid.NewGuid().ToString(),
+                displayName             = username,
+                passwordHash            = HashPassword(password),
+                totalScore              = 0,
+                gamesCompleted          = 0,
+                gamesPlayed             = 0,
+                highestScore            = 0,
+                highestStreak           = 0,
+                perfectSolves           = 0,
+                correctAnswers          = 0,
+                totalAnswers            = 0,
+                fastestCrosswordSeconds = 0
+            };
+
+            await docRef.SetAsync(ProfileToDict(profile));
+
+            _currentPlayer = profile;
+            _loaded        = true;
+
+            Debug.Log($"[PlayerDatabaseAPI] Account created: {username}");
+            return (true, null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] CreateAccount failed: {ex.Message}");
+            return (false, "Could not create account. Check your connection.");
+        }
+    }
+
+    // ── Login ─────────────────────────────────────────────────────────────
+
+    public static async Task<(bool success, string error)> LoginAsync(
+        string username, string password)
+    {
+        if (!FirebaseManager.IsReady)
+            await FirebaseManager.WaitUntilReadyAsync();
+
+        try
+        {
+            var snapshot = await FirebaseManager.Db
+                .Collection(PlayersCollection)
+                .Document(username)
+                .GetSnapshotAsync();
+
+            if (!snapshot.Exists)
+                return (false, "Account not found.");
+
+            var data        = snapshot.ToDictionary();
+            string stored   = data.ContainsKey("passwordHash") ? data["passwordHash"].ToString() : "";
+            string incoming = HashPassword(password);
+
+            if (stored != incoming)
+                return (false, "Incorrect password.");
+
+            _currentPlayer = DictToProfile(username, data);
+            _loaded        = true;
+
+            Debug.Log($"[PlayerDatabaseAPI] Logged in: {username}");
+            return (true, null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Login failed: {ex.Message}");
+            return (false, "Could not sign in. Check your connection.");
+        }
+    }
+
+    // ── Legacy no-op (called by SeenContentTracker etc.) ─────────────────
+
+    /// <summary>
+    /// No-op — data is loaded on LoginAsync. Safe to call anywhere.
+    /// </summary>
+    public static void Load() { /* data loaded on login */ }
+
+    // ── Profile access ────────────────────────────────────────────────────
+
+    public static PlayerProfile GetCurrentPlayer() => _currentPlayer;
+
+    /// <summary>
+    /// Returns the cached player, or creates a temporary one if none exists.
+    /// Matches the old call signature used by SeenContentTracker.
+    /// </summary>
+    public static PlayerProfile GetOrCreatePlayer(string displayName)
+    {
+        if (_currentPlayer != null) return _currentPlayer;
+
+        _currentPlayer = new PlayerProfile
+        {
+            playerId    = Guid.NewGuid().ToString(),
+            displayName = displayName
+        };
+        return _currentPlayer;
+    }
+
+    // ── Save (local cache → Firestore) ────────────────────────────────────
 
     public static void Save()
     {
-        if (_db == null) _db = new PlayerDatabase();
-
-        string json = JsonUtility.ToJson(_db, true);
-        File.WriteAllText(SavePath, json);
-        Debug.Log($"[PlayerDatabaseAPI] Saved player DB to: {SavePath}");
+        if (_currentPlayer == null || IsGuest) return;
+        _ = PushToFirestoreAsync(_currentPlayer);
     }
 
-    private static void EnsureLoaded()
-    {
-        if (!_loaded) Load();
-    }
-
-    // ---------- PLAYER PROFILES ----------
-
-    public static PlayerProfile GetOrCreatePlayer(string displayName)
-    {
-        EnsureLoaded();
-
-        // Simple: one profile per displayName for now
-        var player = _db.players.Find(p => p.displayName == displayName);
-        if (player != null) return player;
-
-        player = new PlayerProfile
-        {
-            playerId = System.Guid.NewGuid().ToString(),
-            displayName = displayName,
-            totalScore = 0,
-            gamesPlayed = 0,
-            highestScore = 0
-        };
-
-        _db.players.Add(player);
-        Save();
-        return player;
-    }
-
-    // ---------- SCORES / LEADERBOARD ----------
+    // ── Score registration ────────────────────────────────────────────────
 
     public static void RegisterScore(string playerId, string displayName,
-                                    int score,
-                                    string gameMode,
-                                    string categoryId,
-                                    string subcategoryId)
+                                     int score, string gameMode,
+                                     string categoryId, string subcategoryId)
     {
-        EnsureLoaded();
+        if (_currentPlayer == null || IsGuest) return;
 
-        // Update player stats
-        var player = _db.players.Find(p => p.playerId == playerId);
-        if (player == null)
+        _currentPlayer.gamesCompleted++;
+        _currentPlayer.gamesPlayed++;
+        _currentPlayer.totalScore += score;
+
+        if (score > _currentPlayer.highestScore)
+            _currentPlayer.highestScore = score;
+
+        Save();
+    }
+
+    /// <summary>
+    /// Call at the end of any game session to record streak, accuracy, and perfect solve data.
+    /// </summary>
+    public static void RegisterGameStats(int highestStreakThisGame,
+                                         bool perfectSolve,
+                                         int correctAnswers,
+                                         int totalAnswers,
+                                         int crosswordTimeSeconds = 0)
+    {
+        if (_currentPlayer == null || IsGuest) return;
+
+        if (highestStreakThisGame > _currentPlayer.highestStreak)
+            _currentPlayer.highestStreak = highestStreakThisGame;
+
+        if (perfectSolve)
+            _currentPlayer.perfectSolves++;
+
+        _currentPlayer.correctAnswers += correctAnswers;
+        _currentPlayer.totalAnswers   += totalAnswers;
+
+        if (crosswordTimeSeconds > 0 &&
+            (_currentPlayer.fastestCrosswordSeconds == 0 ||
+             crosswordTimeSeconds < _currentPlayer.fastestCrosswordSeconds))
         {
-            // fallback: create profile if missing
-            player = new PlayerProfile
-            {
-                playerId = playerId,
-                displayName = displayName
-            };
-            _db.players.Add(player);
-        }
-
-        player.gamesPlayed++;
-        player.totalScore += score;
-        if (score > player.highestScore)
-            player.highestScore = score;
-
-        // Add to global leaderboard list
-        var entry = new HighScoreEntry
-        {
-            playerId = playerId,
-            displayName = displayName,
-            score = score,
-            gameMode = gameMode,
-            categoryId = categoryId,
-            subcategoryId = subcategoryId,
-            timestamp = System.DateTime.UtcNow.ToString("o")
-        };
-
-        _db.globalHighScores.Add(entry);
-
-        // Optional: keep only top N scores
-        _db.globalHighScores.Sort((a, b) => b.score.CompareTo(a.score));
-        if (_db.globalHighScores.Count > 9999) // or smaller if you want
-        {
-            _db.globalHighScores.RemoveRange(9999, _db.globalHighScores.Count - 1000);
+            _currentPlayer.fastestCrosswordSeconds = crosswordTimeSeconds;
         }
 
         Save();
     }
 
-    public static List<HighScoreEntry> GetTopScores(int maxCount,
-                                                    string gameMode = null,
-                                                    string categoryId = null,
-                                                    string subcategoryId = null)
+    // ── Seen content ──────────────────────────────────────────────────────
+
+    public static List<string> GetSeenTriviaIds()    => _currentPlayer?.seenTriviaIds    ?? new List<string>();
+    public static List<string> GetSeenWordokuWords()  => _currentPlayer?.seenWordokuWords  ?? new List<string>();
+    public static List<string> GetSeenCrosswordIds()  => _currentPlayer?.seenCrosswordIds  ?? new List<string>();
+
+    // ── Leaderboard ───────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Fetches the top N players sorted by the given Firestore field (descending).
+    /// </summary>
+    public static async Task<List<(string username, long value)>> GetLeaderboardAsync(
+        string field, int limit = 25)
     {
-        EnsureLoaded();
+        if (!FirebaseManager.IsReady)
+            await FirebaseManager.WaitUntilReadyAsync();
 
-        var list = _db.globalHighScores;
+        var result = new List<(string, long)>();
 
-        // Filter if requested
-        if (!string.IsNullOrEmpty(gameMode))
-            list = list.FindAll(e => e.gameMode == gameMode);
+        try
+        {
+            var snapshot = await FirebaseManager.Db
+                .Collection(PlayersCollection)
+                .OrderByDescending(field)
+                .Limit(limit)
+                .GetSnapshotAsync();
 
-        if (!string.IsNullOrEmpty(categoryId))
-            list = list.FindAll(e => e.categoryId == categoryId);
+            foreach (var doc in snapshot.Documents)
+            {
+                var data = doc.ToDictionary();
+                long val = data.ContainsKey(field) ? Convert.ToInt64(data[field]) : 0;
+                result.Add((doc.Id, val));
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Leaderboard query failed ({field}): {ex.Message}");
+        }
 
-        if (!string.IsNullOrEmpty(subcategoryId))
-            list = list.FindAll(e => e.subcategoryId == subcategoryId);
+        return result;
+    }
 
-        list.Sort((a, b) => b.score.CompareTo(a.score));
+    // ── Firestore helpers ─────────────────────────────────────────────────
 
-        if (list.Count > maxCount)
-            list = list.GetRange(0, maxCount);
+    private static async Task PushToFirestoreAsync(PlayerProfile p)
+    {
+        if (!FirebaseManager.IsReady) return;
 
-        return list;
+        try
+        {
+            await FirebaseManager.Db
+                .Collection(PlayersCollection)
+                .Document(p.displayName)
+                .SetAsync(ProfileToDict(p), SetOptions.MergeAll);
+
+            Debug.Log($"[PlayerDatabaseAPI] Firestore synced: {p.displayName}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Firestore push failed: {ex.Message}");
+        }
+    }
+
+    private static Dictionary<string, object> ProfileToDict(PlayerProfile p)
+    {
+        return new Dictionary<string, object>
+        {
+            { "playerId",                p.playerId },
+            { "displayName",             p.displayName },
+            { "passwordHash",            p.passwordHash ?? "" },
+            { "totalScore",              p.totalScore },
+            { "gamesCompleted",          p.gamesCompleted },
+            { "highestScore",            p.highestScore },
+            { "highestStreak",           p.highestStreak },
+            { "perfectSolves",           p.perfectSolves },
+            { "correctAnswers",          p.correctAnswers },
+            { "totalAnswers",            p.totalAnswers },
+            { "fastestCrosswordSeconds", p.fastestCrosswordSeconds },
+            { "seenTriviaIds",           p.seenTriviaIds },
+            { "seenWordokuWords",        p.seenWordokuWords },
+            { "seenCrosswordIds",        p.seenCrosswordIds },
+            { "lastUpdated",             FieldValue.ServerTimestamp }
+        };
+    }
+
+    private static PlayerProfile DictToProfile(string username, Dictionary<string, object> data)
+    {
+        T Get<T>(string key, T fallback)
+        {
+            if (!data.ContainsKey(key)) return fallback;
+            try { return (T)Convert.ChangeType(data[key], typeof(T)); }
+            catch { return fallback; }
+        }
+
+        List<string> GetList(string key)
+        {
+            if (!data.ContainsKey(key)) return new List<string>();
+            if (data[key] is List<object> raw)
+                return raw.ConvertAll(o => o.ToString());
+            return new List<string>();
+        }
+
+        return new PlayerProfile
+        {
+            playerId                = Get("playerId",                Guid.NewGuid().ToString()),
+            displayName             = username,
+            passwordHash            = Get("passwordHash",            ""),
+            totalScore              = Get("totalScore",              0),
+            gamesCompleted          = Get("gamesCompleted",          0),
+            gamesPlayed             = Get("gamesCompleted",          0),
+            highestScore            = Get("highestScore",            0),
+            highestStreak           = Get("highestStreak",           0),
+            perfectSolves           = Get("perfectSolves",           0),
+            correctAnswers          = Get("correctAnswers",          0),
+            totalAnswers            = Get("totalAnswers",            0),
+            fastestCrosswordSeconds = Get("fastestCrosswordSeconds", 0),
+            seenTriviaIds           = GetList("seenTriviaIds"),
+            seenWordokuWords        = GetList("seenWordokuWords"),
+            seenCrosswordIds        = GetList("seenCrosswordIds")
+        };
     }
 }

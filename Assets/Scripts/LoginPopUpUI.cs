@@ -4,133 +4,75 @@ using UnityEngine.SceneManagement;
 
 public class LoginPopupUI : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("Input Fields")]
     [SerializeField] private TMP_InputField usernameInput;
     [SerializeField] private TMP_InputField passwordInput;
 
-    [Header("Optional: Feedback Text")]
-    [SerializeField] private TMP_Text statusText;
-
-    [Header("Optional: Create Account Panel")]
-    [SerializeField] private GameObject createAccountPanel;
+    [Header("UI")]
+    [SerializeField] private TMP_Text  statusText;
+    [SerializeField] private GameObject loadingIndicator;
 
     [Header("Scene Names")]
     [SerializeField] private string mainMenuSceneName      = "MainMenu";
     [SerializeField] private string modeSelectSceneName    = "ModeSelect";
     [SerializeField] private string createAccountSceneName = "CreateAccount_PopUp";
 
-    private const string PrefKey_User = "TF_USER_";
-    private const string PrefKey_Pass = "TF_PASS_";
+    private void Awake() => SetStatus("");
 
-    private void Awake()
-    {
-        SetStatus("");
-    }
+    // ── Buttons ───────────────────────────────────────────────────────────
 
-    // CONFIRM button
-    public void OnConfirmPressed()
+    public async void OnConfirmPressed()
     {
         string user = usernameInput != null ? usernameInput.text.Trim() : "";
-        string pass = passwordInput != null ? passwordInput.text : "";
+        string pass = passwordInput != null ? passwordInput.text        : "";
 
-        if (string.IsNullOrWhiteSpace(user))
-        {
-            SetStatus("Username required.");
-            return;
-        }
+        if (string.IsNullOrWhiteSpace(user)) { SetStatus("Username required."); return; }
+        if (string.IsNullOrWhiteSpace(pass)) { SetStatus("Password required."); return; }
 
-        if (string.IsNullOrWhiteSpace(pass))
-        {
-            SetStatus("Password required.");
-            return;
-        }
+        SetLoading(true);
+        SetStatus("Signing in...");
 
-        if (!HasUser(user))
-        {
-            SetStatus("Account not found. Use Create New Account.");
-            return;
-        }
+        var (success, error) = await PlayerDatabaseAPI.LoginAsync(user, pass);
 
-        if (!PasswordMatches(user, pass))
-        {
-            SetStatus("Incorrect password.");
-            return;
-        }
+        SetLoading(false);
 
-        SetSessionLoggedIn(user, isGuest: false);
+        if (!success) { SetStatus(error); return; }
+
+        SetSession(user, isGuest: false);
         SceneManager.LoadScene(modeSelectSceneName);
     }
 
-    // CANCEL button — go back to main menu
-    public void OnCancelPressed()
-    {
+    public void OnCancelPressed() =>
         SceneManager.LoadScene(mainMenuSceneName);
-    }
 
-    // "Create New Account" button
-    public void OnCreateAccountPressed()
-    {
+    public void OnCreateAccountPressed() =>
         SceneManager.LoadScene(createAccountSceneName);
-    }
 
-    // "Play as Guest" button
     public void OnGuestPressed()
     {
-        SetSessionLoggedIn("Guest", isGuest: true);
+        SetSession("Guest", isGuest: true);
         SceneManager.LoadScene(modeSelectSceneName);
     }
 
-    // Public helper for CreateAccount script
-    public void CreateLocalAccount(string username, string password)
-    {
-        username = username.Trim();
-
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-        {
-            SetStatus("Username + password required.");
-            return;
-        }
-
-        if (HasUser(username))
-        {
-            SetStatus("That username already exists.");
-            return;
-        }
-
-        PlayerPrefs.SetString(PrefKey_User + username, username);
-        PlayerPrefs.SetString(PrefKey_Pass + username, password);
-        PlayerPrefs.Save();
-
-        SetStatus("Account created! Now log in.");
-    }
-
-    // ---------------------------------------
-    // Internal helpers
-    // ---------------------------------------
+    // ── Helpers ───────────────────────────────────────────────────────────
 
     private void SetStatus(string msg)
     {
-        if (statusText != null)
-            statusText.text = msg;
+        if (statusText != null) statusText.text = msg;
     }
 
-    private static bool HasUser(string username)
+    private void SetLoading(bool on)
     {
-        return PlayerPrefs.HasKey(PrefKey_User + username);
+        if (loadingIndicator != null) loadingIndicator.SetActive(on);
+        if (usernameInput    != null) usernameInput.interactable = !on;
+        if (passwordInput    != null) passwordInput.interactable = !on;
     }
 
-    private static bool PasswordMatches(string username, string password)
-    {
-        string stored = PlayerPrefs.GetString(PrefKey_Pass + username, "");
-        return stored == password;
-    }
-
-    private static void SetSessionLoggedIn(string username, bool isGuest)
+    private static void SetSession(string username, bool isGuest)
     {
         PlayerPrefs.SetString("TF_CurrentUser", username);
-        PlayerPrefs.SetInt("TF_IsGuest", isGuest ? 1 : 0);
+        PlayerPrefs.SetInt   ("TF_IsGuest",     isGuest ? 1 : 0);
         PlayerPrefs.Save();
-
-        Debug.Log($"[LoginPopupUI] Logged in as '{username}' (Guest={isGuest})");
+        Debug.Log($"[LoginPopupUI] Session set: {username} guest={isGuest}");
     }
 }

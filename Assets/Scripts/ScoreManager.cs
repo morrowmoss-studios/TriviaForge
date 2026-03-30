@@ -4,13 +4,19 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    private int currentScore;
-    private int currentStreak;
+    private int   currentScore;
+    private int   currentStreak;
+    private int   maxStreakThisGame;
+    private int   correctAnswersThisGame;
+    private int   totalAnswersThisGame;
     private float currentMultiplier = 1f;
 
-    public int CurrentScore    => currentScore;
-    public int CurrentStreak   => currentStreak;
-    public float CurrentMultiplier => currentMultiplier;
+    public int   CurrentScore             => currentScore;
+    public int   CurrentStreak            => currentStreak;
+    public int   MaxStreakThisGame        => maxStreakThisGame;
+    public int   CorrectAnswersThisGame   => correctAnswersThisGame;
+    public int   TotalAnswersThisGame     => totalAnswersThisGame;
+    public float CurrentMultiplier        => currentMultiplier;
 
     // Fired after every answer so StreakUI can refresh without polling
     public event System.Action OnScoreChanged;
@@ -31,9 +37,12 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetScore()
     {
-        currentScore      = 0;
-        currentStreak     = 0;
-        currentMultiplier = 1f;
+        currentScore             = 0;
+        currentStreak            = 0;
+        maxStreakThisGame        = 0;
+        correctAnswersThisGame   = 0;
+        totalAnswersThisGame     = 0;
+        currentMultiplier        = 1f;
 
         OnScoreChanged?.Invoke();
         Debug.Log("[ScoreManager] ResetScore -> 0");
@@ -70,6 +79,8 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void RegisterAnswer(bool isCorrect, bool usedHint)
     {
+        totalAnswersThisGame++;
+
         if (!isCorrect)
         {
             currentStreak     = 0;
@@ -80,8 +91,12 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
-        // Increment streak first, then derive multiplier
+        correctAnswersThisGame++;
+
         currentStreak++;
+        if (currentStreak > maxStreakThisGame)
+            maxStreakThisGame = currentStreak;
+
         currentMultiplier = GetMultiplierForStreak(currentStreak);
 
         int basePoints  = GetBasePoints();

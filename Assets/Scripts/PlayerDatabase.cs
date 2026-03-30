@@ -13,15 +13,30 @@ public class PlayerProfile
 {
     public string playerId;
     public string displayName;
+    public string passwordHash;
 
+    // Core stats
     public int totalScore;
-    public int gamesPlayed;
+    public int gamesPlayed;              // kept for legacy compat
+    public int gamesCompleted;           // kept in sync with gamesPlayed
     public int highestScore;
+    public int highestStreak;
+    public int perfectSolves;
 
-    // Seen content — tracked per player to avoid repeats
-    public List<string> seenTriviaIds       = new List<string>(); // TriviaEntry.id
-    public List<string> seenWordokuWords    = new List<string>(); // the 9-letter word
-    public List<string> seenCrosswordIds    = new List<string>(); // "{categoryId}_{puzzleIndex}"
+    // Trivia accuracy
+    public int correctAnswers;
+    public int totalAnswers;
+
+    // Crossword speed (0 = never set)
+    public int fastestCrosswordSeconds;
+
+    // Seen content — prevents repeat questions
+    public List<string> seenTriviaIds    = new List<string>();
+    public List<string> seenWordokuWords = new List<string>();
+    public List<string> seenCrosswordIds = new List<string>();
+
+    public float AccuracyRate =>
+        totalAnswers > 0 ? (float)correctAnswers / totalAnswers : 0f;
 }
 
 [Serializable]

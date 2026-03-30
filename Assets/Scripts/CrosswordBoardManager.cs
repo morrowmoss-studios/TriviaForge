@@ -55,6 +55,9 @@ public class CrosswordBoardManager : MonoBehaviour
     private const int MaxHints = 3;
     private int hintsRemaining = MaxHints;
 
+    public int  HintsRemaining => hintsRemaining;
+    public bool UsedNoHints    => hintsRemaining == MaxHints;
+
     public event Action<int> OnHintsChanged;
 
     [Header("Database")]
