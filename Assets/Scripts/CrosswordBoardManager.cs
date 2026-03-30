@@ -451,6 +451,23 @@ public class CrosswordBoardManager : MonoBehaviour
                 solutionLetters[rr, cc] = ans[i];
             }
         }
+
+        // Second pass: guarantee every word's start cell always maps to itself,
+        // regardless of iteration order above. Prevents a longer word from
+        // overwriting the start cell of a shorter word that begins mid-span.
+        foreach (var w in words)
+        {
+            if (w == null) continue;
+
+            int r = w.startRow;
+            int c = w.startCol;
+
+            if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
+            if (cells[r, c].IsBlocked) continue;
+
+            if (w.isAcross) acrossAt[r, c] = w;
+            else            downAt[r, c]   = w;
+        }
     }
 
     private void AssignCellNumbers()

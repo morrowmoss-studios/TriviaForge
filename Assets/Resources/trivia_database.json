@@ -2437,12 +2437,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "science_biology_xw_easy_001",
-              "answer": "CELL",
-              "clue": "Basic structural unit of life",
-              "difficulty": "easy"
-            },
-            {
               "id": "science_biology_xw_easy_002",
               "answer": "DNA",
               "clue": "Molecule that carries genetic information",
@@ -2465,12 +2459,6 @@
               "answer": "ORGAN",
               "clue": "Structure composed of multiple tissues",
               "difficulty": "easy"
-            },
-            {
-              "id": "science_biology_xw_medium_001",
-              "answer": "MITOSIS",
-              "clue": "Cell division process that produces two identical daughter cells",
-              "difficulty": "medium"
             },
             {
               "id": "science_biology_xw_medium_002",
@@ -2509,12 +2497,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "science_biology_xw_hard_001",
-              "answer": "RIBOSOME",
-              "clue": "Cell structure where proteins are synthesized",
-              "difficulty": "hard"
-            },
-            {
               "id": "science_biology_xw_hard_002",
               "answer": "SETPOINT",
               "clue": "Target value that a biological regulatory system works to maintain",
@@ -2543,12 +2525,6 @@
               "answer": "PROTEIN",
               "clue": "Large biomolecule made of amino acids",
               "difficulty": "hard"
-            },
-            {
-              "id": "science_biology_xw_insanity_001",
-              "answer": "ENDOPLASM",
-              "clue": "Inner region of cytoplasm in certain cells",
-              "difficulty": "insanity"
             },
             {
               "id": "science_biology_xw_insanity_002",
@@ -14480,306 +14456,6 @@
                 "Kepler\u2019s law",
                 "Newton\u2019s law",
                 "Planck\u2019s law"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_easy_013",
-              "questionText": "Which planet is known as the hottest in our solar system?",
-              "answers": [
-                "Venus",
-                "Mercury",
-                "Mars",
-                "Jupiter"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_014",
-              "questionText": "What do we call a large rocky object orbiting the Sun?",
-              "answers": [
-                "Asteroid",
-                "Comet",
-                "Meteor",
-                "Satellite"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_015",
-              "questionText": "What is the name of the dwarf planet once classified as the ninth planet?",
-              "answers": [
-                "Pluto",
-                "Ceres",
-                "Eris",
-                "Haumea"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_016",
-              "questionText": "Which planet is known for having the largest number of confirmed moons?",
-              "answers": [
-                "Saturn",
-                "Earth",
-                "Mars",
-                "Venus"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_017",
-              "questionText": "What do we call a spacecraft designed to travel beyond Earth\u2019s orbit without returning?",
-              "answers": [
-                "Space probe",
-                "Space shuttle",
-                "Rocket booster",
-                "Space station"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_018",
-              "questionText": "Which planet is closest in size to Earth?",
-              "answers": [
-                "Venus",
-                "Mars",
-                "Mercury",
-                "Neptune"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_medium_013",
-              "questionText": "What term describes a small, dense remnant of a low-mass star?",
-              "answers": [
-                "White dwarf",
-                "Neutron star",
-                "Red giant",
-                "Black hole"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_medium_014",
-              "questionText": "What is the name of the process by which planets form from dust and gas?",
-              "answers": [
-                "Accretion",
-                "Fusion",
-                "Fission",
-                "Expansion"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_medium_015",
-              "questionText": "Which mission first successfully landed a rover on Mars?",
-              "answers": [
-                "Viking 1",
-                "Curiosity",
-                "Perseverance",
-                "Spirit"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_medium_016",
-              "questionText": "What is the name of the largest volcano in the solar system located on Mars?",
-              "answers": [
-                "Olympus Mons",
-                "Mauna Kea",
-                "Mount Sharp",
-                "Valles Marineris"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_medium_017",
-              "questionText": "What is the term for the apparent shift of a nearby star against distant stars?",
-              "answers": [
-                "Parallax",
-                "Redshift",
-                "Lensing",
-                "Diffraction"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_medium_018",
-              "questionText": "Which planet has the fastest rotation period?",
-              "answers": [
-                "Jupiter",
-                "Earth",
-                "Mars",
-                "Neptune"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_space_hard_013",
-              "questionText": "What limit describes the maximum mass of a stable white dwarf star?",
-              "answers": [
-                "Chandrasekhar limit",
-                "Tolman\u2013Oppenheimer\u2013Volkoff limit",
-                "Eddington limit",
-                "Schwarzschild limit"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_hard_014",
-              "questionText": "What term describes matter spiraling into a black hole?",
-              "answers": [
-                "Accretion disk",
-                "Event field",
-                "Photon belt",
-                "Singularity ring"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_hard_015",
-              "questionText": "What is the name of the first reusable spacecraft developed by NASA?",
-              "answers": [
-                "Space Shuttle",
-                "Apollo",
-                "Gemini",
-                "Voyager"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_hard_016",
-              "questionText": "What is the name of the galaxy cluster that includes the Milky Way?",
-              "answers": [
-                "Local Group",
-                "Virgo Cluster",
-                "Coma Cluster",
-                "Perseus Cluster"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_hard_017",
-              "questionText": "Which phenomenon allows detection of exoplanets through dips in brightness?",
-              "answers": [
-                "Transit method",
-                "Parallax shift",
-                "Redshift analysis",
-                "Spectral broadening"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_hard_018",
-              "questionText": "What type of galaxy lacks a defined shape and structure?",
-              "answers": [
-                "Irregular galaxy",
-                "Spiral galaxy",
-                "Elliptical galaxy",
-                "Barred galaxy"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_space_insanity_015",
-              "questionText": "What is the name of the theory describing the universe\u2019s earliest moments before inflation?",
-              "answers": [
-                "Quantum gravity era",
-                "Cosmic dawn",
-                "Reionization epoch",
-                "Dark energy phase"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_016",
-              "questionText": "What term describes the brightness of a star measured at a standard distance?",
-              "answers": [
-                "Absolute magnitude",
-                "Apparent magnitude",
-                "Luminosity",
-                "Flux density"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_017",
-              "questionText": "Which telescope observes primarily in infrared wavelengths to see through dust clouds?",
-              "answers": [
-                "James Webb Space Telescope",
-                "Hubble Telescope",
-                "Chandra Observatory",
-                "Kepler Telescope"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_018",
-              "questionText": "What is the name of the phenomenon where a massive object warps spacetime and magnifies distant light?",
-              "answers": [
-                "Gravitational lensing",
-                "Redshift",
-                "Parallax",
-                "Transit effect"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_019",
-              "questionText": "Which cosmic structure is composed primarily of dark matter scaffolding?",
-              "answers": [
-                "Large-scale structure",
-                "Accretion disk",
-                "Solar nebula",
-                "Heliosphere"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_020",
-              "questionText": "What is the name of the radiation produced when matter falls into a black hole?",
-              "answers": [
-                "Hawking radiation",
-                "Cosmic background radiation",
-                "Gamma burst",
-                "Solar flare"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "science_space_insanity_021",
-              "questionText": "Which cosmological parameter measures the current expansion rate of the universe?",
-              "answers": [
-                "Hubble constant",
-                "Planck constant",
-                "Gravitational constant",
-                "Boltzmann constant"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -49809,12 +49485,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "th_z18",
-              "answer": "HELMANN",
-              "clue": "skip-spelling",
-              "difficulty": "hard"
-            },
-            {
               "id": "h_fin1",
               "answer": "XEROX",
               "clue": "PARC research lab that invented the GUI mouse and ethernet",
@@ -49824,12 +49494,6 @@
               "id": "h_fin2",
               "answer": "NOKIA",
               "clue": "Finnish company that dominated mobile phones before smartphones",
-              "difficulty": "easy"
-            },
-            {
-              "id": "h_fin3",
-              "answer": "IBMPC",
-              "clue": "skip-notvalid",
               "difficulty": "easy"
             },
             {
@@ -57477,12 +57141,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geo_cc_x20",
-              "answer": "LITHUAN",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "geo_cc_x21",
               "answer": "PARAGUAY",
               "clue": "Landlocked South American country whose capital is Asuncion",
@@ -60181,12 +59839,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geo_cit_h_001",
-              "answer": "ULAANBAAT",
-              "clue": "skip-toolong",
-              "difficulty": "hard"
-            },
-            {
               "id": "geo_cit_h_002",
               "answer": "REYKJAVIK",
               "clue": "Capital of Iceland the world's most northerly capital",
@@ -62464,12 +62116,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geo_lm_m_015",
-              "answer": "TENOCHTIT",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "geo_lm_m_017",
               "answer": "PALENQUE",
               "clue": "Ancient Maya city in Chiapas Mexico with elaborate carvings",
@@ -62608,21 +62254,9 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geo_lm_i_007",
-              "answer": "CHAVINDE",
-              "clue": "skip",
-              "difficulty": "insanity"
-            },
-            {
               "id": "geo_lm_i_008",
               "answer": "TIWANAKU",
               "clue": "Ancient pre-Columbian city near Lake Titicaca in Bolivia",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "geo_lm_i_009",
-              "answer": "TEOTIHUA",
-              "clue": "skip-toolong",
               "difficulty": "insanity"
             },
             {
@@ -62732,12 +62366,6 @@
               "answer": "UFFIZI",
               "clue": "Florentine gallery housing the world's greatest Renaissance art",
               "difficulty": "easy"
-            },
-            {
-              "id": "lm_b8",
-              "answer": "ANURADHAP",
-              "clue": "skip-toolong",
-              "difficulty": "insanity"
             },
             {
               "id": "lm_f1",
@@ -65043,25 +64671,13 @@
             {
               "id": "np_b13",
               "answer": "CANYONS",
-              "clue": "skip",
+              "clue": "Deep gorges carved by rivers; Bryce and Zion both feature these",
               "difficulty": "hard"
-            },
-            {
-              "id": "np_b14",
-              "answer": "CANYONLAB",
-              "clue": "skip",
-              "difficulty": "insanity"
             },
             {
               "id": "np_b15",
               "answer": "CHILOE",
               "clue": "Chilean UNESCO island known for colourful wooden churches",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "np_b16",
-              "answer": "AYSENAIKE",
-              "clue": "skip",
               "difficulty": "insanity"
             },
             {
@@ -75427,12 +75043,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "po_x08",
-              "answer": "WHITMN",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "po_x09",
               "answer": "KEATS",
               "clue": "John English Romantic poet known for his Odes",
@@ -77714,12 +77324,6 @@
               "answer": "UTOPIA",
               "clue": "Imagined society with perfect conditions for all citizens",
               "difficulty": "easy"
-            },
-            {
-              "id": "st_x17",
-              "answer": "BILDUNGS",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
             },
             {
               "id": "st_x19",
@@ -82390,12 +81994,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "pl_x18",
-              "answer": "VERFREMD",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "pl_x20",
               "answer": "CATHARTIC",
               "clue": "Relating to the emotional purging effect of tragedy",
@@ -82460,12 +82058,6 @@
               "answer": "PANTALONE",
               "clue": "Miserly old merchant character in commedia dell arte",
               "difficulty": "hard"
-            },
-            {
-              "id": "pl_x34",
-              "answer": "SOPHONIAS",
-              "clue": "skip",
-              "difficulty": "insanity"
             },
             {
               "id": "pl_x41",
@@ -84379,12 +83971,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "lit_fi_e_007",
-              "answer": "HEMINGWAY",
-              "clue": "skip-toolong",
-              "difficulty": "easy"
-            },
-            {
               "id": "lit_fi_e_009",
               "answer": "STEINBECK",
               "clue": "John American author of Of Mice and Men and The Grapes of Wrath",
@@ -84659,12 +84245,6 @@
               "answer": "BOLL",
               "clue": "Heinrich German Nobel laureate author of The Lost Honour of Katharina",
               "difficulty": "hard"
-            },
-            {
-              "id": "lit_fi_i_001",
-              "answer": "MURAKAM",
-              "clue": "skip-toolong",
-              "difficulty": "insanity"
             },
             {
               "id": "lit_fi_i_002",
@@ -86857,12 +86437,6 @@
               "id": "lit_nf_m_017",
               "answer": "EMERSON",
               "clue": "Ralph Waldo American Transcendentalist essayist",
-              "difficulty": "medium"
-            },
-            {
-              "id": "lit_nf_m_018",
-              "answer": "WOLLSTONE",
-              "clue": "skip-toolong",
               "difficulty": "medium"
             },
             {
@@ -92283,12 +91857,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "ca_x19",
-              "answer": "SATELLIT",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "ca_x20",
               "answer": "STRADDLE",
               "clue": "Voluntary blind double posted by player after the big blind",
@@ -92304,12 +91872,6 @@
               "id": "ca_x22",
               "answer": "DRAW",
               "clue": "Poker variant where players can exchange cards to improve",
-              "difficulty": "medium"
-            },
-            {
-              "id": "ca_x23",
-              "answer": "MIXEDGAME",
-              "clue": "skip-toolong",
               "difficulty": "medium"
             },
             {
@@ -92364,12 +91926,6 @@
               "id": "ca_x33",
               "answer": "DONKBET",
               "clue": "A bet made out of position into the pre-flop aggressor",
-              "difficulty": "hard"
-            },
-            {
-              "id": "ca_x34",
-              "answer": "LIMPRAIZE",
-              "clue": "skip-toolong",
               "difficulty": "hard"
             },
             {
@@ -95305,33 +94861,9 @@
               "difficulty": "medium"
             },
             {
-              "id": "vg_y7",
-              "answer": "WORLDS",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
-              "id": "vg_y10",
-              "answer": "PILLAR",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "vg_y11",
               "answer": "NIMBATUS",
               "clue": "Procedural spaceship-building action game",
-              "difficulty": "hard"
-            },
-            {
-              "id": "vg_y12",
-              "answer": "GALACTIC",
-              "clue": "skip",
-              "difficulty": "hard"
-            },
-            {
-              "id": "vg_y13",
-              "answer": "ACROSS",
-              "clue": "skip",
               "difficulty": "hard"
             },
             {
@@ -97474,12 +97006,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "bg_x20",
-              "answer": "FOSSILS",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "bg_x22",
               "answer": "KLASK",
               "clue": "Danish dexterity goal game played on a tabletop board",
@@ -97567,12 +97093,6 @@
               "id": "bg_x45",
               "answer": "WORKER",
               "clue": "Blank Placement a game mechanism of assigning tokens to actions",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "bg_x46",
-              "answer": "DECKBUILD",
-              "clue": "skip-toolong",
               "difficulty": "insanity"
             },
             {
@@ -99757,12 +99277,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "pg_x30",
-              "answer": "TOSSBALL",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "pg_x31",
               "answer": "HYPNOSIS",
               "clue": "A party game involving guided group relaxation roleplay",
@@ -99772,12 +99286,6 @@
               "id": "pg_x34",
               "answer": "ROLEPLAY",
               "clue": "A game mechanic of taking on a character's identity",
-              "difficulty": "hard"
-            },
-            {
-              "id": "pg_x35",
-              "answer": "LARPGAME",
-              "clue": "skip",
               "difficulty": "hard"
             },
             {
@@ -99808,18 +99316,6 @@
               "id": "pg_x41",
               "answer": "SPEEDCARD",
               "clue": "Any game in which speed of reaction is the primary mechanic",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "pg_x42",
-              "answer": "LIARGAME",
-              "clue": "skip",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "pg_x43",
-              "answer": "TAKEOVER",
-              "clue": "skip",
               "difficulty": "insanity"
             },
             {
@@ -99865,22 +99361,10 @@
               "difficulty": "insanity"
             },
             {
-              "id": "pg_x54",
-              "answer": "LUDONARR",
-              "clue": "skip-toolong",
-              "difficulty": "insanity"
-            },
-            {
               "id": "pg_x57",
               "answer": "MECHANIC",
               "clue": "The functional rules and systems that govern a game",
               "difficulty": "insanity"
-            },
-            {
-              "id": "pg_z18",
-              "answer": "TRIPWIRE",
-              "clue": "skip",
-              "difficulty": "hard"
             },
             {
               "id": "pg_z19",
@@ -102106,12 +101590,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "cs_x14",
-              "answer": "PROGRES",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "cs_x15",
               "answer": "DOWNSWING",
               "clue": "An extended period of losing results in gambling",
@@ -102148,12 +101626,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "cs_x21",
-              "answer": "HOUSEADV",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "cs_x22",
               "answer": "RELOADS",
               "clue": "Casino bonus awarded when a player tops up their account",
@@ -102184,18 +101656,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "cs_x29",
-              "answer": "HIGHROLL",
-              "clue": "skip-toolong",
-              "difficulty": "hard"
-            },
-            {
-              "id": "cs_x30",
-              "answer": "BANKBREAK",
-              "clue": "skip-toolong",
-              "difficulty": "hard"
-            },
-            {
               "id": "cs_x32",
               "answer": "WONGING",
               "clue": "Entering a blackjack game mid-shoe when count is favourable",
@@ -102212,12 +101672,6 @@
               "answer": "BARRING",
               "clue": "Banning a player from returning to a casino",
               "difficulty": "hard"
-            },
-            {
-              "id": "cs_x36",
-              "answer": "GRIDCARD",
-              "clue": "skip",
-              "difficulty": "insanity"
             },
             {
               "id": "cs_x37",
@@ -102268,12 +101722,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "cs_x45",
-              "answer": "GRIDLEY",
-              "clue": "skip",
-              "difficulty": "insanity"
-            },
-            {
               "id": "cs_y01",
               "answer": "RUNUP",
               "clue": "A steady increase in a gambler's stack over a session",
@@ -102302,18 +101750,6 @@
               "answer": "REALTIME",
               "clue": "Blank Assistance use of software aid during online poker",
               "difficulty": "hard"
-            },
-            {
-              "id": "cs_y09",
-              "answer": "GRIDLOCK",
-              "clue": "skip",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "cs_y11",
-              "answer": "BONUSCODE",
-              "clue": "skip-toolong",
-              "difficulty": "insanity"
             },
             {
               "id": "cs_y13",
@@ -104383,21 +103819,9 @@
               "difficulty": "easy"
             },
             {
-              "id": "og_x06",
-              "answer": "TUGWAR",
-              "clue": "skip-toolong",
-              "difficulty": "easy"
-            },
-            {
               "id": "og_x08",
               "answer": "SACKRACE",
               "clue": "Traditional race where competitors jump inside a burlap sack",
-              "difficulty": "easy"
-            },
-            {
-              "id": "og_x09",
-              "answer": "EGGSPOON",
-              "clue": "skip-toolong",
               "difficulty": "easy"
             },
             {
@@ -104416,12 +103840,6 @@
               "id": "og_x13",
               "answer": "LAWN",
               "clue": "Blank Games collective term for croquet bowls and similar sports",
-              "difficulty": "easy"
-            },
-            {
-              "id": "og_x14",
-              "answer": "MINIPUTT",
-              "clue": "skip-toolong",
               "difficulty": "easy"
             },
             {
@@ -104479,39 +103897,9 @@
               "difficulty": "medium"
             },
             {
-              "id": "og_x30",
-              "answer": "TUGOFWAR",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
-              "id": "og_x31",
-              "answer": "TUGATWAR",
-              "clue": "skip",
-              "difficulty": "hard"
-            },
-            {
-              "id": "og_x32",
-              "answer": "PULLROPE",
-              "clue": "skip",
-              "difficulty": "hard"
-            },
-            {
-              "id": "og_x34",
-              "answer": "TOKAMAK",
-              "clue": "skip",
-              "difficulty": "hard"
-            },
-            {
               "id": "og_x35",
               "answer": "BIKEPOLO",
               "clue": "Urban sport combining cycling and polo",
-              "difficulty": "hard"
-            },
-            {
-              "id": "og_x38",
-              "answer": "SMASHBALL",
-              "clue": "skip",
               "difficulty": "hard"
             },
             {
@@ -104521,27 +103909,9 @@
               "difficulty": "hard"
             },
             {
-              "id": "og_x40",
-              "answer": "KORFBALL",
-              "clue": "skip-dup",
-              "difficulty": "hard"
-            },
-            {
               "id": "og_x42",
               "answer": "SHOOTOUT",
               "clue": "Penalty kick or free throw competition to decide a winner",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "og_x44",
-              "answer": "SPOROBOLE",
-              "clue": "skip",
-              "difficulty": "insanity"
-            },
-            {
-              "id": "og_x45",
-              "answer": "TRUGO",
-              "clue": "skip-dup",
               "difficulty": "insanity"
             },
             {
@@ -104555,12 +103925,6 @@
               "answer": "ROUNDNET",
               "clue": "Brand name for the sport played with a small round trampoline",
               "difficulty": "insanity"
-            },
-            {
-              "id": "og_y02",
-              "answer": "TOWING",
-              "clue": "skip",
-              "difficulty": "easy"
             },
             {
               "id": "og_y03",
@@ -115137,12 +114501,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "rx18",
-              "answer": "LEGATE",
-              "clue": "A papal envoy sent with special authority to a region",
-              "difficulty": "hard"
-            },
-            {
               "id": "rx19",
               "answer": "DIOCESE",
               "clue": "A district under the pastoral care of a bishop",
@@ -117087,12 +116445,6 @@
               "id": "h_in_h11",
               "answer": "CLAUSIUS",
               "clue": "Rudolf Blank German physicist who coined the term entropy",
-              "difficulty": "hard"
-            },
-            {
-              "id": "h_in_h12",
-              "answer": "PLANCK",
-              "clue": "skip-dup",
               "difficulty": "hard"
             },
             {
@@ -119309,7 +118661,7 @@
             {
               "id": "h_19_e02",
               "answer": "WWI",
-              "clue": "Skip",
+              "clue": "The Great War fought from 1914 to 1918, abbr.",
               "difficulty": "easy"
             },
             {
@@ -119382,12 +118734,6 @@
               "id": "h_19_m04",
               "answer": "LENINISM",
               "clue": "Political ideology of Russian revolutionary Vladimir Lenin",
-              "difficulty": "medium"
-            },
-            {
-              "id": "h_19_m05",
-              "answer": "STALINIS",
-              "clue": "skip-toolong",
               "difficulty": "medium"
             },
             {
@@ -121658,7 +121004,7 @@
             {
               "id": "h_20_e12",
               "answer": "LEHMANS",
-              "clue": "skip",
+              "clue": "Brothers bank whose 2008 collapse triggered a global financial crisis",
               "difficulty": "easy"
             },
             {
@@ -122124,21 +121470,9 @@
               "difficulty": "medium"
             },
             {
-              "id": "fin0e",
-              "answer": "GRUBHUB",
-              "clue": "skip-toolong",
-              "difficulty": "hard"
-            },
-            {
               "id": "fin0f",
               "answer": "LYFT",
               "clue": "American ride-sharing company competing with Uber",
-              "difficulty": "hard"
-            },
-            {
-              "id": "fin0g",
-              "answer": "DOORDASH",
-              "clue": "skip-toolong",
               "difficulty": "hard"
             },
             {
@@ -127728,7 +127062,7 @@
             {
               "id": "sp_ol_i01",
               "answer": "HAILE",
-              "clue": "skip",
+              "clue": "Ethiopian distance runner ___ Gebrselassie, back-to-back Olympic 10000m champion",
               "difficulty": "insanity"
             },
             {
@@ -127864,12 +127198,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "ol28",
-              "answer": "TRIPLEUMP",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "ol36",
               "answer": "EPEE",
               "clue": "The heaviest of the three fencing weapons scoring hits on the body",
@@ -127915,12 +127243,6 @@
               "id": "olx4",
               "answer": "WADA",
               "clue": "World Anti-Doping Agency that sets sport's drug testing rules",
-              "difficulty": "hard"
-            },
-            {
-              "id": "olx5",
-              "answer": "EPOCHE",
-              "clue": "skip",
               "difficulty": "hard"
             },
             {
@@ -130011,7 +129333,7 @@
             {
               "id": "sp_ts_h12",
               "answer": "DIMAGGIO",
-              "clue": "skip",
+              "clue": "Yankee Clipper Joe ___, who holds the record 56-game hitting streak",
               "difficulty": "hard"
             },
             {
@@ -130207,12 +129529,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "tm27",
-              "answer": "WALKBASE",
-              "clue": "skip-toolong",
-              "difficulty": "medium"
-            },
-            {
               "id": "tm31",
               "answer": "UMPIRE",
               "clue": "The official who enforces the rules in cricket and baseball",
@@ -130234,12 +129550,6 @@
               "id": "tm34",
               "answer": "YELLOW",
               "clue": "Blank Card a caution shown to a player in football",
-              "difficulty": "medium"
-            },
-            {
-              "id": "tm35",
-              "answer": "REDCARD",
-              "clue": "skip-toolong",
               "difficulty": "medium"
             },
             {
@@ -132250,12 +131560,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "sp_rn_m10",
-              "answer": "NEWCOME",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "sp_rn_m11",
               "answer": "NEWCOMBE",
               "clue": "John Australian who won Wimbledon three times",
@@ -132355,12 +131659,6 @@
               "id": "sp_rn_h07",
               "answer": "SMASH",
               "clue": "Powerful overhead shot usually winning the point",
-              "difficulty": "hard"
-            },
-            {
-              "id": "sp_rn_h08",
-              "answer": "LOBE",
-              "clue": "skip",
               "difficulty": "hard"
             },
             {
@@ -134767,12 +134065,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "rc09",
-              "answer": "PACECAR",
-              "clue": "skip-dup",
-              "difficulty": "easy"
-            },
-            {
               "id": "rc10",
               "answer": "LAPTIME",
               "clue": "The time taken to complete a single circuit of a racing track",
@@ -136864,12 +136156,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "sp_wa_m10",
-              "answer": "ARMSTRONG",
-              "clue": "skip",
-              "difficulty": "medium"
-            },
-            {
               "id": "sp_wa_m11",
               "answer": "HACKETT",
               "clue": "Grant Australian swimmer who dominated 1500m freestyle",
@@ -137143,12 +136429,6 @@
               "id": "wt35",
               "answer": "BARRELING",
               "clue": "Riding inside the hollow tube formed by a breaking wave",
-              "difficulty": "hard"
-            },
-            {
-              "id": "wtx15",
-              "answer": "SPEARFISH",
-              "clue": "skip-toolong",
               "difficulty": "hard"
             },
             {
@@ -147107,12 +146387,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "c2_39",
-              "answer": "SKYLLA",
-              "clue": "skip-dup",
-              "difficulty": "insanity"
-            },
-            {
               "id": "c2_40",
               "answer": "ARACHNE",
               "clue": "A weaver transformed into the first spider by Athena",
@@ -152148,12 +151422,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "gh45",
-              "answer": "NECROMANC",
-              "clue": "skip-toolong",
-              "difficulty": "insanity"
-            },
-            {
               "id": "gh46",
               "answer": "AKASHA",
               "clue": "The fifth element in Hindu cosmology underlying all existence",
@@ -154355,19 +153623,13 @@
             {
               "id": "ul23",
               "answer": "CROPSEY",
-              "clue": "skip",
+              "clue": "Staten Island folklore killer said to haunt the grounds of Willowbrook",
               "difficulty": "medium"
             },
             {
               "id": "ul24",
               "answer": "GOATMAN",
               "clue": "A half-human half-goat creature in American rural legend",
-              "difficulty": "medium"
-            },
-            {
-              "id": "ul25",
-              "answer": "BLACKEYED",
-              "clue": "skip-toolong",
               "difficulty": "medium"
             },
             {

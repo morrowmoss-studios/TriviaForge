@@ -223,7 +223,16 @@ public class TriviaQuestionManager : MonoBehaviour
         TriviaSessionData.chosenIndex  = -1; // -1 = timed out
         TriviaSessionData.wasCorrect   = false;
 
+        // Save index before incrementing so we mark the right question as seen
+        int justAnswered = currentQuestionIndex;
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
+
+        if (TriviaSessionData.sessionQuestions != null &&
+            justAnswered < TriviaSessionData.sessionQuestions.Count)
+        {
+            SeenContentTracker.MarkTriviaAsSeen(
+                TriviaSessionData.sessionQuestions[justAnswered]);
+        }
 
         for (int i = 0; i < q.answers.Length && i < TriviaSessionData.answers.Length; i++)
             TriviaSessionData.answers[i] = q.answers[i];
@@ -365,13 +374,15 @@ public class TriviaQuestionManager : MonoBehaviour
         TriviaSessionData.chosenIndex  = button.answerIndex;
         TriviaSessionData.wasCorrect   = (button.answerIndex == q.correctIndex);
 
+        // Save index before incrementing so we mark the right question as seen
+        int justAnswered = currentQuestionIndex;
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
 
         if (TriviaSessionData.sessionQuestions != null &&
-            currentQuestionIndex < TriviaSessionData.sessionQuestions.Count)
+            justAnswered < TriviaSessionData.sessionQuestions.Count)
         {
             SeenContentTracker.MarkTriviaAsSeen(
-                TriviaSessionData.sessionQuestions[currentQuestionIndex]);
+                TriviaSessionData.sessionQuestions[justAnswered]);
         }
 
         for (int i = 0; i < q.answers.Length && i < TriviaSessionData.answers.Length; i++)
