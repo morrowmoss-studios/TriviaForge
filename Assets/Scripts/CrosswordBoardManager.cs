@@ -111,9 +111,19 @@ public class CrosswordBoardManager : MonoBehaviour
 
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
-                    _selectedCell.SetLetter(newChar);
-                    AdvanceToNextCell();
-                    CheckForWin();
+                    // If the current cell is already filled, absorb the keystroke
+                    // silently and just advance -- the player typed that letter but
+                    // it was already there from an intersecting word
+                    if (_selectedCell.GetLetter() != '\0')
+                    {
+                        AdvanceToNextCell();
+                    }
+                    else
+                    {
+                        _selectedCell.SetLetter(newChar);
+                        AdvanceToNextCell();
+                        CheckForWin();
+                    }
                 }
 
                 keyboard.text = KeyboardSentinel;
@@ -154,9 +164,16 @@ public class CrosswordBoardManager : MonoBehaviour
                             char ch = char.ToUpper(keyName[0]);
                             if (ch >= 'A' && ch <= 'Z')
                             {
-                                _selectedCell.SetLetter(ch);
-                                AdvanceToNextCell();
-                                CheckForWin();
+                                if (_selectedCell.GetLetter() != '\0')
+                                {
+                                    AdvanceToNextCell();
+                                }
+                                else
+                                {
+                                    _selectedCell.SetLetter(ch);
+                                    AdvanceToNextCell();
+                                    CheckForWin();
+                                }
                                 break;
                             }
                         }
@@ -189,27 +206,43 @@ public class CrosswordBoardManager : MonoBehaviour
         if (_selectedAcross)
         {
             int nextC = c + 1;
-            while (nextC < cols && !cells[r, nextC].IsBlocked)
+            if (nextC < cols && !cells[r, nextC].IsBlocked)
             {
-                if (cells[r, nextC].GetLetter() == '\0')
+                SelectCell(cells[r, nextC], true);
+                return;
+            }
+
+            // End of word -- jump to first empty cell in the word if any
+            int startC = c;
+            while (startC - 1 >= 0 && !cells[r, startC - 1].IsBlocked) startC--;
+            for (int sc = startC; sc < cols && !cells[r, sc].IsBlocked; sc++)
+            {
+                if (cells[r, sc].GetLetter() == '\0')
                 {
-                    SelectCell(cells[r, nextC], true);
+                    SelectCell(cells[r, sc], true);
                     return;
                 }
-                nextC++;
             }
         }
         else
         {
             int nextR = r + 1;
-            while (nextR < rows && !cells[nextR, c].IsBlocked)
+            if (nextR < rows && !cells[nextR, c].IsBlocked)
             {
-                if (cells[nextR, c].GetLetter() == '\0')
+                SelectCell(cells[nextR, c], false);
+                return;
+            }
+
+            // End of word -- jump to first empty cell in the word if any
+            int startR = r;
+            while (startR - 1 >= 0 && !cells[startR - 1, c].IsBlocked) startR--;
+            for (int sr = startR; sr < rows && !cells[sr, c].IsBlocked; sr++)
+            {
+                if (cells[sr, c].GetLetter() == '\0')
                 {
-                    SelectCell(cells[nextR, c], false);
+                    SelectCell(cells[sr, c], false);
                     return;
                 }
-                nextR++;
             }
         }
     }
@@ -233,10 +266,10 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             if (activeWord != null && inactiveWord != null)
                 CrosswordClueDisplay.Instance.ShowMultiClue(
-                    activeWord.id, activeWord.clue,
-                    inactiveWord.id, inactiveWord.clue);
+                    activeWord.id, activeWord.clue, activeWord.answer?.Length ?? 0,
+                    inactiveWord.id, inactiveWord.clue, inactiveWord.answer?.Length ?? 0);
             else if (activeWord != null)
-                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue);
+                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue, activeWord.answer?.Length ?? 0);
         }
 
         if (isAcross) HighlightAcrossWord(r, c);
@@ -550,10 +583,10 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             if (inactiveWord != null)
                 CrosswordClueDisplay.Instance.ShowMultiClue(
-                    activeWord.id,   activeWord.clue,
-                    inactiveWord.id, inactiveWord.clue);
+                    activeWord.id,   activeWord.clue,   activeWord.answer?.Length ?? 0,
+                    inactiveWord.id, inactiveWord.clue, inactiveWord.answer?.Length ?? 0);
             else
-                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue);
+                CrosswordClueDisplay.Instance.ShowClue(activeWord.id, activeWord.clue, activeWord.answer?.Length ?? 0);
         }
 
         if (goAcross) HighlightAcrossWord(r, c);

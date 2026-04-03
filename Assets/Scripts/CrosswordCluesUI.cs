@@ -23,8 +23,6 @@ public class CrosswordCluesUI : MonoBehaviour
 
     private void Start()
     {
-
-        // Turn off raycast on text objects so they don't eat scroll input
         if (acrossText != null) acrossText.raycastTarget = false;
         if (downText   != null) downText.raycastTarget   = false;
 
@@ -59,10 +57,16 @@ public class CrosswordCluesUI : MonoBehaviour
         var downBuilder   = new StringBuilder();
 
         foreach (var w in across)
-            acrossBuilder.AppendLine($"{w.id}  {w.clue}");
+        {
+            string suffix = !string.IsNullOrEmpty(w.answer) ? $" ({w.answer.Length})" : "";
+            acrossBuilder.AppendLine($"{w.id}  {w.clue}{suffix}");
+        }
 
         foreach (var w in down)
-            downBuilder.AppendLine($"{w.id}  {w.clue}");
+        {
+            string suffix = !string.IsNullOrEmpty(w.answer) ? $" ({w.answer.Length})" : "";
+            downBuilder.AppendLine($"{w.id}  {w.clue}{suffix}");
+        }
 
         if (acrossText != null)
         {
@@ -76,13 +80,12 @@ public class CrosswordCluesUI : MonoBehaviour
             downText.ForceMeshUpdate();
         }
 
-        // Wait a frame then rebuild layout and snap to top
         StartCoroutine(RebuildAndSnapToTop());
     }
 
     private IEnumerator RebuildAndSnapToTop()
     {
-        yield return null; // wait one frame for layout to settle
+        yield return null;
 
         if (acrossScroll != null && acrossScroll.content != null)
         {

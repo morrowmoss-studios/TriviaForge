@@ -23,18 +23,21 @@ public class CrosswordClueDisplay : MonoBehaviour
         ClearClue();
     }
 
-    public void ShowClue(string label, string clue)
+    public void ShowClue(string label, string clue, int answerLength = 0)
     {
         if (clueText == null) return;
-        clueText.text = $"<b>{label}</b> – {clue}";
+        string suffix = answerLength > 0 ? $" ({answerLength})" : "";
+        clueText.text = $"<b>{label}</b> – {clue}{suffix}";
     }
 
     // Active clue is bold, inactive clue is normal weight below it
-    public void ShowMultiClue(string activeLabel, string activeClue,
-        string inactiveLabel, string inactiveClue)
+    public void ShowMultiClue(string activeLabel,   string activeClue,   int activeLength,
+        string inactiveLabel, string inactiveClue, int inactiveLength)
     {
         if (clueText == null) return;
-        clueText.text = $"<b>{activeLabel}</b> – {activeClue}\n\n{inactiveLabel} – {inactiveClue}";
+        string activeSuffix   = activeLength   > 0 ? $" ({activeLength})"   : "";
+        string inactiveSuffix = inactiveLength > 0 ? $" ({inactiveLength})" : "";
+        clueText.text = $"<b>{activeLabel}</b> – {activeClue}{activeSuffix}\n\n{inactiveLabel} – {inactiveClue}{inactiveSuffix}";
     }
 
     public void ClearClue()
