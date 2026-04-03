@@ -280,6 +280,21 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             manager.NotifyBoardChanged();
     }
 
+    /// <summary>
+    /// Removes any notes that belong to a set of completed letters.
+    /// Called by WordokuManager when a letter is fully placed on the board.
+    /// </summary>
+    public void RemoveNotesForLetters(HashSet<char> completedLetters)
+    {
+        if (notes.Count == 0) return;
+
+        int before = notes.Count;
+        notes.RemoveWhere(c => completedLetters.Contains(c));
+
+        if (notes.Count != before)
+            UpdateNotesVisual();
+    }
+
     // ---------- CLICK ----------
 
     public void OnPointerClick(PointerEventData eventData)
@@ -326,7 +341,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     public void PlaceLetter(char letter)
     {
-        // ── Tile placed SFX ──────────────────────────────────────────────
         if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
 
         if (manager == null)

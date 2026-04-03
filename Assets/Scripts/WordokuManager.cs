@@ -26,9 +26,9 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Notes Mode")]
     [SerializeField] private bool notesMode = false;
-    [SerializeField] private Button notesButton;           // assign Notes_Button in inspector
-    [SerializeField] private Color notesActiveColor   = new Color(0.4f, 0.4f, 0.4f, 1f);  // greyed out = ON
-    [SerializeField] private Color notesInactiveColor = Color.white;                        // normal = OFF
+    [SerializeField] private Button notesButton;
+    [SerializeField] private Color notesActiveColor   = new Color(0.4f, 0.4f, 0.4f, 1f);
+    [SerializeField] private Color notesInactiveColor = Color.white;
     public bool NotesMode => notesMode;
 
     public bool enforceSolutionWhileTesting = true;
@@ -42,17 +42,14 @@ public class WordokuManager : MonoBehaviour
     public string CurrentWord    { get; private set; }
     public char[] CurrentLetters { get; private set; }
 
-    private char[,] solution     = new char[9, 9];
+    private char[,] solution      = new char[9, 9];
     private char[,] startingBoard = new char[9, 9];
 
     private GameDatabase dbCached;
 
     private void Start()
     {
-       
-        // Initialise notes button to inactive state
         RefreshNotesButtonVisual();
-
         StartCoroutine(GenerateAfterLayout());
     }
 
@@ -293,12 +290,10 @@ public class WordokuManager : MonoBehaviour
     {
         if (notesButton == null) return;
 
-        // Change the button's image color to indicate active/inactive state
         var img = notesButton.GetComponent<UnityEngine.UI.Image>();
         if (img != null)
             img.color = notesMode ? notesActiveColor : notesInactiveColor;
 
-        // Also dim the button's interactable children text if any
         var tmp = notesButton.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         if (tmp != null)
             tmp.color = notesMode ? new Color(tmp.color.r, tmp.color.g, tmp.color.b, 0.5f)
@@ -344,7 +339,6 @@ public class WordokuManager : MonoBehaviour
 
     public void NotifyBoardChanged()
     {
-        // Tile placed SFX
         if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
 
         UpdateLetterCompletion();
@@ -355,6 +349,7 @@ public class WordokuManager : MonoBehaviour
 
     private void UpdateLetterCompletion()
     {
+        // Count how many times each letter appears in the solution
         var totals = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++)
@@ -365,6 +360,7 @@ public class WordokuManager : MonoBehaviour
                 totals[ch]++;
             }
 
+        // Count how many times each letter has been placed on the board
         var used = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++)
@@ -376,6 +372,24 @@ public class WordokuManager : MonoBehaviour
                 used[ch]++;
             }
 
+        // Find which letters are now fully placed
+        var completedLetters = new HashSet<char>();
+        foreach (var kvp in totals)
+        {
+            used.TryGetValue(kvp.Key, out int count);
+            if (count >= kvp.Value)
+                completedLetters.Add(kvp.Key);
+        }
+
+        // Auto-remove completed letters from all cell notes
+        if (completedLetters.Count > 0)
+        {
+            for (int r = 0; r < 9; r++)
+                for (int c = 0; c < 9; c++)
+                    board.boardCells[r, c].RemoveNotesForLetters(completedLetters);
+        }
+
+        // Update letter choice buttons
         var allButtons = FindObjectsOfType<LetterChoiceButton>(true);
         foreach (var btn in allButtons)
         {
