@@ -11,23 +11,32 @@ public class TriviaResultScene : MonoBehaviour
     private void Start()
     {
         if (AudioManager.Instance != null) AudioManager.Instance.OnMenuScene();
-        titleText.text = TriviaSessionData.wasCorrect ? "Correct!" : "Wrong!";
 
         int chosen  = TriviaSessionData.chosenIndex;
         int correct = TriviaSessionData.correctIndex;
 
-        string chosenLetter  = IndexToLetter(chosen);
-        string correctLetter = IndexToLetter(correct);
+        bool timedOut = chosen == -1;
 
-        string chosenText  = TriviaSessionData.answers[chosen];
-        string correctText = TriviaSessionData.answers[correct];
+        string correctLetter = IndexToLetter(correct);
+        string correctText   = TriviaSessionData.answers[correct];
 
         if (TriviaSessionData.wasCorrect)
         {
+            titleText.text = "Correct!";
+            string chosenLetter = IndexToLetter(chosen);
+            string chosenText   = TriviaSessionData.answers[chosen];
             bodyText.text = $"You chose: <b>{chosenLetter}. {chosenText}</b>";
+        }
+        else if (timedOut)
+        {
+            titleText.text = "Out of Time!";
+            bodyText.text  = $"Correct answer: <b>{correctLetter}. {correctText}</b>";
         }
         else
         {
+            titleText.text = "Wrong!";
+            string chosenLetter = IndexToLetter(chosen);
+            string chosenText   = TriviaSessionData.answers[chosen];
             bodyText.text =
                 $"You chose: <b>{chosenLetter}. {chosenText}</b>\n" +
                 $"Correct answer: <b>{correctLetter}. {correctText}</b>";
@@ -49,15 +58,12 @@ public class TriviaResultScene : MonoBehaviour
     // called by Next button
     public void OnNextPressed()
     {
-        // Strikes or out of questions -> game over
         if (TriviaSessionData.roundOver)
         {
             SceneManager.LoadScene("GameOver_PopUp");
             return;
         }
 
-        // TriviaQuestionManager already advanced currentQuestionIndex when
-        // the answer was clicked — don't increment again here
         SceneManager.LoadScene("TriviaMode");
     }
 
