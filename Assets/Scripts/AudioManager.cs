@@ -8,13 +8,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [Header("Chill Playlist (Main Menu / Settings only)")]
-    public AudioClip Village_Ambiance;
-    public AudioClip Celtic_Ambiance;
+    public AudioClip One_Bard_Band;
+    
 
     [Header("Active Playlist (Gameplay + Results + Everything Else)")]
     public AudioClip Magic_Tavern;
     public AudioClip The_Longest_Journey;
-    public AudioClip One_Bard_Band;
+    public AudioClip Village_Ambiance;
+    public AudioClip Celtic_Ambiance;
     public AudioClip Tavern_Loop_One;
     public AudioClip Forest_Walk;
     public AudioClip Celtic_Atmosphere;

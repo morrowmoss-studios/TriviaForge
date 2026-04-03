@@ -10,7 +10,6 @@ public class TriviaResultScene : MonoBehaviour
 
     private void Start()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.OnMenuScene();
 
         int chosen  = TriviaSessionData.chosenIndex;
         int correct = TriviaSessionData.correctIndex;

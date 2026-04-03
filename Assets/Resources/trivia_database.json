@@ -1293,18 +1293,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "science_biology_easy_029",
-              "questionText": "What do we call animals that only eat plants?",
-              "answers": [
-                "Herbivores",
-                "Carnivores",
-                "Omnivores",
-                "Decomposers"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_biology_easy_031",
               "questionText": "What is the process by which cells divide?",
               "answers": [
@@ -1348,18 +1336,6 @@
                 "Nucleus",
                 "Ribosome",
                 "Vacuole"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_biology_medium_028",
-              "questionText": "Which blood type is the universal donor?",
-              "answers": [
-                "O negative",
-                "AB positive",
-                "A positive",
-                "B negative"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -1444,18 +1420,6 @@
                 "Dioxynucleic acid",
                 "Deoxyribose nitrogen acid",
                 "Dinitrogen acid"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_biology_medium_036",
-              "questionText": "Which organ produces insulin?",
-              "answers": [
-                "Pancreas",
-                "Liver",
-                "Kidney",
-                "Thyroid"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -1552,18 +1516,6 @@
                 "Organ",
                 "System",
                 "Colony"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_biology_hard_038",
-              "questionText": "Which vitamin is synthesized by the skin upon sun exposure?",
-              "answers": [
-                "Vitamin D",
-                "Vitamin C",
-                "Vitamin A",
-                "Vitamin K"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -6598,18 +6550,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "science_geology_easy_004",
-              "questionText": "What is molten rock beneath Earth's surface called?",
-              "answers": [
-                "Magma",
-                "Lava",
-                "Basalt",
-                "Obsidian"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_geology_easy_005",
               "questionText": "Which rock type commonly forms in layers?",
               "answers": [
@@ -7846,18 +7786,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "science_geology_easy_032",
-              "questionText": "What type of rock is marble?",
-              "answers": [
-                "Metamorphic",
-                "Igneous",
-                "Sedimentary",
-                "Volcanic"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_geology_easy_033",
               "questionText": "What is the name of a large slow-moving mass of ice?",
               "answers": [
@@ -7954,18 +7882,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "science_geology_medium_028",
-              "questionText": "What mineral is the primary component of limestone?",
-              "answers": [
-                "Calcite",
-                "Quartz",
-                "Feldspar",
-                "Dolomite"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "science_geology_medium_029",
               "questionText": "What is obsidian?",
               "answers": [
@@ -8021,18 +7937,6 @@
                 "Surface water",
                 "Interstitial water",
                 "Connate water"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "science_geology_medium_034",
-              "questionText": "What mineral group includes mica and feldspar?",
-              "answers": [
-                "Silicates",
-                "Carbonates",
-                "Oxides",
-                "Sulfides"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -43398,18 +43302,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "technology_internet_easy_031",
-              "questionText": "What is an IP address?",
-              "answers": [
-                "A unique number identifying a device on a network",
-                "A security password for a network",
-                "A physical address of a router",
-                "A type of web domain"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "technology_internet_easy_032",
               "questionText": "What is streaming?",
               "answers": [
@@ -55926,18 +55818,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_countries_capitals_insanity_025",
-              "questionText": "What is the capital of Comoros?",
-              "answers": [
-                "Moroni",
-                "Mutsamudu",
-                "Fomboni",
-                "Domoni"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_countries_capitals_insanity_028",
               "questionText": "What is the capital of Marshall Islands?",
               "answers": [
@@ -57735,18 +57615,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_cities_easy_029",
-              "questionText": "What city is known as the Big Apple?",
-              "answers": [
-                "New York City",
-                "Los Angeles",
-                "Chicago",
-                "Houston"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_cities_easy_030",
               "questionText": "What is the most populated city in the world?",
               "answers": [
@@ -57754,18 +57622,6 @@
                 "Delhi",
                 "Shanghai",
                 "S\u00e3o Paulo"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_cities_easy_031",
-              "questionText": "What city is home to the Eiffel Tower?",
-              "answers": [
-                "Paris",
-                "Brussels",
-                "London",
-                "Rome"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -58138,18 +57994,6 @@
                 "Rome",
                 "Venice",
                 "Naples"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_cities_hard_031",
-              "questionText": "What city is known as the City of a Thousand Minarets?",
-              "answers": [
-                "Cairo",
-                "Istanbul",
-                "Tehran",
-                "Baghdad"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -63124,18 +62968,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_national_parks_unesco_easy_042",
-              "questionText": "What US national park is known for its giant sequoia trees?",
-              "answers": [
-                "Sequoia National Park",
-                "Redwood National Park",
-                "Yosemite",
-                "Olympic"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_national_parks_unesco_medium_026",
               "questionText": "What country is Plitvice Lakes National Park in?",
               "answers": [
@@ -65191,18 +65023,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_islands_easy_030",
-              "questionText": "What is the largest island in the world?",
-              "answers": [
-                "Greenland",
-                "Australia",
-                "New Guinea",
-                "Borneo"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_islands_easy_031",
               "questionText": "What island country is located off the southeastern tip of India?",
               "answers": [
@@ -65210,18 +65030,6 @@
                 "Maldives",
                 "Seychelles",
                 "Mauritius"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_islands_easy_032",
-              "questionText": "What is the largest island in the Mediterranean Sea?",
-              "answers": [
-                "Sicily",
-                "Sardinia",
-                "Cyprus",
-                "Crete"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -65359,18 +65167,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_islands_medium_026",
-              "questionText": "What is the largest island in the Indian Ocean?",
-              "answers": [
-                "Madagascar",
-                "Sri Lanka",
-                "Sumatra",
-                "Borneo"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "geography_islands_medium_027",
               "questionText": "What country are the Faroe Islands part of?",
               "answers": [
@@ -65402,18 +65198,6 @@
                 "Peru",
                 "Ecuador",
                 "France"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_islands_medium_030",
-              "questionText": "What is the largest island in the Philippines?",
-              "answers": [
-                "Luzon",
-                "Mindanao",
-                "Visayas",
-                "Palawan"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -83821,18 +83605,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_nonfiction_hard_020",
-              "questionText": "Who wrote \"The Hero of a Thousand Faces\"?",
-              "answers": [
-                "Joseph Campbell",
-                "Mircea Eliade",
-                "Carl Jung",
-                "Claude L\u00e9vi-Strauss"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_nonfiction_insanity_017",
               "questionText": "Who wrote \"The Critique of Pure Reason\"?",
               "answers": [
@@ -89574,18 +89346,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "games_cards_easy_046",
-              "questionText": "In the card game War, who wins the battle?",
-              "answers": [
-                "The player with the higher card",
-                "The player with the lower card",
-                "The player who plays first",
-                "The player with the most cards in hand"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "games_cards_medium_041",
               "questionText": "What is 'position' in Poker and why does it matter?",
               "answers": [
@@ -91330,18 +91090,6 @@
                 "Microsoft",
                 "Nintendo",
                 "Sega"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "games_videogames_easy_036",
-              "questionText": "What game features a character named Master Chief?",
-              "answers": [
-                "Halo",
-                "Call of Duty",
-                "Destiny",
-                "Gears of War"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -94202,18 +93950,6 @@
                 "Capture all of the opponent's pieces",
                 "Reach the other side of the board",
                 "Collect the most points"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "games_boardgames_easy_035",
-              "questionText": "How many squares are on a standard chess board?",
-              "answers": [
-                "64",
-                "48",
-                "81",
-                "32"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -98377,18 +98113,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "games_casino_easy_020",
-              "questionText": "In poker, what is the highest possible hand?",
-              "answers": [
-                "Royal flush",
-                "Full house",
-                "Straight flush",
-                "Four of a kind"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "games_casino_easy_021",
               "questionText": "In roulette, what does betting on \"odd\" cover?",
               "answers": [
@@ -98977,18 +98701,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "games_casino_easy_032",
-              "questionText": "In Craps, what is the Pass Line bet?",
-              "answers": [
-                "A bet that the shooter will win \u2014 rolling a 7 or 11 on the come-out wins",
-                "A bet on the shooter rolling a specific number twice in a row",
-                "A side bet on the next roll being a 7",
-                "A bet that the shooter will lose their next roll"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "games_casino_medium_035",
               "questionText": "What is the house edge in European Roulette?",
               "answers": [
@@ -99107,18 +98819,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "games_casino_medium_039",
-              "questionText": "What is 'RTP' (Return to Player) in slot machines?",
-              "answers": [
-                "The percentage of wagered money a slot is programmed to pay back over time",
-                "The rate at which bonus rounds are triggered",
-                "The ratio of jackpot wins to total spins",
-                "The minimum bet that activates all paylines"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "games_casino_medium_040",
@@ -99251,18 +98951,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "games_casino_easy_037",
-              "questionText": "What does 'bust' mean in Blackjack?",
-              "answers": [
-                "Going over 21, which means you automatically lose",
-                "Losing three hands in a row",
-                "Having a hand total of exactly 22",
-                "The dealer revealing a hidden card"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "games_casino_medium_043",
@@ -106199,18 +105887,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_ancient_easy_028",
-              "questionText": "What ancient wonder was located in Alexandria, Egypt?",
-              "answers": [
-                "The Lighthouse",
-                "The Hanging Gardens",
-                "The Colossus",
-                "The Temple of Artemis"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_ancient_easy_029",
               "questionText": "What was the primary language of ancient Rome?",
               "answers": [
@@ -109371,18 +109047,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "history_middleages_easy_034",
-              "questionText": "What were the Crusades?",
-              "answers": [
-                "Military campaigns by European Christians to recapture Jerusalem from Muslim rule",
-                "The reconquest of Spain from the Moors",
-                "The suppression of heretical movements within Europe",
-                "The Viking raids on European monasteries"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_middleages_easy_035",
               "questionText": "What 1215 document limited the English king's power?",
               "answers": [
@@ -110910,18 +110574,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "history_renaissance_insanity_012",
-              "questionText": "Which Renaissance philosopher wrote 'The Praise of Folly'?",
-              "answers": [
-                "Erasmus",
-                "Machiavelli",
-                "Petrarch",
-                "Boccaccio"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "history_renaissance_insanity_013",
               "questionText": "Which Renaissance astronomer served as imperial mathematician to Emperor Rudolf II?",
               "answers": [
@@ -111373,18 +111025,6 @@
                 "The period of scientific discovery in the 18th century",
                 "The era of European colonization",
                 "The revival of classical culture in the 9th century"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "history_renaissance_easy_029",
-              "questionText": "Who painted the Sistine Chapel ceiling?",
-              "answers": [
-                "Michelangelo",
-                "Leonardo da Vinci",
-                "Raphael",
-                "Donatello"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -123600,18 +123240,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "sports_olympics_easy_032",
-              "questionText": "In what city were the first modern Olympic Games held in 1896?",
-              "answers": [
-                "Athens",
-                "Paris",
-                "London",
-                "Stockholm"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_olympics_easy_033",
               "questionText": "How often are the Summer Olympic Games held?",
               "answers": [
@@ -123874,18 +123502,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "sports_olympics_easy_039",
-              "questionText": "What city hosted the 2012 Summer Olympics?",
-              "answers": [
-                "London",
-                "Paris",
-                "Beijing",
-                "Rio de Janeiro"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "sports_olympics_hard_037",
@@ -127297,30 +126913,6 @@
           "name": "Racquet & Net",
           "trivia": [
             {
-              "id": "sports_racquet_and_net_sports_easy_001",
-              "questionText": "Which sport is played at Wimbledon?",
-              "answers": [
-                "Tennis",
-                "Badminton",
-                "Squash",
-                "Table tennis"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "sports_racquet_and_net_sports_easy_002",
-              "questionText": "Which sport uses a shuttlecock?",
-              "answers": [
-                "Badminton",
-                "Tennis",
-                "Squash",
-                "Racquetball"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_racquet_and_net_sports_easy_003",
               "questionText": "Which sport is commonly played on a clay court at the French Open?",
               "answers": [
@@ -128893,18 +128485,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "sports_racquet_and_net_sports_easy_033",
-              "questionText": "What is the name of the shuttlecock in badminton?",
-              "answers": [
-                "Shuttlecock (also called a birdie)",
-                "Shuttle",
-                "Feather dart",
-                "Puck"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_racquet_and_net_sports_easy_034",
               "questionText": "In tennis, what does it mean to 'break serve'?",
               "answers": [
@@ -128915,18 +128495,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "sports_racquet_and_net_sports_medium_039",
-              "questionText": "What is a 'let' in tennis?",
-              "answers": [
-                "A serve that clips the net cord and lands in the correct service box \u2014 it is replayed",
-                "Any point that must be replayed due to outside interference",
-                "A serve that lands on the service line",
-                "A called fault that the receiver disagrees with"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "sports_racquet_and_net_sports_medium_040",
@@ -131042,30 +130610,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "sports_racing_and_motor_medium_034",
-              "questionText": "What is the DRS (Drag Reduction System) in Formula 1?",
-              "answers": [
-                "An adjustable rear wing that reduces drag on straights, allowing following cars to close gaps and facilitate overtaking",
-                "A braking system that distributes braking force between front and rear wheels",
-                "A device reducing downforce to improve straight-line speed at the cost of cornering grip",
-                "A fuel flow system allowing brief power boosts on straights"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "sports_racing_and_motor_medium_035",
-              "questionText": "What is the Indianapolis 500 known for?",
-              "answers": [
-                "One of motorsport's oldest and most prestigious races \u2014 500 miles on an oval track, part of the Triple Crown of Motorsport",
-                "The world's fastest street circuit race held annually in Indiana",
-                "The only race where both F1 and NASCAR cars compete together",
-                "The longest race on the IndyCar calendar at over 8 hours"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "sports_racing_and_motor_medium_036",
@@ -141047,18 +140591,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "folklore_myths_and_mythology_medium_036",
-              "questionText": "In Norse mythology, what is Ragnar\u00f6k?",
-              "answers": [
-                "The prophesied end of the world in which gods and monsters destroy each other",
-                "The great hall where warriors feast after death",
-                "The bridge connecting Asgard to Earth",
-                "The home of the frost giants"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "folklore_myths_and_mythology_medium_037",
               "questionText": "What Hindu text features Arjuna receiving divine wisdom from Krishna before battle?",
               "answers": [
@@ -141078,18 +140610,6 @@
                 "His left arm",
                 "His eyes",
                 "His heart"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "folklore_myths_and_mythology_medium_039",
-              "questionText": "Who is the trickster god in Norse mythology?",
-              "answers": [
-                "Loki",
-                "Thor",
-                "Odin",
-                "Freyr"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -141297,18 +140817,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "folklore_myths_and_mythology_medium_043",
-              "questionText": "In Norse mythology, what is Valhalla?",
-              "answers": [
-                "The great hall where warriors slain in battle feast with Odin",
-                "The realm of the dead ruled by Hel",
-                "The home of the Valkyries",
-                "The underworld where dishonored dead go"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             }
           ],
           "wordoku": [],
@@ -143373,18 +142881,6 @@
                 "A malevolent fairy that steals children",
                 "A shapeshifting water horse that drowns riders",
                 "A spirit that guards ancient burial mounds"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "folklore_legendary_creatures_medium_038",
-              "questionText": "What is a golem in Jewish folklore?",
-              "answers": [
-                "An artificial being animated by inscribing the Hebrew word for truth on its forehead \u2014 destroyed by erasing one letter",
-                "A protective spirit bound to a household",
-                "A demon summoned to carry out divine punishment",
-                "A shapeshifter taking the form of deceased loved ones"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -148095,18 +147591,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "folklore_ghosts_and_haunted_places_insanity_020",
-              "questionText": "In Romanian folklore, what is a strigoi?",
-              "answers": [
-                "A restless undead spirit",
-                "A dragon guardian",
-                "A forest elf",
-                "A mountain god"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "folklore_ghosts_and_haunted_places_easy_026",
               "questionText": "Which famous White House room is rumored to be haunted by Abraham Lincoln?",
               "answers": [
@@ -148306,18 +147790,6 @@
                 "Being the most studied haunted location in the world",
                 "Being the first building officially certified as haunted",
                 "The presence of a ghost that has been photographed"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "folklore_ghosts_and_haunted_places_easy_035",
-              "questionText": "What is a banshee in Irish folklore?",
-              "answers": [
-                "A wailing female spirit whose cry foretells a family member's death",
-                "A vengeful ghost that haunts those who wronged it",
-                "A fairy woman who lures travelers to their death",
-                "A spirit that possesses living people"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -152995,18 +152467,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "hard"
-            },
-            {
-              "id": "folklore_witches_witchcraft_easy_028",
-              "questionText": "What were the Salem Witch Trials?",
-              "answers": [
-                "A 1692 mass hysteria in Massachusetts in which 20 people were executed for alleged witchcraft",
-                "A series of witch burnings in England under King James I",
-                "A medieval European witch hunt that killed thousands",
-                "A colonial-era legal reform redefining witchcraft as a civil matter"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "folklore_witches_witchcraft_easy_029",
