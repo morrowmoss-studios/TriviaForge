@@ -358,8 +358,11 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         notes.Clear();
         UpdateNotesVisual();
 
-        char expected = manager.GetSolutionLetter(row, col);
-        isWrong = (letter != expected);
+        // Flag as wrong if it violates row/column/block rules
+        // We temporarily set the letter first so IsValidPlacement
+        // checks against the current board state including this cell,
+        // then re-check excluding this cell's own contribution
+        isWrong = !manager.IsValidPlacement(row, col, letter);
 
         LayoutTexts();
         UpdateTileVisual();

@@ -304,20 +304,26 @@ public class WordokuManager : MonoBehaviour
 
     public bool IsValidPlacement(int row, int col, char letter)
     {
-        return !(IsInRow(row, letter) || IsInColumn(col, letter) || IsInBlock(row, col, letter));
+        return !(IsInRow(row, col, letter) || IsInColumn(row, col, letter) || IsInBlock(row, col, letter));
     }
 
-    private bool IsInRow(int row, char letter)
+    private bool IsInRow(int row, int excludeCol, char letter)
     {
         for (int c = 0; c < 9; c++)
+        {
+            if (c == excludeCol) continue;
             if (board.boardCells[row, c].GetLetter() == letter.ToString()) return true;
+        }
         return false;
     }
 
-    private bool IsInColumn(int col, char letter)
+    private bool IsInColumn(int excludeRow, int col, char letter)
     {
         for (int r = 0; r < 9; r++)
+        {
+            if (r == excludeRow) continue;
             if (board.boardCells[r, col].GetLetter() == letter.ToString()) return true;
+        }
         return false;
     }
 
@@ -328,7 +334,10 @@ public class WordokuManager : MonoBehaviour
 
         for (int r = startRow; r < startRow + 3; r++)
             for (int c = startCol; c < startCol + 3; c++)
+            {
+                if (r == row && c == col) continue;
                 if (board.boardCells[r, c].GetLetter() == letter.ToString()) return true;
+            }
 
         return false;
     }
@@ -404,17 +413,71 @@ public class WordokuManager : MonoBehaviour
 
     private void CheckForWin()
     {
+        // First pass -- bail if any cell is empty
         for (int row = 0; row < 9; row++)
-        {
             for (int col = 0; col < 9; col++)
-            {
-                string letter = board.boardCells[row, col].GetLetter();
-                if (string.IsNullOrEmpty(letter)) return;
-                if (letter[0] != solution[row, col]) return;
-            }
-        }
+                if (string.IsNullOrEmpty(board.boardCells[row, col].GetLetter())) return;
+
+        // Second pass -- validate every row, column, and 3x3 block
+        // contains all 9 letters exactly once (rules-based, not solution-based)
+        if (!IsValidSolution()) return;
 
         Debug.Log($"Wordoku solved! Word = {CurrentWord}, difficulty = {TriviaSessionData.selectedDifficulty}");
         GameWinController.TriggerWin("Wordoku", CurrentWord);
+    }
+
+    private bool IsValidSolution()
+    {
+        var required = new HashSet<char>(CurrentLetters);
+
+        // Check rows
+        for (int row = 0; row < 9; row++)
+        {
+            var seen = new HashSet<char>();
+            for (int col = 0; col < 9; col++)
+            {
+                string s = board.boardCells[row, col].GetLetter();
+                if (string.IsNullOrEmpty(s)) return false;
+                char ch = s[0];
+                if (!required.Contains(ch)) return false;
+                if (!seen.Add(ch)) return false;
+            }
+        }
+
+        // Check columns
+        for (int col = 0; col < 9; col++)
+        {
+            var seen = new HashSet<char>();
+            for (int row = 0; row < 9; row++)
+            {
+                string s = board.boardCells[row, col].GetLetter();
+                if (string.IsNullOrEmpty(s)) return false;
+                char ch = s[0];
+                if (!required.Contains(ch)) return false;
+                if (!seen.Add(ch)) return false;
+            }
+        }
+
+        // Check 3x3 blocks
+        for (int blockRow = 0; blockRow < 3; blockRow++)
+        {
+            for (int blockCol = 0; blockCol < 3; blockCol++)
+            {
+                var seen = new HashSet<char>();
+                for (int r = 0; r < 3; r++)
+                {
+                    for (int c = 0; c < 3; c++)
+                    {
+                        string s = board.boardCells[blockRow * 3 + r, blockCol * 3 + c].GetLetter();
+                        if (string.IsNullOrEmpty(s)) return false;
+                        char ch = s[0];
+                        if (!required.Contains(ch)) return false;
+                        if (!seen.Add(ch)) return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }
