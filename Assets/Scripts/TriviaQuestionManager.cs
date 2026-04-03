@@ -63,7 +63,6 @@ public class TriviaQuestionManager : MonoBehaviour
         if (scoreUI == null)
             scoreUI = FindObjectOfType<TriviaScoreUI>();
 
-        // Auto-find Timer_Text by name if not assigned in inspector
         if (timerText == null)
         {
             foreach (var t in FindObjectsOfType<TextMeshProUGUI>(true))
@@ -79,7 +78,6 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private void Start()
     {
-        // ── Build question list only once per game session ──────────────────
         if (TriviaSessionData.sessionQuestions == null)
         {
             string categoryId    = TriviaSessionData.selectedCategoryId;
@@ -131,11 +129,33 @@ public class TriviaQuestionManager : MonoBehaviour
                 }
             }
 
-            TriviaSessionData.sessionQuestions     = orderedQuestions;
-            TriviaSessionData.currentQuestionIndex = 0;
-            TriviaSessionData.totalQuestions       = orderedQuestions.Count;
+            // Deduplicate by ID first, then by question text as a fallback
+            // This catches same-ID dupes and same-text dupes with different IDs
+            var seenIds   = new HashSet<string>();
+            var seenTexts = new HashSet<string>();
+            var deduped   = new List<TriviaEntry>();
 
-            Debug.Log($"[TriviaQuestionManager] {orderedQuestions.Count} questions cached " +
+            foreach (var entry in orderedQuestions)
+            {
+                string normText = entry.questionText?.Trim().ToLowerInvariant() ?? "";
+
+                if (!string.IsNullOrEmpty(entry.id) && seenIds.Contains(entry.id))   continue;
+                if (!string.IsNullOrEmpty(normText)  && seenTexts.Contains(normText)) continue;
+
+                if (!string.IsNullOrEmpty(entry.id))   seenIds.Add(entry.id);
+                if (!string.IsNullOrEmpty(normText))   seenTexts.Add(normText);
+
+                deduped.Add(entry);
+            }
+
+            if (deduped.Count < orderedQuestions.Count)
+                Debug.Log($"[TriviaQuestionManager] Removed {orderedQuestions.Count - deduped.Count} duplicate question(s) from session.");
+
+            TriviaSessionData.sessionQuestions     = deduped;
+            TriviaSessionData.currentQuestionIndex = 0;
+            TriviaSessionData.totalQuestions       = deduped.Count;
+
+            Debug.Log($"[TriviaQuestionManager] {deduped.Count} questions cached " +
                       $"(starting at {selectedDiff}, cascading up).");
         }
         else
@@ -158,13 +178,11 @@ public class TriviaQuestionManager : MonoBehaviour
         currentQuestionIndex = TriviaSessionData.currentQuestionIndex;
         LoadQuestion(currentQuestionIndex);
 
-        // Restore timer if returning from Settings mid-question
         if (TriviaSessionData.savedTimeRemaining > 0f)
         {
             timeRemaining = TriviaSessionData.savedTimeRemaining;
             TriviaSessionData.savedTimeRemaining = -1f;
 
-            // Update the display immediately so it doesn't flicker to full
             if (timerText != null)
             {
                 timerText.text  = Mathf.CeilToInt(timeRemaining).ToString();
@@ -198,10 +216,6 @@ public class TriviaQuestionManager : MonoBehaviour
 
     // ── Settings button ───────────────────────────────────────────────────
 
-    /// <summary>
-    /// Call this from the Settings button OnClick BEFORE UIManager.OpenSettingsScene.
-    /// Saves the current time and pauses the timer so it survives the scene reload.
-    /// </summary>
     public void OnSettingsPressed()
     {
         TriviaSessionData.savedTimeRemaining = timeRemaining;
@@ -220,10 +234,9 @@ public class TriviaQuestionManager : MonoBehaviour
 
         TriviaSessionData.questionText = q.questionText;
         TriviaSessionData.correctIndex = q.correctIndex;
-        TriviaSessionData.chosenIndex  = -1; // -1 = timed out
+        TriviaSessionData.chosenIndex  = -1;
         TriviaSessionData.wasCorrect   = false;
 
-        // Save index before incrementing so we mark the right question as seen
         int justAnswered = currentQuestionIndex;
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
 
@@ -263,7 +276,7 @@ public class TriviaQuestionManager : MonoBehaviour
         SceneManager.LoadScene("TriviaResult");
     }
 
-    // ---------- QUESTION BUILDING ----------
+    // ── Question building ─────────────────────────────────────────────────
 
     private Question BuildQuestionFromEntry(TriviaEntry entry)
     {
@@ -310,7 +323,7 @@ public class TriviaQuestionManager : MonoBehaviour
         }
     }
 
-    // ---------- LOAD QUESTION ----------
+    // ── Load question ─────────────────────────────────────────────────────
 
     private void LoadQuestion(int index)
     {
@@ -342,7 +355,6 @@ public class TriviaQuestionManager : MonoBehaviour
             }
         }
 
-        // Start the timer fresh for this question
         timeRemaining = GetTimerDuration();
         timerRunning  = true;
 
@@ -353,7 +365,7 @@ public class TriviaQuestionManager : MonoBehaviour
         }
     }
 
-    // ---------- ANSWER CLICK ----------
+    // ── Answer click ──────────────────────────────────────────────────────
 
     public void OnAnswerClicked(AnswerButtonUI button)
     {
@@ -374,7 +386,6 @@ public class TriviaQuestionManager : MonoBehaviour
         TriviaSessionData.chosenIndex  = button.answerIndex;
         TriviaSessionData.wasCorrect   = (button.answerIndex == q.correctIndex);
 
-        // Save index before incrementing so we mark the right question as seen
         int justAnswered = currentQuestionIndex;
         TriviaSessionData.currentQuestionIndex = currentQuestionIndex + 1;
 
@@ -425,7 +436,7 @@ public class TriviaQuestionManager : MonoBehaviour
         SceneManager.LoadScene("TriviaResult");
     }
 
-    // ---------- HINT ----------
+    // ── Hint ─────────────────────────────────────────────────────────────
 
     public void OnHintPressed()
     {

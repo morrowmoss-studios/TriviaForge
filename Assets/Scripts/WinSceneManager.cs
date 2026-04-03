@@ -82,6 +82,13 @@ public class WinSceneManager : MonoBehaviour
         // Reset the registration flag for the next game
         _scoreRegisteredThisSession = false;
 
+        // Clear session so a fresh question list is built next round
+        TriviaSessionData.sessionQuestions     = null;
+        TriviaSessionData.currentQuestionIndex = 0;
+
+        if (ScoreManager.Instance != null)
+            ScoreManager.Instance.ResetScore();
+
         switch (TriviaSessionData.selectedGameMode)
         {
             case "Trivia":

@@ -30,7 +30,7 @@ public class LeaderboardManager : MonoBehaviour
     {
         SetLoading(true);
 
-        var entries = await PlayerDatabaseAPI.GetLeaderboardAsync("totalScore", 50);
+        var entries = await PlayerDatabaseAPI.GetLeaderboardAsync("highestScore", 50);
 
         SetLoading(false);
         PopulateEntries(entries);

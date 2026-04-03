@@ -1269,18 +1269,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "science_biology_easy_026",
-              "questionText": "What is the largest organ of the human body?",
-              "answers": [
-                "Skin",
-                "Liver",
-                "Brain",
-                "Lung"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_biology_easy_027",
               "questionText": "How many bones are in the adult human body?",
               "answers": [
@@ -1312,18 +1300,6 @@
                 "Carnivores",
                 "Omnivores",
                 "Decomposers"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_biology_easy_030",
-              "questionText": "Which part of the plant absorbs water from the soil?",
-              "answers": [
-                "Roots",
-                "Leaves",
-                "Stem",
-                "Flowers"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -1497,18 +1473,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "science_biology_medium_038",
-              "questionText": "What type of cell lacks a nucleus?",
-              "answers": [
-                "Prokaryotic",
-                "Eukaryotic",
-                "Somatic",
-                "Gamete"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "science_biology_hard_030",
               "questionText": "Which enzyme unwinds the DNA double helix during replication?",
               "answers": [
@@ -1516,18 +1480,6 @@
                 "Ligase",
                 "Polymerase",
                 "Topoisomerase"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "science_biology_hard_031",
-              "questionText": "What is the term for programmed cell death?",
-              "answers": [
-                "Apoptosis",
-                "Necrosis",
-                "Autolysis",
-                "Lysis"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -10225,18 +10177,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "science_physics_easy_029",
-              "questionText": "What is the unit of electrical resistance?",
-              "answers": [
-                "Ohm",
-                "Volt",
-                "Ampere",
-                "Watt"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_physics_easy_030",
               "questionText": "What happens to sound in a vacuum?",
               "answers": [
@@ -10292,18 +10232,6 @@
                 "Reflection",
                 "Diffraction",
                 "Absorption"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_physics_easy_035",
-              "questionText": "What is the unit of electric current?",
-              "answers": [
-                "Ampere",
-                "Volt",
-                "Ohm",
-                "Watt"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -12616,18 +12544,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "science_weather_easy_025",
-              "questionText": "What instrument measures wind speed?",
-              "answers": [
-                "Anemometer",
-                "Barometer",
-                "Thermometer",
-                "Hygrometer"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "science_weather_easy_026",
               "questionText": "What is a hurricane called in the western Pacific?",
               "answers": [
@@ -12683,18 +12599,6 @@
                 "Thermometer",
                 "Anemometer",
                 "Hygrometer"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_weather_easy_031",
-              "questionText": "What is the dew point?",
-              "answers": [
-                "Temperature at which air becomes saturated with moisture",
-                "The lowest daily temperature",
-                "The point where rain forms",
-                "The freezing point of dew"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -14768,18 +14672,6 @@
                 "Sirius",
                 "Alpha Centauri A",
                 "Barnard's Star"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "science_space_easy_026",
-              "questionText": "What is the name of Earth's natural satellite?",
-              "answers": [
-                "The Moon",
-                "Titan",
-                "Europa",
-                "Deimos"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -20588,18 +20480,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "popculture_movies_medium_026",
-              "questionText": "Which film won the first Academy Award for Best Picture?",
-              "answers": [
-                "Wings",
-                "Sunrise",
-                "The Jazz Singer",
-                "Ben-Hur"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "popculture_movies_medium_027",
               "questionText": "What film features a character who sees dead people?",
               "answers": [
@@ -20730,18 +20610,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "medium"
-            },
-            {
-              "id": "popculture_movies_hard_025",
-              "questionText": "Which film won the Palme d'Or at Cannes in 2019?",
-              "answers": [
-                "Parasite",
-                "Portrait of a Lady on Fire",
-                "Once Upon a Time in Hollywood",
-                "Atlantics"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
             },
             {
               "id": "popculture_movies_hard_026",
@@ -23899,18 +23767,6 @@
                 "Minor scales are faster than major scales",
                 "Major scales have more notes",
                 "Minor scales are used only in classical music"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "popculture_music_hard_036",
-              "questionText": "Which composer wrote the opera Carmen?",
-              "answers": [
-                "Georges Bizet",
-                "Giuseppe Verdi",
-                "Giacomo Puccini",
-                "Richard Wagner"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -27498,18 +27354,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "popculture_celebrities_easy_014",
-              "questionText": "Which singer is known for the album '1989'?",
-              "answers": [
-                "Taylor Swift",
-                "Ariana Grande",
-                "Katy Perry",
-                "Lorde"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "popculture_celebrities_medium_007",
               "questionText": "Which actor won an Oscar for his role in The Revenant?",
               "answers": [
@@ -27786,18 +27630,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "popculture_celebrities_easy_020",
-              "questionText": "Which singer starred in the film A Star Is Born (2018)?",
-              "answers": [
-                "Lady Gaga",
-                "Ariana Grande",
-                "Katy Perry",
-                "Rihanna"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "popculture_celebrities_easy_021",
               "questionText": "Which actor played Jack Dawson in Titanic?",
               "answers": [
@@ -27880,18 +27712,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "medium"
-            },
-            {
-              "id": "popculture_celebrities_hard_013",
-              "questionText": "Which actress won an Oscar for her role in La La Land?",
-              "answers": [
-                "Emma Stone",
-                "Natalie Portman",
-                "Anne Hathaway",
-                "Jennifer Lawrence"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
             },
             {
               "id": "popculture_celebrities_hard_014",
@@ -28273,18 +28093,6 @@
                 "Bette Davis",
                 "Ingrid Bergman",
                 "Elizabeth Taylor"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "popculture_celebrities_insanity_021",
-              "questionText": "Which actor portrayed Daniel Plainview in There Will Be Blood?",
-              "answers": [
-                "Daniel Day-Lewis",
-                "Christian Bale",
-                "Joaquin Phoenix",
-                "Philip Seymour Hoffman"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -43578,18 +43386,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "technology_internet_easy_029",
-              "questionText": "What does URL stand for?",
-              "answers": [
-                "Uniform Resource Locator",
-                "Universal Resource Link",
-                "Unified Reference Location",
-                "Uniform Routing Language"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "technology_internet_easy_030",
               "questionText": "What does HTTPS mean in a web address?",
               "answers": [
@@ -43681,18 +43477,6 @@
                 "A social media algorithm",
                 "A type of online advertiser",
                 "A professional content moderator"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "technology_internet_easy_038",
-              "questionText": "What is phishing?",
-              "answers": [
-                "Fraudulent attempts to obtain sensitive information by impersonating trusted entities",
-                "A type of computer virus",
-                "Hacking into a network",
-                "Sending spam emails"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -46521,18 +46305,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "technology_robots_easy_027",
-              "questionText": "What is a robot?",
-              "answers": [
-                "A programmable machine that can perform tasks automatically",
-                "Any machine that uses electricity",
-                "A computer that can move",
-                "A machine controlled only by humans"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "technology_robots_easy_028",
               "questionText": "What does AI stand for?",
               "answers": [
@@ -46600,18 +46372,6 @@
                 "A machine learning technique using labeled training data",
                 "A method for training AI on human-generated text",
                 "A technique for unsupervised pattern recognition"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "technology_robots_medium_038",
-              "questionText": "What is SLAM in robotics?",
-              "answers": [
-                "Simultaneous Localization and Mapping \u2014 robots building a map while tracking their position within it",
-                "Smart Laser Automated Movement",
-                "Single Layer Architecture Model",
-                "Sequential Learning Adaptive Mechanism"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -50943,18 +50703,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "technology_apps_medium_035",
-              "questionText": "What is push notification?",
-              "answers": [
-                "A message sent from a server to a device appearing even when the app is not open",
-                "A notification requiring the user to open the app",
-                "An in-app message from another user",
-                "An alert generated by the operating system"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "technology_apps_medium_036",
               "questionText": "What is the significance of the App Store's launch in 2008?",
               "answers": [
@@ -51349,18 +51097,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "technology_apps_medium_043",
-              "questionText": "What is deep linking in mobile apps?",
-              "answers": [
-                "A URL that opens a specific screen within an app rather than just the app's home screen",
-                "Linking between two different apps",
-                "A connection between mobile and desktop versions of an app",
-                "A type of notification that opens an app"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "technology_apps_hard_034",
@@ -55770,18 +55506,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_countries_capitals_easy_024",
-              "questionText": "What is the capital of South Korea?",
-              "answers": [
-                "Seoul",
-                "Busan",
-                "Incheon",
-                "Daegu"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_countries_capitals_easy_025",
               "questionText": "What is the capital of Venezuela?",
               "answers": [
@@ -55998,18 +55722,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_countries_capitals_insanity_020",
-              "questionText": "What is the capital of Bhutan?",
-              "answers": [
-                "Thimphu",
-                "Paro",
-                "Punakha",
-                "Wangdue Phodrang"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_countries_capitals_insanity_021",
               "questionText": "What is the capital of Brunei?",
               "answers": [
@@ -56106,66 +55818,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_countries_capitals_easy_033",
-              "questionText": "What is the capital of Germany?",
-              "answers": [
-                "Berlin",
-                "Munich",
-                "Hamburg",
-                "Frankfurt"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_034",
-              "questionText": "What is the capital of Italy?",
-              "answers": [
-                "Rome",
-                "Milan",
-                "Venice",
-                "Florence"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_035",
-              "questionText": "What is the capital of Spain?",
-              "answers": [
-                "Madrid",
-                "Barcelona",
-                "Seville",
-                "Valencia"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_036",
-              "questionText": "What is the capital of China?",
-              "answers": [
-                "Beijing",
-                "Shanghai",
-                "Guangzhou",
-                "Shenzhen"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_037",
-              "questionText": "What is the capital of India?",
-              "answers": [
-                "New Delhi",
-                "Mumbai",
-                "Kolkata",
-                "Chennai"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_countries_capitals_easy_038",
               "questionText": "What is the capital of Russia?",
               "answers": [
@@ -56176,42 +55828,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_039",
-              "questionText": "What is the capital of Mexico?",
-              "answers": [
-                "Mexico City",
-                "Guadalajara",
-                "Monterrey",
-                "Puebla"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_easy_040",
-              "questionText": "What is the capital of Egypt?",
-              "answers": [
-                "Cairo",
-                "Alexandria",
-                "Giza",
-                "Luxor"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_countries_capitals_medium_031",
-              "questionText": "What is the capital of Argentina?",
-              "answers": [
-                "Buenos Aires",
-                "C\u00f3rdoba",
-                "Rosario",
-                "Mendoza"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "geography_countries_capitals_medium_032",
@@ -56238,150 +55854,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_countries_capitals_medium_034",
-              "questionText": "What is the capital of Saudi Arabia?",
-              "answers": [
-                "Riyadh",
-                "Jeddah",
-                "Mecca",
-                "Medina"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_035",
-              "questionText": "What is the capital of Indonesia?",
-              "answers": [
-                "Jakarta",
-                "Surabaya",
-                "Bandung",
-                "Medan"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_036",
-              "questionText": "What is the capital of Nigeria?",
-              "answers": [
-                "Abuja",
-                "Lagos",
-                "Kano",
-                "Ibadan"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_037",
-              "questionText": "What is the capital of Pakistan?",
-              "answers": [
-                "Islamabad",
-                "Karachi",
-                "Lahore",
-                "Faisalabad"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_038",
-              "questionText": "What is the capital of Sweden?",
-              "answers": [
-                "Stockholm",
-                "Gothenburg",
-                "Malm\u00f6",
-                "Uppsala"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_039",
-              "questionText": "What is the capital of Poland?",
-              "answers": [
-                "Warsaw",
-                "Krak\u00f3w",
-                "\u0141\u00f3d\u017a",
-                "Wroc\u0142aw"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_040",
-              "questionText": "What is the capital of the Netherlands?",
-              "answers": [
-                "Amsterdam",
-                "The Hague",
-                "Rotterdam",
-                "Utrecht"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_041",
-              "questionText": "What is the capital of Vietnam?",
-              "answers": [
-                "Hanoi",
-                "Ho Chi Minh City",
-                "Da Nang",
-                "Hue"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_042",
-              "questionText": "What is the capital of Kenya?",
-              "answers": [
-                "Nairobi",
-                "Mombasa",
-                "Kisumu",
-                "Nakuru"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_medium_043",
-              "questionText": "What is the capital of Colombia?",
-              "answers": [
-                "Bogot\u00e1",
-                "Medell\u00edn",
-                "Cali",
-                "Barranquilla"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_countries_capitals_hard_022",
-              "questionText": "What is the capital of Kazakhstan?",
-              "answers": [
-                "Astana",
-                "Almaty",
-                "Shymkent",
-                "Karaganda"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_023",
-              "questionText": "What is the capital of Myanmar?",
-              "answers": [
-                "Naypyidaw",
-                "Yangon",
-                "Mandalay",
-                "Bagan"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "geography_countries_capitals_hard_024",
               "questionText": "What is the capital of Mozambique?",
               "answers": [
@@ -56389,54 +55861,6 @@
                 "Beira",
                 "Nampula",
                 "Quelimane"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_025",
-              "questionText": "What is the capital of Kyrgyzstan?",
-              "answers": [
-                "Bishkek",
-                "Osh",
-                "Jalal-Abad",
-                "Karakol"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_026",
-              "questionText": "What is the capital of Eritrea?",
-              "answers": [
-                "Asmara",
-                "Massawa",
-                "Keren",
-                "Assab"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_027",
-              "questionText": "What is the capital of Suriname?",
-              "answers": [
-                "Paramaribo",
-                "Nieuw Nickerie",
-                "Lelydorp",
-                "Albina"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_028",
-              "questionText": "What is the capital of Bhutan?",
-              "answers": [
-                "Thimphu",
-                "Paro",
-                "Punakha",
-                "Wangdue"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -56466,18 +55890,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "geography_countries_capitals_hard_031",
-              "questionText": "What is the capital of Nauru?",
-              "answers": [
-                "Yaren (de facto)",
-                "Aiwo",
-                "Baiti",
-                "Denigomodu"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "geography_countries_capitals_hard_032",
               "questionText": "What is the capital of Tajikistan?",
               "answers": [
@@ -56485,18 +55897,6 @@
                 "Khujand",
                 "Kulob",
                 "Qurghonteppa"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_countries_capitals_hard_033",
-              "questionText": "What is the capital of Moldova?",
-              "answers": [
-                "Chi\u0219in\u0103u",
-                "Tiraspol",
-                "B\u0103l\u021bi",
-                "Cahul"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -56526,18 +55926,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_countries_capitals_insanity_024",
-              "questionText": "What is the capital of S\u00e3o Tom\u00e9 and Pr\u00edncipe?",
-              "answers": [
-                "S\u00e3o Tom\u00e9",
-                "Santo Ant\u00f3nio",
-                "Trindade",
-                "Guadalupe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_countries_capitals_insanity_025",
               "questionText": "What is the capital of Comoros?",
               "answers": [
@@ -56545,30 +55933,6 @@
                 "Mutsamudu",
                 "Fomboni",
                 "Domoni"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "geography_countries_capitals_insanity_026",
-              "questionText": "What is the capital of Kiribati?",
-              "answers": [
-                "South Tarawa",
-                "Betio",
-                "Bairiki",
-                "Bikenibeu"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "geography_countries_capitals_insanity_027",
-              "questionText": "What is the capital of Tuvalu?",
-              "answers": [
-                "Funafuti",
-                "Vaiaku",
-                "Fongafale",
-                "Alapi"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -65311,18 +64675,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_islands_insanity_012",
-              "questionText": "Which island is the largest in the Mediterranean Sea?",
-              "answers": [
-                "Sicily",
-                "Sardinia",
-                "Cyprus",
-                "Crete"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_islands_insanity_013",
               "questionText": "Which island is home to the capital city of Bridgetown?",
               "answers": [
@@ -65479,18 +64831,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_islands_medium_017",
-              "questionText": "Which island is home to the capital city of Reykjavik?",
-              "answers": [
-                "Iceland",
-                "Greenland",
-                "Faroe Islands",
-                "Svalbard"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "geography_islands_medium_018",
               "questionText": "Which island is home to the capital city of Taipei?",
               "answers": [
@@ -65534,18 +64874,6 @@
                 "Faroe Islands",
                 "Shetland Islands",
                 "Hebrides"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_islands_hard_014",
-              "questionText": "Which island is home to the capital city of Bridgetown?",
-              "answers": [
-                "Barbados",
-                "Grenada",
-                "Saint Lucia",
-                "Antigua"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -65671,18 +64999,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_islands_easy_024",
-              "questionText": "Which island is home to the city of Palermo?",
-              "answers": [
-                "Sicily",
-                "Sardinia",
-                "Corsica",
-                "Crete"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_islands_easy_025",
               "questionText": "Which island nation is located in the North Atlantic and has Reykjavik as its capital?",
               "answers": [
@@ -65779,42 +65095,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_islands_medium_023",
-              "questionText": "Which island is home to the capital city of Taipei?",
-              "answers": [
-                "Taiwan",
-                "Hainan",
-                "Honshu",
-                "Kyushu"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_islands_medium_024",
-              "questionText": "Which island is home to the capital city of Bridgetown?",
-              "answers": [
-                "Barbados",
-                "Saint Lucia",
-                "Grenada",
-                "Antigua"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "geography_islands_hard_016",
-              "questionText": "Which island is home to the capital city of Reykjavik?",
-              "answers": [
-                "Iceland",
-                "Greenland",
-                "Faroe Islands",
-                "Jan Mayen"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "geography_islands_hard_017",
               "questionText": "Which island is home to the capital city of Port of Spain?",
               "answers": [
@@ -65837,42 +65117,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "hard"
-            },
-            {
-              "id": "geography_islands_hard_019",
-              "questionText": "Which island is home to the capital city of Nuuk?",
-              "answers": [
-                "Greenland",
-                "Iceland",
-                "Baffin Island",
-                "Svalbard"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_islands_hard_020",
-              "questionText": "Which island is home to the capital city of Port Louis?",
-              "answers": [
-                "Mauritius",
-                "R\u00e9union",
-                "Madagascar",
-                "Comoros"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_islands_insanity_022",
-              "questionText": "Which island is home to the capital city of T\u00f3rshavn?",
-              "answers": [
-                "Streymoy",
-                "V\u00e1gar",
-                "Eysturoy",
-                "Sandoy"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
             },
             {
               "id": "geography_islands_insanity_023",
@@ -67654,18 +66898,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_continents_insanity_013",
-              "questionText": "Which continent is the country of Slovenia located on?",
-              "answers": [
-                "Europe",
-                "Asia",
-                "Africa",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_continents_insanity_014",
               "questionText": "Which continent is the country of Gabon located on?",
               "answers": [
@@ -67786,18 +67018,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_continents_medium_015",
-              "questionText": "Which continent is the country of Morocco located on?",
-              "answers": [
-                "Africa",
-                "Europe",
-                "Asia",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "geography_continents_medium_016",
               "questionText": "Which continent is the country of Vietnam located on?",
               "answers": [
@@ -67841,18 +67061,6 @@
                 "Europe",
                 "Africa",
                 "Australia"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_continents_hard_012",
-              "questionText": "Which continent is the country of Uruguay located on?",
-              "answers": [
-                "South America",
-                "North America",
-                "Africa",
-                "Europe"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -67966,18 +67174,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "geography_continents_insanity_021",
-              "questionText": "Which continent is the country of Slovenia located on?",
-              "answers": [
-                "Europe",
-                "Asia",
-                "Africa",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_continents_easy_022",
               "questionText": "Which continent is the country of the United States located on?",
               "answers": [
@@ -67990,18 +67186,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "geography_continents_easy_023",
-              "questionText": "Which continent is the country of Nigeria located on?",
-              "answers": [
-                "Africa",
-                "Asia",
-                "Europe",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "geography_continents_easy_024",
               "questionText": "Which continent is the country of Japan located on?",
               "answers": [
@@ -68009,18 +67193,6 @@
                 "Europe",
                 "Africa",
                 "Australia"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "geography_continents_easy_025",
-              "questionText": "Which continent is the country of Colombia located on?",
-              "answers": [
-                "South America",
-                "North America",
-                "Africa",
-                "Europe"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -68122,18 +67294,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "geography_continents_medium_024",
-              "questionText": "Which continent is the country of Kenya located on?",
-              "answers": [
-                "Africa",
-                "Asia",
-                "Europe",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "geography_continents_hard_016",
               "questionText": "Which continent is the country of Armenia primarily located on?",
               "answers": [
@@ -68153,18 +67313,6 @@
                 "North America",
                 "Africa",
                 "Europe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "geography_continents_hard_018",
-              "questionText": "Which continent is the country of Mongolia located on?",
-              "answers": [
-                "Asia",
-                "Europe",
-                "Africa",
-                "Australia"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -68194,18 +67342,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "geography_continents_insanity_022",
-              "questionText": "Which continent is the country of Suriname located on?",
-              "answers": [
-                "South America",
-                "Africa",
-                "Asia",
-                "Europe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "geography_continents_insanity_023",
               "questionText": "Which continent is the country of Uzbekistan located on?",
               "answers": [
@@ -68225,30 +67361,6 @@
                 "Asia",
                 "Africa",
                 "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "geography_continents_insanity_025",
-              "questionText": "Which continent is the country of Gabon located on?",
-              "answers": [
-                "Africa",
-                "Asia",
-                "Europe",
-                "South America"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "geography_continents_insanity_026",
-              "questionText": "Which continent is the country of Paraguay located on?",
-              "answers": [
-                "South America",
-                "North America",
-                "Africa",
-                "Europe"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -72801,30 +71913,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_poems_insanity_009",
-              "questionText": "Who wrote the poem \"The Love Song of J. Alfred Prufrock\"?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "W.B. Yeats",
-                "Dylan Thomas"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_010",
-              "questionText": "Who wrote the poem \"Daddy\"?",
-              "answers": [
-                "Sylvia Plath",
-                "Anne Sexton",
-                "Maya Angelou",
-                "Emily Dickinson"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "literature_poems_insanity_011",
               "questionText": "Who wrote the poem \"The Weary Blues\"?",
               "answers": [
@@ -72832,18 +71920,6 @@
                 "Gwendolyn Brooks",
                 "Maya Angelou",
                 "Claude McKay"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_012",
-              "questionText": "Who wrote the poem \"Do Not Go Gentle into That Good Night\"?",
-              "answers": [
-                "Dylan Thomas",
-                "Seamus Heaney",
-                "Ted Hughes",
-                "Philip Larkin"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -73005,18 +72081,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_poems_medium_017",
-              "questionText": "Who wrote the poem \"The Raven\"?",
-              "answers": [
-                "Edgar Allan Poe",
-                "Walt Whitman",
-                "Emily Dickinson",
-                "Robert Frost"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_poems_medium_018",
               "questionText": "Who wrote the poem \"A Valediction: Forbidding Mourning\"?",
               "answers": [
@@ -73029,18 +72093,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_poems_hard_011",
-              "questionText": "Who wrote the poem \"The Waste Land\"?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "W.B. Yeats",
-                "Wallace Stevens"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_poems_hard_012",
               "questionText": "Who wrote the poem \"The Canonization\"?",
               "answers": [
@@ -73048,30 +72100,6 @@
                 "Andrew Marvell",
                 "George Herbert",
                 "Ben Jonson"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_013",
-              "questionText": "Who wrote the poem \"The Second Coming\"?",
-              "answers": [
-                "W.B. Yeats",
-                "T.S. Eliot",
-                "Ezra Pound",
-                "Seamus Heaney"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_014",
-              "questionText": "Who wrote the poem \"The Love Song of J. Alfred Prufrock\"?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "W.B. Yeats",
-                "Dylan Thomas"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -73197,18 +72225,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_poems_easy_024",
-              "questionText": "Who wrote the poem \"The Raven\"?",
-              "answers": [
-                "Edgar Allan Poe",
-                "Walt Whitman",
-                "Emily Dickinson",
-                "Henry Wadsworth Longfellow"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_poems_easy_025",
               "questionText": "Who wrote the poem \"The Village Blacksmith\"?",
               "answers": [
@@ -73233,18 +72249,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_poems_easy_027",
-              "questionText": "Who wrote the poem \"O Captain! My Captain!\"?",
-              "answers": [
-                "Walt Whitman",
-                "Emily Dickinson",
-                "Henry Wadsworth Longfellow",
-                "Edgar Allan Poe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_poems_easy_028",
               "questionText": "Who wrote the poem \"Dreams\"?",
               "answers": [
@@ -73257,78 +72261,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_poems_medium_019",
-              "questionText": "Who wrote the poem \"The Road Not Taken\"?",
-              "answers": [
-                "Robert Frost",
-                "Carl Sandburg",
-                "T.S. Eliot",
-                "William Wordsworth"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_poems_medium_020",
-              "questionText": "Who wrote the poem \"The Raven\"?",
-              "answers": [
-                "Edgar Allan Poe",
-                "Walt Whitman",
-                "Emily Dickinson",
-                "Robert Frost"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_poems_medium_021",
-              "questionText": "Who wrote the poem \"Ode to a Nightingale\"?",
-              "answers": [
-                "John Keats",
-                "Percy Bysshe Shelley",
-                "Lord Byron",
-                "William Wordsworth"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_poems_medium_022",
-              "questionText": "Who wrote the poem \"The Tyger\"?",
-              "answers": [
-                "William Blake",
-                "William Wordsworth",
-                "John Keats",
-                "Samuel Taylor Coleridge"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_poems_medium_023",
-              "questionText": "Who wrote the poem \"Annabel Lee\"?",
-              "answers": [
-                "Edgar Allan Poe",
-                "Emily Dickinson",
-                "Walt Whitman",
-                "Henry Wadsworth Longfellow"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_poems_medium_024",
-              "questionText": "Who wrote the poem \"The Second Coming\"?",
-              "answers": [
-                "W.B. Yeats",
-                "T.S. Eliot",
-                "Ezra Pound",
-                "Seamus Heaney"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_poems_hard_016",
               "questionText": "Who wrote the poem \"Paradise Lost\"?",
               "answers": [
@@ -73336,54 +72268,6 @@
                 "Geoffrey Chaucer",
                 "William Blake",
                 "Christopher Marlowe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_017",
-              "questionText": "Who wrote the poem \"The Hollow Men\"?",
-              "answers": [
-                "T.S. Eliot",
-                "W.B. Yeats",
-                "Ezra Pound",
-                "Wallace Stevens"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_018",
-              "questionText": "Who wrote the poem \"Goblin Market\"?",
-              "answers": [
-                "Christina Rossetti",
-                "Elizabeth Barrett Browning",
-                "Emily Dickinson",
-                "George Eliot"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_019",
-              "questionText": "Who wrote the poem \"The Waste Land\"?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "W.B. Yeats",
-                "James Joyce"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_020",
-              "questionText": "Who wrote the poem \"Kubla Khan\"?",
-              "answers": [
-                "Samuel Taylor Coleridge",
-                "William Wordsworth",
-                "John Keats",
-                "Lord Byron"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -73401,42 +72285,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_poems_insanity_023",
-              "questionText": "Who wrote the poem \"The Rime of the Ancient Mariner\"?",
-              "answers": [
-                "Samuel Taylor Coleridge",
-                "William Wordsworth",
-                "John Keats",
-                "Lord Byron"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_024",
-              "questionText": "Who wrote the poem \"Ode on a Grecian Urn\"?",
-              "answers": [
-                "John Keats",
-                "Percy Bysshe Shelley",
-                "Lord Byron",
-                "William Wordsworth"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_025",
-              "questionText": "Who wrote the poem \"The Prelude\"?",
-              "answers": [
-                "William Wordsworth",
-                "Samuel Taylor Coleridge",
-                "John Keats",
-                "Lord Byron"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "literature_poems_insanity_026",
               "questionText": "Who wrote the poem \"The Seafarer\"?",
               "answers": [
@@ -73444,30 +72292,6 @@
                 "Geoffrey Chaucer",
                 "William Langland",
                 "John Milton"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_027",
-              "questionText": "Who wrote the poem \"The Love Song of J. Alfred Prufrock\"?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "W.B. Yeats",
-                "Dylan Thomas"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_poems_insanity_028",
-              "questionText": "Who wrote the poem \"Easter, 1916\"?",
-              "answers": [
-                "W.B. Yeats",
-                "T.S. Eliot",
-                "Seamus Heaney",
-                "Ezra Pound"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -74037,18 +72861,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_poems_hard_033",
-              "questionText": "Who wrote 'The Love Song of J. Alfred Prufrock'?",
-              "answers": [
-                "T.S. Eliot",
-                "Ezra Pound",
-                "Wallace Stevens",
-                "William Carlos Williams"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_poems_hard_034",
               "questionText": "What poetic foot consists of an unstressed syllable followed by a stressed one?",
               "answers": [
@@ -74056,18 +72868,6 @@
                 "Trochee",
                 "Dactyl",
                 "Spondee"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_poems_hard_035",
-              "questionText": "Who wrote the epic poem 'Paradise Lost'?",
-              "answers": [
-                "John Milton",
-                "Edmund Spenser",
-                "John Donne",
-                "George Herbert"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -75931,18 +74731,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_stories_medium_018",
-              "questionText": "Who wrote the short story \"The Ones Who Walk Away from Omelas\"?",
-              "answers": [
-                "Ursula K. Le Guin",
-                "Ray Bradbury",
-                "Isaac Asimov",
-                "Arthur C. Clarke"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_stories_hard_011",
               "questionText": "Who wrote the short story \"The Dead\"?",
               "answers": [
@@ -75991,18 +74779,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_stories_hard_015",
-              "questionText": "Who wrote the short story \"The Ones Who Walk Away from Omelas\"?",
-              "answers": [
-                "Ursula K. Le Guin",
-                "Octavia E. Butler",
-                "Madeleine L'Engle",
-                "Anne McCaffrey"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_stories_insanity_015",
               "questionText": "Who wrote the short story collection \"Dubliners\"?",
               "answers": [
@@ -76046,18 +74822,6 @@
                 "F. Scott Fitzgerald",
                 "William Faulkner",
                 "John Steinbeck"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "literature_stories_insanity_019",
-              "questionText": "Who wrote the short story \"The Ones Who Walk Away from Omelas\"?",
-              "answers": [
-                "Ursula K. Le Guin",
-                "Philip K. Dick",
-                "Ray Bradbury",
-                "Isaac Asimov"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -76142,18 +74906,6 @@
                 "Stephen Crane",
                 "Ambrose Bierce",
                 "Washington Irving"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_stories_easy_027",
-              "questionText": "Who wrote the short story \"The Gift of the Magi\"?",
-              "answers": [
-                "O. Henry",
-                "Ernest Hemingway",
-                "F. Scott Fitzgerald",
-                "John Steinbeck"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -76411,18 +75163,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_stories_easy_031",
-              "questionText": "Who wrote the short story 'The Gift of the Magi'?",
-              "answers": [
-                "O. Henry",
-                "Mark Twain",
-                "Jack London",
-                "Ambrose Bierce"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_stories_easy_032",
               "questionText": "What is a short story's most important structural element?",
               "answers": [
@@ -76430,18 +75170,6 @@
                 "Setting",
                 "Dialogue",
                 "Description"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_stories_easy_033",
-              "questionText": "Who wrote 'The Most Dangerous Game'?",
-              "answers": [
-                "Richard Connell",
-                "Jack London",
-                "Ernest Hemingway",
-                "F. Scott Fitzgerald"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -76483,18 +75211,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_stories_easy_037",
-              "questionText": "Who wrote 'The Yellow Wallpaper'?",
-              "answers": [
-                "Charlotte Perkins Gilman",
-                "Kate Chopin",
-                "Edith Wharton",
-                "Mary Wollstonecraft"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_stories_easy_038",
               "questionText": "What is the setting of most of Edgar Allan Poe's horror stories?",
               "answers": [
@@ -76502,18 +75218,6 @@
                 "Ancient ruins",
                 "Haunted cities",
                 "Deep forests"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_stories_easy_039",
-              "questionText": "Who wrote 'The Necklace'?",
-              "answers": [
-                "Guy de Maupassant",
-                "Gustave Flaubert",
-                "\u00c9mile Zola",
-                "Victor Hugo"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -76603,18 +75307,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_stories_medium_030",
-              "questionText": "Who wrote 'The Lottery'?",
-              "answers": [
-                "Shirley Jackson",
-                "Flannery O'Connor",
-                "Carson McCullers",
-                "Eudora Welty"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_stories_medium_031",
               "questionText": "What is a unreliable narrator?",
               "answers": [
@@ -76622,18 +75314,6 @@
                 "A narrator who doesn't know the full story",
                 "A narrator who lies deliberately",
                 "A narrator from an unusual perspective"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_stories_medium_032",
-              "questionText": "Who wrote 'The Metamorphosis'?",
-              "answers": [
-                "Franz Kafka",
-                "Thomas Mann",
-                "Hermann Hesse",
-                "Stefan Zweig"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -76711,18 +75391,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_stories_hard_023",
-              "questionText": "Who wrote 'The Garden of Forking Paths'?",
-              "answers": [
-                "Jorge Luis Borges",
-                "Julio Cort\u00e1zar",
-                "Gabriel Garc\u00eda M\u00e1rquez",
-                "Octavio Paz"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_stories_hard_024",
               "questionText": "What is the term for a story that comments on its own fictionality?",
               "answers": [
@@ -76730,18 +75398,6 @@
                 "Postmodernism",
                 "Self-referential fiction",
                 "Autofiction"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_stories_hard_025",
-              "questionText": "Who wrote 'The Lady with the Dog'?",
-              "answers": [
-                "Anton Chekhov",
-                "Ivan Turgenev",
-                "Leo Tolstoy",
-                "Fyodor Dostoevsky"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -76843,18 +75499,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_stories_hard_029",
-              "questionText": "Who wrote the short story collection 'Dubliners'?",
-              "answers": [
-                "James Joyce",
-                "Samuel Beckett",
-                "Frank O'Connor",
-                "Se\u00e1n O'Faol\u00e1in"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_stories_hard_030",
               "questionText": "What Chekhov story features a man who meets a woman with a dog while on vacation?",
               "answers": [
@@ -76886,18 +75530,6 @@
                 "In the Penal Colony",
                 "The Trial",
                 "A Country Doctor"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_stories_hard_033",
-              "questionText": "Who wrote 'Hills Like White Elephants'?",
-              "answers": [
-                "Ernest Hemingway",
-                "F. Scott Fitzgerald",
-                "John Steinbeck",
-                "William Faulkner"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -78232,18 +76864,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_classics_medium_018",
-              "questionText": "Who wrote \"The Sound and the Fury\"?",
-              "answers": [
-                "William Faulkner",
-                "John Steinbeck",
-                "Tennessee Williams",
-                "Flannery O'Connor"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_classics_medium_019",
               "questionText": "In \"Jane Eyre,\" what is the name of Mr. Rochester's estate?",
               "answers": [
@@ -78374,18 +76994,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "literature_classics_easy_025",
-              "questionText": "Who wrote \"The Call of the Wild\"?",
-              "answers": [
-                "Jack London",
-                "Mark Twain",
-                "John Steinbeck",
-                "Ernest Hemingway"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "literature_classics_easy_026",
@@ -78700,18 +77308,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_classics_easy_034",
-              "questionText": "Who wrote 'Pride and Prejudice'?",
-              "answers": [
-                "Jane Austen",
-                "Charlotte Bront\u00eb",
-                "George Eliot",
-                "Emily Bront\u00eb"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_classics_easy_035",
               "questionText": "Who wrote 'Moby-Dick'?",
               "answers": [
@@ -78839,18 +77435,6 @@
                 "The New Adam",
                 "The Created Monster",
                 "The Scientist's Curse"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_classics_medium_032",
-              "questionText": "Who wrote 'The Brothers Karamazov'?",
-              "answers": [
-                "Fyodor Dostoevsky",
-                "Leo Tolstoy",
-                "Ivan Turgenev",
-                "Nikolai Gogol"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -79012,18 +77596,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_classics_easy_041",
-              "questionText": "Who wrote 'Pride and Prejudice'?",
-              "answers": [
-                "Jane Austen",
-                "Charlotte Bront\u00eb",
-                "George Eliot",
-                "Elizabeth Gaskell"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_classics_easy_042",
               "questionText": "What classic novel begins with the line 'Call me Ishmael'?",
               "answers": [
@@ -79060,18 +77632,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_classics_medium_036",
-              "questionText": "Who wrote 'Middlemarch'?",
-              "answers": [
-                "George Eliot",
-                "Jane Austen",
-                "Thomas Hardy",
-                "Anthony Trollope"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_classics_medium_037",
               "questionText": "What Tolstoy novel follows aristocratic families during the Napoleonic Wars?",
               "answers": [
@@ -79079,18 +77639,6 @@
                 "Anna Karenina",
                 "Resurrection",
                 "The Cossacks"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_classics_medium_038",
-              "questionText": "Who wrote 'Don Quixote'?",
-              "answers": [
-                "Miguel de Cervantes",
-                "Lope de Vega",
-                "Francisco de Quevedo",
-                "Calder\u00f3n de la Barca"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -79139,18 +77687,6 @@
                 "Sentimental Education",
                 "Salammb\u00f4",
                 "Bouvard and P\u00e9cuchet"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_classics_hard_033",
-              "questionText": "Who wrote 'The Red and the Black'?",
-              "answers": [
-                "Stendhal",
-                "Balzac",
-                "Flaubert",
-                "Zola"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -79913,18 +78449,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "literature_plays_medium_001",
-              "questionText": "Who wrote \"Waiting for Godot\"?",
-              "answers": [
-                "Samuel Beckett",
-                "Harold Pinter",
-                "Eugene Ionesco",
-                "Jean-Paul Sartre"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "literature_plays_medium_002",
@@ -81055,18 +79579,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_plays_easy_037",
-              "questionText": "Who wrote 'The Importance of Being Earnest'?",
-              "answers": [
-                "Oscar Wilde",
-                "George Bernard Shaw",
-                "J.M. Barrie",
-                "Arthur Wing Pinero"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_plays_easy_038",
               "questionText": "What is a tragedy?",
               "answers": [
@@ -81139,18 +79651,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_plays_medium_029",
-              "questionText": "Who wrote 'Waiting for Godot'?",
-              "answers": [
-                "Samuel Beckett",
-                "Harold Pinter",
-                "Eugene Ionesco",
-                "Jean Genet"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_plays_medium_030",
               "questionText": "What is the Theatre of the Absurd?",
               "answers": [
@@ -81158,18 +79658,6 @@
                 "Theatre without stage sets",
                 "Surrealist theatre with dream sequences",
                 "Political theatre challenging social norms"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_plays_medium_031",
-              "questionText": "Who wrote 'A Streetcar Named Desire'?",
-              "answers": [
-                "Tennessee Williams",
-                "Arthur Miller",
-                "Eugene O'Neill",
-                "Clifford Odets"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -81331,18 +79819,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_plays_easy_041",
-              "questionText": "Who wrote 'A Midsummer Night's Dream'?",
-              "answers": [
-                "William Shakespeare",
-                "Christopher Marlowe",
-                "Ben Jonson",
-                "John Webster"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_plays_easy_042",
               "questionText": "What play features the characters Blanche DuBois and Stanley Kowalski?",
               "answers": [
@@ -81355,18 +79831,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_plays_medium_034",
-              "questionText": "Who wrote 'Waiting for Godot'?",
-              "answers": [
-                "Samuel Beckett",
-                "Harold Pinter",
-                "Tom Stoppard",
-                "Eugene Ionesco"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_plays_medium_035",
               "questionText": "What Chekhov play features three sisters longing to go to Moscow?",
               "answers": [
@@ -81374,18 +79838,6 @@
                 "The Cherry Orchard",
                 "The Seagull",
                 "Uncle Vanya"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_plays_medium_036",
-              "questionText": "Who wrote 'The Importance of Being Earnest'?",
-              "answers": [
-                "Oscar Wilde",
-                "George Bernard Shaw",
-                "J.M. Barrie",
-                "W.S. Gilbert"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -81542,18 +79994,6 @@
                 "The Threepenny Opera",
                 "The Good Person of Szechwan",
                 "Life of Galileo"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_plays_hard_035",
-              "questionText": "Who wrote 'The Cherry Orchard'?",
-              "answers": [
-                "Anton Chekhov",
-                "Leo Tolstoy",
-                "Ivan Turgenev",
-                "Maxim Gorky"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -82594,18 +81034,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_fiction_hard_006",
-              "questionText": "Who wrote \"The Master and Margarita\"?",
-              "answers": [
-                "Mikhail Bulgakov",
-                "Fyodor Dostoevsky",
-                "Vladimir Nabokov",
-                "Aleksandr Solzhenitsyn"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_fiction_hard_007",
               "questionText": "Which novel by Toni Morrison features the character Milkman Dead?",
               "answers": [
@@ -82978,18 +81406,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_fiction_insanity_014",
-              "questionText": "Who wrote \"The Name of the Rose\"?",
-              "answers": [
-                "Umberto Eco",
-                "Italo Calvino",
-                "Roberto Bola\u00f1o",
-                "Jorge Luis Borges"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "literature_fiction_insanity_015",
               "questionText": "Which novel by Margaret Atwood features genetic engineering and corporate dystopia in the character Snowman?",
               "answers": [
@@ -83182,18 +81598,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_fiction_hard_017",
-              "questionText": "Who wrote \"The Things They Carried\"?",
-              "answers": [
-                "Tim O'Brien",
-                "Michael Herr",
-                "Joseph Heller",
-                "Kurt Vonnegut"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_fiction_hard_018",
               "questionText": "Who wrote \"The House of the Spirits\"?",
               "answers": [
@@ -83213,18 +81617,6 @@
                 "Annie Proulx",
                 "Willa Cather",
                 "Marilynne Robinson"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_fiction_hard_020",
-              "questionText": "Who wrote \"The Amazing Adventures of Kavalier & Clay\"?",
-              "answers": [
-                "Michael Chabon",
-                "Jonathan Franzen",
-                "Richard Powers",
-                "Jonathan Safran Foer"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -83338,30 +81730,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_fiction_easy_034",
-              "questionText": "Who wrote '1984'?",
-              "answers": [
-                "George Orwell",
-                "Aldous Huxley",
-                "Ray Bradbury",
-                "Arthur Koestler"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_fiction_easy_035",
-              "questionText": "Who wrote 'The Hunger Games'?",
-              "answers": [
-                "Suzanne Collins",
-                "Veronica Roth",
-                "James Dashner",
-                "Rick Riordan"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_fiction_easy_036",
               "questionText": "Who wrote 'Harry Potter'?",
               "answers": [
@@ -83398,18 +81766,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_fiction_easy_039",
-              "questionText": "Who wrote 'The Alchemist'?",
-              "answers": [
-                "Paulo Coelho",
-                "Gabriel Garc\u00eda M\u00e1rquez",
-                "Isabel Allende",
-                "Jorge Amado"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_fiction_easy_040",
               "questionText": "What is the genre of 'The Shining' by Stephen King?",
               "answers": [
@@ -83420,18 +81776,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "literature_fiction_medium_026",
-              "questionText": "Who wrote 'One Hundred Years of Solitude'?",
-              "answers": [
-                "Gabriel Garc\u00eda M\u00e1rquez",
-                "Jorge Luis Borges",
-                "Julio Cort\u00e1zar",
-                "Mario Vargas Llosa"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "literature_fiction_medium_027",
@@ -83489,18 +81833,6 @@
                 "An omniscient third-person narrator",
                 "A frame narrative with an unreliable storyteller",
                 "Alternating present and past timelines"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_fiction_medium_032",
-              "questionText": "Who wrote 'The Road'?",
-              "answers": [
-                "Cormac McCarthy",
-                "Philip Roth",
-                "Don DeLillo",
-                "Thomas Pynchon"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -83662,30 +81994,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_fiction_easy_043",
-              "questionText": "Who wrote 'The Hitchhiker's Guide to the Galaxy'?",
-              "answers": [
-                "Douglas Adams",
-                "Terry Pratchett",
-                "Neil Gaiman",
-                "Iain M. Banks"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_fiction_medium_034",
-              "questionText": "Who wrote 'Slaughterhouse-Five'?",
-              "answers": [
-                "Kurt Vonnegut",
-                "Joseph Heller",
-                "Philip K. Dick",
-                "Ray Bradbury"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_fiction_medium_035",
               "questionText": "What Margaret Atwood novel is set in the theocratic Republic of Gilead?",
               "answers": [
@@ -83710,18 +82018,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_fiction_medium_037",
-              "questionText": "Who wrote 'One Hundred Years of Solitude'?",
-              "answers": [
-                "Gabriel Garc\u00eda M\u00e1rquez",
-                "Mario Vargas Llosa",
-                "Julio Cort\u00e1zar",
-                "Jorge Amado"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_fiction_medium_038",
               "questionText": "What is the genre term for fiction that blends magical elements into realistic settings?",
               "answers": [
@@ -83741,18 +82037,6 @@
                 "Gravity's Rainbow",
                 "V.",
                 "Vineland"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_fiction_hard_029",
-              "questionText": "Who wrote 'The Master and Margarita'?",
-              "answers": [
-                "Mikhail Bulgakov",
-                "Boris Pasternak",
-                "Yevgeny Zamyatin",
-                "Andrei Platonov"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -85657,18 +83941,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_nonfiction_easy_035",
-              "questionText": "Who wrote 'The Diary of a Young Girl'?",
-              "answers": [
-                "Anne Frank",
-                "Etty Hillesum",
-                "Corrie ten Boom",
-                "Sophie Scholl"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_nonfiction_easy_036",
               "questionText": "What is the term for a person's account of their own life?",
               "answers": [
@@ -85681,18 +83953,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "literature_nonfiction_easy_037",
-              "questionText": "Who wrote 'A Brief History of Time'?",
-              "answers": [
-                "Stephen Hawking",
-                "Carl Sagan",
-                "Richard Feynman",
-                "Neil deGrasse Tyson"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_nonfiction_easy_038",
               "questionText": "What is investigative journalism?",
               "answers": [
@@ -85700,18 +83960,6 @@
                 "Daily news reporting",
                 "Opinion writing",
                 "Feature writing about lifestyle topics"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_nonfiction_easy_039",
-              "questionText": "Who wrote 'The Art of War'?",
-              "answers": [
-                "Sun Tzu",
-                "Confucius",
-                "Lao Tzu",
-                "Mencius"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -85789,18 +84037,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "literature_nonfiction_medium_031",
-              "questionText": "Who wrote 'In Cold Blood'?",
-              "answers": [
-                "Truman Capote",
-                "Norman Mailer",
-                "Tom Wolfe",
-                "Hunter S. Thompson"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "literature_nonfiction_medium_032",
               "questionText": "What is gonzo journalism?",
               "answers": [
@@ -85808,18 +84044,6 @@
                 "Undercover investigative journalism",
                 "Sensationalist tabloid journalism",
                 "Community-based local journalism"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_nonfiction_medium_033",
-              "questionText": "Who wrote 'The Second Sex'?",
-              "answers": [
-                "Simone de Beauvoir",
-                "Simone Weil",
-                "Marguerite Yourcenar",
-                "Colette"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -85837,18 +84061,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "literature_nonfiction_hard_023",
-              "questionText": "Who wrote 'The Structure of Scientific Revolutions'?",
-              "answers": [
-                "Thomas Kuhn",
-                "Karl Popper",
-                "Paul Feyerabend",
-                "Imre Lakatos"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "literature_nonfiction_hard_024",
               "questionText": "What is the concept of essayism as described by Robert Musil?",
               "answers": [
@@ -85856,18 +84068,6 @@
                 "A literary form midway between fiction and non-fiction",
                 "A philosophical style that uses personal experience as evidence",
                 "A journalistic form that combines reportage with analysis"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_nonfiction_hard_025",
-              "questionText": "Who wrote 'Orientalism'?",
-              "answers": [
-                "Edward Said",
-                "Homi K. Bhabha",
-                "Gayatri Spivak",
-                "Frantz Fanon"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -85945,30 +84145,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "literature_nonfiction_easy_041",
-              "questionText": "Who wrote 'The Diary of a Young Girl'?",
-              "answers": [
-                "Anne Frank",
-                "Elie Wiesel",
-                "Primo Levi",
-                "Viktor Frankl"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "literature_nonfiction_easy_042",
-              "questionText": "Who wrote 'A Brief History of Time'?",
-              "answers": [
-                "Stephen Hawking",
-                "Carl Sagan",
-                "Richard Feynman",
-                "Brian Greene"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "literature_nonfiction_easy_043",
               "questionText": "What is the term for a non-fiction account written using techniques from fiction?",
               "answers": [
@@ -85988,18 +84164,6 @@
                 "Norman Mailer",
                 "Hunter S. Thompson",
                 "Tom Wolfe"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "literature_nonfiction_medium_035",
-              "questionText": "Who wrote 'The Elements of Style'?",
-              "answers": [
-                "Strunk and White",
-                "George Orwell",
-                "William Zinsser",
-                "Annie Dillard"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -86156,18 +84320,6 @@
                 "Secretly recorded audio journalism published without subject consent",
                 "A form of investigative journalism using anonymous whistleblower sources",
                 "Long-form documentary journalism focused on organized crime"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "literature_nonfiction_hard_032",
-              "questionText": "Who wrote 'The Souls of Black Folk'?",
-              "answers": [
-                "W.E.B. Du Bois",
-                "Booker T. Washington",
-                "Frederick Douglass",
-                "James Weldon Johnson"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -91182,18 +89334,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "games_cards_easy_043",
-              "questionText": "In Blackjack, what is the goal?",
-              "answers": [
-                "Get as close to 21 as possible without going over",
-                "Get exactly 21",
-                "Have a higher hand than all other players",
-                "Beat the dealer by exactly 1 point"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "games_cards_medium_034",
               "questionText": "In Bridge, what is the role of the 'dummy'?",
               "answers": [
@@ -93267,18 +91407,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "games_videogames_medium_027",
-              "questionText": "What was the first commercially successful video game?",
-              "answers": [
-                "Pong",
-                "Space Invaders",
-                "Pac-Man",
-                "Donkey Kong"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "games_videogames_medium_028",
               "questionText": "What is a Metroidvania game?",
               "answers": [
@@ -93603,18 +91731,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "games_videogames_insanity_026",
-              "questionText": "What is the Konami Code?",
-              "answers": [
-                "Up Up Down Down Left Right Left Right B A \u2014 a cheat code originating in Gradius",
-                "A hardware unlock sequence for Konami arcade cabinets",
-                "The internal development codename for Contra",
-                "A series of button holds that activates a debug menu"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
               "id": "games_videogames_insanity_027",
               "questionText": "What game engine introduced BSP (Binary Space Partitioning) trees for fast 3D rendering on consumer hardware?",
               "answers": [
@@ -93663,18 +91779,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "games_videogames_easy_045",
-              "questionText": "What is the best-selling video game of all time?",
-              "answers": [
-                "Minecraft",
-                "Tetris",
-                "GTA V",
-                "Wii Sports"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "games_videogames_medium_039",
               "questionText": "What is a 'soulslike' game?",
               "answers": [
@@ -93682,18 +91786,6 @@
                 "Any game developed by FromSoftware",
                 "A game where death is permanent and you restart from the beginning",
                 "A role-playing game with a bleak, hopeless narrative tone"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "games_videogames_medium_040",
-              "questionText": "What is procedural generation in video games?",
-              "answers": [
-                "Using algorithms to automatically create game content like levels or items rather than designing them manually",
-                "A technique for smoothing character animations between keyframes",
-                "A method of generating realistic physics simulations in real time",
-                "Automatically balancing enemy difficulty based on player performance"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -93745,18 +91837,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "games_videogames_medium_041",
-              "questionText": "What is a 'roguelike' game?",
-              "answers": [
-                "A game with procedurally generated levels, permadeath, and turn-based mechanics inspired by the 1980 game Rogue",
-                "Any game with a dark fantasy aesthetic and punishing difficulty",
-                "A game where you play as a thief or rogue character class",
-                "A game that generates a new story every playthrough"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "games_videogames_hard_033",
@@ -96523,18 +94603,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "games_boardgames_hard_029",
-              "questionText": "What is the Elo rating system?",
-              "answers": [
-                "A method for calculating relative skill of players in zero-sum games, originally designed for Chess",
-                "A scoring system for cooperative board games",
-                "A ranking system used in Scrabble based on word knowledge",
-                "A point system that standardizes results across different game editions"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "games_boardgames_hard_030",
               "questionText": "What is 'Alpha-Beta pruning' in game AI?",
               "answers": [
@@ -96554,18 +94622,6 @@
                 "Games with perfect information always favor the first player",
                 "All combinatorial games decompose into sums of simpler sub-games",
                 "Complexity scales exponentially with each player's branching factor"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
-            },
-            {
-              "id": "games_boardgames_insanity_027",
-              "questionText": "What is the Sprague-Grundy theorem?",
-              "answers": [
-                "Every impartial game is equivalent to a Nim heap of some size, enabling optimal play by calculating Grundy values",
-                "The player who moves last in any finite game always wins",
-                "Any two-player game with perfect information has a solution in polynomial time",
-                "Cooperative games always have a Nash equilibrium that benefits both players"
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
@@ -99613,18 +97669,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "games_casino_medium_003",
-              "questionText": "In Texas Hold'em, how many hole cards does each player receive?",
-              "answers": [
-                "Two",
-                "One",
-                "Three",
-                "Five"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "games_casino_medium_004",
               "questionText": "In Texas Hold'em, how many community cards are revealed in total?",
               "answers": [
@@ -100139,18 +98183,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "games_casino_medium_015",
-              "questionText": "In blackjack, what is a \"push\"?",
-              "answers": [
-                "A tie between player and dealer",
-                "A double down win",
-                "A split hand result",
-                "An automatic loss"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "games_casino_medium_016",
@@ -101017,18 +99049,6 @@
               "difficulty": "hard"
             },
             {
-              "id": "games_casino_hard_030",
-              "questionText": "What is card counting in Blackjack?",
-              "answers": [
-                "Tracking the ratio of high to low cards remaining in the shoe to adjust bet sizes and strategy",
-                "Memorizing every card dealt to predict the exact next card",
-                "A technique involving marked cards to identify the dealer's hole card",
-                "Counting suit distribution to predict when flush boards are likely"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
               "id": "games_casino_hard_031",
               "questionText": "What is the expected value of a $1 straight-up bet in American Roulette?",
               "answers": [
@@ -101036,18 +99056,6 @@
                 "$0.00",
                 "$-0.027",
                 "$-0.10"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
-            },
-            {
-              "id": "games_casino_hard_032",
-              "questionText": "What is the 'gambler's fallacy'?",
-              "answers": [
-                "The mistaken belief that past independent random outcomes affect future ones \u2014 e.g., red is 'due' after a run of blacks",
-                "Overestimating skill in luck-based games",
-                "Underweighting small probabilities when calculating expected value",
-                "Believing the casino manipulates outcomes to ensure house wins"
               ],
               "correctIndex": 0,
               "difficulty": "hard"
@@ -101096,18 +99104,6 @@
                 "Blackjack",
                 "Pontoon",
                 "Casino War"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "games_casino_easy_034",
-              "questionText": "What does 'house edge' mean?",
-              "answers": [
-                "The statistical advantage the casino has over the player in the long run",
-                "The minimum bet required to play a table game",
-                "The physical area of a casino floor reserved for high-stakes games",
-                "The commission charged on winning bets"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -108227,18 +106223,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_ancient_easy_030",
-              "questionText": "Who was the first emperor of Rome?",
-              "answers": [
-                "Augustus",
-                "Julius Caesar",
-                "Nero",
-                "Caligula"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_ancient_easy_031",
               "questionText": "What is the Acropolis?",
               "answers": [
@@ -111435,18 +109419,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_middleages_medium_034",
-              "questionText": "What was the Great Schism of 1054?",
-              "answers": [
-                "The split between the Roman Catholic and Eastern Orthodox churches",
-                "The division of the Holy Roman Empire",
-                "The breakdown of the feudal system after the Black Death",
-                "The conflict between pope and emperor over investiture"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "history_middleages_medium_035",
               "questionText": "What was feudalism?",
               "answers": [
@@ -111469,30 +109441,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "medium"
-            },
-            {
-              "id": "history_middleages_medium_037",
-              "questionText": "What was the Hanseatic League?",
-              "answers": [
-                "A medieval commercial confederation of merchant guilds across Northern Europe",
-                "A military alliance of German princes against the Holy Roman Emperor",
-                "A religious federation of northern European monasteries",
-                "Trade agreements between England and the Low Countries"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "history_middleages_hard_028",
-              "questionText": "What was the Investiture Controversy?",
-              "answers": [
-                "A conflict between popes and Holy Roman Emperors over the right to appoint church officials",
-                "A dispute about the proper form of Christian baptism",
-                "A debate about which Bible translation was authoritative",
-                "A struggle over taxation of the clergy"
-              ],
-              "correctIndex": 0,
-              "difficulty": "hard"
             },
             {
               "id": "history_middleages_hard_029",
@@ -111577,18 +109525,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "history_middleages_medium_038",
-              "questionText": "What was the Reconquista?",
-              "answers": [
-                "The centuries-long campaign by Christian kingdoms to recapture the Iberian Peninsula from Muslim Moorish rule, completed in 1492",
-                "The Muslim conquest of Spain in the 8th century",
-                "The expulsion of Jews and Muslims from Spain following the Christian reconquest",
-                "The religious wars between Catholic and Protestant kingdoms in medieval Spain"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "history_middleages_medium_039",
@@ -113442,18 +111378,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_renaissance_easy_028",
-              "questionText": "Who painted the Mona Lisa?",
-              "answers": [
-                "Leonardo da Vinci",
-                "Michelangelo",
-                "Raphael",
-                "Botticelli"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_renaissance_easy_029",
               "questionText": "Who painted the Sistine Chapel ceiling?",
               "answers": [
@@ -113694,18 +111618,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "history_renaissance_easy_034",
-              "questionText": "Who painted the Sistine Chapel ceiling?",
-              "answers": [
-                "Michelangelo",
-                "Leonardo da Vinci",
-                "Raphael",
-                "Botticelli"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_renaissance_easy_035",
               "questionText": "What Gutenberg invention transformed the spread of knowledge?",
               "answers": [
@@ -113836,18 +111748,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "hard"
-            },
-            {
-              "id": "history_renaissance_insanity_031",
-              "questionText": "What was the significance of Pico della Mirandola's 'Oration on the Dignity of Man'?",
-              "answers": [
-                "It argued humans are uniquely self-determining beings not fixed in a hierarchy \u2014 a foundational Renaissance humanism text",
-                "It provided philosophical justification for the Inquisition",
-                "It defended the Copernican model to the Church",
-                "It established the legal framework for Florentine republican government"
-              ],
-              "correctIndex": 0,
-              "difficulty": "insanity"
             },
             {
               "id": "history_renaissance_insanity_032",
@@ -115791,18 +113691,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_industrialage_easy_030",
-              "questionText": "Who wrote 'The Communist Manifesto'?",
-              "answers": [
-                "Karl Marx and Friedrich Engels",
-                "Charles Darwin and Thomas Huxley",
-                "John Stuart Mill and Jeremy Bentham",
-                "Adam Smith and David Ricardo"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "history_industrialage_medium_026",
               "questionText": "What was the significance of the Bessemer process?",
               "answers": [
@@ -116019,18 +113907,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "history_industrialage_medium_032",
-              "questionText": "What was the significance of the Bessemer process?",
-              "answers": [
-                "It enabled mass production of cheap steel, making railroads, skyscrapers, and modern infrastructure possible",
-                "It created the first synthetic dye, launching the chemical industry",
-                "It enabled large-scale coal mining with improved ventilation",
-                "It industrialized textile production through mechanized weaving"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "history_industrialage_medium_033",
               "questionText": "What was the Communist Manifesto?",
               "answers": [
@@ -116038,18 +113914,6 @@
                 "A German document outlining workers' legal rights",
                 "A philosophical treatise on the nature of labor and value",
                 "A political program for the German Social Democratic Party"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "history_industrialage_medium_034",
-              "questionText": "What was the significance of the Great Exhibition of 1851?",
-              "answers": [
-                "A global showcase of industrial technology in London's Crystal Palace symbolizing British supremacy",
-                "The first international peace conference after the Napoleonic Wars",
-                "The founding event establishing international weights and measures standards",
-                "The event launching the International Labour Organization"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -116317,18 +114181,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "history_industrialage_medium_039",
-              "questionText": "What was the significance of the Suez Canal opening in 1869?",
-              "answers": [
-                "It dramatically shortened the sea route between Europe and Asia, reshaping global trade and increasing competition for control of Egypt",
-                "It was primarily a French engineering achievement with minimal commercial impact for a decade",
-                "It immediately triggered war between Britain and Egypt over control of the waterway",
-                "It replaced the Cape of Good Hope route entirely within five years of opening"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "history_industrialage_hard_035",
@@ -118320,30 +116172,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "history_1900s_medium_031",
-              "questionText": "What was the Marshall Plan?",
-              "answers": [
-                "A US program providing economic aid to rebuild Western Europe after World War II",
-                "A military alliance between the US and Western Europe",
-                "A diplomatic agreement preventing Soviet expansion into Western Europe",
-                "A US policy containing Soviet influence in Asia"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "history_1900s_medium_032",
-              "questionText": "What was the significance of the Nuremberg Trials?",
-              "answers": [
-                "The first major international tribunal trying individuals for war crimes and crimes against humanity",
-                "A German denazification program removing former Nazis from public positions",
-                "The Allied process of rebuilding German institutions",
-                "The legal proceedings establishing the state of Israel"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "history_1900s_medium_033",
               "questionText": "What was Apartheid in South Africa?",
               "answers": [
@@ -118558,30 +116386,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "history_1900s_easy_037",
-              "questionText": "What was D-Day?",
-              "answers": [
-                "The Allied invasion of Normandy, France on June 6, 1944",
-                "The US declaration of war following Pearl Harbor",
-                "The Soviet Union's entry into the war against Japan",
-                "The liberation of Paris from Nazi occupation"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "history_1900s_easy_038",
-              "questionText": "What was the Holocaust?",
-              "answers": [
-                "The systematic genocide of six million Jews and millions of others by Nazi Germany during WWII",
-                "The Allied bombing campaign against German cities during WWII",
-                "The mass starvation of Soviet civilians during the German invasion",
-                "The forced deportation of ethnic minorities from Eastern Europe after WWII"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "history_1900s_medium_037",
@@ -120631,30 +118435,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "history_2000s_medium_031",
-              "questionText": "What was the Arab Spring?",
-              "answers": [
-                "A wave of pro-democracy uprisings across Arab nations beginning in 2010\u20132011",
-                "A diplomatic initiative by Arab nations to resolve the Israeli-Palestinian conflict",
-                "A cultural movement promoting Arab identity",
-                "An economic development program funded by Gulf states"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "history_2000s_medium_032",
-              "questionText": "What was Brexit?",
-              "answers": [
-                "The United Kingdom's withdrawal from the European Union following a 2016 referendum",
-                "A trade deal between Britain and the EU after 2016",
-                "A Scottish independence referendum",
-                "The expulsion of the UK from the EU due to treaty violations"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "history_2000s_medium_033",
@@ -124680,18 +122460,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "sports_olympics_easy_008",
-              "questionText": "Which city hosted the 2012 Summer Olympics?",
-              "answers": [
-                "London",
-                "Beijing",
-                "Rio de Janeiro",
-                "Athens"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_olympics_easy_009",
               "questionText": "Which Winter Olympic sport involves skating and performing jumps and spins to music?",
               "answers": [
@@ -125604,18 +123372,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "sports_olympics_easy_027",
-              "questionText": "What do the five Olympic rings represent?",
-              "answers": [
-                "The five continents of the world",
-                "The five founding nations",
-                "The five original Olympic sports",
-                "The five values of Olympism"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_olympics_easy_028",
               "questionText": "What country has won the most Olympic gold medals in history?",
               "answers": [
@@ -125892,18 +123648,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "sports_olympics_easy_036",
-              "questionText": "What country has won the most Olympic gold medals in history?",
-              "answers": [
-                "United States",
-                "Soviet Union",
-                "China",
-                "Germany"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_olympics_medium_034",
               "questionText": "Who lit the Olympic cauldron at the 1996 Atlanta Games in a surprise reveal?",
               "answers": [
@@ -125911,18 +123655,6 @@
                 "Carl Lewis",
                 "Jesse Owens (deceased \u2014 trick)",
                 "Michael Jordan"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
-              "id": "sports_olympics_medium_035",
-              "questionText": "What is the Olympic motto?",
-              "answers": [
-                "Citius, Altius, Fortius (Faster, Higher, Stronger)",
-                "One World, One Dream",
-                "Play Fair, Play Hard",
-                "Excellence Through Effort"
               ],
               "correctIndex": 0,
               "difficulty": "medium"
@@ -126154,18 +123886,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "sports_olympics_medium_041",
-              "questionText": "What is the Paralympic Games?",
-              "answers": [
-                "An international multi-sport event for athletes with physical, intellectual, or sensory impairments \u2014 held in the same city as the Olympics",
-                "A separate Olympic Games for developing nations",
-                "An event for retired Olympic athletes competing in exhibition events",
-                "A youth Olympic Games for athletes under 18"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "sports_olympics_hard_037",
@@ -128236,18 +125956,6 @@
               "difficulty": "medium"
             },
             {
-              "id": "sports_sports_team_medium_024",
-              "questionText": "Which NFL team relocated from St. Louis to Los Angeles in 2016?",
-              "answers": [
-                "Los Angeles Rams",
-                "Las Vegas Raiders",
-                "Arizona Cardinals",
-                "Houston Texans"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "sports_sports_team_hard_018",
               "questionText": "Which MLB team was originally known as the Seattle Pilots?",
               "answers": [
@@ -128704,18 +126412,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "sports_sports_team_easy_031",
-              "questionText": "How many players are on a basketball team on the court at one time?",
-              "answers": [
-                "5",
-                "6",
-                "4",
-                "7"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "sports_sports_team_easy_032",
               "questionText": "In American football, how many points is a touchdown worth?",
               "answers": [
@@ -128723,18 +126419,6 @@
                 "7",
                 "3",
                 "4"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "sports_sports_team_easy_033",
-              "questionText": "What sport is played at Wimbledon?",
-              "answers": [
-                "Tennis",
-                "Cricket",
-                "Croquet",
-                "Lawn Bowls"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -128762,18 +126446,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "sports_sports_team_medium_034",
-              "questionText": "What is the offside rule in soccer?",
-              "answers": [
-                "An attacking player is offside if they are nearer to the opponent's goal than both the ball and the second-to-last defender when the ball is played to them",
-                "A player cannot be in the opponent's half of the field when the goalkeeper has the ball",
-                "An attacker cannot receive a pass while behind all defenders",
-                "A player is offside if they are past the halfway line before the ball"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "sports_sports_team_medium_035",
@@ -131089,18 +128761,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "sports_racquet_and_net_sports_medium_034",
-              "questionText": "What is a 'deuce' in tennis?",
-              "answers": [
-                "When the score is tied at 40-40, requiring a player to win two consecutive points",
-                "The score when one player leads 40-30",
-                "A tie at 6-6 in a set, requiring a tiebreak",
-                "Any tied game score"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
-            },
-            {
               "id": "sports_racquet_and_net_sports_medium_035",
               "questionText": "What is the libero position in volleyball?",
               "answers": [
@@ -133151,18 +130811,6 @@
                 "British Grand Prix",
                 "Italian Grand Prix",
                 "Australian Grand Prix"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "sports_racing_and_motor_easy_027",
-              "questionText": "What does NASCAR stand for?",
-              "answers": [
-                "National Association for Stock Car Auto Racing",
-                "National American Sports Car Auto Racing",
-                "North American Stock Car Auto Racing",
-                "National Association of Stock Car Auto Racing"
               ],
               "correctIndex": 0,
               "difficulty": "easy"
@@ -135707,18 +133355,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "sports_water_sports_medium_034",
-              "questionText": "What is the 'flip turn' in competitive swimming?",
-              "answers": [
-                "A tumble turn executed at the pool wall allowing swimmers to push off without stopping \u2014 faster than a conventional open turn",
-                "A start technique used in backstroke events",
-                "The technique for transitioning between strokes in the individual medley",
-                "A judging criterion in synchronized swimming"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "sports_water_sports_medium_035",
@@ -143387,18 +141023,6 @@
               "difficulty": "easy"
             },
             {
-              "id": "folklore_myths_and_mythology_easy_038",
-              "questionText": "Who is the Egyptian god of the dead?",
-              "answers": [
-                "Osiris",
-                "Ra",
-                "Anubis",
-                "Horus"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "folklore_myths_and_mythology_easy_039",
               "questionText": "What hero killed the Minotaur in Greek mythology?",
               "answers": [
@@ -145958,18 +143582,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "folklore_legendary_creatures_easy_042",
-              "questionText": "What is a phoenix?",
-              "answers": [
-                "A mythical bird that bursts into flames and is reborn from its own ashes",
-                "A fire-breathing dragon from Persian mythology",
-                "A giant eagle that carries off elephants",
-                "A bird of paradise that causes flowers to bloom wherever it lands"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "folklore_legendary_creatures_medium_043",
               "questionText": "What is a djinn (genie) in Islamic and Arabic folklore?",
               "answers": [
@@ -148197,18 +145809,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "easy"
-            },
-            {
-              "id": "folklore_fairytales_and_fables_medium_041",
-              "questionText": "What is the moral of Aesop's fable 'The Boy Who Cried Wolf'?",
-              "answers": [
-                "Liars are not believed even when they tell the truth",
-                "Never underestimate a perceived threat",
-                "Persistence eventually wins trust back",
-                "Community cooperation is stronger than individual deception"
-              ],
-              "correctIndex": 0,
-              "difficulty": "medium"
             },
             {
               "id": "folklore_fairytales_and_fables_medium_042",
@@ -150879,18 +148479,6 @@
               "difficulty": "insanity"
             },
             {
-              "id": "folklore_ghosts_and_haunted_places_easy_036",
-              "questionText": "What is a poltergeist?",
-              "answers": [
-                "A type of ghost associated with physical disturbances \u2014 moving objects, strange noises \u2014 rather than visual apparitions",
-                "A ghost that appears only at midnight",
-                "A benevolent spirit that protects its former home",
-                "A ghost that can only be seen by children"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
               "id": "folklore_ghosts_and_haunted_places_easy_037",
               "questionText": "What famous castle in Edinburgh is considered one of Scotland's most haunted locations?",
               "answers": [
@@ -151081,18 +148669,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "folklore_ghosts_and_haunted_places_easy_041",
-              "questionText": "What is a s\u00e9ance?",
-              "answers": [
-                "A gathering in which participants attempt to communicate with the dead through a medium",
-                "A religious ceremony for exorcising demons",
-                "A scientific investigation of alleged paranormal phenomena",
-                "A ritual to prevent a ghost from haunting a location"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "folklore_ghosts_and_haunted_places_medium_039",
@@ -153202,18 +150778,6 @@
               ],
               "correctIndex": 0,
               "difficulty": "insanity"
-            },
-            {
-              "id": "folklore_urban_legends_easy_036",
-              "questionText": "What is the urban legend about alligators in New York City sewers?",
-              "answers": [
-                "Baby alligators flushed down toilets grew to full size in the sewers \u2014 almost certainly false but the legend persists",
-                "Alligators escaped from a zoo during a 1930s flood",
-                "Pet shop alligators were released and thrived in the warm sewer environment",
-                "A single alligator was found once and the story snowballed"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
             },
             {
               "id": "folklore_urban_legends_easy_037",
@@ -155632,18 +153196,6 @@
                 "Death of a Salesman",
                 "All My Sons",
                 "A View from the Bridge"
-              ],
-              "correctIndex": 0,
-              "difficulty": "easy"
-            },
-            {
-              "id": "folklore_witches_witchcraft_easy_034",
-              "questionText": "What is a cauldron associated with in witch folklore?",
-              "answers": [
-                "Brewing potions, spells, and poisons",
-                "Summoning demons",
-                "Seeing the future through the reflection of water in it",
-                "Communicating with the dead"
               ],
               "correctIndex": 0,
               "difficulty": "easy"

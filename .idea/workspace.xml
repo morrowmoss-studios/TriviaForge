@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58cea14a-f982-42d4-97c2-c470e56abe20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Light_Marcellus-Regular SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Roboto_Notes.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Roboto_Notes.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/trivia_database.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LeaderboardManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LeaderboardManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TriviaQuestionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WinSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WinSceneManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GvhProjectSettings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +103,7 @@
       <workItem from="1773774412907" duration="10000" />
       <workItem from="1774396891955" duration="26000" />
       <workItem from="1774842744143" duration="10000" />
+      <workItem from="1775180864262" duration="120000" />
     </task>
     <servers />
   </component>
