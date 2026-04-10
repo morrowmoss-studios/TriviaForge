@@ -23,7 +23,8 @@ public static class SeenContentTracker
         return PlayerDatabaseAPI.GetOrCreatePlayer(CurrentUser);
     }
 
-    private static void Save() => PlayerDatabaseAPI.Save();
+    // Mid-session: only write seen IDs, not full stats
+    private static void Save() => PlayerDatabaseAPI.SaveSeenOnly();
 
     // ── TRIVIA ───────────────────────────────────────────────────────────────
 
@@ -45,7 +46,6 @@ public static class SeenContentTracker
 
         if (unseen.Count < minRemaining)
         {
-            // Reset seen list for this pool so the player can go again
             var idsInPool = entries.Select(e => e.id).ToHashSet();
             profile.seenTriviaIds.RemoveAll(id => idsInPool.Contains(id));
             Save();
@@ -147,22 +147,17 @@ public static class SeenContentTracker
         if (puzzles == null || puzzles.Count == 0) return null;
 
         if (IsGuest)
-        {
-            // Guests just get a random puzzle
             return puzzles[rng.Next(puzzles.Count)];
-        }
 
         var profile = GetProfile();
         if (profile == null) return puzzles[rng.Next(puzzles.Count)];
 
-        // Build candidate indices — those not yet seen for this category
         var unseenIndices = Enumerable.Range(0, puzzles.Count)
             .Where(i => !profile.seenCrosswordIds.Contains(CrosswordKey(categoryId, i)))
             .ToList();
 
         if (unseenIndices.Count == 0)
         {
-            // Reset seen puzzles for this category
             profile.seenCrosswordIds.RemoveAll(k => k.StartsWith(categoryId + "_"));
             Save();
 

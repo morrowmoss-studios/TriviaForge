@@ -40,6 +40,7 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private float timeRemaining = 20f;
     private bool  timerRunning  = false;
+    private bool  _timerWarningFired = false;
 
     // ── Timer duration by difficulty ──────────────────────────────────────
 
@@ -212,6 +213,11 @@ public class TriviaQuestionManager : MonoBehaviour
             timerRunning = false;
             OnTimeExpired();
         }
+        else if (timeRemaining <= 3f && !_timerWarningFired)
+        {
+            _timerWarningFired = true;
+            HapticManager.TimerWarning();
+        }
     }
 
     // ── Settings button ───────────────────────────────────────────────────
@@ -327,8 +333,9 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private void LoadQuestion(int index)
     {
-        questionLocked = false;
-        hintUsed       = false;
+        questionLocked     = false;
+        hintUsed           = false;
+        _timerWarningFired = false;
 
         if (index < 0 || index >= questions.Count)
         {

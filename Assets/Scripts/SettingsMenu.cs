@@ -93,7 +93,8 @@ public class SettingsMenu : MonoBehaviour
 
     private void ApplyVibration(bool enabled)
     {
-        // Value stored in PlayerPrefs — other scripts can read TF_VibrationOn as needed
+        PlayerPrefs.SetInt("TF_VibrationOn", enabled ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     // -------- called by buttons --------

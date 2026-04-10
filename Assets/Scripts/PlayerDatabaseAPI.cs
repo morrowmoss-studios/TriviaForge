@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -149,10 +150,53 @@ public static class PlayerDatabaseAPI
 
     // ── Save (local cache → Firestore) ────────────────────────────────────
 
+    /// <summary>
+    /// Full save -- stats + seen IDs. Call at end of game only.
+    /// </summary>
     public static void Save()
     {
         if (_currentPlayer == null || IsGuest) return;
         _ = PushToFirestoreAsync(_currentPlayer);
+    }
+
+    /// <summary>
+    /// Seen IDs only -- lightweight write for mid-session tracking.
+    /// Does not rewrite stats, avoiding rate limiting during gameplay.
+    /// </summary>
+    public static void SaveSeenOnly()
+    {
+        if (_currentPlayer == null || IsGuest) return;
+        _ = PushSeenIdsAsync(_currentPlayer);
+    }
+
+    private static async Task PushSeenIdsAsync(PlayerProfile p)
+    {
+        if (!FirebaseManager.IsReady) return;
+
+        try
+        {
+            var docRef = FirebaseManager.Db
+                .Collection(PlayersCollection)
+                .Document(p.displayName);
+
+            var seenDict = new Dictionary<string, object>();
+
+            if (p.seenTriviaIds?.Count > 0)
+                seenDict["seenTriviaIds"] = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+
+            if (p.seenWordokuWords?.Count > 0)
+                seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
+
+            if (p.seenCrosswordIds?.Count > 0)
+                seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
+
+            if (seenDict.Count > 0)
+                await docRef.UpdateAsync(seenDict);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Seen IDs push failed: {ex.Message}");
+        }
     }
 
     // ── Score registration ────────────────────────────────────────────────
@@ -253,10 +297,46 @@ public static class PlayerDatabaseAPI
 
         try
         {
-            await FirebaseManager.Db
+            var docRef = FirebaseManager.Db
                 .Collection(PlayersCollection)
-                .Document(p.displayName)
-                .SetAsync(ProfileToDict(p), SetOptions.MergeAll);
+                .Document(p.displayName);
+
+            // Write stats separately from seen ID arrays
+            // Stats use MergeAll to update only changed fields
+            var statsDict = new Dictionary<string, object>
+            {
+                { "playerId",                p.playerId },
+                { "displayName",             p.displayName },
+                { "passwordHash",            p.passwordHash ?? "" },
+                { "totalScore",              p.totalScore },
+                { "gamesCompleted",          p.gamesCompleted },
+                { "highestScore",            p.highestScore },
+                { "highestStreak",           p.highestStreak },
+                { "perfectSolves",           p.perfectSolves },
+                { "correctAnswers",          p.correctAnswers },
+                { "totalAnswers",            p.totalAnswers },
+                { "fastestCrosswordSeconds", p.fastestCrosswordSeconds },
+                { "lastUpdated",             FieldValue.ServerTimestamp }
+            };
+
+            await docRef.SetAsync(statsDict, SetOptions.MergeAll);
+
+            // Seen IDs use ArrayUnion so we only send new items, not the whole array
+            if (p.seenTriviaIds?.Count > 0 || p.seenWordokuWords?.Count > 0 || p.seenCrosswordIds?.Count > 0)
+            {
+                var seenDict = new Dictionary<string, object>();
+
+                if (p.seenTriviaIds?.Count > 0)
+                    seenDict["seenTriviaIds"] = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+
+                if (p.seenWordokuWords?.Count > 0)
+                    seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
+
+                if (p.seenCrosswordIds?.Count > 0)
+                    seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
+
+                await docRef.UpdateAsync(seenDict);
+            }
 
             Debug.Log($"[PlayerDatabaseAPI] Firestore synced: {p.displayName}");
         }

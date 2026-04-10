@@ -171,14 +171,14 @@ public class AudioManager : MonoBehaviour
         chillPlaylist.Clear();
         activePlaylist.Clear();
 
-        // Chill — just two calm tracks for menus
-        if (Village_Ambiance) chillPlaylist.Add(Village_Ambiance);
-        if (Celtic_Ambiance)  chillPlaylist.Add(Celtic_Ambiance);
+        // Chill -- One Bard Band as the sole menu track
+        if (One_Bard_Band) chillPlaylist.Add(One_Bard_Band);
 
-        // Active — everything else, used for gameplay AND results/scores/leaderboard
+        // Active -- everything else including both ambiances for more variety
+        if (Village_Ambiance)    activePlaylist.Add(Village_Ambiance);
+        if (Celtic_Ambiance)     activePlaylist.Add(Celtic_Ambiance);
         if (Magic_Tavern)        activePlaylist.Add(Magic_Tavern);
         if (The_Longest_Journey) activePlaylist.Add(The_Longest_Journey);
-        if (One_Bard_Band)       activePlaylist.Add(One_Bard_Band);
         if (Tavern_Loop_One)     activePlaylist.Add(Tavern_Loop_One);
         if (Forest_Walk)         activePlaylist.Add(Forest_Walk);
         if (Celtic_Atmosphere)   activePlaylist.Add(Celtic_Atmosphere);
@@ -353,13 +353,13 @@ public class AudioManager : MonoBehaviour
 
     // ── SFX ───────────────────────────────────────────────────────────────
 
-    public void PlayCorrect()     => PlaySFX(sfxCorrect);
-    public void PlayWrong()       => PlaySFX(sfxWrong);
-    public void PlayStrike()      => PlaySFX(sfxStrike);
-    public void PlayButtonPress() => PlaySFX(sfxButtonPress);
-    public void PlayUIClick()     => PlaySFX(sfxUIClick);
-    public void PlayFanfare()     => PlaySFX(sfxFanfare);
-    public void PlayTilePlaced()  => PlaySFX(sfxTilePlaced);
+    public void PlayCorrect()     { HapticManager.LightTap();    PlaySFX(sfxCorrect); }
+    public void PlayWrong()       { HapticManager.WrongAnswer();  PlaySFX(sfxWrong); }
+    public void PlayStrike()      { HapticManager.WrongAnswer();  PlaySFX(sfxStrike); }
+    public void PlayButtonPress() { HapticManager.LightTap();    PlaySFX(sfxButtonPress); }
+    public void PlayUIClick()     { HapticManager.LightTap();    PlaySFX(sfxUIClick); }
+    public void PlayFanfare()     =>                              PlaySFX(sfxFanfare);
+    public void PlayTilePlaced()  { HapticManager.LightTap();    PlaySFX(sfxTilePlaced); }
 
     void PlaySFX(AudioClip clip)
     {

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class WinSceneManager : MonoBehaviour
 {
     // Prevents double-registration if this scene is visited more than once
-    private static bool _scoreRegisteredThisSession = false;
+    private bool _scoreRegisteredThisSession = false;
 
     private void Start()
     {
