@@ -1,25 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
+using Firebase.Auth;
 using Firebase.Firestore;
 using UnityEngine;
 
 /// <summary>
-/// All player data now lives in Firestore.
-/// Local PlayerProfile is a session cache — loaded on login, pushed to Firestore on every Save().
-/// Guests skip all Firestore operations entirely.
+/// All player auth now goes through Firebase Authentication.
+/// Player profile data (stats, seen content) lives in Firestore keyed to Firebase Auth UID.
 /// </summary>
 public static class PlayerDatabaseAPI
 {
     private static PlayerProfile _currentPlayer;
-    private static bool _loaded;
+    private static FirebaseAuth  _auth;
+    private static FirebaseUser  _firebaseUser;
+    private static bool          _loaded;
 
-    private const string PlayersCollection = "players";
+    private const string PlayersCollection  = "players";
+    private const string UsernamesCollection = "usernames";
 
-    // ── Session helpers ───────────────────────────────────────────────────
+    // ── Auth helpers ──────────────────────────────────────────────────────
 
     public static string CurrentUsername =>
         PlayerPrefs.GetString("TF_CurrentUser", "");
@@ -27,54 +28,67 @@ public static class PlayerDatabaseAPI
     public static bool IsGuest =>
         PlayerPrefs.GetInt("TF_IsGuest", 0) == 1;
 
-    // ── Password hashing ──────────────────────────────────────────────────
-
-    public static string HashPassword(string password)
+    private static FirebaseAuth Auth
     {
-        using var sha  = SHA256.Create();
-        byte[] bytes   = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
-        return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+        get { if (_auth == null) _auth = FirebaseAuth.DefaultInstance; return _auth; }
     }
 
     // ── Account creation ──────────────────────────────────────────────────
 
     public static async Task<(bool success, string error)> CreateAccountAsync(
-        string username, string password)
+        string username, string email, string password)
     {
         if (!FirebaseManager.IsReady)
             await FirebaseManager.WaitUntilReadyAsync();
 
         try
         {
-            var docRef   = FirebaseManager.Db.Collection(PlayersCollection).Document(username);
-            var snapshot = await docRef.GetSnapshotAsync();
+            // Check username isn't already taken
+            var usernameDoc = await FirebaseManager.Db
+                .Collection(UsernamesCollection).Document(username).GetSnapshotAsync();
 
-            if (snapshot.Exists)
+            if (usernameDoc.Exists)
                 return (false, "That username is already taken.");
 
+            // Create Firebase Auth account
+            var authResult = await Auth.CreateUserWithEmailAndPasswordAsync(email, password);
+            _firebaseUser  = authResult.User;
+
+            // Set display name in Firebase Auth
+            await _firebaseUser.UpdateUserProfileAsync(new UserProfile { DisplayName = username });
+
+            // Reserve username → uid mapping
+            await FirebaseManager.Db.Collection(UsernamesCollection).Document(username)
+                .SetAsync(new Dictionary<string, object> { { "uid", _firebaseUser.UserId } });
+
+            // Create Firestore player profile
             var profile = new PlayerProfile
             {
-                playerId                = Guid.NewGuid().ToString(),
-                displayName             = username,
-                passwordHash            = HashPassword(password),
-                totalScore              = 0,
-                gamesCompleted          = 0,
-                gamesPlayed             = 0,
-                highestScore            = 0,
-                highestStreak           = 0,
-                perfectSolves           = 0,
-                correctAnswers          = 0,
-                totalAnswers            = 0,
-                fastestCrosswordSeconds = 0
+                playerId    = _firebaseUser.UserId,
+                displayName = username,
+                email       = email
             };
 
-            await docRef.SetAsync(ProfileToDict(profile));
+            await FirebaseManager.Db.Collection(PlayersCollection)
+                .Document(_firebaseUser.UserId).SetAsync(ProfileToDict(profile));
 
             _currentPlayer = profile;
             _loaded        = true;
 
             Debug.Log($"[PlayerDatabaseAPI] Account created: {username}");
             return (true, null);
+        }
+        catch (Firebase.FirebaseException ex)
+        {
+            string msg = ((AuthError)ex.ErrorCode) switch
+            {
+                AuthError.EmailAlreadyInUse => "That email is already registered.",
+                AuthError.InvalidEmail      => "Please enter a valid email address.",
+                AuthError.WeakPassword      => "Password must be at least 6 characters.",
+                _                           => "Could not create account. Check your connection."
+            };
+            Debug.LogError($"[PlayerDatabaseAPI] CreateAccount failed: {ex.Message}");
+            return (false, msg);
         }
         catch (Exception ex)
         {
@@ -93,26 +107,48 @@ public static class PlayerDatabaseAPI
 
         try
         {
-            var snapshot = await FirebaseManager.Db
-                .Collection(PlayersCollection)
-                .Document(username)
-                .GetSnapshotAsync();
+            // Look up uid from username
+            var usernameDoc = await FirebaseManager.Db
+                .Collection(UsernamesCollection).Document(username).GetSnapshotAsync();
 
-            if (!snapshot.Exists)
+            if (!usernameDoc.Exists)
                 return (false, "Account not found.");
 
-            var data        = snapshot.ToDictionary();
-            string stored   = data.ContainsKey("passwordHash") ? data["passwordHash"].ToString() : "";
-            string incoming = HashPassword(password);
+            string uid   = usernameDoc.ToDictionary()["uid"].ToString();
+            string email = await GetEmailForUid(uid);
 
-            if (stored != incoming)
-                return (false, "Incorrect password.");
+            if (string.IsNullOrEmpty(email))
+                return (false, "Account not found.");
 
-            _currentPlayer = DictToProfile(username, data);
+            // Sign in with Firebase Auth
+            var authResult = await Auth.SignInWithEmailAndPasswordAsync(email, password);
+            _firebaseUser  = authResult.User;
+
+            // Load Firestore profile
+            var snapshot = await FirebaseManager.Db
+                .Collection(PlayersCollection).Document(_firebaseUser.UserId).GetSnapshotAsync();
+
+            if (!snapshot.Exists)
+                return (false, "Account data not found.");
+
+            _currentPlayer = DictToProfile(_firebaseUser.UserId, snapshot.ToDictionary());
             _loaded        = true;
 
             Debug.Log($"[PlayerDatabaseAPI] Logged in: {username}");
             return (true, null);
+        }
+        catch (Firebase.FirebaseException ex)
+        {
+            string msg = ((AuthError)ex.ErrorCode) switch
+            {
+                AuthError.WrongPassword   => "Incorrect password.",
+                AuthError.UserNotFound    => "Account not found.",
+                AuthError.InvalidEmail    => "Invalid email.",
+                AuthError.TooManyRequests => "Too many attempts. Try again later.",
+                _                         => "Could not sign in. Check your connection."
+            };
+            Debug.LogError($"[PlayerDatabaseAPI] Login failed: {ex.Message}");
+            return (false, msg);
         }
         catch (Exception ex)
         {
@@ -121,82 +157,113 @@ public static class PlayerDatabaseAPI
         }
     }
 
-    // ── Legacy no-op (called by SeenContentTracker etc.) ─────────────────
+    // ── Forgot password ───────────────────────────────────────────────────
 
-    /// <summary>
-    /// No-op — data is loaded on LoginAsync. Safe to call anywhere.
-    /// </summary>
-    public static void Load() { /* data loaded on login */ }
+    public static async Task<(bool success, string error)> SendPasswordResetAsync(string username)
+    {
+        if (!FirebaseManager.IsReady)
+            await FirebaseManager.WaitUntilReadyAsync();
+
+        try
+        {
+            var usernameDoc = await FirebaseManager.Db
+                .Collection(UsernamesCollection).Document(username).GetSnapshotAsync();
+
+            if (!usernameDoc.Exists)
+                return (false, "No account found with that username.");
+
+            string uid   = usernameDoc.ToDictionary()["uid"].ToString();
+            string email = await GetEmailForUid(uid);
+
+            if (string.IsNullOrEmpty(email))
+                return (false, "Could not find account email.");
+
+            await Auth.SendPasswordResetEmailAsync(email);
+
+            Debug.Log($"[PlayerDatabaseAPI] Password reset sent for: {username}");
+            return (true, null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Password reset failed: {ex.Message}");
+            return (false, "Could not send reset email. Check your connection.");
+        }
+    }
+
+    // ── Remember Me / Auto Login ──────────────────────────────────────────
+
+    public static async Task<bool> TryAutoLoginAsync()
+    {
+        if (!FirebaseManager.IsReady)
+            await FirebaseManager.WaitUntilReadyAsync();
+
+        try
+        {
+            var user = Auth.CurrentUser;
+            if (user == null) return false;
+
+            _firebaseUser = user;
+
+            var snapshot = await FirebaseManager.Db
+                .Collection(PlayersCollection).Document(user.UserId).GetSnapshotAsync();
+
+            if (!snapshot.Exists) return false;
+
+            _currentPlayer = DictToProfile(user.UserId, snapshot.ToDictionary());
+            _loaded        = true;
+
+            PlayerPrefs.SetString("TF_CurrentUser", _currentPlayer.displayName);
+            PlayerPrefs.SetInt("TF_IsGuest", 0);
+            PlayerPrefs.Save();
+
+            Debug.Log($"[PlayerDatabaseAPI] Auto-login: {_currentPlayer.displayName}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Auto-login failed: {ex.Message}");
+            return false;
+        }
+    }
+
+    public static void SignOut()
+    {
+        Auth.SignOut();
+        _currentPlayer = null;
+        _firebaseUser  = null;
+        _loaded        = false;
+        PlayerPrefs.DeleteKey("TF_CurrentUser");
+        PlayerPrefs.SetInt("TF_IsGuest", 0);
+        PlayerPrefs.Save();
+    }
+
+    // ── Legacy no-op ──────────────────────────────────────────────────────
+
+    public static void Load() { }
 
     // ── Profile access ────────────────────────────────────────────────────
 
     public static PlayerProfile GetCurrentPlayer() => _currentPlayer;
 
-    /// <summary>
-    /// Returns the cached player, or creates a temporary one if none exists.
-    /// Matches the old call signature used by SeenContentTracker.
-    /// </summary>
     public static PlayerProfile GetOrCreatePlayer(string displayName)
     {
         if (_currentPlayer != null) return _currentPlayer;
-
-        _currentPlayer = new PlayerProfile
-        {
-            playerId    = Guid.NewGuid().ToString(),
-            displayName = displayName
-        };
+        _currentPlayer = new PlayerProfile { playerId = displayName, displayName = displayName };
         return _currentPlayer;
     }
 
-    // ── Save (local cache → Firestore) ────────────────────────────────────
+    // ── Save ──────────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Full save -- stats + seen IDs. Call at end of game only.
-    /// </summary>
     public static void Save()
     {
-        if (_currentPlayer == null || IsGuest) return;
+        if (_currentPlayer == null || IsGuest || _firebaseUser == null) return;
         _ = PushToFirestoreAsync(_currentPlayer);
     }
 
-    /// <summary>
-    /// Seen IDs only -- lightweight write for mid-session tracking.
-    /// Does not rewrite stats, avoiding rate limiting during gameplay.
-    /// </summary>
     public static void SaveSeenOnly()
     {
-        if (_currentPlayer == null || IsGuest) return;
+        if (_currentPlayer == null || IsGuest || _firebaseUser == null) return;
         _ = PushSeenIdsAsync(_currentPlayer);
-    }
-
-    private static async Task PushSeenIdsAsync(PlayerProfile p)
-    {
-        if (!FirebaseManager.IsReady) return;
-
-        try
-        {
-            var docRef = FirebaseManager.Db
-                .Collection(PlayersCollection)
-                .Document(p.displayName);
-
-            var seenDict = new Dictionary<string, object>();
-
-            if (p.seenTriviaIds?.Count > 0)
-                seenDict["seenTriviaIds"] = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
-
-            if (p.seenWordokuWords?.Count > 0)
-                seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
-
-            if (p.seenCrosswordIds?.Count > 0)
-                seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
-
-            if (seenDict.Count > 0)
-                await docRef.UpdateAsync(seenDict);
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"[PlayerDatabaseAPI] Seen IDs push failed: {ex.Message}");
-        }
     }
 
     // ── Score registration ────────────────────────────────────────────────
@@ -217,9 +284,6 @@ public static class PlayerDatabaseAPI
         Save();
     }
 
-    /// <summary>
-    /// Call at the end of any game session to record streak, accuracy, and perfect solve data.
-    /// </summary>
     public static void RegisterGameStats(int highestStreakThisGame,
                                          bool perfectSolve,
                                          int correctAnswers,
@@ -240,24 +304,19 @@ public static class PlayerDatabaseAPI
         if (crosswordTimeSeconds > 0 &&
             (_currentPlayer.fastestCrosswordSeconds == 0 ||
              crosswordTimeSeconds < _currentPlayer.fastestCrosswordSeconds))
-        {
             _currentPlayer.fastestCrosswordSeconds = crosswordTimeSeconds;
-        }
 
         Save();
     }
 
     // ── Seen content ──────────────────────────────────────────────────────
 
-    public static List<string> GetSeenTriviaIds()    => _currentPlayer?.seenTriviaIds    ?? new List<string>();
-    public static List<string> GetSeenWordokuWords()  => _currentPlayer?.seenWordokuWords  ?? new List<string>();
-    public static List<string> GetSeenCrosswordIds()  => _currentPlayer?.seenCrosswordIds  ?? new List<string>();
+    public static List<string> GetSeenTriviaIds()   => _currentPlayer?.seenTriviaIds   ?? new List<string>();
+    public static List<string> GetSeenWordokuWords() => _currentPlayer?.seenWordokuWords ?? new List<string>();
+    public static List<string> GetSeenCrosswordIds() => _currentPlayer?.seenCrosswordIds ?? new List<string>();
 
     // ── Leaderboard ───────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Fetches the top N players sorted by the given Firestore field (descending).
-    /// </summary>
     public static async Task<List<(string username, long value)>> GetLeaderboardAsync(
         string field, int limit = 25)
     {
@@ -276,9 +335,10 @@ public static class PlayerDatabaseAPI
 
             foreach (var doc in snapshot.Documents)
             {
-                var data = doc.ToDictionary();
-                long val = data.ContainsKey(field) ? Convert.ToInt64(data[field]) : 0;
-                result.Add((doc.Id, val));
+                var data    = doc.ToDictionary();
+                string name = data.ContainsKey("displayName") ? data["displayName"].ToString() : doc.Id;
+                long val    = data.ContainsKey(field) ? Convert.ToInt64(data[field]) : 0;
+                result.Add((name, val));
             }
         }
         catch (Exception ex)
@@ -293,21 +353,17 @@ public static class PlayerDatabaseAPI
 
     private static async Task PushToFirestoreAsync(PlayerProfile p)
     {
-        if (!FirebaseManager.IsReady) return;
+        if (!FirebaseManager.IsReady || _firebaseUser == null) return;
 
         try
         {
-            var docRef = FirebaseManager.Db
-                .Collection(PlayersCollection)
-                .Document(p.displayName);
+            var docRef = FirebaseManager.Db.Collection(PlayersCollection).Document(_firebaseUser.UserId);
 
-            // Write stats separately from seen ID arrays
-            // Stats use MergeAll to update only changed fields
             var statsDict = new Dictionary<string, object>
             {
                 { "playerId",                p.playerId },
                 { "displayName",             p.displayName },
-                { "passwordHash",            p.passwordHash ?? "" },
+                { "email",                   p.email ?? "" },
                 { "totalScore",              p.totalScore },
                 { "gamesCompleted",          p.gamesCompleted },
                 { "highestScore",            p.highestScore },
@@ -321,22 +377,11 @@ public static class PlayerDatabaseAPI
 
             await docRef.SetAsync(statsDict, SetOptions.MergeAll);
 
-            // Seen IDs use ArrayUnion so we only send new items, not the whole array
-            if (p.seenTriviaIds?.Count > 0 || p.seenWordokuWords?.Count > 0 || p.seenCrosswordIds?.Count > 0)
-            {
-                var seenDict = new Dictionary<string, object>();
-
-                if (p.seenTriviaIds?.Count > 0)
-                    seenDict["seenTriviaIds"] = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
-
-                if (p.seenWordokuWords?.Count > 0)
-                    seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
-
-                if (p.seenCrosswordIds?.Count > 0)
-                    seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
-
-                await docRef.UpdateAsync(seenDict);
-            }
+            var seenDict = new Dictionary<string, object>();
+            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]   = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+            if (p.seenWordokuWords?.Count > 0) seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
+            if (p.seenCrosswordIds?.Count > 0) seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
+            if (seenDict.Count > 0) await docRef.UpdateAsync(seenDict);
 
             Debug.Log($"[PlayerDatabaseAPI] Firestore synced: {p.displayName}");
         }
@@ -346,13 +391,45 @@ public static class PlayerDatabaseAPI
         }
     }
 
-    private static Dictionary<string, object> ProfileToDict(PlayerProfile p)
+    private static async Task PushSeenIdsAsync(PlayerProfile p)
     {
-        return new Dictionary<string, object>
+        if (!FirebaseManager.IsReady || _firebaseUser == null) return;
+
+        try
+        {
+            var docRef   = FirebaseManager.Db.Collection(PlayersCollection).Document(_firebaseUser.UserId);
+            var seenDict = new Dictionary<string, object>();
+
+            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]   = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+            if (p.seenWordokuWords?.Count > 0) seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
+            if (p.seenCrosswordIds?.Count > 0) seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
+
+            if (seenDict.Count > 0) await docRef.UpdateAsync(seenDict);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] Seen IDs push failed: {ex.Message}");
+        }
+    }
+
+    private static async Task<string> GetEmailForUid(string uid)
+    {
+        try
+        {
+            var doc = await FirebaseManager.Db.Collection(PlayersCollection).Document(uid).GetSnapshotAsync();
+            if (!doc.Exists) return null;
+            var data = doc.ToDictionary();
+            return data.ContainsKey("email") ? data["email"].ToString() : null;
+        }
+        catch { return null; }
+    }
+
+    private static Dictionary<string, object> ProfileToDict(PlayerProfile p) =>
+        new Dictionary<string, object>
         {
             { "playerId",                p.playerId },
             { "displayName",             p.displayName },
-            { "passwordHash",            p.passwordHash ?? "" },
+            { "email",                   p.email ?? "" },
             { "totalScore",              p.totalScore },
             { "gamesCompleted",          p.gamesCompleted },
             { "highestScore",            p.highestScore },
@@ -361,14 +438,13 @@ public static class PlayerDatabaseAPI
             { "correctAnswers",          p.correctAnswers },
             { "totalAnswers",            p.totalAnswers },
             { "fastestCrosswordSeconds", p.fastestCrosswordSeconds },
-            { "seenTriviaIds",           p.seenTriviaIds },
-            { "seenWordokuWords",        p.seenWordokuWords },
-            { "seenCrosswordIds",        p.seenCrosswordIds },
+            { "seenTriviaIds",           p.seenTriviaIds   ?? new List<string>() },
+            { "seenWordokuWords",        p.seenWordokuWords ?? new List<string>() },
+            { "seenCrosswordIds",        p.seenCrosswordIds ?? new List<string>() },
             { "lastUpdated",             FieldValue.ServerTimestamp }
         };
-    }
 
-    private static PlayerProfile DictToProfile(string username, Dictionary<string, object> data)
+    private static PlayerProfile DictToProfile(string uid, Dictionary<string, object> data)
     {
         T Get<T>(string key, T fallback)
         {
@@ -380,16 +456,15 @@ public static class PlayerDatabaseAPI
         List<string> GetList(string key)
         {
             if (!data.ContainsKey(key)) return new List<string>();
-            if (data[key] is List<object> raw)
-                return raw.ConvertAll(o => o.ToString());
+            if (data[key] is List<object> raw) return raw.ConvertAll(o => o.ToString());
             return new List<string>();
         }
 
         return new PlayerProfile
         {
-            playerId                = Get("playerId",                Guid.NewGuid().ToString()),
-            displayName             = username,
-            passwordHash            = Get("passwordHash",            ""),
+            playerId                = uid,
+            displayName             = Get("displayName",             ""),
+            email                   = Get("email",                   ""),
             totalScore              = Get("totalScore",              0),
             gamesCompleted          = Get("gamesCompleted",          0),
             gamesPlayed             = Get("gamesCompleted",          0),

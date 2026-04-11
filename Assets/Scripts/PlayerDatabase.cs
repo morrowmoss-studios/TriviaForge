@@ -13,12 +13,12 @@ public class PlayerProfile
 {
     public string playerId;
     public string displayName;
-    public string passwordHash;
+    public string email;
 
     // Core stats
     public int totalScore;
-    public int gamesPlayed;              // kept for legacy compat
-    public int gamesCompleted;           // kept in sync with gamesPlayed
+    public int gamesPlayed;
+    public int gamesCompleted;
     public int highestScore;
     public int highestStreak;
     public int perfectSolves;
@@ -30,7 +30,7 @@ public class PlayerProfile
     // Crossword speed (0 = never set)
     public int fastestCrosswordSeconds;
 
-    // Seen content — prevents repeat questions
+    // Seen content
     public List<string> seenTriviaIds    = new List<string>();
     public List<string> seenWordokuWords = new List<string>();
     public List<string> seenCrosswordIds = new List<string>();
