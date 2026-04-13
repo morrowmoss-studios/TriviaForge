@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle musicToggle;
     [SerializeField] private Toggle sfxToggle;
     [SerializeField] private Toggle vibrationToggle;
+
+    [Header("Delete Account Panel")]
+    [SerializeField] private GameObject deleteAccountPanel;
+    [SerializeField] private GameObject settingsFrame;
 
     // PlayerPrefs keys
     private const string MusicKey = "TF_MusicOn";
@@ -131,5 +136,32 @@ public class SettingsMenu : MonoBehaviour
             TriviaForgeIAPManager.Instance.RestorePurchases();
         else
             Debug.LogWarning("[SettingsMenu] TriviaForgeIAPManager instance not found.");
+    }
+
+    // Hook this to DELETE ACCOUNT button
+    public void OnDeleteAccountPressed()
+    {
+        if (deleteAccountPanel != null) deleteAccountPanel.SetActive(true);
+        if (settingsFrame      != null) settingsFrame.SetActive(false);
+    }
+
+    // Hook this to CANCEL button inside the delete panel
+    public void OnDeleteAccountCancelPressed()
+    {
+        if (deleteAccountPanel != null) deleteAccountPanel.SetActive(false);
+        if (settingsFrame      != null) settingsFrame.SetActive(true);
+    }
+
+    // Hook this to CONFIRM DELETE button inside the delete panel
+    public async void OnDeleteAccountConfirmPressed()
+    {
+        if (deleteAccountPanel != null) deleteAccountPanel.SetActive(false);
+
+        await PlayerDatabaseAPI.DeleteAccountAsync();
+
+        PlayerPrefs.SetInt("TF_RememberMe", 0);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Login_PopUp");
     }
 }

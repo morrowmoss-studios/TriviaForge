@@ -226,6 +226,39 @@ public static class PlayerDatabaseAPI
         }
     }
 
+    // ── Delete account ────────────────────────────────────────────────────
+
+    public static async Task DeleteAccountAsync()
+    {
+        if (!FirebaseManager.IsReady || _firebaseUser == null) return;
+
+        try
+        {
+            string uid      = _firebaseUser.UserId;
+            string username = _currentPlayer?.displayName ?? "";
+
+            // Delete Firestore player document
+            await FirebaseManager.Db.Collection(PlayersCollection).Document(uid).DeleteAsync();
+
+            // Delete username mapping
+            if (!string.IsNullOrEmpty(username))
+                await FirebaseManager.Db.Collection(UsernamesCollection).Document(username).DeleteAsync();
+
+            // Delete Firebase Auth user
+            await _firebaseUser.DeleteAsync();
+
+            _currentPlayer = null;
+            _firebaseUser  = null;
+            _loaded        = false;
+
+            Debug.Log($"[PlayerDatabaseAPI] Account deleted: {username}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[PlayerDatabaseAPI] DeleteAccount failed: {ex.Message}");
+        }
+    }
+
     public static void SignOut()
     {
         Auth.SignOut();
