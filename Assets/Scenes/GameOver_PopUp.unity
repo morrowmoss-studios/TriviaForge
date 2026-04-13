@@ -817,8 +817,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c155148a7d2a49569d20f146e78e6c3, type: 2}
-  m_sharedMaterial: {fileID: -4855036861293813384, guid: 0c155148a7d2a49569d20f146e78e6c3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33c994bb450704b45b1c94f557881fd9, type: 2}
+  m_sharedMaterial: {fileID: -4855036861293813384, guid: 33c994bb450704b45b1c94f557881fd9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

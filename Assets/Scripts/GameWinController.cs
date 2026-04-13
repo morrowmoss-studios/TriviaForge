@@ -15,6 +15,6 @@ public static class GameWinController
         lastDifficulty = TriviaSessionData.selectedDifficulty; // we already store this
         lastWord       = word;
 
-        SceneManager.LoadScene("Win_PopUp");   // change name if your scene is different
+        SceneManager.LoadScene("GameOver_PopUp");   // change name if your scene is different
     }
 }
