@@ -111,7 +111,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesText.alignment = TextAlignmentOptions.Center;
             notesText.raycastTarget = false;
             notesText.enableWordWrapping = false;
-            notesText.overflowMode = TextOverflowModes.Overflow;
+            notesText.overflowMode = TextOverflowModes.Truncate;
         }
     }
 
@@ -144,7 +144,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesRT.anchorMin = Vector2.zero;
             notesRT.anchorMax = Vector2.one;
 
-            const float pad = 3f;
+            const float pad = 6f;
             notesRT.offsetMin = new Vector2(pad, pad);
             notesRT.offsetMax = new Vector2(-pad, -pad);
 
@@ -367,6 +367,9 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
         char expected = manager.GetSolutionLetter(row, col);
         isWrong = (letter != expected);
+
+        if (isWrong)
+            manager.ReportWrongPlacement();
 
         LayoutTexts();
         UpdateTileVisual();

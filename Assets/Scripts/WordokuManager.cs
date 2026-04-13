@@ -47,16 +47,41 @@ public class WordokuManager : MonoBehaviour
 
     private GameDatabase dbCached;
 
+    [Header("Timer")]
+    [SerializeField] private TMPro.TMP_Text timerText;
+
+    private float _elapsedSeconds  = 0f;
+    private bool  _timerRunning    = false;
+    private int   _wrongPlacements = 0;
+
     private void Start()
     {
         RefreshNotesButtonVisual();
         StartCoroutine(GenerateAfterLayout());
     }
 
+    private void Update()
+    {
+        if (!_timerRunning) return;
+        _elapsedSeconds += Time.deltaTime;
+        UpdateTimerDisplay();
+    }
+
+    private void UpdateTimerDisplay()
+    {
+        if (timerText == null) return;
+        int minutes = Mathf.FloorToInt(_elapsedSeconds / 60f);
+        int seconds = Mathf.FloorToInt(_elapsedSeconds % 60f);
+        timerText.text = $"{minutes}:{seconds:00}";
+    }
+
     private IEnumerator GenerateAfterLayout()
     {
         yield return null;
         GeneratePuzzle();
+        _elapsedSeconds  = 0f;
+        _wrongPlacements = 0;
+        _timerRunning    = true;
     }
 
     private void GeneratePuzzle()
@@ -354,6 +379,11 @@ public class WordokuManager : MonoBehaviour
         CheckForWin();
     }
 
+    public void ReportWrongPlacement()
+    {
+        _wrongPlacements++;
+    }
+
     // ── Letter completion tracking ────────────────────────────────────────
 
     private void UpdateLetterCompletion()
@@ -423,6 +453,11 @@ public class WordokuManager : MonoBehaviour
         if (!IsValidSolution()) return;
 
         Debug.Log($"Wordoku solved! Word = {CurrentWord}, difficulty = {TriviaSessionData.selectedDifficulty}");
+
+        _timerRunning = false;
+        TriviaSessionData.wordokuTimeSeconds     = _elapsedSeconds;
+        TriviaSessionData.wordokuWrongPlacements = _wrongPlacements;
+
         GameWinController.TriggerWin("Wordoku", CurrentWord);
     }
 

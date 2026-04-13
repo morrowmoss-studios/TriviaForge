@@ -27,11 +27,17 @@ public static class TriviaSessionData
     // holding full objects across scenes
     public static System.Collections.Generic.List<TriviaEntry> sessionQuestions = null;
 
+    // Wordoku end-of-game stats
+    public static float wordokuTimeSeconds     = 0f;
+    public static int   wordokuWrongPlacements = 0;
+
     public static void ClearSession()
     {
-        currentQuestionIndex = 0;
-        strikes              = 0;
-        roundOver            = false;
-        sessionQuestions     = null;
+        currentQuestionIndex       = 0;
+        strikes                    = 0;
+        roundOver                  = false;
+        sessionQuestions           = null;
+        wordokuTimeSeconds         = 0f;
+        wordokuWrongPlacements     = 0;
     }
 }
