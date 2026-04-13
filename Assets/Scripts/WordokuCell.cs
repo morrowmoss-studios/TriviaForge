@@ -111,7 +111,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesText.alignment = TextAlignmentOptions.Center;
             notesText.raycastTarget = false;
             notesText.enableWordWrapping = false;
-            notesText.overflowMode = TextOverflowModes.Truncate;
+            notesText.overflowMode = TextOverflowModes.Overflow;
         }
     }
 
@@ -144,7 +144,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             notesRT.anchorMin = Vector2.zero;
             notesRT.anchorMax = Vector2.one;
 
-            const float pad = 6f;
+            const float pad = 3f;
             notesRT.offsetMin = new Vector2(pad, pad);
             notesRT.offsetMax = new Vector2(-pad, -pad);
 
@@ -199,27 +199,33 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        int noteCount = Mathf.Clamp(notes.Count, 1, 9);
-        float t = (noteCount - 1) / 8f;
-        float factor = Mathf.Lerp(0.8f, 0.5f, t);
+        var ordered = notes.OrderBy(c => c).ToList();
+        int count   = ordered.Count;
+
+        // Scale font based on how many notes -- fewer notes = bigger text
+        float factor = count <= 3 ? 0.75f
+                     : count <= 6 ? 0.62f
+                     :              0.48f;
+
         notesText.fontSize = baseLetterFontSize * factor;
 
-        var ordered = notes.OrderBy(c => c).ToList();
-
-        char[] slots = new char[9];
-        for (int i = 0; i < slots.Length; i++) slots[i] = ' ';
-        for (int i = 0; i < ordered.Count && i < 9; i++) slots[i] = ordered[i];
+        // Build grid layout based on count
+        // 1-3: single row
+        // 4-6: two rows (3+remainder)
+        // 7-9: three rows (3+3+remainder)
+        int cols = 3;
+        int rows = Mathf.CeilToInt((float)count / cols);
 
         var sb = new StringBuilder();
-        for (int r = 0; r < 3; r++)
+        for (int r = 0; r < rows; r++)
         {
-            for (int c = 0; c < 3; c++)
+            for (int c = 0; c < cols; c++)
             {
-                int idx = r * 3 + c;
-                sb.Append(slots[idx]);
-                if (c < 2) sb.Append(' ');
+                int idx = r * cols + c;
+                sb.Append(idx < count ? ordered[idx].ToString() : " ");
+                if (c < cols - 1) sb.Append(' ');
             }
-            if (r < 2) sb.AppendLine();
+            if (r < rows - 1) sb.AppendLine();
         }
 
         notesText.text = sb.ToString();
@@ -341,6 +347,7 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     public void PlaceLetter(char letter)
     {
+        // ── Tile placed SFX ──────────────────────────────────────────────
         if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
 
         if (manager == null)
@@ -358,11 +365,8 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         notes.Clear();
         UpdateNotesVisual();
 
-        // Flag as wrong if it violates row/column/block rules
-        // We temporarily set the letter first so IsValidPlacement
-        // checks against the current board state including this cell,
-        // then re-check excluding this cell's own contribution
-        isWrong = !manager.IsValidPlacement(row, col, letter);
+        char expected = manager.GetSolutionLetter(row, col);
+        isWrong = (letter != expected);
 
         LayoutTexts();
         UpdateTileVisual();
