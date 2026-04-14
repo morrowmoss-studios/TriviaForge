@@ -192,16 +192,38 @@ class CrosswordGrid:
 
         layout = [''.join(row) for row in layout]
 
-        # Build word list with adjusted coordinates
-        words = []
-        for idx, p in enumerate(self.placed):
-            words.append({
-                'id':       f"{idx + 1}{'A' if p['across'] else 'D'}",
+        # Compute adjusted start coords for every placed word
+        adjusted = []
+        for p in self.placed:
+            adjusted.append({
                 'isAcross': p['across'],
                 'startRow': p['row'] - min_r + offset_r,
                 'startCol': p['col'] - min_c + offset_c,
                 'answer':   p['word'],
                 'clue':     p['clue']
+            })
+
+        # Scan top-to-bottom, left-to-right to assign numbers
+        # matching real crossword convention (shared number if across + down share a start cell)
+        start_cells = set((w['startRow'], w['startCol']) for w in adjusted)
+        cell_numbers = {}
+        num = 1
+        for r in range(PUZZLE_ROWS):
+            for c in range(PUZZLE_COLS):
+                if (r, c) in start_cells:
+                    cell_numbers[(r, c)] = num
+                    num += 1
+
+        words = []
+        for w in adjusted:
+            key = (w['startRow'], w['startCol'])
+            words.append({
+                'id':       f"{cell_numbers[key]}{'A' if w['isAcross'] else 'D'}",
+                'isAcross': w['isAcross'],
+                'startRow': w['startRow'],
+                'startCol': w['startCol'],
+                'answer':   w['answer'],
+                'clue':     w['clue']
             })
 
         return layout, words

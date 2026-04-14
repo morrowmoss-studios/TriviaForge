@@ -280,6 +280,12 @@ public class CrosswordBoardManager : MonoBehaviour
 
         if (isAcross) HighlightAcrossWord(r, c);
         else          HighlightDownWord(r, c);
+
+        if (activeWord != null)
+        {
+            _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
+            _highlightedAnchor.SetNumberHighlighted(true);
+        }
     }
 
     // ── DB loading ────────────────────────────────────────────────────────
@@ -598,6 +604,9 @@ public class CrosswordBoardManager : MonoBehaviour
         if (goAcross) HighlightAcrossWord(r, c);
         else          HighlightDownWord(r, c);
 
+        _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
+        _highlightedAnchor.SetNumberHighlighted(true);
+
         OpenKeyboard();
     }
 
@@ -626,9 +635,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
         for (int c = startCol; c <= endCol; c++)
             cells[row, c].SetHighlighted(true);
-
-        _highlightedAnchor = cells[row, startCol];
-        _highlightedAnchor.SetNumberHighlighted(true);
     }
 
     private void HighlightDownWord(int row, int col)
@@ -643,9 +649,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
         for (int r = startRow; r <= endRow; r++)
             cells[r, col].SetHighlighted(true);
-
-        _highlightedAnchor = cells[startRow, col];
-        _highlightedAnchor.SetNumberHighlighted(true);
     }
 
     // ── Hint ─────────────────────────────────────────────────────────────
