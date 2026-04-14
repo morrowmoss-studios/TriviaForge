@@ -45,6 +45,7 @@ class CrosswordGrid:
     def __init__(self, size, word_set):
         self.size = size
         self.grid = [[None] * size for _ in range(size)]
+        self.dir_grid = [[set() for _ in range(size)] for _ in range(size)]
         self.word_set = word_set
         self.placed = []
 
@@ -130,6 +131,7 @@ class CrosswordGrid:
             if self.get(row + length, col) is not None: return False
 
         has_intersection = False
+        direction_key = 'A' if across else 'D'
 
         for i, ch in enumerate(word):
             r = row + (0 if across else i)
@@ -138,6 +140,9 @@ class CrosswordGrid:
 
             if existing is not None:
                 if existing != ch:
+                    return False
+                # Reject if a same-direction word already claims this cell
+                if direction_key in self.dir_grid[r][c]:
                     return False
                 has_intersection = True
 
@@ -148,10 +153,12 @@ class CrosswordGrid:
         return self._validate_perps(word, row, col, across)
 
     def place(self, word, clue, row, col, across):
+        direction_key = 'A' if across else 'D'
         for i, ch in enumerate(word):
             r = row + (0 if across else i)
             c = col + (i if across else 0)
             self.grid[r][c] = ch
+            self.dir_grid[r][c].add(direction_key)
         self.placed.append({
             'word': word, 'clue': clue,
             'row': row, 'col': col, 'across': across
