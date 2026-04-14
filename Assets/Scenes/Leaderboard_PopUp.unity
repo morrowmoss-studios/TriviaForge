@@ -374,19 +374,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697406188526938438, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 403.8053
+      value: 496.104
       objectReference: {fileID: 0}
     - target: {fileID: 1697406188526938438, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 264.4385
+      value: 291.7589
       objectReference: {fileID: 0}
     - target: {fileID: 1697406188526938438, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 215
+      value: 211.6772
       objectReference: {fileID: 0}
     - target: {fileID: 1697406188526938438, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18
+      value: 28.0924
       objectReference: {fileID: 0}
     - target: {fileID: 5168579343675544679, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_Sprite
@@ -410,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 130.87949
+      value: 87.9
       objectReference: {fileID: 0}
     - target: {fileID: 5981985788851792931, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2672755}
   m_HandleRect: {fileID: 2672754}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1122,7 +1122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 297.3, y: -8.1567}
+  m_AnchoredPosition: {x: 337.6, y: -8.8601}
   m_SizeDelta: {x: 109.4738, y: 28.158}
   m_Pivot: {x: 0.5, y: 1.9876168}
 --- !u!114 &1298569001
@@ -1502,6 +1502,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScorePopupUI
   scoreValueText: {fileID: 0}
+  triviaPanel: {fileID: 0}
+  wordokuPanel: {fileID: 0}
+  crosswordPanel: {fileID: 0}
+  scoreNumberText: {fileID: 0}
+  streakNumberText: {fileID: 0}
+  shameNumText: {fileID: 0}
+  timerNumText: {fileID: 0}
+  cwStatsText: {fileID: 0}
   mainMenuSceneName: ModeSelect
   leaderboardSceneName: Leaderboard_PopUp
   scoreSceneName: Scores_PopUp
@@ -1577,8 +1585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 214.99998, y: 132.5}
-  m_SizeDelta: {x: 202.0529, y: 52.053}
+  m_AnchoredPosition: {x: 212.35344, y: 156.1}
+  m_SizeDelta: {x: 279.373, y: 52.053}
   m_Pivot: {x: 0.5, y: 0.49999994}
 --- !u!114 &1585816090
 MonoBehaviour:
@@ -1887,8 +1895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 213.56377, y: 36.487}
-  m_SizeDelta: {x: 311.5078, y: 139.97}
+  m_AnchoredPosition: {x: 213.56377, y: 45.347664}
+  m_SizeDelta: {x: 395.6844, y: 157.6914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817256817
 MonoBehaviour:
@@ -2031,7 +2039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210.8, y: -37.721}
+  m_AnchoredPosition: {x: 213.56, y: -8.8601}
   m_SizeDelta: {x: 108.89, y: 28.158}
   m_Pivot: {x: 0.5, y: 1.9876168}
 --- !u!114 &1981975060

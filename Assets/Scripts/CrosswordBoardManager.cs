@@ -53,7 +53,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
     // ── Hints ─────────────────────────────────────────────────────────────
     private const int MaxHints = 3;
-    private int hintsRemaining = MaxHints;
+    private int hintsRemaining   = MaxHints;
+    private int _wrongPlacements = 0;
 
     public int  HintsRemaining => hintsRemaining;
     public bool UsedNoHints    => hintsRemaining == MaxHints;
@@ -121,6 +122,8 @@ public class CrosswordBoardManager : MonoBehaviour
                     else
                     {
                         _selectedCell.SetLetter(newChar);
+                        if (newChar != solutionLetters[_selectedCell.row, _selectedCell.col])
+                            _wrongPlacements++;
                         AdvanceToNextCell();
                         CheckForWin();
                     }
@@ -171,6 +174,8 @@ public class CrosswordBoardManager : MonoBehaviour
                                 else
                                 {
                                     _selectedCell.SetLetter(ch);
+                                    if (ch != solutionLetters[_selectedCell.row, _selectedCell.col])
+                                        _wrongPlacements++;
                                     AdvanceToNextCell();
                                     CheckForWin();
                                 }
@@ -717,6 +722,8 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             puzzleSolved = true;
             Debug.Log("[CrosswordBoardManager] Puzzle solved!");
+            TriviaSessionData.crosswordWrongPlacements = _wrongPlacements;
+            TriviaSessionData.crosswordPerfectGame     = _wrongPlacements == 0;
             GameWinController.TriggerWin("Crossword");
         }
         else
@@ -736,8 +743,9 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (cells[r, c] != null && !cells[r, c].IsBlocked)
                     cells[r, c].SetLetter('\0');
 
-        puzzleSolved  = false;
-        _selectedCell = null;
+        puzzleSolved     = false;
+        _wrongPlacements = 0;
+        _selectedCell    = null;
         ClearHighlights();
         CrosswordClueDisplay.Instance?.ClearClue();
 

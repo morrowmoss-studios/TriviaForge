@@ -31,13 +31,19 @@ public static class TriviaSessionData
     public static float wordokuTimeSeconds     = 0f;
     public static int   wordokuWrongPlacements = 0;
 
+    // Crossword end-of-game stats
+    public static int  crosswordWrongPlacements = 0;
+    public static bool crosswordPerfectGame     = false;
+
     public static void ClearSession()
     {
-        currentQuestionIndex       = 0;
-        strikes                    = 0;
-        roundOver                  = false;
-        sessionQuestions           = null;
-        wordokuTimeSeconds         = 0f;
-        wordokuWrongPlacements     = 0;
+        currentQuestionIndex        = 0;
+        strikes                     = 0;
+        roundOver                   = false;
+        sessionQuestions            = null;
+        wordokuTimeSeconds          = 0f;
+        wordokuWrongPlacements      = 0;
+        crosswordWrongPlacements    = 0;
+        crosswordPerfectGame        = false;
     }
 }

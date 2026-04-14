@@ -21,7 +21,8 @@ public class ScorePopupUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerNumText;
 
     [Header("Crossword Panel")]
-    [SerializeField] private TextMeshProUGUI cwStatsText;
+    [SerializeField] private TextMeshProUGUI cwShameNumText;
+    [SerializeField] private TextMeshProUGUI cwPerfectGameText;
 
     [Header("Scene Names")]
     [SerializeField] private string mainMenuSceneName    = "MainMenu";
@@ -70,8 +71,11 @@ public class ScorePopupUI : MonoBehaviour
         {
             if (crosswordPanel != null) crosswordPanel.SetActive(true);
 
-            // TODO: wire up crossword stats once scoring is finalized
-            if (cwStatsText != null) cwStatsText.text = "";
+            int  shame   = TriviaSessionData.crosswordWrongPlacements;
+            bool perfect = TriviaSessionData.crosswordPerfectGame;
+
+            if (cwShameNumText   != null) cwShameNumText.text   = shame.ToString();
+            if (cwPerfectGameText != null) cwPerfectGameText.text = perfect ? "Y" : "N";
         }
         else
         {
