@@ -1509,7 +1509,8 @@ MonoBehaviour:
   streakNumberText: {fileID: 0}
   shameNumText: {fileID: 0}
   timerNumText: {fileID: 0}
-  cwStatsText: {fileID: 0}
+  cwShameNumText: {fileID: 0}
+  cwPerfectGameText: {fileID: 0}
   mainMenuSceneName: ModeSelect
   leaderboardSceneName: Leaderboard_PopUp
   scoreSceneName: Scores_PopUp
@@ -1829,7 +1830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &1795988338
 MonoBehaviour:

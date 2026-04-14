@@ -142,6 +142,9 @@ MonoBehaviour:
   blockedSprite: {fileID: 882983674659450754, guid: dab69fb2938c84ce5a2cc86e206364f2, type: 3}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 0, g: 0.9400835, b: 1, a: 0.84313726}
+  wrongColor: {r: 1, g: 0.2, b: 0.2, a: 1}
+  numberNormalColor: {r: 1, g: 1, b: 1, a: 1}
+  numberActiveColor: {r: 1, g: 0.85, b: 0.1, a: 1}
   row: 0
   col: 0
 --- !u!1 &7580910685112635434
@@ -236,8 +239,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -373,13 +376,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -390,7 +393,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

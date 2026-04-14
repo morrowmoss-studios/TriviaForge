@@ -17,6 +17,10 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color highlightColor = Color.cyan;
     [SerializeField] private Color wrongColor     = new Color(1f, 0.2f, 0.2f, 1f);
 
+    [Header("Number Highlight")]
+    [SerializeField] private Color numberNormalColor = Color.white;
+    [SerializeField] private Color numberActiveColor = new Color(1f, 0.85f, 0.1f, 1f);
+
     [Header("Grid Coords (read-only at runtime)")]
     public int row;
     public int col;
@@ -115,6 +119,12 @@ public class CrosswordCell : MonoBehaviour, IPointerClickHandler
         if (numberLabel == null) return;
         numberLabel.text = num;
         numberLabel.gameObject.SetActive(!string.IsNullOrEmpty(num));
+    }
+
+    public void SetNumberHighlighted(bool active)
+    {
+        if (numberLabel == null) return;
+        numberLabel.color = active ? numberActiveColor : numberNormalColor;
     }
 
     // ---------- BLOCK / HIGHLIGHT / WRONG ----------

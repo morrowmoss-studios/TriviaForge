@@ -50,6 +50,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private CrosswordCell _selectedCell;
     private bool _selectedAcross = true;
+    private CrosswordCell _highlightedAnchor;
 
     // ── Hints ─────────────────────────────────────────────────────────────
     private const int MaxHints = 3;
@@ -608,6 +609,9 @@ public class CrosswordBoardManager : MonoBehaviour
         for (int r = 0; r < rows; r++)
             for (int c = 0; c < cols; c++)
                 cells[r, c]?.SetHighlighted(false);
+
+        _highlightedAnchor?.SetNumberHighlighted(false);
+        _highlightedAnchor = null;
     }
 
     private void HighlightAcrossWord(int row, int col)
@@ -622,6 +626,9 @@ public class CrosswordBoardManager : MonoBehaviour
 
         for (int c = startCol; c <= endCol; c++)
             cells[row, c].SetHighlighted(true);
+
+        _highlightedAnchor = cells[row, startCol];
+        _highlightedAnchor.SetNumberHighlighted(true);
     }
 
     private void HighlightDownWord(int row, int col)
@@ -636,6 +643,9 @@ public class CrosswordBoardManager : MonoBehaviour
 
         for (int r = startRow; r <= endRow; r++)
             cells[r, col].SetHighlighted(true);
+
+        _highlightedAnchor = cells[startRow, col];
+        _highlightedAnchor.SetNumberHighlighted(true);
     }
 
     // ── Hint ─────────────────────────────────────────────────────────────
