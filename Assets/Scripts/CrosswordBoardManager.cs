@@ -95,8 +95,57 @@ public class CrosswordBoardManager : MonoBehaviour
 
         BuildBoard();
 
+        RestoreGridState();
+
         if (autoFillSolutionOnStart)
             RevealPlacedSolutionLettersOnly();
+    }
+
+    private void OnDestroy()
+    {
+        SaveGridState();
+    }
+
+    private void SaveGridState()
+    {
+        if (cells == null) return;
+
+        var state = new System.Collections.Generic.Dictionary<string, char>();
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+                char ch = cells[r, c].GetLetter();
+                if (ch != '\0')
+                    state[$"{r},{c}"] = ch;
+            }
+        }
+
+        CrosswordSession.savedGridState       = state;
+        CrosswordSession.savedWrongPlacements = _wrongPlacements;
+        CrosswordSession.savedHintsRemaining  = hintsRemaining;
+    }
+
+    private void RestoreGridState()
+    {
+        if (CrosswordSession.savedGridState == null || CrosswordSession.savedGridState.Count == 0) return;
+        if (cells == null) return;
+
+        foreach (var kvp in CrosswordSession.savedGridState)
+        {
+            string[] parts = kvp.Key.Split(',');
+            if (parts.Length != 2) continue;
+            if (!int.TryParse(parts[0], out int r) || !int.TryParse(parts[1], out int c)) continue;
+            if (r < 0 || r >= rows || c < 0 || c >= cols) continue;
+            if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
+
+            cells[r, c].SetLetter(kvp.Value);
+        }
+
+        _wrongPlacements = CrosswordSession.savedWrongPlacements;
+        hintsRemaining   = CrosswordSession.savedHintsRemaining;
+        OnHintsChanged?.Invoke(hintsRemaining);
     }
 
     // ── Keyboard input ────────────────────────────────────────────────────
@@ -114,7 +163,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
                     // If the current cell is already filled, absorb the keystroke
-                    // silently and just advance -- the player typed that letter but
+                    // silently and just advance -- the player typed that letter, but
                     // it was already there from an intersecting word
                     if (_selectedCell.GetLetter() != '\0')
                     {
@@ -761,6 +810,9 @@ public class CrosswordBoardManager : MonoBehaviour
         _selectedCell    = null;
         ClearHighlights();
         CrosswordClueDisplay.Instance?.ClearClue();
+        CrosswordSession.savedGridState       = null;
+        CrosswordSession.savedWrongPlacements = 0;
+        CrosswordSession.savedHintsRemaining  = 3;
 
         Debug.Log("[CrosswordBoardManager] Puzzle reset.");
     }
