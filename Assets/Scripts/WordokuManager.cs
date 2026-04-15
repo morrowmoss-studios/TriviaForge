@@ -56,6 +56,12 @@ public class WordokuManager : MonoBehaviour
 
     private void Start()
     {
+        if (!HowToWordoku.LaunchedFromSettings && HowToWordoku.ShouldShowHowTo())
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HowTo_Wordoku");
+            return;
+        }
+
         RefreshNotesButtonVisual();
         StartCoroutine(GenerateAfterLayout());
     }

@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HowToPlay.unity
     guid: 24b3299ac3e564e52a1882ce8a134736
   - enabled: 1
+    path: Assets/Scenes/HowTo_Wordoku.unity
+    guid: e44ed96cde27448a8ac4b86ac6cc760e
+  - enabled: 1
     path: Assets/Scenes/Login_PopUp.unity
     guid: 57c6c7bc94e57489f9e4f6955601a713
   - enabled: 1
@@ -47,9 +50,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver_PopUp.unity
     guid: 825a2c52c86b54b25afc4fd247b276e1
-  - enabled: 1
-    path: Assets/Scenes/Win_PopUp.unity
-    guid: e44391319fa77400a8258451410d57d9
   - enabled: 1
     path: Assets/Scenes/Scores_PopUp.unity
     guid: 425e3c31e272a4362a19afdfdd4dcbe5
