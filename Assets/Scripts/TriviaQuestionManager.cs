@@ -48,12 +48,12 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         switch (TriviaSessionData.selectedDifficulty)
         {
-            case "Easy":     return 20f;
-            case "Medium":   return 15f;
-            case "Hard":     return 12f;
-            case "Insanity": return 8f;
-            case "Mixed":    return 15f;
-            default:         return 20f;
+            case "Easy":     return 30f;
+            case "Medium":   return 25f;
+            case "Hard":     return 20f;
+            case "Insanity": return 15f;
+            case "Mixed":    return 22f;
+            default:         return 30f;
         }
     }
 
@@ -79,6 +79,11 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private void Start()
     {
+        if (!HowToTrivia.LaunchedFromSettings && HowToTrivia.ShouldShowHowTo())
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HowTo_Trivia");
+            return;
+        }
         if (TriviaSessionData.sessionQuestions == null)
         {
             string categoryId    = TriviaSessionData.selectedCategoryId;
