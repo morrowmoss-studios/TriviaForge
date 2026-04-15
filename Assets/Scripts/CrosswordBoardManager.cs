@@ -101,32 +101,6 @@ public class CrosswordBoardManager : MonoBehaviour
             RevealPlacedSolutionLettersOnly();
     }
 
-    private void OnDestroy()
-    {
-        SaveGridState();
-    }
-
-    private void SaveGridState()
-    {
-        if (cells == null) return;
-
-        var state = new System.Collections.Generic.Dictionary<string, char>();
-        for (int r = 0; r < rows; r++)
-        {
-            for (int c = 0; c < cols; c++)
-            {
-                if (cells[r, c] == null || cells[r, c].IsBlocked) continue;
-                char ch = cells[r, c].GetLetter();
-                if (ch != '\0')
-                    state[$"{r},{c}"] = ch;
-            }
-        }
-
-        CrosswordSession.savedGridState       = state;
-        CrosswordSession.savedWrongPlacements = _wrongPlacements;
-        CrosswordSession.savedHintsRemaining  = hintsRemaining;
-    }
-
     private void RestoreGridState()
     {
         if (CrosswordSession.savedGridState == null || CrosswordSession.savedGridState.Count == 0) return;
@@ -146,6 +120,23 @@ public class CrosswordBoardManager : MonoBehaviour
         _wrongPlacements = CrosswordSession.savedWrongPlacements;
         hintsRemaining   = CrosswordSession.savedHintsRemaining;
         OnHintsChanged?.Invoke(hintsRemaining);
+
+        Debug.Log($"[CrosswordBoardManager] Restored {CrosswordSession.savedGridState.Count} cells from session.");
+    }
+
+    private void PersistLetterToSession(int r, int c, char ch)
+    {
+        if (CrosswordSession.savedGridState == null)
+            CrosswordSession.savedGridState = new System.Collections.Generic.Dictionary<string, char>();
+
+        string key = $"{r},{c}";
+        if (ch == '\0')
+            CrosswordSession.savedGridState.Remove(key);
+        else
+            CrosswordSession.savedGridState[key] = ch;
+
+        CrosswordSession.savedWrongPlacements = _wrongPlacements;
+        CrosswordSession.savedHintsRemaining  = hintsRemaining;
     }
 
     // ── Keyboard input ────────────────────────────────────────────────────
@@ -163,7 +154,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
                     // If the current cell is already filled, absorb the keystroke
-                    // silently and just advance -- the player typed that letter, but
+                    // silently and just advance -- the player typed that letter but
                     // it was already there from an intersecting word
                     if (_selectedCell.GetLetter() != '\0')
                     {
@@ -174,6 +165,7 @@ public class CrosswordBoardManager : MonoBehaviour
                         _selectedCell.SetLetter(newChar);
                         if (newChar != solutionLetters[_selectedCell.row, _selectedCell.col])
                             _wrongPlacements++;
+                        PersistLetterToSession(_selectedCell.row, _selectedCell.col, newChar);
                         AdvanceToNextCell();
                         CheckForWin();
                     }
@@ -185,7 +177,10 @@ public class CrosswordBoardManager : MonoBehaviour
             else if (text.Length < lastKeyboardText.Length)
             {
                 if (_selectedCell != null)
+                {
                     _selectedCell.SetLetter('\0');
+                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                }
 
                 keyboard.text = KeyboardSentinel;
                 lastKeyboardText = KeyboardSentinel;
@@ -205,6 +200,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (keyboard2.backspaceKey.wasPressedThisFrame)
                 {
                     _selectedCell.SetLetter('\0');
+                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
                 }
                 else
                 {
@@ -226,6 +222,7 @@ public class CrosswordBoardManager : MonoBehaviour
                                     _selectedCell.SetLetter(ch);
                                     if (ch != solutionLetters[_selectedCell.row, _selectedCell.col])
                                         _wrongPlacements++;
+                                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, ch);
                                     AdvanceToNextCell();
                                     CheckForWin();
                                 }
@@ -735,6 +732,7 @@ public class CrosswordBoardManager : MonoBehaviour
         _selectedCell.SetLetter(solution);
         hintsRemaining--;
         OnHintsChanged?.Invoke(hintsRemaining);
+        PersistLetterToSession(r, c, solution);
 
         CheckForWin();
 
