@@ -88,6 +88,12 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void Start()
     {
+        if (!HowToCrossword.LaunchedFromSettings && HowToCrossword.ShouldShowHowTo())
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HowTo_Crossword");
+            return;
+        }
+        
         layoutRows = NormalizeLayout(layoutRows);
 
         if (fillFromDatabaseOnStart)
