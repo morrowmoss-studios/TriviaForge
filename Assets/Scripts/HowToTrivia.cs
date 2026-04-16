@@ -43,6 +43,9 @@ public class HowToTrivia : MonoBehaviour
     {
         if (!_active) return;
 
+        // Don't advance on tap for the last panel -- Done button only
+        if (_index >= (panels != null ? panels.Length - 1 : 0)) return;
+
         bool tapped = false;
 
 #if ENABLE_INPUT_SYSTEM
@@ -95,13 +98,18 @@ public class HowToTrivia : MonoBehaviour
     // Wire this to the Done button on the last panel
     public void OnDonePressed()
     {
+        _active = false;
+        StartCoroutine(FinishAfterFrame());
+    }
+
+    System.Collections.IEnumerator FinishAfterFrame()
+    {
+        yield return null;
         FinishTutorial();
     }
 
     void FinishTutorial()
     {
-        _active = false;
-
         if (panels != null)
             foreach (var p in panels)
                 if (p) p.SetActive(false);
@@ -117,7 +125,6 @@ public class HowToTrivia : MonoBehaviour
         if (LaunchedFromSettings)
         {
             LaunchedFromSettings = false;
-            UIManager.SetPreviousScene();
             FindObjectOfType<UIManager>()?.LoadPreviousScene();
             return;
         }

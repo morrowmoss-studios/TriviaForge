@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HowToPlay.unity
     guid: 24b3299ac3e564e52a1882ce8a134736
   - enabled: 1
+    path: Assets/Scenes/HowTo_Trivia.unity
+    guid: db13ac00e389246818ef08e3528654b5
+  - enabled: 1
     path: Assets/Scenes/HowTo_Wordoku.unity
     guid: e44ed96cde27448a8ac4b86ac6cc760e
   - enabled: 1

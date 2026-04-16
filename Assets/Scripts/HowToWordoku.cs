@@ -8,26 +8,26 @@ using UnityEngine.InputSystem;
 
 public class HowToWordoku : MonoBehaviour
 {
+    // Set to true when launched from Settings so we know to go back instead of forward
+    public static bool LaunchedFromSettings = false;
+
     private const string HasSeenKey = "HasSeenWordokuHowTo";
 
-    // Set to true when launched from HowToPlay scene so we go back instead of forward
-    public static bool LaunchedFromSettings = false;
+    [Header("Panels in order")]
+    public GameObject[] panels;
+
+    [Header("Don't Show Again (on last panel)")]
+    public Toggle dontShowAgainToggle;
 
     [Header("Scene Names")]
     [SerializeField] private string wordokuSceneName = "WordokuMode";
-
-    [Header("Panels in order")]
-    [SerializeField] private GameObject[] panels;
-
-    [Header("Don't Show Again")]
-    [SerializeField] private Toggle dontShowAgainToggle;
 
     int _index  = -1;
     bool _active = false;
 
     void Start()
     {
-        // Mark seen immediately to prevent WordokuMode redirect loop
+        // Mark seen immediately to prevent WordokuMode from redirecting back here in a loop
         PlayerPrefs.SetInt(HasSeenKey, 1);
         PlayerPrefs.Save();
 
@@ -42,6 +42,9 @@ public class HowToWordoku : MonoBehaviour
     void Update()
     {
         if (!_active) return;
+
+        // Don't advance on tap for the last panel -- Done button only
+        if (_index >= (panels != null ? panels.Length - 1 : 0)) return;
 
         bool tapped = false;
 
@@ -99,21 +102,26 @@ public class HowToWordoku : MonoBehaviour
     // Wire this to the Done button on the last panel
     public void OnDonePressed()
     {
+        _active = false;
+        StartCoroutine(FinishAfterFrame());
+    }
+
+    System.Collections.IEnumerator FinishAfterFrame()
+    {
+        yield return null;
         FinishTutorial();
     }
 
     void FinishTutorial()
     {
-        _active = false;
-
         if (panels != null)
             foreach (var p in panels)
                 if (p) p.SetActive(false);
 
+        // If toggle not checked, reset so instructions show again next time
         bool dontShow = dontShowAgainToggle != null && dontShowAgainToggle.isOn;
         if (!dontShow)
         {
-            // Reset so instructions show again next Wordoku load
             PlayerPrefs.SetInt(HasSeenKey, 0);
             PlayerPrefs.Save();
         }
@@ -121,7 +129,7 @@ public class HowToWordoku : MonoBehaviour
         if (LaunchedFromSettings)
         {
             LaunchedFromSettings = false;
-            SceneManager.LoadScene("HowToPlay");
+            FindObjectOfType<UIManager>()?.LoadPreviousScene();
             return;
         }
 
@@ -134,10 +142,11 @@ public class HowToWordoku : MonoBehaviour
         return PlayerPrefs.GetInt(HasSeenKey, 0) == 0;
     }
 
-    // Call this from the HowToPlay scene Wordoku button
+    // Call this from the Settings how-to button
     public static void LaunchFromSettingsMenu()
     {
         LaunchedFromSettings = true;
+        UIManager.SetPreviousScene();
         SceneManager.LoadScene("HowTo_Wordoku");
     }
 }
