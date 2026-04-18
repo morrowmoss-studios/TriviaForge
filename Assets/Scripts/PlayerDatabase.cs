@@ -30,6 +30,14 @@ public class PlayerProfile
     // Crossword speed (0 = never set)
     public int fastestCrosswordSeconds;
 
+    // Shame tracking
+    public int crosswordBestScarletLetters;  // lowest wrong placements in a crossword (-1 = never set)
+    public int wordokuBestScarletLetters;    // lowest wrong placements in a wordoku (-1 = never set)
+    public int wordokuFastestSeconds;        // fastest wordoku completion (0 = never set)
+
+    // Avatar
+    public int avatarIndex;                  // index into the avatar sprite array (-1 = none chosen)
+
     // Seen content
     public List<string> seenTriviaIds    = new List<string>();
     public List<string> seenWordokuWords = new List<string>();

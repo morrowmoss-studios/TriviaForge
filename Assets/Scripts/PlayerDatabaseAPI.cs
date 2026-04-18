@@ -317,6 +317,49 @@ public static class PlayerDatabaseAPI
         Save();
     }
 
+    public static void RegisterWordokuStats(int wrongPlacements, float timeSeconds)
+    {
+        if (_currentPlayer == null || IsGuest) return;
+
+        if (_currentPlayer.wordokuBestScarletLetters < 0 ||
+            wrongPlacements < _currentPlayer.wordokuBestScarletLetters)
+            _currentPlayer.wordokuBestScarletLetters = wrongPlacements;
+
+        int secs = Mathf.RoundToInt(timeSeconds);
+        if (_currentPlayer.wordokuFastestSeconds == 0 ||
+            secs < _currentPlayer.wordokuFastestSeconds)
+            _currentPlayer.wordokuFastestSeconds = secs;
+
+        Save();
+    }
+
+    public static void RegisterCrosswordScarletLetters(int wrongPlacements)
+    {
+        if (_currentPlayer == null || IsGuest) return;
+
+        if (_currentPlayer.crosswordBestScarletLetters < 0 ||
+            wrongPlacements < _currentPlayer.crosswordBestScarletLetters)
+            _currentPlayer.crosswordBestScarletLetters = wrongPlacements;
+
+        Save();
+    }
+
+    public static void SaveAvatarIndex(int index)
+    {
+        if (_currentPlayer == null || IsGuest) return;
+        _currentPlayer.avatarIndex = index;
+        PlayerPrefs.SetInt("TF_AvatarIndex", index);
+        PlayerPrefs.Save();
+        Save();
+    }
+
+    public static int GetAvatarIndex()
+    {
+        if (_currentPlayer != null && _currentPlayer.avatarIndex >= 0)
+            return _currentPlayer.avatarIndex;
+        return PlayerPrefs.GetInt("TF_AvatarIndex", -1);
+    }
+
     public static void RegisterGameStats(int highestStreakThisGame,
                                          bool perfectSolve,
                                          int correctAnswers,
@@ -394,18 +437,22 @@ public static class PlayerDatabaseAPI
 
             var statsDict = new Dictionary<string, object>
             {
-                { "playerId",                p.playerId },
-                { "displayName",             p.displayName },
-                { "email",                   p.email ?? "" },
-                { "totalScore",              p.totalScore },
-                { "gamesCompleted",          p.gamesCompleted },
-                { "highestScore",            p.highestScore },
-                { "highestStreak",           p.highestStreak },
-                { "perfectSolves",           p.perfectSolves },
-                { "correctAnswers",          p.correctAnswers },
-                { "totalAnswers",            p.totalAnswers },
-                { "fastestCrosswordSeconds", p.fastestCrosswordSeconds },
-                { "lastUpdated",             FieldValue.ServerTimestamp }
+                { "playerId",                        p.playerId },
+                { "displayName",                     p.displayName },
+                { "email",                           p.email ?? "" },
+                { "totalScore",                      p.totalScore },
+                { "gamesCompleted",                  p.gamesCompleted },
+                { "highestScore",                    p.highestScore },
+                { "highestStreak",                   p.highestStreak },
+                { "perfectSolves",                   p.perfectSolves },
+                { "correctAnswers",                  p.correctAnswers },
+                { "totalAnswers",                    p.totalAnswers },
+                { "fastestCrosswordSeconds",         p.fastestCrosswordSeconds },
+                { "crosswordBestScarletLetters",     p.crosswordBestScarletLetters },
+                { "wordokuBestScarletLetters",       p.wordokuBestScarletLetters },
+                { "wordokuFastestSeconds",           p.wordokuFastestSeconds },
+                { "avatarIndex",                     p.avatarIndex },
+                { "lastUpdated",                     FieldValue.ServerTimestamp }
             };
 
             await docRef.SetAsync(statsDict, SetOptions.MergeAll);
@@ -460,21 +507,25 @@ public static class PlayerDatabaseAPI
     private static Dictionary<string, object> ProfileToDict(PlayerProfile p) =>
         new Dictionary<string, object>
         {
-            { "playerId",                p.playerId },
-            { "displayName",             p.displayName },
-            { "email",                   p.email ?? "" },
-            { "totalScore",              p.totalScore },
-            { "gamesCompleted",          p.gamesCompleted },
-            { "highestScore",            p.highestScore },
-            { "highestStreak",           p.highestStreak },
-            { "perfectSolves",           p.perfectSolves },
-            { "correctAnswers",          p.correctAnswers },
-            { "totalAnswers",            p.totalAnswers },
-            { "fastestCrosswordSeconds", p.fastestCrosswordSeconds },
-            { "seenTriviaIds",           p.seenTriviaIds   ?? new List<string>() },
-            { "seenWordokuWords",        p.seenWordokuWords ?? new List<string>() },
-            { "seenCrosswordIds",        p.seenCrosswordIds ?? new List<string>() },
-            { "lastUpdated",             FieldValue.ServerTimestamp }
+            { "playerId",                        p.playerId },
+            { "displayName",                     p.displayName },
+            { "email",                           p.email ?? "" },
+            { "totalScore",                      p.totalScore },
+            { "gamesCompleted",                  p.gamesCompleted },
+            { "highestScore",                    p.highestScore },
+            { "highestStreak",                   p.highestStreak },
+            { "perfectSolves",                   p.perfectSolves },
+            { "correctAnswers",                  p.correctAnswers },
+            { "totalAnswers",                    p.totalAnswers },
+            { "fastestCrosswordSeconds",         p.fastestCrosswordSeconds },
+            { "crosswordBestScarletLetters",     p.crosswordBestScarletLetters },
+            { "wordokuBestScarletLetters",       p.wordokuBestScarletLetters },
+            { "wordokuFastestSeconds",           p.wordokuFastestSeconds },
+            { "avatarIndex",                     p.avatarIndex },
+            { "seenTriviaIds",                   p.seenTriviaIds   ?? new List<string>() },
+            { "seenWordokuWords",                p.seenWordokuWords ?? new List<string>() },
+            { "seenCrosswordIds",                p.seenCrosswordIds ?? new List<string>() },
+            { "lastUpdated",                     FieldValue.ServerTimestamp }
         };
 
     private static PlayerProfile DictToProfile(string uid, Dictionary<string, object> data)
@@ -495,21 +546,25 @@ public static class PlayerDatabaseAPI
 
         return new PlayerProfile
         {
-            playerId                = uid,
-            displayName             = Get("displayName",             ""),
-            email                   = Get("email",                   ""),
-            totalScore              = Get("totalScore",              0),
-            gamesCompleted          = Get("gamesCompleted",          0),
-            gamesPlayed             = Get("gamesCompleted",          0),
-            highestScore            = Get("highestScore",            0),
-            highestStreak           = Get("highestStreak",           0),
-            perfectSolves           = Get("perfectSolves",           0),
-            correctAnswers          = Get("correctAnswers",          0),
-            totalAnswers            = Get("totalAnswers",            0),
-            fastestCrosswordSeconds = Get("fastestCrosswordSeconds", 0),
-            seenTriviaIds           = GetList("seenTriviaIds"),
-            seenWordokuWords        = GetList("seenWordokuWords"),
-            seenCrosswordIds        = GetList("seenCrosswordIds")
+            playerId                    = uid,
+            displayName                 = Get("displayName",                    ""),
+            email                       = Get("email",                          ""),
+            totalScore                  = Get("totalScore",                     0),
+            gamesCompleted              = Get("gamesCompleted",                 0),
+            gamesPlayed                 = Get("gamesCompleted",                 0),
+            highestScore                = Get("highestScore",                   0),
+            highestStreak               = Get("highestStreak",                  0),
+            perfectSolves               = Get("perfectSolves",                  0),
+            correctAnswers              = Get("correctAnswers",                  0),
+            totalAnswers                = Get("totalAnswers",                    0),
+            fastestCrosswordSeconds     = Get("fastestCrosswordSeconds",        0),
+            crosswordBestScarletLetters = Get("crosswordBestScarletLetters",   -1),
+            wordokuBestScarletLetters   = Get("wordokuBestScarletLetters",     -1),
+            wordokuFastestSeconds       = Get("wordokuFastestSeconds",          0),
+            avatarIndex                 = Get("avatarIndex",                   -1),
+            seenTriviaIds               = GetList("seenTriviaIds"),
+            seenWordokuWords            = GetList("seenWordokuWords"),
+            seenCrosswordIds            = GetList("seenCrosswordIds")
         };
     }
 }
