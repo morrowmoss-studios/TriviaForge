@@ -12,9 +12,19 @@ public static class GameWinController
     public static void TriggerWin(string gameMode, string word = null)
     {
         lastGameMode   = gameMode;
-        lastDifficulty = TriviaSessionData.selectedDifficulty; // we already store this
+        lastDifficulty = TriviaSessionData.selectedDifficulty;
         lastWord       = word;
 
-        SceneManager.LoadScene("GameOver_PopUp");   // change name if your scene is different
+        // Register mode-specific stats
+        if (gameMode == "Wordoku")
+            PlayerDatabaseAPI.RegisterWordokuStats(
+                TriviaSessionData.wordokuWrongPlacements,
+                TriviaSessionData.wordokuTimeSeconds);
+
+        if (gameMode == "Crossword")
+            PlayerDatabaseAPI.RegisterCrosswordScarletLetters(
+                TriviaSessionData.crosswordWrongPlacements);
+
+        SceneManager.LoadScene("GameOver_PopUp");
     }
 }
