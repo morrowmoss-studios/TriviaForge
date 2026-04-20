@@ -62,6 +62,9 @@ public class CrosswordBoardManager : MonoBehaviour
 
     public event Action<int> OnHintsChanged;
 
+    [Header("Ads")]
+    [SerializeField] private AdsPopUpController adsPopUp;
+
     [Header("Database")]
     [SerializeField] private string resourcesDbName = "trivia_database";
     [SerializeField] private bool fillFromDatabaseOnStart = true;
@@ -709,10 +712,25 @@ public class CrosswordBoardManager : MonoBehaviour
     {
         if (hintsRemaining <= 0)
         {
-            Debug.Log("[CrosswordBoardManager] No hints remaining.");
+            if (adsPopUp != null)
+                adsPopUp.Show(AdsPopUpController.GameMode.Crossword, GrantAdHint);
+            else
+                Debug.Log("[CrosswordBoardManager] No hints remaining and no ad popup wired.");
             return;
         }
 
+        GiveHint();
+    }
+
+    private void GrantAdHint()
+    {
+        hintsRemaining = 1;
+        OnHintsChanged?.Invoke(hintsRemaining);
+        GiveHint();
+    }
+
+    private void GiveHint()
+    {
         if (_selectedCell == null)
         {
             Debug.Log("[CrosswordBoardManager] No cell selected for hint.");

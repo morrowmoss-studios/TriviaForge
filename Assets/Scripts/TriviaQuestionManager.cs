@@ -32,6 +32,9 @@ public class TriviaQuestionManager : MonoBehaviour
     [SerializeField] private TriviaScoreUI   scoreUI;
     [SerializeField] private TriviaStrikesUI strikesUI;
 
+    [Header("Ads")]
+    [SerializeField] private AdsPopUpController adsPopUp;
+
     private List<Question> questions = new List<Question>();
 
     private int   currentQuestionIndex = 0;
@@ -40,7 +43,7 @@ public class TriviaQuestionManager : MonoBehaviour
 
     private float timeRemaining = 20f;
     private bool  timerRunning  = false;
-    private bool  _timerWarningFired = false;
+    private int   _lastHapticSecond = -1;
 
     // ── Timer duration by difficulty ──────────────────────────────────────
 
@@ -218,10 +221,14 @@ public class TriviaQuestionManager : MonoBehaviour
             timerRunning = false;
             OnTimeExpired();
         }
-        else if (timeRemaining <= 3f && !_timerWarningFired)
+        else if (timeRemaining <= 5f)
         {
-            _timerWarningFired = true;
-            HapticManager.TimerWarning();
+            int currentSecond = Mathf.CeilToInt(timeRemaining);
+            if (currentSecond != _lastHapticSecond && currentSecond >= 1 && currentSecond <= 5)
+            {
+                _lastHapticSecond = currentSecond;
+                HapticManager.CountdownTick();
+            }
         }
     }
 
@@ -340,7 +347,7 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         questionLocked     = false;
         hintUsed           = false;
-        _timerWarningFired = false;
+        _lastHapticSecond  = -1;
 
         if (index < 0 || index >= questions.Count)
         {
@@ -451,6 +458,28 @@ public class TriviaQuestionManager : MonoBehaviour
     // ── Hint ─────────────────────────────────────────────────────────────
 
     public void OnHintPressed()
+    {
+        if (questionLocked) return;
+
+        if (hintUsed)
+        {
+            if (adsPopUp != null)
+                adsPopUp.Show(AdsPopUpController.GameMode.Trivia, GrantAdHint);
+            else
+                Debug.Log("[TriviaQuestionManager] Hint already used and no ad popup wired.");
+            return;
+        }
+
+        UseHint();
+    }
+
+    private void GrantAdHint()
+    {
+        hintUsed = false;
+        UseHint();
+    }
+
+    private void UseHint()
     {
         if (hintUsed || questionLocked) return;
 

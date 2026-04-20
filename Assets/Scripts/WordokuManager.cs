@@ -31,6 +31,11 @@ public class WordokuManager : MonoBehaviour
     [SerializeField] private Color notesInactiveColor = Color.white;
     public bool NotesMode => notesMode;
 
+    [Header("Ads")]
+    [SerializeField] private AdsPopUpController adsPopUp;
+
+    private int hintsRemaining = 3;
+
     public bool enforceSolutionWhileTesting = true;
 
     [Header("Database")]
@@ -293,6 +298,26 @@ public class WordokuManager : MonoBehaviour
 
     public void GiveHint()
     {
+        if (hintsRemaining <= 0)
+        {
+            if (adsPopUp != null)
+                adsPopUp.Show(AdsPopUpController.GameMode.Wordoku, GrantAdHint);
+            else
+                Debug.Log("[WordokuManager] No hints remaining and no ad popup wired.");
+            return;
+        }
+
+        GiveHintInternal();
+    }
+
+    private void GrantAdHint()
+    {
+        hintsRemaining = 1;
+        GiveHintInternal();
+    }
+
+    private void GiveHintInternal()
+    {
         for (int row = 0; row < 9; row++)
         {
             for (int col = 0; col < 9; col++)
@@ -301,6 +326,7 @@ public class WordokuManager : MonoBehaviour
                 if (!cell.isLocked && string.IsNullOrEmpty(cell.GetLetter()))
                 {
                     cell.SetLetter(solution[row, col].ToString());
+                    hintsRemaining--;
                     UpdateLetterCompletion();
                     return;
                 }

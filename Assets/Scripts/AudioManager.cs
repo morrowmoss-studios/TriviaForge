@@ -353,13 +353,13 @@ public class AudioManager : MonoBehaviour
 
     // ── SFX ───────────────────────────────────────────────────────────────
 
-    public void PlayCorrect()     { HapticManager.LightTap();    PlaySFX(sfxCorrect); }
+    public void PlayCorrect()     =>                              PlaySFX(sfxCorrect);
     public void PlayWrong()       { HapticManager.WrongAnswer();  PlaySFX(sfxWrong); }
     public void PlayStrike()      { HapticManager.WrongAnswer();  PlaySFX(sfxStrike); }
-    public void PlayButtonPress() { HapticManager.LightTap();    PlaySFX(sfxButtonPress); }
-    public void PlayUIClick()     { HapticManager.LightTap();    PlaySFX(sfxUIClick); }
+    public void PlayButtonPress() =>                              PlaySFX(sfxButtonPress);
+    public void PlayUIClick()     =>                              PlaySFX(sfxUIClick);
     public void PlayFanfare()     =>                              PlaySFX(sfxFanfare);
-    public void PlayTilePlaced()  { HapticManager.LightTap();    PlaySFX(sfxTilePlaced); }
+    public void PlayTilePlaced()  =>                              PlaySFX(sfxTilePlaced);
 
     void PlaySFX(AudioClip clip)
     {

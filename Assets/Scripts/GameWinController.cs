@@ -6,7 +6,7 @@ public static class GameWinController
     // What just finished
     public static string lastGameMode;
     public static string lastDifficulty;
-    public static string lastWord;   // for Wordoku / Crossword titles etc.
+    public static string lastWord;
 
     // Call this from any game mode when the win condition is met
     public static void TriggerWin(string gameMode, string word = null)
@@ -25,6 +25,17 @@ public static class GameWinController
             PlayerDatabaseAPI.RegisterCrosswordScarletLetters(
                 TriviaSessionData.crosswordWrongPlacements);
 
-        SceneManager.LoadScene("GameOver_PopUp");
+        // Show interstitial if ready, then load game over scene
+        if (TriviaForgeAdManager.Instance != null && TriviaForgeAdManager.Instance.IsInterstitialReady)
+        {
+            TriviaForgeAdManager.Instance.ShowInterstitial(onClosed: () =>
+            {
+                SceneManager.LoadScene("GameOver_PopUp");
+            });
+        }
+        else
+        {
+            SceneManager.LoadScene("GameOver_PopUp");
+        }
     }
 }
