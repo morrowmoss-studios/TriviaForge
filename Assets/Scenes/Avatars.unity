@@ -650,7 +650,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 20347610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &20347610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,7 +920,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 79145742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &79145742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,7 +1053,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 88123419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &88123419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,7 +1186,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 92043560}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &92043560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1355,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 145367388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &145367388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1702,7 +1762,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 210817707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &210817707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,7 +1895,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 214005310}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &214005310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,7 +2302,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 300463324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &300463324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,7 +2709,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 332143048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &332143048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,7 +2842,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 365423702}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &365423702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2992,7 +3112,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 404082099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &404082099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,7 +3245,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 426275921}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &426275921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3234,7 +3378,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 447259466}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &447259466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3355,7 +3511,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 470135477}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &470135477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3750,7 +3918,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 483254414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &483254414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4008,7 +4188,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 493576903}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &493576903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4129,7 +4321,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 498479009}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &498479009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4387,7 +4591,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 532353136}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &532353136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4638,7 +4854,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 565878554}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &565878554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4759,7 +4987,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 588506988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &588506988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5017,7 +5257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 629958720}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &629958720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5412,7 +5664,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 709589393}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &709589393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5533,7 +5797,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 712700688}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &712700688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5791,7 +6067,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 726400204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &726400204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5912,7 +6200,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754958345}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &754958345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6033,7 +6333,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 806595970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &806595970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7177,7 +7489,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1022489862}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1022489862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,7 +8444,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1110727792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1110727792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8378,7 +8714,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1150707970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1150707970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8499,7 +8847,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1164354953}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1164354953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8620,7 +8980,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1165263793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1165263793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9015,7 +9387,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1252801733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1252801733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9273,7 +9657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1275419474}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1275419474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9531,7 +9927,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1315609592}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1315609592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9652,7 +10060,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1328596240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1328596240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9985,7 +10405,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1389197241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1389197241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10352,7 +10784,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1461376370}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1461376370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10700,7 +11144,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1493195097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1493195097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10821,7 +11277,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1520448918}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1520448918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11216,7 +11684,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1614745109}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1614745109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11748,7 +12228,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1666894207}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1666894207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11869,7 +12361,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675687508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1675687508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12202,7 +12706,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1696321994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1696321994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12528,7 +13044,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1743529711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1743529711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12786,7 +13314,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1760175803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1760175803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12907,7 +13447,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1771829861}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1771829861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13302,7 +13854,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1859052273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1859052273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13423,7 +13987,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1859762843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1859762843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13544,7 +14120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1859997680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1859997680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13665,7 +14253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1863465885}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1863465885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13786,7 +14386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1863949636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1863949636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13907,7 +14519,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1896571736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1896571736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14987,7 +15611,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2039819150}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &2039819150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15144,7 +15780,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2070956163}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &2070956163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15265,7 +15913,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2088220048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 16270484}
+        m_TargetAssemblyTypeName: AvatarSelectionController, Assembly-CSharp
+        m_MethodName: OnConfirmPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &2088220048
 MonoBehaviour:
   m_ObjectHideFlags: 0

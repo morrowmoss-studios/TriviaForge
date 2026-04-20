@@ -164,4 +164,11 @@ public class SettingsMenu : MonoBehaviour
 
         SceneManager.LoadScene("Login_PopUp");
     }
+    
+    // Hook this to USER PROFILE button
+    public void OnUserProfilePressed()
+    {
+        UIManager.SetPreviousScene();
+        SceneManager.LoadScene("User_Profile");
+    }
 }
