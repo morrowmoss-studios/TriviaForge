@@ -528,30 +528,54 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Last Updated: March 2026\nThis Privacy Policy describes how MorrowMoss
-    Studios (\u201Cwe,\u201D \u201Cus,\u201D or \u201Cour\u201D) collects, uses,
-    and protects information when you use TriviaForge (the \u201CGame\u201D).\nThis
-    document is provided as a placeholder for testing purposes and may not represent
-    the final legal policy.\n1. Information We Collect\nTriviaForge may collect limited
-    information to support gameplay, performance, and stability. This may include:\nDevice
-    information (model, OS version)\nGameplay data such as settings preferences\nCrash
-    logs or error reports\nAnonymous usage analytics (if enabled within Unity)\nWe
-    do not collect personally identifiable information unless explicitly provided
-    by the user.\n2. How We Use Your Information\nWe may use collected information
-    to:\nImprove game performance\nFix bugs or crashes\nAnalyze non-personal gameplay
-    trends\nSupport future updates or features\nWe do not sell, trade, or share data
-    with third parties for marketing purposes.\n3. Third-Party Services\nTriviaForge
-    may use third-party tools such as:\nUnity Engine services\nUnity Analytics\nOptional
-    advertising networks\nThese services may collect anonymized data according to
-    their own privacy policies.\n4. Data Storage & Security\nWe take reasonable steps
-    to protect information from unauthorized access or misuse.\nHowever, no method
-    of storage or transmission is 100% secure.\n5. Children's Privacy\nTriviaForge
-    is not directed toward children under 13.\nWe do not knowingly collect personal
-    data from children.\n6. Changes to This Policy\nWe may update this Privacy Policy
-    from time to time.\nContinued use of the Game indicates acceptance of the updated
-    policy.\n7. Contact Us\nFor questions, concerns, or support requests, please
-    contact:\nsupport@morrowmoss.com (placeholder email)\n\xA9 2025 MorrowMoss Studios.
-    All rights reserved."
+  m_text: "Last Updated: April 2026\n\nThis Privacy Policy describes how MorrowMoss
+    Studios LTD (\"we,\" \"us,\" or \"our\") collects, uses, and protects information
+    when you use TriviaForge (the \"Game\"). By playing TriviaForge, you agree to
+    the terms described in this policy.\n\n1. Information We Collect\n\nWhen you
+    create an account in TriviaForge, we collect:\n- Display name (username)\n- Email
+    address\n- Game statistics including scores, streaks, puzzle completion data,
+    and win records\n\nWe also collect automatically:\n- Device information (model,
+    OS version)\n- Gameplay data such as settings preferences\n- Crash logs or error
+    reports\n- Anonymous usage analytics\n\n2. How We Use Your Information\n\nWe
+    use collected information to:\n- Create and manage your player account\n- Display
+    your scores on leaderboards\n- Save your game progress and statistics\n- Improve
+    game performance and fix bugs\n- Analyze non-personal gameplay trends\n- Support
+    future updates and features\n\nWe do not sell, trade, or share your personal
+    data with third parties for marketing purposes.\n\n3. Third-Party Services\n\nTriviaForge
+    uses the following third-party services, each of which operates under its own
+    privacy policy:\n\n- Firebase and Firestore (Google) \u2014 used for account
+    authentication, profile storage, and leaderboard data\n- Unity LevelPlay / IronSource
+    \u2014 used to serve advertisements within the game\n- Unity IAP (In-App Purchases)
+    \u2014 used to process the Remove Ads purchase through Apple App Store or Google
+    Play Store\n- Unity Engine services and Unity Analytics \u2014 used for performance
+    monitoring and anonymous usage data\n\n4. Advertising\n\nTriviaForge displays
+    rewarded and interstitial advertisements powered by Unity LevelPlay and IronSource.
+    These ads may use device identifiers and anonymized data to serve relevant ads
+    in accordance with IronSource's privacy policy. Players who purchase the Remove
+    Ads option will no longer be shown advertisements.\n\n5. In-App Purchases\n\nTriviaForge
+    offers a one-time Remove Ads purchase processed through Apple App Store or Google
+    Play. We do not store your payment information. All transactions are handled
+    by Apple or Google under their respective terms of service.\n\n6. Account Management
+    and Data Deletion\n\nYou may delete your account at any time through the Settings
+    menu within the game. Deleting your account will permanently remove your profile,
+    email address, display name, and all associated game statistics from our servers.\n\nAdditionally,
+    accounts that have been inactive for 90 consecutive days will have their personal
+    data automatically deleted from our servers. Game statistics associated with
+    inactive accounts will also be removed.\n\nIf you wish to request manual deletion
+    of your data, please contact us at support@morrowmoss.com.\n\n7. Data Storage
+    and Security\n\nYour account data is stored securely using Google Firebase and
+    Firestore. We take reasonable steps to protect your information from unauthorized
+    access or misuse. However, no method of storage or transmission is 100% secure,
+    and we cannot guarantee absolute security.\n\n8. Children's Privacy\n\nTriviaForge
+    is not directed toward children under the age of 13. We do not knowingly collect
+    personal data from children. If you believe a child under 13 has provided us
+    with personal information, please contact us and we will take steps to remove
+    that information.\n\n9. Changes to This Policy\n\nWe may update this Privacy
+    Policy from time to time. Continued use of the Game after changes are posted
+    indicates acceptance of the updated policy. We encourage you to review this policy
+    periodically.\n\n10. Contact Us\n\nFor questions, concerns, data deletion requests,
+    or support, please contact:\n\nMorrowMoss Studios\nsupport@morrowmoss.com\n\n\xA9
+    2026 MorrowMoss Studios. All rights reserved."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -779,6 +803,7 @@ GameObject:
   - component: {fileID: 1602679813}
   - component: {fileID: 1602679812}
   - component: {fileID: 1602679811}
+  - component: {fileID: 1602679814}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -860,6 +885,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1602679814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602679810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &1785643281
 GameObject:
   m_ObjectHideFlags: 0

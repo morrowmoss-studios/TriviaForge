@@ -528,29 +528,57 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Last Updated: December 2025\nWelcome to TriviaForge, a game developed
-    and published by MorrowMoss Studios.\nBy downloading, accessing, or using this
-    game, you agree to the following terms.\nThese Terms are provided as a placeholder
-    for testing and do not represent a final legal document.\n1. Acceptance of Terms\nBy
-    using TriviaForge, you acknowledge that you have read, understood, and agreed
-    to these Terms of Use.\nIf you do not agree, you should discontinue use of the
-    game.\n2. License to Use\nMorrowMoss Studios grants you a limited, non-exclusive,
-    non-transferable license to play the game for personal entertainment.\nYou may
-    not modify, distribute, or resell any part of the game.\n3. User Conduct\nPlayers
-    agree not to:\nAttempt to reverse-engineer or exploit the game.\nUse cheats,
-    hacks, or unauthorized modifications.\nEngage in behavior that disrupts game
-    services or other players.\n4. In-App Purchases\nAny optional in-app purchases
-    (if implemented) are considered final and non-refundable unless required by local
-    law.\n5. Data & Privacy\nTriviaForge may collect minimal gameplay data needed
-    to operate or improve the game.\nFor full details, please refer to the Privacy
-    Policy.\n6. Updates & Changes\nMorrowMoss Studios may update, modify, or disable
-    parts of the game at any time.\nThese Terms may also change, and continued use
-    indicates acceptance of any updated terms.\n7. Disclaimer\nTriviaForge is provided
-    \u201Cas is,\u201D without warranties of any kind.\nMorrowMoss Studios is not
-    responsible for any loss, damage, or inconvenience resulting from game use.\n8.
-    Contact Information\nFor support or questions, please contact:\nsupport@morrowmoss.com
-    (placeholder)\nEnd of Terms\nThank you for playing TriviaForge!\nYour support
-    helps make future MorrowMoss games possible."
+  m_text: "Last Updated: April 2026\n\nWelcome to TriviaForge, a game developed and
+    published by MorrowMoss Studios LTD (\"we,\" \"us,\" or \"our\"). By downloading,
+    accessing, or using TriviaForge (the \"Game\"), you agree to the following Terms
+    of Use. If you do not agree, please discontinue use of the Game.\n\n1. Acceptance
+    of Terms\n\nBy using TriviaForge, you acknowledge that you have read, understood,
+    and agreed to these Terms of Use. These terms apply to all players, whether using
+    a guest session or a registered account.\n\n2. License to Use\n\nMorrowMoss Studios
+    grants you a limited, non-exclusive, non-transferable, revocable license to play
+    TriviaForge for personal, non-commercial entertainment purposes. You may not
+    modify, copy, distribute, sell, or resell any part of the Game or its content.\n\n3.
+    User Accounts\n\nYou may create an account to access leaderboards, save progress,
+    and track statistics. You are responsible for maintaining the confidentiality
+    of your account credentials. You may delete your account at any time through
+    the Settings menu within the Game. Upon deletion, all associated personal data
+    will be permanently removed from our servers. Accounts inactive for 90 consecutive
+    days will have their personal data automatically deleted.\n\n4. User Conduct\n\nBy
+    using TriviaForge, you agree not to:\n- Attempt to reverse-engineer, decompile,
+    or exploit any part of the Game\n- Use cheats, hacks, bots, or unauthorized modifications\n-
+    Attempt to manipulate leaderboard scores or game data\n- Engage in any behavior
+    that disrupts game services or other players\n- Impersonate another player or
+    MorrowMoss Studios staff\n\n5. In-App Purchases\n\nTriviaForge offers a one-time
+    Remove Ads in-app purchase. All purchases are processed through Apple App Store
+    or Google Play and are considered final and non-refundable unless required by
+    applicable local law. MorrowMoss Studios does not store your payment information.\n\n6.
+    Advertisements\n\nTriviaForge displays rewarded and interstitial advertisements
+    served by Unity LevelPlay and IronSource. Players who complete the Remove Ads
+    purchase will no longer be shown advertisements. Ad behavior is subject to the
+    respective policies of those networks.\n\n7. Data and Privacy\n\nTriviaForge
+    collects certain personal information including email address, display name,
+    and gameplay statistics when you create an account. This data is stored using
+    Google Firebase. For full details on how we collect, use, and protect your data,
+    please refer to our Privacy Policy.\n\n8. Intellectual Property\n\nAll content
+    within TriviaForge, including but not limited to artwork, music, game design,
+    and code, is the property of MorrowMoss Studios and is protected by applicable
+    intellectual property laws. You may not reproduce or distribute any Game content
+    without prior written permission.\n\n9. Updates and Changes\n\nMorrowMoss Studios
+    may update, modify, or discontinue parts of the Game at any time without prior
+    notice. These Terms may also be updated periodically. Continued use of the Game
+    after changes are posted constitutes acceptance of the updated Terms.\n\n10.
+    Disclaimer of Warranties\n\nTriviaForge is provided \"as is\" without warranties
+    of any kind, express or implied. MorrowMoss Studios makes no guarantees regarding
+    uninterrupted access, error-free operation, or fitness for any particular purpose.\n\n11.
+    Limitation of Liability\n\nTo the fullest extent permitted by law, MorrowMoss
+    Studios shall not be liable for any indirect, incidental, or consequential damages
+    arising from your use of or inability to use the Game.\n\n12. Governing Law\n\nThese
+    Terms are governed by the laws of the jurisdiction in which MorrowMoss Studios
+    operates, without regard to conflict of law principles.\n\n13. Contact Information\n\nFor
+    support, questions, or concerns regarding these Terms, please contact:\n\nMorrowMoss
+    Studios\nsupport@morrowmoss.com\n\nThank you for playing TriviaForge. Your support
+    helps make future MorrowMoss Studios games possible.\n\n\xA9 2026 MorrowMoss
+    Studios. All rights reserved."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
