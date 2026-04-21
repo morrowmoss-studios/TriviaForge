@@ -1937,8 +1937,24 @@ PrefabInstance:
       value: User_Display
       objectReference: {fileID: 0}
     - target: {fileID: 6182249192498699072, guid: d56798bacea864ff58381c0d4e2c60d7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 166.9178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182249192498699072, guid: d56798bacea864ff58381c0d4e2c60d7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 39
+      value: 37.496265
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253950401298742330, guid: d56798bacea864ff58381c0d4e2c60d7, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253950401298742330, guid: d56798bacea864ff58381c0d4e2c60d7, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253950401298742330, guid: d56798bacea864ff58381c0d4e2c60d7, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
