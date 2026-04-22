@@ -47,15 +47,16 @@ public class TriviaQuestionManager : MonoBehaviour
 
     // ── Timer duration by difficulty ──────────────────────────────────────
 
-    private float GetTimerDuration()
+    private float GetTimerDuration(string difficulty = null)
     {
-        switch (TriviaSessionData.selectedDifficulty)
+        string diff = difficulty ?? TriviaSessionData.selectedDifficulty;
+        switch (diff.ToLowerInvariant())
         {
-            case "Easy":     return 30f;
-            case "Medium":   return 25f;
-            case "Hard":     return 20f;
-            case "Insanity": return 15f;
-            case "Mixed":    return 22f;
+            case "easy":     return 30f;
+            case "medium":   return 25f;
+            case "hard":     return 20f;
+            case "insanity": return 15f;
+            case "mixed":    return 22f;
             default:         return 30f;
         }
     }
@@ -374,7 +375,12 @@ public class TriviaQuestionManager : MonoBehaviour
             }
         }
 
-        timeRemaining = GetTimerDuration();
+        // Use the actual question's difficulty for the timer so cascading questions get the right time
+        string questionDifficulty = null;
+        if (TriviaSessionData.sessionQuestions != null && index < TriviaSessionData.sessionQuestions.Count)
+            questionDifficulty = TriviaSessionData.sessionQuestions[index].difficulty;
+
+        timeRemaining = GetTimerDuration(questionDifficulty);
         timerRunning  = true;
 
         if (timerText != null)
