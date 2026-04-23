@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public enum WordokuDifficulty
 {
@@ -34,6 +35,8 @@ public class WordokuManager : MonoBehaviour
     [Header("Ads")]
     [SerializeField] private AdsPopUpController adsPopUp;
 
+    [Header("Hints UI")]
+    [SerializeField] private TextMeshProUGUI hintCountText;
     private int hintsRemaining = 3;
 
     public bool enforceSolutionWhileTesting = true;
@@ -93,6 +96,7 @@ public class WordokuManager : MonoBehaviour
         _elapsedSeconds  = 0f;
         _wrongPlacements = 0;
         _timerRunning    = true;
+        UpdateHintDisplay();
     }
 
     private void GeneratePuzzle()
@@ -313,6 +317,7 @@ public class WordokuManager : MonoBehaviour
     private void GrantAdHint()
     {
         hintsRemaining = 1;
+        UpdateHintDisplay();
         GiveHintInternal();
     }
 
@@ -327,6 +332,7 @@ public class WordokuManager : MonoBehaviour
                 {
                     cell.SetLetter(solution[row, col].ToString());
                     hintsRemaining--;
+                    UpdateHintDisplay();
                     UpdateLetterCompletion();
                     return;
                 }
@@ -546,5 +552,11 @@ public class WordokuManager : MonoBehaviour
         }
 
         return true;
+    }
+    
+    private void UpdateHintDisplay()
+    {
+        if (hintCountText != null)
+            hintCountText.text = hintsRemaining.ToString();
     }
 }

@@ -29,15 +29,16 @@ public class ScorePopupUI : MonoBehaviour
     [SerializeField] private string leaderboardSceneName = "Leaderboard_PopUp";
     [SerializeField] private string scoreSceneName       = "Scores_PopUp";
     [SerializeField] private string triviaSceneName      = "TriviaMode";
+    [SerializeField] private string wordokuSceneName     = "WordokuMode";
+    [SerializeField] private string crosswordSceneName   = "CrosswordMode";
     [SerializeField] private string modeSelectSceneName  = "ModeSelect";
 
     private int finalScore;
 
     private void Start()
     {
-        // Hide all panels first
-        if (triviaPanel   != null) triviaPanel.SetActive(false);
-        if (wordokuPanel  != null) wordokuPanel.SetActive(false);
+        if (triviaPanel    != null) triviaPanel.SetActive(false);
+        if (wordokuPanel   != null) wordokuPanel.SetActive(false);
         if (crosswordPanel != null) crosswordPanel.SetActive(false);
 
         string mode = TriviaSessionData.selectedGameMode;
@@ -52,7 +53,6 @@ public class ScorePopupUI : MonoBehaviour
             if (scoreNumberText  != null) scoreNumberText.text  = finalScore.ToString();
             if (streakNumberText != null) streakNumberText.text = streak.ToString();
 
-            // Legacy support -- keep scoreValueText updated if it exists
             if (scoreValueText != null) scoreValueText.text = finalScore.ToString();
         }
         else if (mode == "Wordoku")
@@ -74,17 +74,14 @@ public class ScorePopupUI : MonoBehaviour
             int  shame   = TriviaSessionData.crosswordWrongPlacements;
             bool perfect = TriviaSessionData.crosswordPerfectGame;
 
-            if (cwShameNumText   != null) cwShameNumText.text   = shame.ToString();
+            if (cwShameNumText    != null) cwShameNumText.text   = shame.ToString();
             if (cwPerfectGameText != null) cwPerfectGameText.text = perfect ? "Y" : "N";
         }
         else
         {
-            // Fallback -- show trivia panel
             if (triviaPanel != null) triviaPanel.SetActive(true);
         }
     }
-
-    // --- Scores_PopUp: buttons ---
 
     public void OnBackToMenu()
     {
@@ -98,8 +95,6 @@ public class ScorePopupUI : MonoBehaviour
             SceneManager.LoadScene(leaderboardSceneName);
     }
 
-    // --- GameOver_PopUp: Next -> Scores_PopUp ---
-
     public void OnGoToScoreScene()
     {
         if (!string.IsNullOrEmpty(scoreSceneName))
@@ -108,22 +103,28 @@ public class ScorePopupUI : MonoBehaviour
             Debug.LogWarning("[ScorePopupUI] scoreSceneName is empty.");
     }
 
-    // --- Leaderboard: Continue -> fresh TriviaMode run ---
-
-    public void OnGoToTriviaMode()
+    public void OnPlayAgain()
     {
         TriviaSessionData.ClearSession();
 
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.ResetScore();
 
-        if (!string.IsNullOrEmpty(triviaSceneName))
-            SceneManager.LoadScene(triviaSceneName);
-        else
-            Debug.LogWarning("[ScorePopupUI] triviaSceneName is empty.");
-    }
+        string mode = GameWinController.lastGameMode;
+        string targetScene;
 
-    // --- Leaderboard: Mode Select ---
+        switch (mode)
+        {
+            case "Wordoku":   targetScene = wordokuSceneName;   break;
+            case "Crossword": targetScene = crosswordSceneName; break;
+            default:          targetScene = triviaSceneName;    break;
+        }
+
+        if (!string.IsNullOrEmpty(targetScene))
+            SceneManager.LoadScene(targetScene);
+        else
+            Debug.LogWarning("[ScorePopupUI] Target scene name is empty.");
+    }
 
     public void OnGoToModeSelect()
     {

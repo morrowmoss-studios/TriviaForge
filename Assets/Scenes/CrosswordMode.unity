@@ -727,6 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdsPopUpController
   panel: {fileID: 4945523669195153105}
+  hintAdSprite: {fileID: 6639944486453583664}
 --- !u!4 &369315804
 Transform:
   m_ObjectHideFlags: 0
@@ -3162,6 +3163,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1564483202}
     m_Modifications:
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 369315803}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnConfirmPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AdsPopUpController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2253591702749696049, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_Name
       value: Ads_PopUp_Panel
@@ -3169,6 +3198,34 @@ PrefabInstance:
     - target: {fileID: 2253591702749696049, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 369315803}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCancelPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AdsPopUpController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8927195321321661133, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_Pivot.x
@@ -3369,6 +3426,11 @@ PrefabInstance:
 --- !u!224 &6639944486453583663 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5745366126937787067, guid: 6f83394ee237a4c1fa90a762bb01acdf, type: 3}
+  m_PrefabInstance: {fileID: 6639944486453583662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6639944486453583664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559927401456494228, guid: 6f83394ee237a4c1fa90a762bb01acdf, type: 3}
   m_PrefabInstance: {fileID: 6639944486453583662}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

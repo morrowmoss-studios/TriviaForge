@@ -1044,8 +1044,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2672755}
   m_HandleRect: {fileID: 2672754}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.99165833
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1174,7 +1174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535840643}
         m_TargetAssemblyTypeName: ScorePopupUI, Assembly-CSharp
-        m_MethodName: OnGoToTriviaMode
+        m_MethodName: OnPlayAgain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1514,10 +1514,12 @@ MonoBehaviour:
   timerNumText: {fileID: 0}
   cwShameNumText: {fileID: 0}
   cwPerfectGameText: {fileID: 0}
-  mainMenuSceneName: ModeSelect
+  mainMenuSceneName: MainMenu
   leaderboardSceneName: Leaderboard_PopUp
   scoreSceneName: Scores_PopUp
   triviaSceneName: TriviaMode
+  wordokuSceneName: WordokuMode
+  crosswordSceneName: CrosswordMode
   modeSelectSceneName: ModeSelect
 --- !u!1 &1541626462
 GameObject:

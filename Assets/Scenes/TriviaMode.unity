@@ -1942,6 +1942,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5745366126937787067, guid: 6f83394ee237a4c1fa90a762bb01acdf, type: 3}
   m_PrefabInstance: {fileID: 748318286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &748318288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3559927401456494228, guid: 6f83394ee237a4c1fa90a762bb01acdf, type: 3}
+  m_PrefabInstance: {fileID: 748318286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &848163465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,6 +3252,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1550974581}
     m_Modifications:
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1730416681}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnConfirmPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AdsPopUpController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156906105914373658, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2253591702749696049, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_Name
       value: Ads_PopUp_Panel
@@ -3254,6 +3287,34 @@ PrefabInstance:
     - target: {fileID: 2253591702749696049, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1730416681}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCancelPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AdsPopUpController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018456929068701813, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8927195321321661133, guid: 19b03b696de024dacabc9a7ac7f53891, type: 3}
       propertyPath: m_Pivot.x
@@ -3629,6 +3690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdsPopUpController
   panel: {fileID: 1418035970}
+  hintAdSprite: {fileID: 748318288}
 --- !u!4 &1730416682
 Transform:
   m_ObjectHideFlags: 0
