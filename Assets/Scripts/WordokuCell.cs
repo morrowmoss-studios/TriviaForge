@@ -42,6 +42,14 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
     private bool isWrong = false;
     private bool highlightSelectedLetter = false;
 
+    public bool IsWrong => isWrong;
+
+    public void RestoreWrongState(bool wrong)
+    {
+        isWrong = wrong;
+        UpdateTileVisual();
+    }
+
     private void Awake()
     {
         if (letterText == null)
@@ -202,17 +210,12 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         var ordered = notes.OrderBy(c => c).ToList();
         int count   = ordered.Count;
 
-        // Scale font based on how many notes -- fewer notes = bigger text
         float factor = count <= 3 ? 0.75f
                      : count <= 6 ? 0.62f
                      :              0.48f;
 
         notesText.fontSize = baseLetterFontSize * factor;
 
-        // Build grid layout based on count
-        // 1-3: single row
-        // 4-6: two rows (3+remainder)
-        // 7-9: three rows (3+3+remainder)
         int cols = 3;
         int rows = Mathf.CeilToInt((float)count / cols);
 
@@ -286,10 +289,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
             manager.NotifyBoardChanged();
     }
 
-    /// <summary>
-    /// Removes any notes that belong to a set of completed letters.
-    /// Called by WordokuManager when a letter is fully placed on the board.
-    /// </summary>
     public void RemoveNotesForLetters(HashSet<char> completedLetters)
     {
         if (notes.Count == 0) return;
@@ -347,7 +346,6 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
 
     public void PlaceLetter(char letter)
     {
-        // ── Tile placed SFX ──────────────────────────────────────────────
         if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
 
         if (manager == null)

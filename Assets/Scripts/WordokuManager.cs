@@ -37,6 +37,7 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Hints UI")]
     [SerializeField] private TextMeshProUGUI hintCountText;
+    [SerializeField] private GameObject hintAdSprite;
     private int hintsRemaining = 3;
 
     public bool enforceSolutionWhileTesting = true;
@@ -57,6 +58,9 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField] private TMPro.TMP_Text timerText;
+
+    [Header("Scene Names")]
+    [SerializeField] private string quitPopupSceneName = "Quit_PopUp";
 
     private float _elapsedSeconds  = 0f;
     private bool  _timerRunning    = false;
@@ -92,10 +96,19 @@ public class WordokuManager : MonoBehaviour
     private IEnumerator GenerateAfterLayout()
     {
         yield return null;
-        GeneratePuzzle();
-        _elapsedSeconds  = 0f;
-        _wrongPlacements = 0;
-        _timerRunning    = true;
+
+        if (WordokuSession.hasSavedState)
+            RestoreSession();
+        else
+        {
+            GeneratePuzzle();
+            _elapsedSeconds  = 0f;
+            _wrongPlacements = 0;
+            PersistStateToSession();
+            WordokuSession.hasSavedState = true;
+        }
+
+        _timerRunning = true;
         UpdateHintDisplay();
     }
 
@@ -115,6 +128,68 @@ public class WordokuManager : MonoBehaviour
 
         UpdateLetterCompletion();
     }
+
+    // ── Session persistence ───────────────────────────────────────────────
+
+    private void PersistStateToSession()
+    {
+        WordokuSession.savedWord            = CurrentWord;
+        WordokuSession.savedHints           = hintsRemaining;
+        WordokuSession.savedElapsed         = _elapsedSeconds;
+        WordokuSession.savedWrongPlacements = _wrongPlacements;
+
+        for (int r = 0; r < 9; r++)
+        for (int c = 0; c < 9; c++)
+        {
+            int i = r * 9 + c;
+            WordokuSession.savedSolution[i] = solution[r, c];
+            WordokuSession.savedBoard[i]    = board.boardCells[r, c].GetLetter();
+            WordokuSession.savedLocked[i]   = board.boardCells[r, c].isLocked;
+            WordokuSession.savedWrong[i]    = board.boardCells[r, c].IsWrong;
+        }
+    }
+
+
+    private void RestoreSession()
+    {
+        CurrentWord      = WordokuSession.savedWord;
+        CurrentLetters   = CurrentWord.ToCharArray();
+        hintsRemaining   = WordokuSession.savedHints;
+        _elapsedSeconds  = WordokuSession.savedElapsed;
+        _wrongPlacements = WordokuSession.savedWrongPlacements;
+
+        for (int r = 0; r < 9; r++)
+        for (int c = 0; c < 9; c++)
+        {
+            int i = r * 9 + c;
+            solution[r, c] = WordokuSession.savedSolution[i];
+        }
+
+        for (int r = 0; r < 9; r++)
+        for (int c = 0; c < 9; c++)
+        {
+            int i = r * 9 + c;
+            WordokuCell cell = board.boardCells[r, c];
+            cell.SetLetter(WordokuSession.savedBoard[i]);
+            cell.SetLocked(WordokuSession.savedLocked[i]);
+            cell.RestoreWrongState(WordokuSession.savedWrong[i]);
+        }
+
+        if (letterChoiceManager != null)
+            letterChoiceManager.PopulateFromWord(CurrentLetters);
+
+        UpdateLetterCompletion();
+    }
+
+    // ── Quit ──────────────────────────────────────────────────────────────
+
+    public void OnQuitButton()
+    {
+        UIManager.SetPreviousScene();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(quitPopupSceneName);
+    }
+
+    // ── Difficulty ────────────────────────────────────────────────────────
 
     private void SetDifficultyFromSession()
     {
@@ -414,6 +489,7 @@ public class WordokuManager : MonoBehaviour
         if (AudioManager.Instance != null) AudioManager.Instance.PlayTilePlaced();
 
         UpdateLetterCompletion();
+        PersistStateToSession();
         CheckForWin();
     }
 
@@ -426,7 +502,6 @@ public class WordokuManager : MonoBehaviour
 
     private void UpdateLetterCompletion()
     {
-        // Count how many times each letter appears in the solution
         var totals = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++)
@@ -437,7 +512,6 @@ public class WordokuManager : MonoBehaviour
                 totals[ch]++;
             }
 
-        // Count how many times each letter has been placed on the board
         var used = new Dictionary<char, int>();
         for (int r = 0; r < 9; r++)
             for (int c = 0; c < 9; c++)
@@ -449,7 +523,6 @@ public class WordokuManager : MonoBehaviour
                 used[ch]++;
             }
 
-        // Find which letters are now fully placed
         var completedLetters = new HashSet<char>();
         foreach (var kvp in totals)
         {
@@ -458,7 +531,6 @@ public class WordokuManager : MonoBehaviour
                 completedLetters.Add(kvp.Key);
         }
 
-        // Auto-remove completed letters from all cell notes
         if (completedLetters.Count > 0)
         {
             for (int r = 0; r < 9; r++)
@@ -466,7 +538,6 @@ public class WordokuManager : MonoBehaviour
                     board.boardCells[r, c].RemoveNotesForLetters(completedLetters);
         }
 
-        // Update letter choice buttons
         var allButtons = FindObjectsOfType<LetterChoiceButton>(true);
         foreach (var btn in allButtons)
         {
@@ -481,18 +552,16 @@ public class WordokuManager : MonoBehaviour
 
     private void CheckForWin()
     {
-        // First pass -- bail if any cell is empty
         for (int row = 0; row < 9; row++)
             for (int col = 0; col < 9; col++)
                 if (string.IsNullOrEmpty(board.boardCells[row, col].GetLetter())) return;
 
-        // Second pass -- validate every row, column, and 3x3 block
-        // contains all 9 letters exactly once (rules-based, not solution-based)
         if (!IsValidSolution()) return;
 
         Debug.Log($"Wordoku solved! Word = {CurrentWord}, difficulty = {TriviaSessionData.selectedDifficulty}");
 
         _timerRunning = false;
+        WordokuSession.Clear();
         TriviaSessionData.wordokuTimeSeconds     = _elapsedSeconds;
         TriviaSessionData.wordokuWrongPlacements = _wrongPlacements;
 
@@ -503,7 +572,6 @@ public class WordokuManager : MonoBehaviour
     {
         var required = new HashSet<char>(CurrentLetters);
 
-        // Check rows
         for (int row = 0; row < 9; row++)
         {
             var seen = new HashSet<char>();
@@ -517,7 +585,6 @@ public class WordokuManager : MonoBehaviour
             }
         }
 
-        // Check columns
         for (int col = 0; col < 9; col++)
         {
             var seen = new HashSet<char>();
@@ -531,7 +598,6 @@ public class WordokuManager : MonoBehaviour
             }
         }
 
-        // Check 3x3 blocks
         for (int blockRow = 0; blockRow < 3; blockRow++)
         {
             for (int blockCol = 0; blockCol < 3; blockCol++)
@@ -553,10 +619,14 @@ public class WordokuManager : MonoBehaviour
 
         return true;
     }
-    
+
+    // ── Hint display ──────────────────────────────────────────────────────
+
     private void UpdateHintDisplay()
     {
         if (hintCountText != null)
             hintCountText.text = hintsRemaining.ToString();
+        if (hintAdSprite != null)
+            hintAdSprite.SetActive(hintsRemaining <= 0);
     }
 }

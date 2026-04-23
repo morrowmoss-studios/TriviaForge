@@ -79,6 +79,7 @@ public class CrosswordModeUI : MonoBehaviour
     // QUIT -> load the Quit_PopUp scene
     public void OnQuitButton()
     {
+        UIManager.SetPreviousScene();
         SceneManager.LoadScene(quitPopupSceneName);
     }
 }
