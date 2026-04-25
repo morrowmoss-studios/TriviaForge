@@ -54,8 +54,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
     // ── Hints ─────────────────────────────────────────────────────────────
     private const int MaxHints = 3;
-    private int hintsRemaining   = MaxHints;
-    private int _wrongPlacements = 0;
+    private int hintsRemaining = MaxHints;
 
     public int  HintsRemaining => hintsRemaining;
     public bool UsedNoHints    => hintsRemaining == MaxHints;
@@ -81,7 +80,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private GameDatabase dbCached;
 
-    // Prevents win from firing multiple times
     private bool puzzleSolved = false;
 
     private void Awake()
@@ -96,7 +94,7 @@ public class CrosswordBoardManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("HowTo_Crossword");
             return;
         }
-        
+
         layoutRows = NormalizeLayout(layoutRows);
 
         if (fillFromDatabaseOnStart)
@@ -126,8 +124,7 @@ public class CrosswordBoardManager : MonoBehaviour
             cells[r, c].SetLetter(kvp.Value);
         }
 
-        _wrongPlacements = CrosswordSession.savedWrongPlacements;
-        hintsRemaining   = CrosswordSession.savedHintsRemaining;
+        hintsRemaining = CrosswordSession.savedHintsRemaining;
         OnHintsChanged?.Invoke(hintsRemaining);
 
         Debug.Log($"[CrosswordBoardManager] Restored {CrosswordSession.savedGridState.Count} cells from session.");
@@ -144,8 +141,7 @@ public class CrosswordBoardManager : MonoBehaviour
         else
             CrosswordSession.savedGridState[key] = ch;
 
-        CrosswordSession.savedWrongPlacements = _wrongPlacements;
-        CrosswordSession.savedHintsRemaining  = hintsRemaining;
+        CrosswordSession.savedHintsRemaining = hintsRemaining;
     }
 
     // ── Keyboard input ────────────────────────────────────────────────────
@@ -162,22 +158,10 @@ public class CrosswordBoardManager : MonoBehaviour
 
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
-                    // If the current cell is already filled, absorb the keystroke
-                    // silently and just advance -- the player typed that letter but
-                    // it was already there from an intersecting word
-                    if (_selectedCell.GetLetter() != '\0')
-                    {
-                        AdvanceToNextCell();
-                    }
-                    else
-                    {
-                        _selectedCell.SetLetter(newChar);
-                        if (newChar != solutionLetters[_selectedCell.row, _selectedCell.col])
-                            _wrongPlacements++;
-                        PersistLetterToSession(_selectedCell.row, _selectedCell.col, newChar);
-                        AdvanceToNextCell();
-                        CheckForWin();
-                    }
+                    _selectedCell.SetLetter(newChar);
+                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, newChar);
+                    AdvanceToNextCell();
+                    CheckForWin();
                 }
 
                 keyboard.text = KeyboardSentinel;
@@ -222,19 +206,10 @@ public class CrosswordBoardManager : MonoBehaviour
                             char ch = char.ToUpper(keyName[0]);
                             if (ch >= 'A' && ch <= 'Z')
                             {
-                                if (_selectedCell.GetLetter() != '\0')
-                                {
-                                    AdvanceToNextCell();
-                                }
-                                else
-                                {
-                                    _selectedCell.SetLetter(ch);
-                                    if (ch != solutionLetters[_selectedCell.row, _selectedCell.col])
-                                        _wrongPlacements++;
-                                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, ch);
-                                    AdvanceToNextCell();
-                                    CheckForWin();
-                                }
+                                _selectedCell.SetLetter(ch);
+                                PersistLetterToSession(_selectedCell.row, _selectedCell.col, ch);
+                                AdvanceToNextCell();
+                                CheckForWin();
                                 break;
                             }
                         }
@@ -273,7 +248,6 @@ public class CrosswordBoardManager : MonoBehaviour
                 return;
             }
 
-            // End of word -- jump to first empty cell in the word if any
             int startC = c;
             while (startC - 1 >= 0 && !cells[r, startC - 1].IsBlocked) startC--;
             for (int sc = startC; sc < cols && !cells[r, sc].IsBlocked; sc++)
@@ -294,7 +268,6 @@ public class CrosswordBoardManager : MonoBehaviour
                 return;
             }
 
-            // End of word -- jump to first empty cell in the word if any
             int startR = r;
             while (startR - 1 >= 0 && !cells[startR - 1, c].IsBlocked) startR--;
             for (int sr = startR; sr < rows && !cells[sr, c].IsBlocked; sr++)
@@ -555,9 +528,6 @@ public class CrosswordBoardManager : MonoBehaviour
             }
         }
 
-        // Second pass: guarantee every word's start cell always maps to itself,
-        // regardless of iteration order above. Prevents a longer word from
-        // overwriting the start cell of a shorter word that begins mid-span.
         foreach (var w in words)
         {
             if (w == null) continue;
@@ -765,16 +735,10 @@ public class CrosswordBoardManager : MonoBehaviour
 
     // ── Win check ─────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Fires when all playable cells are filled.
-    /// Wrong cells get the scarlet letter of shame (red).
-    /// Triggers win only if everything is correct.
-    /// </summary>
     private void CheckForWin()
     {
         if (puzzleSolved || cells == null) return;
 
-        // First pass — bail out if any playable cell is still empty
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; c < cols; c++)
@@ -785,8 +749,8 @@ public class CrosswordBoardManager : MonoBehaviour
             }
         }
 
-        // All filled — second pass: mark wrong cells red, check for full correctness
         bool allCorrect = true;
+        int finalWrongCount = 0;
 
         for (int r = 0; r < rows; r++)
         {
@@ -798,7 +762,11 @@ public class CrosswordBoardManager : MonoBehaviour
                 bool correct = cells[r, c].GetLetter() == solutionLetters[r, c];
                 cells[r, c].SetWrong(!correct);
 
-                if (!correct) allCorrect = false;
+                if (!correct)
+                {
+                    allCorrect = false;
+                    finalWrongCount++;
+                }
             }
         }
 
@@ -806,8 +774,8 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             puzzleSolved = true;
             Debug.Log("[CrosswordBoardManager] Puzzle solved!");
-            TriviaSessionData.crosswordWrongPlacements = _wrongPlacements;
-            TriviaSessionData.crosswordPerfectGame     = _wrongPlacements == 0;
+            TriviaSessionData.crosswordWrongPlacements = finalWrongCount;
+            TriviaSessionData.crosswordPerfectGame     = finalWrongCount == 0;
             GameWinController.TriggerWin("Crossword");
         }
         else
@@ -827,9 +795,8 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (cells[r, c] != null && !cells[r, c].IsBlocked)
                     cells[r, c].SetLetter('\0');
 
-        puzzleSolved     = false;
-        _wrongPlacements = 0;
-        _selectedCell    = null;
+        puzzleSolved  = false;
+        _selectedCell = null;
         ClearHighlights();
         CrosswordClueDisplay.Instance?.ClearClue();
         CrosswordSession.savedGridState       = null;
