@@ -119,6 +119,8 @@ public static class PlayerDatabaseAPI
                 return (false, "Account not found.");
 
             var usernameData = usernameDoc.ToDictionary();
+            Debug.Log($"[Login] Keys in usernames doc: {string.Join(", ", usernameData.Keys)}");
+            Debug.Log($"[Login] Has email key: {usernameData.ContainsKey("email")}");
             string uid   = usernameData["uid"].ToString();
             string email = usernameData.ContainsKey("email")
                 ? usernameData["email"].ToString()
@@ -131,10 +133,12 @@ public static class PlayerDatabaseAPI
             var authResult = await Auth.SignInWithEmailAndPasswordAsync(email, password);
             _firebaseUser  = authResult.User;
 
+            // Force token refresh so Firestore rules recognize the auth context
+            await _firebaseUser.TokenAsync(true);
+
             // Load Firestore profile
             var snapshot = await FirebaseManager.Db
                 .Collection(PlayersCollection).Document(_firebaseUser.UserId).GetSnapshotAsync();
-
             if (!snapshot.Exists)
                 return (false, "Account data not found.");
 
