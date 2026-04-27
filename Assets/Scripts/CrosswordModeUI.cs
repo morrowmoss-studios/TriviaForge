@@ -19,6 +19,9 @@ public class CrosswordModeUI : MonoBehaviour
     [Header("Keyboard")]
     [SerializeField] private GameObject keyboardButton;
 
+    [Header("Reset Confirm Panel")]
+    [SerializeField] private GameObject resetConfirmPanel;
+
     private void Start()
     {
         if (boardManager != null)
@@ -65,10 +68,24 @@ public class CrosswordModeUI : MonoBehaviour
     // RESET
     public void OnResetButton()
     {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(true);
+        else if (boardManager != null)
+            boardManager.ResetPuzzle();
+    }
+
+    public void OnResetConfirmPressed()
+    {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(false);
         if (boardManager != null)
             boardManager.ResetPuzzle();
-        else
-            Debug.LogWarning("CrosswordModeUI: No boardManager wired for reset.");
+    }
+
+    public void OnResetCancelPressed()
+    {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(false);
     }
 
     // BACK
