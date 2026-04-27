@@ -16,6 +16,9 @@ public class CrosswordModeUI : MonoBehaviour
     [Header("Hint UI")]
     [SerializeField] private TMP_Text hintCountText;
 
+    [Header("Keyboard")]
+    [SerializeField] private GameObject keyboardButton;
+
     private void Start()
     {
         if (boardManager != null)
@@ -37,6 +40,13 @@ public class CrosswordModeUI : MonoBehaviour
             hintCountText.text = hintsRemaining.ToString();
     }
 
+    // KEYBOARD TOGGLE
+    public void OnKeyboardButton()
+    {
+        if (boardManager != null)
+            boardManager.ToggleKeyboard();
+    }
+
     // CLUES
     public void OnCluesButton()
     {
@@ -52,7 +62,7 @@ public class CrosswordModeUI : MonoBehaviour
             Debug.LogWarning("CrosswordModeUI: No boardManager wired for hints.");
     }
 
-    // RESET — clears all player-entered letters
+    // RESET
     public void OnResetButton()
     {
         if (boardManager != null)
@@ -64,7 +74,6 @@ public class CrosswordModeUI : MonoBehaviour
     // BACK
     public void OnBackButton()
     {
-        // Clear session so a fresh puzzle is generated next time
         CrosswordSession.currentWords = null;
         SceneManager.LoadScene(modeSelectSceneName);
     }
@@ -76,7 +85,7 @@ public class CrosswordModeUI : MonoBehaviour
         SceneManager.LoadScene("Settings");
     }
 
-    // QUIT -> load the Quit_PopUp scene
+    // QUIT
     public void OnQuitButton()
     {
         UIManager.SetPreviousScene();

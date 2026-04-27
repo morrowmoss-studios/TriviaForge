@@ -601,6 +601,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303048107}
   m_CullTransparentMesh: 1
+--- !u!1 &357545245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8895431305939187585, guid: 8d98fd6b11d954a27ac7e3ca721e6177, type: 3}
+  m_PrefabInstance: {fileID: 1986698243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385063044
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,8 +888,8 @@ MonoBehaviour:
   musicToggle: {fileID: 940385128}
   sfxToggle: {fileID: 256514488}
   vibrationToggle: {fileID: 2102644398}
-  deleteAccountPanel: {fileID: 0}
-  settingsFrame: {fileID: 0}
+  deleteAccountPanel: {fileID: 385063044}
+  settingsFrame: {fileID: 357545245}
 --- !u!4 &595271967
 Transform:
   m_ObjectHideFlags: 0

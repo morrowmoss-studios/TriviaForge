@@ -77,6 +77,7 @@ public class CrosswordBoardManager : MonoBehaviour
     private TouchScreenKeyboard keyboard;
     private string lastKeyboardText = "";
     private const string KeyboardSentinel = "|";
+    private bool _keyboardOpen = false;
 
     private GameDatabase dbCached;
 
@@ -144,7 +145,24 @@ public class CrosswordBoardManager : MonoBehaviour
         CrosswordSession.savedHintsRemaining = hintsRemaining;
     }
 
-    // ── Keyboard input ────────────────────────────────────────────────────
+    // ── Keyboard ──────────────────────────────────────────────────────────
+
+    public void ToggleKeyboard()
+    {
+        if (_keyboardOpen)
+        {
+            _keyboardOpen = false;
+            keyboard = null;
+        }
+        else
+        {
+            if (_selectedCell != null)
+            {
+                _keyboardOpen = true;
+                OpenKeyboard();
+            }
+        }
+    }
 
     private void Update()
     {
@@ -632,7 +650,7 @@ public class CrosswordBoardManager : MonoBehaviour
         _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
         _highlightedAnchor.SetNumberHighlighted(true);
 
-        OpenKeyboard();
+        // keyboard no longer auto-opens on cell tap
     }
 
     // ── Highlight helpers ─────────────────────────────────────────────────
@@ -797,6 +815,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
         puzzleSolved  = false;
         _selectedCell = null;
+        _keyboardOpen = false;
+        keyboard      = null;
         ClearHighlights();
         CrosswordClueDisplay.Instance?.ClearClue();
         CrosswordSession.savedGridState       = null;
