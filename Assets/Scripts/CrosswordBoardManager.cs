@@ -649,8 +649,6 @@ public class CrosswordBoardManager : MonoBehaviour
 
         _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
         _highlightedAnchor.SetNumberHighlighted(true);
-
-        // keyboard no longer auto-opens on cell tap
     }
 
     // ── Highlight helpers ─────────────────────────────────────────────────
@@ -782,6 +780,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
                 if (!correct)
                 {
+                    HapticManager.WrongAnswer();
                     allCorrect = false;
                     finalWrongCount++;
                 }

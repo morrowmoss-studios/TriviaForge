@@ -367,6 +367,9 @@ public class WordokuCell : MonoBehaviour, IPointerClickHandler
         isWrong = (letter != expected);
 
         if (isWrong)
+            HapticManager.WrongAnswer();
+
+        if (isWrong)
             manager.ReportWrongPlacement();
 
         LayoutTexts();
