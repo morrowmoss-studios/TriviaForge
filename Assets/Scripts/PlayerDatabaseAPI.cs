@@ -17,7 +17,7 @@ public static class PlayerDatabaseAPI
     private static FirebaseUser  _firebaseUser;
     private static bool          _loaded;
 
-    private const string PlayersCollection  = "players";
+    private const string PlayersCollection   = "players";
     private const string UsernamesCollection = "usernames";
 
     // ── Auth helpers ──────────────────────────────────────────────────────
@@ -57,9 +57,13 @@ public static class PlayerDatabaseAPI
             // Set display name in Firebase Auth
             await _firebaseUser.UpdateUserProfileAsync(new UserProfile { DisplayName = username });
 
-            // Reserve username → uid mapping
+            // Reserve username → uid + email mapping
             await FirebaseManager.Db.Collection(UsernamesCollection).Document(username)
-                .SetAsync(new Dictionary<string, object> { { "uid", _firebaseUser.UserId } });
+                .SetAsync(new Dictionary<string, object>
+                {
+                    { "uid",   _firebaseUser.UserId },
+                    { "email", email }
+                });
 
             // Create Firestore player profile
             var profile = new PlayerProfile
@@ -107,15 +111,18 @@ public static class PlayerDatabaseAPI
 
         try
         {
-            // Look up uid from username
+            // Look up uid and email from username doc
             var usernameDoc = await FirebaseManager.Db
                 .Collection(UsernamesCollection).Document(username).GetSnapshotAsync();
 
             if (!usernameDoc.Exists)
                 return (false, "Account not found.");
 
-            string uid   = usernameDoc.ToDictionary()["uid"].ToString();
-            string email = await GetEmailForUid(uid);
+            var usernameData = usernameDoc.ToDictionary();
+            string uid   = usernameData["uid"].ToString();
+            string email = usernameData.ContainsKey("email")
+                ? usernameData["email"].ToString()
+                : await GetEmailForUid(uid); // fallback for existing accounts
 
             if (string.IsNullOrEmpty(email))
                 return (false, "Account not found.");
@@ -172,8 +179,11 @@ public static class PlayerDatabaseAPI
             if (!usernameDoc.Exists)
                 return (false, "No account found with that username.");
 
-            string uid   = usernameDoc.ToDictionary()["uid"].ToString();
-            string email = await GetEmailForUid(uid);
+            var usernameData = usernameDoc.ToDictionary();
+            string uid   = usernameData["uid"].ToString();
+            string email = usernameData.ContainsKey("email")
+                ? usernameData["email"].ToString()
+                : await GetEmailForUid(uid);
 
             if (string.IsNullOrEmpty(email))
                 return (false, "Could not find account email.");
@@ -237,14 +247,11 @@ public static class PlayerDatabaseAPI
             string uid      = _firebaseUser.UserId;
             string username = _currentPlayer?.displayName ?? "";
 
-            // Delete Firestore player document
             await FirebaseManager.Db.Collection(PlayersCollection).Document(uid).DeleteAsync();
 
-            // Delete username mapping
             if (!string.IsNullOrEmpty(username))
                 await FirebaseManager.Db.Collection(UsernamesCollection).Document(username).DeleteAsync();
 
-            // Delete Firebase Auth user
             await _firebaseUser.DeleteAsync();
 
             _currentPlayer = null;
@@ -387,9 +394,9 @@ public static class PlayerDatabaseAPI
 
     // ── Seen content ──────────────────────────────────────────────────────
 
-    public static List<string> GetSeenTriviaIds()   => _currentPlayer?.seenTriviaIds   ?? new List<string>();
-    public static List<string> GetSeenWordokuWords() => _currentPlayer?.seenWordokuWords ?? new List<string>();
-    public static List<string> GetSeenCrosswordIds() => _currentPlayer?.seenCrosswordIds ?? new List<string>();
+    public static List<string> GetSeenTriviaIds()    => _currentPlayer?.seenTriviaIds    ?? new List<string>();
+    public static List<string> GetSeenWordokuWords()  => _currentPlayer?.seenWordokuWords ?? new List<string>();
+    public static List<string> GetSeenCrosswordIds()  => _currentPlayer?.seenCrosswordIds ?? new List<string>();
 
     // ── Leaderboard ───────────────────────────────────────────────────────
 
@@ -458,7 +465,7 @@ public static class PlayerDatabaseAPI
             await docRef.SetAsync(statsDict, SetOptions.MergeAll);
 
             var seenDict = new Dictionary<string, object>();
-            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]   = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]    = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
             if (p.seenWordokuWords?.Count > 0) seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
             if (p.seenCrosswordIds?.Count > 0) seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
             if (seenDict.Count > 0) await docRef.UpdateAsync(seenDict);
@@ -480,7 +487,7 @@ public static class PlayerDatabaseAPI
             var docRef   = FirebaseManager.Db.Collection(PlayersCollection).Document(_firebaseUser.UserId);
             var seenDict = new Dictionary<string, object>();
 
-            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]   = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
+            if (p.seenTriviaIds?.Count   > 0) seenDict["seenTriviaIds"]    = FieldValue.ArrayUnion(p.seenTriviaIds.Cast<object>().ToArray());
             if (p.seenWordokuWords?.Count > 0) seenDict["seenWordokuWords"] = FieldValue.ArrayUnion(p.seenWordokuWords.Cast<object>().ToArray());
             if (p.seenCrosswordIds?.Count > 0) seenDict["seenCrosswordIds"] = FieldValue.ArrayUnion(p.seenCrosswordIds.Cast<object>().ToArray());
 
@@ -522,7 +529,7 @@ public static class PlayerDatabaseAPI
             { "wordokuBestScarletLetters",       p.wordokuBestScarletLetters },
             { "wordokuFastestSeconds",           p.wordokuFastestSeconds },
             { "avatarIndex",                     p.avatarIndex },
-            { "seenTriviaIds",                   p.seenTriviaIds   ?? new List<string>() },
+            { "seenTriviaIds",                   p.seenTriviaIds    ?? new List<string>() },
             { "seenWordokuWords",                p.seenWordokuWords ?? new List<string>() },
             { "seenCrosswordIds",                p.seenCrosswordIds ?? new List<string>() },
             { "lastUpdated",                     FieldValue.ServerTimestamp }
