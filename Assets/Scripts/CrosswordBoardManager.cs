@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -77,6 +78,9 @@ public class CrosswordBoardManager : MonoBehaviour
     [Header("Letter Display")]
     [SerializeField] private TMP_Text displayText;
 
+    [Header("Keyboard Control")]
+    [SerializeField] private UnityEngine.UI.InputField hiddenInputField;
+
     // ── Mobile keyboard ───────────────────────────────────────────────────
     private TouchScreenKeyboard keyboard;
     private string lastKeyboardText = "";
@@ -141,7 +145,7 @@ public class CrosswordBoardManager : MonoBehaviour
     private void PersistLetterToSession(int r, int c, char ch)
     {
         if (CrosswordSession.savedGridState == null)
-            CrosswordSession.savedGridState = new System.Collections.Generic.Dictionary<string, char>();
+            CrosswordSession.savedGridState = new Dictionary<string, char>();
 
         string key = $"{r},{c}";
         if (ch == '\0')
@@ -173,14 +177,30 @@ public class CrosswordBoardManager : MonoBehaviour
         if (displayText != null) displayText.text = _currentInput;
     }
 
+    private IEnumerator ClearDisplayTextDelayed(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ClearDisplayText();
+    }
+
     // ── Keyboard ──────────────────────────────────────────────────────────
+
+    private void DismissKeyboard()
+    {
+        _keyboardOpen = false;
+        keyboard      = null;
+        if (hiddenInputField != null)
+        {
+            hiddenInputField.ActivateInputField();
+            hiddenInputField.DeactivateInputField();
+        }
+    }
 
     public void ToggleKeyboard()
     {
         if (_keyboardOpen)
         {
-            _keyboardOpen = false;
-            keyboard = null;
+            DismissKeyboard();
             ClearDisplayText();
         }
         else
@@ -213,7 +233,7 @@ public class CrosswordBoardManager : MonoBehaviour
                     CheckForWin();
                 }
 
-                keyboard.text = KeyboardSentinel;
+                keyboard.text    = KeyboardSentinel;
                 lastKeyboardText = KeyboardSentinel;
             }
             else if (text.Length < lastKeyboardText.Length)
@@ -237,7 +257,7 @@ public class CrosswordBoardManager : MonoBehaviour
                     BackspaceDisplayText();
                 }
 
-                keyboard.text = KeyboardSentinel;
+                keyboard.text    = KeyboardSentinel;
                 lastKeyboardText = KeyboardSentinel;
             }
             else
@@ -358,10 +378,9 @@ public class CrosswordBoardManager : MonoBehaviour
             }
         }
 
-        // No empty cell found — word is complete, close keyboard
-        _keyboardOpen = false;
-        keyboard = null;
-        ClearDisplayText();
+        // No empty cell found — word complete, dismiss keyboard with delay on display
+        DismissKeyboard();
+        StartCoroutine(ClearDisplayTextDelayed(1.5f));
     }
 
     private void RetreatToPreviousCell()
@@ -901,8 +920,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
         puzzleSolved  = false;
         _selectedCell = null;
-        _keyboardOpen = false;
-        keyboard      = null;
+        DismissKeyboard();
         ClearHighlights();
         ClearDisplayText();
         CrosswordClueDisplay.Instance?.ClearClue();

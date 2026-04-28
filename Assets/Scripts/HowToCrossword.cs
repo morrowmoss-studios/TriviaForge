@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 
 public class HowToCrossword : MonoBehaviour
 {
-    // Set to true when launched from Settings so we know to go back instead of forward
     public static bool LaunchedFromSettings = false;
+    public static bool JustCompletedHowTo  = false;
 
     private const string HasSeenKey = "HasSeenCrosswordHowTo";
 
@@ -27,7 +27,6 @@ public class HowToCrossword : MonoBehaviour
 
     void Start()
     {
-        // Mark seen immediately to prevent CrosswordMode from redirecting back here in a loop
         PlayerPrefs.SetInt(HasSeenKey, 1);
         PlayerPrefs.Save();
 
@@ -42,8 +41,6 @@ public class HowToCrossword : MonoBehaviour
     void Update()
     {
         if (!_active) return;
-
-        // Don't advance on tap for the last panel -- Done button only
         if (_index >= (panels != null ? panels.Length - 1 : 0)) return;
 
         bool tapped = false;
@@ -72,7 +69,6 @@ public class HowToCrossword : MonoBehaviour
 #endif
 
         if (!tapped) return;
-
         Advance();
     }
 
@@ -87,15 +83,11 @@ public class HowToCrossword : MonoBehaviour
     void Advance()
     {
         if (panels == null || panels.Length == 0) return;
-
         int next = _index + 1;
-        if (next >= panels.Length)
-            FinishTutorial();
-        else
-            ShowPanel(next);
+        if (next >= panels.Length) FinishTutorial();
+        else ShowPanel(next);
     }
 
-    // Wire this to the Done button on the last panel
     public void OnDonePressed()
     {
         _active = false;
@@ -114,7 +106,6 @@ public class HowToCrossword : MonoBehaviour
             foreach (var p in panels)
                 if (p) p.SetActive(false);
 
-        // If toggle not checked, reset so instructions show again next time
         bool dontShow = dontShowAgainToggle != null && dontShowAgainToggle.isOn;
         if (!dontShow)
         {
@@ -129,16 +120,20 @@ public class HowToCrossword : MonoBehaviour
             return;
         }
 
+        JustCompletedHowTo = true;
         SceneManager.LoadScene(crosswordSceneName);
     }
 
-    // Call this on CrosswordMode Start to redirect to how-to if first time
     public static bool ShouldShowHowTo()
     {
+        if (JustCompletedHowTo)
+        {
+            JustCompletedHowTo = false;
+            return false;
+        }
         return PlayerPrefs.GetInt(HasSeenKey, 0) == 0;
     }
 
-    // Call this from the Settings how-to button
     public static void LaunchFromSettingsMenu()
     {
         LaunchedFromSettings = true;
