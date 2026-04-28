@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum WordokuDifficulty
 {
@@ -61,6 +62,7 @@ public class WordokuManager : MonoBehaviour
 
     [Header("Scene Names")]
     [SerializeField] private string quitPopupSceneName = "Quit_PopUp";
+    [SerializeField] private string modeSelectSceneName = "ModeSelect";
 
     private float _elapsedSeconds  = 0f;
     private bool  _timerRunning    = false;
@@ -371,8 +373,18 @@ public class WordokuManager : MonoBehaviour
 
     public void ResetBoard()
     {
-        PopulateBoardUI();
+        for (int r = 0; r < 9; r++)
+        for (int c = 0; c < 9; c++)
+        {
+            WordokuCell cell = board.boardCells[r, c];
+            if (!cell.isLocked)
+                cell.SetLetter("");
+        }
+
+        hintsRemaining = 3;
+        UpdateHintDisplay();
         UpdateLetterCompletion();
+        PersistStateToSession();
     }
 
     public void GiveHint()
@@ -421,6 +433,12 @@ public class WordokuManager : MonoBehaviour
         RefreshNotesButtonVisual();
         Debug.Log("Notes mode: " + (notesMode ? "ON" : "OFF"));
     }
+    
+    public void OnBackButton()
+{
+    WordokuSession.Clear();
+    SceneManager.LoadScene(modeSelectSceneName);
+}
 
     // ── Notes button visual ───────────────────────────────────────────────
 

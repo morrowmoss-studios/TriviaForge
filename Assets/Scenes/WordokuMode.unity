@@ -4799,10 +4799,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 302585440}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 2112210522}
+        m_TargetAssemblyTypeName: WordokuManager, Assembly-CSharp
+        m_MethodName: OnBackButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5889,7 +5889,6 @@ MonoBehaviour:
   - MISTCLOUD
   - WILDFROST
   letterChoiceManager: {fileID: 1485569418}
-  quitPopupSceneName: Quit_PopUp
   notesMode: 0
   notesButton: {fileID: 34436483}
   notesActiveColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
@@ -5901,6 +5900,8 @@ MonoBehaviour:
   resourcesDbName: trivia_database
   fallbackToDefaultWords: 1
   timerText: {fileID: 272642106}
+  quitPopupSceneName: Quit_PopUp
+  modeSelectSceneName: ModeSelect
 --- !u!4 &2112210523
 Transform:
   m_ObjectHideFlags: 0
