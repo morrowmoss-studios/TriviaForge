@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -73,11 +74,15 @@ public class CrosswordBoardManager : MonoBehaviour
     [Tooltip("Keep FALSE for release.")]
     [SerializeField] private bool autoFillSolutionOnStart = false;
 
+    [Header("Letter Display")]
+    [SerializeField] private TMP_Text displayText;
+
     // ── Mobile keyboard ───────────────────────────────────────────────────
     private TouchScreenKeyboard keyboard;
     private string lastKeyboardText = "";
     private const string KeyboardSentinel = "|";
     private bool _keyboardOpen = false;
+    private string _currentInput = "";
 
     private GameDatabase dbCached;
 
@@ -107,6 +112,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
         if (autoFillSolutionOnStart)
             RevealPlacedSolutionLettersOnly();
+
+        ClearDisplayText();
     }
 
     private void RestoreGridState()
@@ -145,6 +152,27 @@ public class CrosswordBoardManager : MonoBehaviour
         CrosswordSession.savedHintsRemaining = hintsRemaining;
     }
 
+    // ── Display text ──────────────────────────────────────────────────────
+
+    private void ClearDisplayText()
+    {
+        _currentInput = "";
+        if (displayText != null) displayText.text = "";
+    }
+
+    private void AppendDisplayText(char ch)
+    {
+        _currentInput += ch;
+        if (displayText != null) displayText.text = _currentInput;
+    }
+
+    private void BackspaceDisplayText()
+    {
+        if (_currentInput.Length > 0)
+            _currentInput = _currentInput.Substring(0, _currentInput.Length - 1);
+        if (displayText != null) displayText.text = _currentInput;
+    }
+
     // ── Keyboard ──────────────────────────────────────────────────────────
 
     public void ToggleKeyboard()
@@ -153,12 +181,14 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             _keyboardOpen = false;
             keyboard = null;
+            ClearDisplayText();
         }
         else
         {
             if (_selectedCell != null)
             {
                 _keyboardOpen = true;
+                ClearDisplayText();
                 OpenKeyboard();
             }
         }
@@ -178,6 +208,7 @@ public class CrosswordBoardManager : MonoBehaviour
                 {
                     _selectedCell.SetLetter(newChar);
                     PersistLetterToSession(_selectedCell.row, _selectedCell.col, newChar);
+                    AppendDisplayText(newChar);
                     AdvanceToNextCell();
                     CheckForWin();
                 }
@@ -189,8 +220,21 @@ public class CrosswordBoardManager : MonoBehaviour
             {
                 if (_selectedCell != null)
                 {
-                    _selectedCell.SetLetter('\0');
-                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                    if (_selectedCell.GetLetter() != '\0')
+                    {
+                        _selectedCell.SetLetter('\0');
+                        PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                    }
+                    else
+                    {
+                        RetreatToPreviousCell();
+                        if (_selectedCell != null)
+                        {
+                            _selectedCell.SetLetter('\0');
+                            PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                        }
+                    }
+                    BackspaceDisplayText();
                 }
 
                 keyboard.text = KeyboardSentinel;
@@ -210,8 +254,21 @@ public class CrosswordBoardManager : MonoBehaviour
             {
                 if (keyboard2.backspaceKey.wasPressedThisFrame)
                 {
-                    _selectedCell.SetLetter('\0');
-                    PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                    if (_selectedCell.GetLetter() != '\0')
+                    {
+                        _selectedCell.SetLetter('\0');
+                        PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                    }
+                    else
+                    {
+                        RetreatToPreviousCell();
+                        if (_selectedCell != null)
+                        {
+                            _selectedCell.SetLetter('\0');
+                            PersistLetterToSession(_selectedCell.row, _selectedCell.col, '\0');
+                        }
+                    }
+                    BackspaceDisplayText();
                 }
                 else
                 {
@@ -226,6 +283,7 @@ public class CrosswordBoardManager : MonoBehaviour
                             {
                                 _selectedCell.SetLetter(ch);
                                 PersistLetterToSession(_selectedCell.row, _selectedCell.col, ch);
+                                AppendDisplayText(ch);
                                 AdvanceToNextCell();
                                 CheckForWin();
                                 break;
@@ -240,6 +298,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void OpenKeyboard()
     {
+        TouchScreenKeyboard.hideInput = true;
+
         keyboard = TouchScreenKeyboard.Open(
             KeyboardSentinel,
             TouchScreenKeyboardType.Default,
@@ -296,6 +356,32 @@ public class CrosswordBoardManager : MonoBehaviour
                     return;
                 }
             }
+        }
+
+        // No empty cell found — word is complete, close keyboard
+        _keyboardOpen = false;
+        keyboard = null;
+        ClearDisplayText();
+    }
+
+    private void RetreatToPreviousCell()
+    {
+        if (_selectedCell == null) return;
+
+        int r = _selectedCell.row;
+        int c = _selectedCell.col;
+
+        if (_selectedAcross)
+        {
+            int prevC = c - 1;
+            if (prevC >= 0 && !cells[r, prevC].IsBlocked)
+                SelectCell(cells[r, prevC], true);
+        }
+        else
+        {
+            int prevR = r - 1;
+            if (prevR >= 0 && !cells[prevR, c].IsBlocked)
+                SelectCell(cells[prevR, c], false);
         }
     }
 
@@ -630,6 +716,7 @@ public class CrosswordBoardManager : MonoBehaviour
         _selectedAcross = goAcross;
 
         ClearHighlights();
+        ClearDisplayText();
 
         CrosswordWord activeWord   = goAcross ? acrossWord : downWord;
         CrosswordWord inactiveWord = goAcross ? downWord   : acrossWord;
@@ -817,6 +904,7 @@ public class CrosswordBoardManager : MonoBehaviour
         _keyboardOpen = false;
         keyboard      = null;
         ClearHighlights();
+        ClearDisplayText();
         CrosswordClueDisplay.Instance?.ClearClue();
         CrosswordSession.savedGridState       = null;
         CrosswordSession.savedWrongPlacements = 0;
