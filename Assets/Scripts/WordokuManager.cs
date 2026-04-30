@@ -63,6 +63,12 @@ public class WordokuManager : MonoBehaviour
     [Header("Scene Names")]
     [SerializeField] private string quitPopupSceneName = "Quit_PopUp";
     [SerializeField] private string modeSelectSceneName = "ModeSelect";
+    
+    [Header("Back Confirm Panel")]
+    [SerializeField] private GameObject backConfirmPanel;
+
+    [Header("Reset Confirm Panel")]
+    [SerializeField] private GameObject resetConfirmPanel;
 
     private float _elapsedSeconds  = 0f;
     private bool  _timerRunning    = false;
@@ -386,6 +392,27 @@ public class WordokuManager : MonoBehaviour
         UpdateLetterCompletion();
         PersistStateToSession();
     }
+    
+    public void OnResetButton()
+    {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(true);
+        else
+            ResetBoard();
+    }
+
+    public void OnResetConfirmPressed()
+    {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(false);
+        ResetBoard();
+    }
+
+    public void OnResetCancelPressed()
+    {
+        if (resetConfirmPanel != null)
+            resetConfirmPanel.SetActive(false);
+    }
 
     public void GiveHint()
     {
@@ -435,10 +462,29 @@ public class WordokuManager : MonoBehaviour
     }
     
     public void OnBackButton()
-{
-    WordokuSession.Clear();
-    SceneManager.LoadScene(modeSelectSceneName);
-}
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(true);
+        else
+        {
+            WordokuSession.Clear();
+            SceneManager.LoadScene(modeSelectSceneName);
+        }
+    }
+
+    public void OnBackConfirmPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
+        WordokuSession.Clear();
+        SceneManager.LoadScene(modeSelectSceneName);
+    }
+
+    public void OnBackCancelPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
+    }
 
     // ── Notes button visual ───────────────────────────────────────────────
 

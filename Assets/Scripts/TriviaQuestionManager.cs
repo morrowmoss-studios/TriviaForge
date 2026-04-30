@@ -34,6 +34,10 @@ public class TriviaQuestionManager : MonoBehaviour
 
     [Header("Ads")]
     [SerializeField] private AdsPopUpController adsPopUp;
+    
+    [Header("Back Confirm Panel")]
+    [SerializeField] private GameObject backConfirmPanel;
+    [SerializeField] private string modeSelectSceneName = "ModeSelect";
 
     private List<Question> questions = new List<Question>();
 
@@ -508,5 +512,26 @@ public class TriviaQuestionManager : MonoBehaviour
         }
 
         hintUsed = true;
+    }
+    
+    public void OnBackButton()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(true);
+        else
+            SceneManager.LoadScene(modeSelectSceneName);
+    }
+
+    public void OnBackConfirmPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
+        SceneManager.LoadScene(modeSelectSceneName);
+    }
+
+    public void OnBackCancelPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
     }
 }

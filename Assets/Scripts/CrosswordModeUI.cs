@@ -21,6 +21,9 @@ public class CrosswordModeUI : MonoBehaviour
 
     [Header("Reset Confirm Panel")]
     [SerializeField] private GameObject resetConfirmPanel;
+    
+    [Header("Back Confirm Panel")]
+    [SerializeField] private GameObject backConfirmPanel;
 
     private void Start()
     {
@@ -91,8 +94,27 @@ public class CrosswordModeUI : MonoBehaviour
     // BACK
     public void OnBackButton()
     {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(true);
+        else
+        {
+            CrosswordSession.currentWords = null;
+            SceneManager.LoadScene(modeSelectSceneName);
+        }
+    }
+
+    public void OnBackConfirmPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
         CrosswordSession.currentWords = null;
         SceneManager.LoadScene(modeSelectSceneName);
+    }
+
+    public void OnBackCancelPressed()
+    {
+        if (backConfirmPanel != null)
+            backConfirmPanel.SetActive(false);
     }
 
     // SETTINGS
