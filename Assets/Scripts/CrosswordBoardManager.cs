@@ -190,10 +190,7 @@ public class CrosswordBoardManager : MonoBehaviour
         _keyboardOpen = false;
         keyboard      = null;
         if (hiddenInputField != null)
-        {
-            hiddenInputField.ActivateInputField();
             hiddenInputField.DeactivateInputField();
-        }
     }
 
     public void ToggleKeyboard()
@@ -319,13 +316,20 @@ public class CrosswordBoardManager : MonoBehaviour
     private void OpenKeyboard()
     {
         TouchScreenKeyboard.hideInput = true;
-
-        keyboard = TouchScreenKeyboard.Open(
-            KeyboardSentinel,
-            TouchScreenKeyboardType.Default,
-            false, false, false, false, "", 0
-        );
-
+        if (hiddenInputField != null)
+        {
+            hiddenInputField.text = KeyboardSentinel;
+            hiddenInputField.ActivateInputField();
+            keyboard = hiddenInputField.touchScreenKeyboard;
+        }
+        else
+        {
+            keyboard = TouchScreenKeyboard.Open(
+                KeyboardSentinel,
+                TouchScreenKeyboardType.Default,
+                false, false, false, false, "", 0
+            );
+        }
         lastKeyboardText = KeyboardSentinel;
         if (keyboard != null) keyboard.text = KeyboardSentinel;
     }
