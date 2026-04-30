@@ -316,20 +316,11 @@ public class CrosswordBoardManager : MonoBehaviour
     private void OpenKeyboard()
     {
         TouchScreenKeyboard.hideInput = true;
-        if (hiddenInputField != null)
-        {
-            hiddenInputField.text = KeyboardSentinel;
-            hiddenInputField.ActivateInputField();
-            keyboard = hiddenInputField.touchScreenKeyboard;
-        }
-        else
-        {
-            keyboard = TouchScreenKeyboard.Open(
-                KeyboardSentinel,
-                TouchScreenKeyboardType.Default,
-                false, false, false, false, "", 0
-            );
-        }
+        keyboard = TouchScreenKeyboard.Open(
+            KeyboardSentinel,
+            TouchScreenKeyboardType.Default,
+            false, false, false, false, "", 0
+        );
         lastKeyboardText = KeyboardSentinel;
         if (keyboard != null) keyboard.text = KeyboardSentinel;
     }

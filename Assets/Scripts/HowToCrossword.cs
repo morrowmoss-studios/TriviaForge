@@ -10,6 +10,7 @@ public class HowToCrossword : MonoBehaviour
 {
     public static bool LaunchedFromSettings = false;
     public static bool JustCompletedHowTo  = false;
+    public static bool InSession           = false;
 
     private const string HasSeenKey = "HasSeenCrosswordHowTo";
 
@@ -129,8 +130,10 @@ public class HowToCrossword : MonoBehaviour
         if (JustCompletedHowTo)
         {
             JustCompletedHowTo = false;
+            InSession = true;
             return false;
         }
+        if (InSession) return false;
         return PlayerPrefs.GetInt(HasSeenKey, 0) == 0;
     }
 
