@@ -526,6 +526,7 @@ public class TriviaQuestionManager : MonoBehaviour
     {
         if (backConfirmPanel != null)
             backConfirmPanel.SetActive(false);
+        HowToTrivia.InSession = false;
         SceneManager.LoadScene(modeSelectSceneName);
     }
 

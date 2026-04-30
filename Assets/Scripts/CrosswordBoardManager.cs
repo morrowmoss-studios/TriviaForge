@@ -739,7 +739,6 @@ public class CrosswordBoardManager : MonoBehaviour
         _selectedAcross = goAcross;
 
         ClearHighlights();
-        ClearDisplayText();
 
         CrosswordWord activeWord   = goAcross ? acrossWord : downWord;
         CrosswordWord inactiveWord = goAcross ? downWord   : acrossWord;
@@ -759,6 +758,23 @@ public class CrosswordBoardManager : MonoBehaviour
 
         _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
         _highlightedAnchor.SetNumberHighlighted(true);
+        
+        // Populate display text with whatever is already in the selected word
+         _currentInput = "";
+            if (activeWord != null)
+            {
+                for (int i = 0; i < activeWord.answer.Length; i++)
+                {
+                    int wr = activeWord.startRow + (activeWord.isAcross ? 0 : i);
+                    int wc = activeWord.startCol + (activeWord.isAcross ? i : 0);
+                    if (wr < rows && wc < cols && !cells[wr, wc].IsBlocked)
+                    {
+                        char letter = cells[wr, wc].GetLetter();
+                        _currentInput += letter != '\0' ? letter.ToString() : "_";
+                    }
+                }
+            }
+            if (displayText != null) displayText.text = _currentInput;
     }
 
     // ── Highlight helpers ─────────────────────────────────────────────────

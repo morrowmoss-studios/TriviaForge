@@ -10,6 +10,7 @@ public class HowToTrivia : MonoBehaviour
 {
     public static bool LaunchedFromSettings = false;
     public static bool JustCompletedHowTo  = false;
+    public static bool InSession          = false;
 
     private const string HasSeenKey = "HasSeenTriviaHowTo";
 
@@ -24,6 +25,7 @@ public class HowToTrivia : MonoBehaviour
 
     int _index   = -1;
     bool _active = false;
+    
 
     void Start()
     {
@@ -129,8 +131,10 @@ public class HowToTrivia : MonoBehaviour
         if (JustCompletedHowTo)
         {
             JustCompletedHowTo = false;
+            InSession = true;
             return false;
         }
+        if (InSession) return false;
         return PlayerPrefs.GetInt(HasSeenKey, 0) == 0;
     }
 
