@@ -87,6 +87,7 @@ public class CrosswordBoardManager : MonoBehaviour
     private const string KeyboardSentinel = "|";
     private bool _keyboardOpen = false;
     private string _currentInput = "";
+    private Coroutine _clearDisplayCoroutine;
 
     private GameDatabase dbCached;
 
@@ -181,6 +182,18 @@ public class CrosswordBoardManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         ClearDisplayText();
+        _clearDisplayCoroutine = null;
+    }
+    
+    private void CancelPendingClearAndPopulate(string text)
+    {
+        if (_clearDisplayCoroutine != null)
+        {
+            StopCoroutine(_clearDisplayCoroutine);
+            _clearDisplayCoroutine = null;
+        }
+        _currentInput = text;
+        if (displayText != null) displayText.text = _currentInput;
     }
 
     // ── Keyboard ──────────────────────────────────────────────────────────
@@ -315,7 +328,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
     private void OpenKeyboard()
     {
-        TouchScreenKeyboard.hideInput = true;
+        TouchScreenKeyboard.hideInput = false;
         keyboard = TouchScreenKeyboard.Open(
             KeyboardSentinel,
             TouchScreenKeyboardType.Default,
@@ -375,7 +388,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
         // No empty cell found — word complete, dismiss keyboard with delay on display
         DismissKeyboard();
-        StartCoroutine(ClearDisplayTextDelayed(1.5f));
+        _clearDisplayCoroutine = StartCoroutine(ClearDisplayTextDelayed(1.5f));
     }
 
     private void RetreatToPreviousCell()
@@ -751,21 +764,21 @@ public class CrosswordBoardManager : MonoBehaviour
         _highlightedAnchor.SetNumberHighlighted(true);
         
         // Populate display text with whatever is already in the selected word
-         _currentInput = "";
-            if (activeWord != null)
+        string wordDisplay = "";
+        if (activeWord != null)
+        {
+            for (int i = 0; i < activeWord.answer.Length; i++)
             {
-                for (int i = 0; i < activeWord.answer.Length; i++)
+                int wr = activeWord.startRow + (activeWord.isAcross ? 0 : i);
+                int wc = activeWord.startCol + (activeWord.isAcross ? i : 0);
+                if (wr < rows && wc < cols && !cells[wr, wc].IsBlocked)
                 {
-                    int wr = activeWord.startRow + (activeWord.isAcross ? 0 : i);
-                    int wc = activeWord.startCol + (activeWord.isAcross ? i : 0);
-                    if (wr < rows && wc < cols && !cells[wr, wc].IsBlocked)
-                    {
-                        char letter = cells[wr, wc].GetLetter();
-                        _currentInput += letter != '\0' ? letter.ToString() : "_";
-                    }
+                    char letter = cells[wr, wc].GetLetter();
+                    wordDisplay += letter != '\0' ? letter.ToString() : "_";
                 }
             }
-            if (displayText != null) displayText.text = _currentInput;
+        }
+        CancelPendingClearAndPopulate(wordDisplay);
     }
 
     // ── Highlight helpers ─────────────────────────────────────────────────
