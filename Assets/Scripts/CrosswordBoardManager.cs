@@ -56,7 +56,8 @@ public class CrosswordBoardManager : MonoBehaviour
 
     // ── Hints ─────────────────────────────────────────────────────────────
     private const int MaxHints = 3;
-    private int hintsRemaining = MaxHints;
+    private int hintsRemaining  = MaxHints;
+    private int _wrongPlacements = 0;
 
     public int  HintsRemaining => hintsRemaining;
     public bool UsedNoHints    => hintsRemaining == MaxHints;
@@ -137,7 +138,8 @@ public class CrosswordBoardManager : MonoBehaviour
             cells[r, c].SetLetter(kvp.Value);
         }
 
-        hintsRemaining = CrosswordSession.savedHintsRemaining;
+        _wrongPlacements = CrosswordSession.savedWrongPlacements;
+        hintsRemaining   = CrosswordSession.savedHintsRemaining;
         OnHintsChanged?.Invoke(hintsRemaining);
 
         Debug.Log($"[CrosswordBoardManager] Restored {CrosswordSession.savedGridState.Count} cells from session.");
@@ -154,7 +156,8 @@ public class CrosswordBoardManager : MonoBehaviour
         else
             CrosswordSession.savedGridState[key] = ch;
 
-        CrosswordSession.savedHintsRemaining = hintsRemaining;
+        CrosswordSession.savedWrongPlacements = _wrongPlacements;
+        CrosswordSession.savedHintsRemaining  = hintsRemaining;
     }
 
     // ── Display text ──────────────────────────────────────────────────────
@@ -184,7 +187,7 @@ public class CrosswordBoardManager : MonoBehaviour
         ClearDisplayText();
         _clearDisplayCoroutine = null;
     }
-    
+
     private void CancelPendingClearAndPopulate(string text)
     {
         if (_clearDisplayCoroutine != null)
@@ -237,6 +240,8 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (newChar >= 'A' && newChar <= 'Z' && _selectedCell != null)
                 {
                     _selectedCell.SetLetter(newChar);
+                    if (newChar != solutionLetters[_selectedCell.row, _selectedCell.col])
+                        _wrongPlacements++;
                     PersistLetterToSession(_selectedCell.row, _selectedCell.col, newChar);
                     AppendDisplayText(newChar);
                     AdvanceToNextCell();
@@ -312,6 +317,8 @@ public class CrosswordBoardManager : MonoBehaviour
                             if (ch >= 'A' && ch <= 'Z')
                             {
                                 _selectedCell.SetLetter(ch);
+                                if (ch != solutionLetters[_selectedCell.row, _selectedCell.col])
+                                    _wrongPlacements++;
                                 PersistLetterToSession(_selectedCell.row, _selectedCell.col, ch);
                                 AppendDisplayText(ch);
                                 AdvanceToNextCell();
@@ -623,7 +630,8 @@ public class CrosswordBoardManager : MonoBehaviour
         IndexWordsAndBuildSolution();
         AssignCellNumbers();
 
-        hintsRemaining = MaxHints;
+        hintsRemaining   = MaxHints;
+        _wrongPlacements = 0;
         OnHintsChanged?.Invoke(hintsRemaining);
 
         puzzleSolved = false;
@@ -762,7 +770,7 @@ public class CrosswordBoardManager : MonoBehaviour
 
         _highlightedAnchor = cells[activeWord.startRow, activeWord.startCol];
         _highlightedAnchor.SetNumberHighlighted(true);
-        
+
         // Populate display text with whatever is already in the selected word
         string wordDisplay = "";
         if (activeWord != null)
@@ -896,7 +904,6 @@ public class CrosswordBoardManager : MonoBehaviour
         }
 
         bool allCorrect = true;
-        int finalWrongCount = 0;
 
         for (int r = 0; r < rows; r++)
         {
@@ -912,7 +919,6 @@ public class CrosswordBoardManager : MonoBehaviour
                 {
                     HapticManager.WrongAnswer();
                     allCorrect = false;
-                    finalWrongCount++;
                 }
             }
         }
@@ -921,8 +927,8 @@ public class CrosswordBoardManager : MonoBehaviour
         {
             puzzleSolved = true;
             Debug.Log("[CrosswordBoardManager] Puzzle solved!");
-            TriviaSessionData.crosswordWrongPlacements = finalWrongCount;
-            TriviaSessionData.crosswordPerfectGame     = finalWrongCount == 0;
+            TriviaSessionData.crosswordWrongPlacements = _wrongPlacements;
+            TriviaSessionData.crosswordPerfectGame     = _wrongPlacements == 0;
             GameWinController.TriggerWin("Crossword");
         }
         else
@@ -942,8 +948,9 @@ public class CrosswordBoardManager : MonoBehaviour
                 if (cells[r, c] != null && !cells[r, c].IsBlocked)
                     cells[r, c].SetLetter('\0');
 
-        puzzleSolved  = false;
-        _selectedCell = null;
+        puzzleSolved     = false;
+        _wrongPlacements = 0;
+        _selectedCell    = null;
         DismissKeyboard();
         ClearHighlights();
         ClearDisplayText();
