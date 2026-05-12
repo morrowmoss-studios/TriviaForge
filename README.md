@@ -1,6 +1,6 @@
 # TriviaForge by MorrowMoss Studios
 
-© 2025 MorrowMoss Studios. All rights reserved.
+© 2026 MorrowMoss Studios. All rights reserved.
 
 TriviaForge is a magical, bioluminescent knowledge-forge where players shape answers, craft words, and spark connections across enchanted realms. Whether you’re diving into folklore, battling sports trivia, or solving glowing crossword grids, every correct answer fuels the forge.
 
