@@ -1,6 +1,6 @@
-# TriviaForge by MorrowMoss Studios
+# TriviaForge by MorrowMoss Studios LTD
 
-© 2026 MorrowMoss Studios. All rights reserved.
+© 2026 MorrowMoss Studios LTD. All rights reserved.
 
 TriviaForge is a magical, bioluminescent knowledge-forge where players shape answers, craft words, and spark connections across enchanted realms. Whether you’re diving into folklore, battling sports trivia, or solving glowing crossword grids, every correct answer fuels the forge.
 
@@ -8,7 +8,7 @@ TriviaForge is a magical, bioluminescent knowledge-forge where players shape ans
 
 ## 🪄 About
 
-TriviaForge is part of our mission at **MorrowMoss Studios** to build cozy, enchanted experiences where curiosity and play intertwine.  
+TriviaForge is part of our mission at **MorrowMoss Studios LTD** to build cozy, enchanted experiences where curiosity and play intertwine.  
 Here, knowledge isn’t tested — **it’s crafted**.
 
 The forge glows with fae energy, runes hum under your fingertips, and each puzzle feels like stepping into a moss-lit library where the world exhaled and said, *“stay awhile.”*
@@ -34,7 +34,7 @@ For inquiries, collaborations, or offerings to the rune-smiths of the moss realm
 
 ## 🔥 Legal Disclaimer
 
-This software, including all code, assets, art, concepts, and related materials, is proprietary to MorrowMoss Studios and pertains specifically to the project **TriviaForge**.
+This software, including all code, assets, art, concepts, and related materials, is proprietary to MorrowMoss Studios LTD and pertains specifically to the project **TriviaForge**.
 
 Unauthorized copying, modification, distribution, or commercial use of this software or any of its parts is strictly prohibited.  
 Violators will be politely but firmly dropped into the crossword dimension until they repent.
